@@ -1,0 +1,99 @@
+//- index.jade
+extends ./layout.jade
+
+block row-content
+  div.container
+    div.row
+      div.col-lg-12
+        h2 Input Text
+        div.row
+          p.help-block
+            | Choose what text you would like to analyze by using the example text, writing, or pasting your own text below. 
+        form.form-horizontal(method='post')
+          div.well
+            fieldset
+              div.form-group.row
+                div.col-lg-12
+                  textarea#textArea.form-control(name="content", rows='10',
+                    placeholder="Please enter the text to analyze ...", required="true")
+
+          div.form-group.row(style='margin-bottom: 0px; padding-top: 5px;')
+            div.col-lg-6.col-lg-push-6.col-md-6.col-md-push-6.col-sm-6.col-sm-push-6.col-xs-12
+              a.btn.btn-block.analyze-btn(role="button", ) Analyze
+            div.col-lg-6.col-lg-pull-6.col-md-6.col-md-pull-6.col-sm-6.col-sm-pull-6.col-xs-12
+              img.icon.reset-icon(src="images/reset.svg")
+              a(href="/") Reset
+
+    //- results section
+    div.row
+      div.col-lg-12
+        h2.output-div Output
+        div.row
+          p.help-block
+            | This demo uses multiple API calls for its functionality. The 
+            code tone
+            |  API analyzes and displays the Emotion, Social, and Writing tone results.
+          p.help-block
+            | Then when you click a highlighted word, a call to the 
+            code synonym
+            |  API displays suggested synonyms that either soften or strengthen the tone of that word. It also allows you to select a synonym to replace the original word, changing the tone of the message. For an in-depth explanation of this service, visit the 
+            a(href='http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/tone-analyzer/') Documentation
+            | .
+    div.row#loading(style="display:none;")
+      div.loader
+        img(src="images/loading-indicator.gif")
+    div.row.error(style='display: none;')
+      div.col-lg-12.well
+        p.errorMsg
+
+    div.results.row(style='display:none;')
+      div.col-lg-12
+        div.well
+          form.form-horizontal
+            div(role="tabpanel")
+              ul.nav.nav-tabs(role="tablist")
+                li.active(role="presentation")
+                  a.metric-count(href="#wordcount", aria-controls="count", role="tab" data-toggle="tab")
+                    | Word Count
+                li(role="presentation")
+                  a.metric-percentile(href="#percentile", aria-controls="percentile", role="tab", data-toggle="tab")
+                    | Percentile
+                li(role="presentation")
+                  a(href="#json", aria-controls="json", role="tab" data-toggle="tab")
+                    | JSON
+            div.hr-tab
+            fieldset
+              div.form-group.row
+                div.col-lg-12.col-md-12.col-sm-12
+                  div.tab-content
+                    div.tab-pane.active(id="wordcount", role="tabpanel")
+                      p Word Count returns the percentage of words per tone
+                        | and the total number of words for each individual
+                        | tone trait.
+                    div.tab-pane(id="percentile", role="tabpanel")
+                      p Percentile compares the raw output score to a preset scorecard.
+                        | For this demo the scorecard is Business Email.
+                    div.tab-pane(id="json", role="tabpanel")
+                      pre.json-div
+                    div#visualization
+                    p.text-output-label Click on any highlighted word to see suggested synonyms.
+                    div.text-output-div
+
+    //this is synonym pop-up panel
+    div.hide#synonymDiv
+      ul.nav.nav-tabs#synonymTabs(role="tablist")
+      div.tab-content#synonymTabContent
+      div.col-lg-4.col-lg-offset-8
+        a.btn.btn-block#closePopover(role="button") Close
+
+    //confirm dialog pop-up
+    div.modal.fade#useSynModal(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+      div.modal-dialog.modal-sm
+        div.modal-content
+          div.modal-header
+            h4.modal-title Confirm
+
+          div.modal-body this is a test
+          div.modal-footer
+            button.btn.btn-primary(type="button", data-dismiss="modal") Close
+            button.btn.btn-primary#confirmUseSyn(type="button") Save

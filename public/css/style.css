@@ -1,0 +1,238 @@
+/* style.css
+ * This file provides css styles.
+ */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+
+    margin-bottom: 40px;
+}
+
+.svg-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 190px; /* aspect ratio */
+    vertical-align: top;
+    overflow: hidden;
+}
+
+.svg-content-responsive {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 0;
+}
+
+.btn,
+.btn-block {
+    margin-bottom: 0em;
+    padding: 0.75em;
+    text-decoration: none;
+}
+
+.reset-icon {
+    margin-right: 0.5em;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+
+    height: 40px;
+    /*background-color: #f5f5f5;*/
+}
+
+.footer-content {
+    background: #00B2EF;
+    border-radius: none;
+    border-top: 1px solid #8CC63F;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.flag_true {
+    font-weight: bold;
+    background-color: #cccccc
+}
+
+.logo-img {
+    width: 45px;
+    margin-left: 45px;
+}
+
+.header {
+    padding-bottom: 10px;
+    background: #00B2EF;
+    border-bottom: 4px solid #8CC63F;
+    margin: 0px 0px 10px 0px;
+}
+
+.header h2 {
+    color: #eee;
+    font-size: 24px;
+    margin-top: 9px;
+}
+
+.text-in-box {
+    fill: #666;
+}
+
+.text-tone-in-box {
+    fill: #FFF;
+}
+
+.text-above-box {
+    fill: #666;
+}
+
+.text-bellow-box {
+    fill: #666;
+}
+
+.text-mixed-positive,
+.text-mixed-negative {
+    opacity: 0;
+    fill: #FFF;
+}
+.text-in-box,
+.text-above-box,
+.text-bellow-box {
+    font-size: small;
+}
+
+
+.text-analytical,
+.text-agreeable,
+.text-family_c,
+.text-causation {
+    fill: #eee;
+}
+
+.matched-word:hover {
+    font-style: italic;
+    cursor: pointer;
+}
+
+.form-control {
+    font-size: 14px;
+}
+
+.popover {
+    max-width: 100%;
+    /* Max Width of the popover (depending on the container!)*/
+
+    width: 100%;
+    left: 0px !important;
+}
+
+.popover > .arrow {
+    display: none;
+}
+
+.badge-neg {
+    background-color: #F46D43;
+}
+
+.badge-hidden {
+    display: none;
+}
+
+.modal-backdrop {
+    z-index: 0;
+}
+
+.g-block-mixed-background,
+.g-block-mixed-child {
+    cursor: pointer;
+}
+
+.loader {
+    width: 150px;
+    height: 150px;
+    margin: 0px auto;
+}
+
+.loader img {
+    width: 100%;
+    height: auto;
+}
+
+#json {
+    margin-bottom: 1em;
+}
+
+#visualization {
+    overflow: auto;
+    margin-top: 2.5rem;
+}
+
+.text-output-div {
+    padding: 1em;
+    background-color: white;
+    line-height: 2;
+}
+
+.text-output-div .matched-word {
+    transition: 0.5s;
+}
+
+.radio-block {
+    display: block;
+}
+
+.radio-inline {
+    padding-left: 0px;
+}
+
+@media screen and (max-width: 525px) {
+    .radio-block input[type="radio"] {
+        margin-left: 0px;
+    }
+}
+
+.tone-radio input[type="radio"] {
+    float: none;
+}
+
+@media screen and (max-width: 525px) {
+    .tone-radio {
+        padding: 0px;
+        margin-right: 5px;
+    }
+    .radio-inline {
+        margin-left: 0px;
+    }
+    .tone-radio input[type="radio"] {
+        margin: 0.5em 0.5em 0.5em 0em;
+    }
+}
+
+@media only screen and (max-width : 1199px) {
+    .svg-container { padding-bottom: 150px; }
+}
+
+@media only screen and (max-width : 768px) {
+    .svg-container { padding-bottom: 140px; }
+}
+
+#closePopover {
+    margin-bottom: 1em;
+}
+
+.json-div {
+    background-color: white;
+    color: black;
+    padding: 5px;
+}
+
+.synonym-list-item {
+    cursor: pointer;
+}

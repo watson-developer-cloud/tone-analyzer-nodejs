@@ -1,0 +1,49 @@
+{
+  "name": "ToneAnalyzerNodejsStarterApp",
+  "version": "0.1.1",
+  "description": "A sample nodejs app for Bluemix that use the Tone Analyzer service",
+  "dependencies": {
+    "body-parser": "~1.13.2",
+    "errorhandler": "~1.4.1",
+    "express": "~4.13.1",
+    "jade": "~1.11.0",
+    "watson-developer-cloud": "~0.9.24"
+  },
+  "engines": {
+    "node": ">=0.10.38"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/watson-developer-cloud/tone-analyzer-nodejs.git"
+  },
+  "author": "IBM Corp.",
+  "contributors": [
+    {
+      "name": "Hernan Badenes",
+      "email": "hbadenes@ar.ibm.com"
+    },
+    {
+      "name": "Liang Gou",
+      "email": "lgou@us.ibm.com"
+    },
+    {
+      "name": "James Zhang",
+      "email": "jzhang300@us.ibm.com"
+    },
+    {
+      "name": "Kathryn McElroy",
+      "email": "kemcelroy@us.ibm.com"
+    },
+    {
+      "name": "German Attanasio",
+      "email": "germanatt@us.ibm.com"
+    }
+  ],
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/watson-developer-cloud/tone-analyzer-nodejs/issues"
+  },
+  "scripts": {
+    "start": "node app.js"
+  }
+}

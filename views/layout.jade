@@ -1,0 +1,28 @@
+//- layout.jade
+doctype html
+html(lang='en')
+  head
+    block title
+      title Tone Analyzer
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+
+    link(rel='shortcut icon', href='/images/favicon.ico', type='image/x-icon')
+    link(rel='icon', href='/images/favicon.ico', type='image/x-icon')
+    link(rel='stylesheet', href='/css/watson-bootstrap-dark.css')
+    link(rel='stylesheet', href='/css/banner.css')
+    link(rel='stylesheet', href='/css/style.css')
+
+  body
+    include banner.jade
+
+    block row-content
+
+    script(type='text/javascript', src='/js/lib/jquery-2.1.0.min.js')
+    script(type='text/javascript', src='/js/lib/bootstrap.min.js')
+    script(type='text/javascript', src='/js/lib/d3.v2.js')
+    script(type='text/javascript', src='/js/config.js')
+    script(type='text/javascript', src='/js/util.js')
+    script(type='text/javascript', src='/js/visualization.js')
+    script(type='text/javascript', src='/js/index.js')
