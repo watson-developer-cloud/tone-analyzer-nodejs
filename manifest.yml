@@ -1,6 +1,6 @@
 ---
 declared-services:
-  tone-analyzer-service:
+  tone-analyzer-service-experimental:
     label: tone_analyzer
     plan: experimental
 applications:
@@ -9,4 +9,4 @@ applications:
   path: .
   memory: 512MB
   services:
-  - tone-analyzer-service
+  - tone-analyzer-service-experimental
