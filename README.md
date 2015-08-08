@@ -2,7 +2,10 @@
 
   The IBM Watson [Tone Analyzer][service_url] service is a cognitive linguistic analysis service used to monitor and identify tones within a piece of writing. It detects three types of tones, including emotions (negative emotions, cheerfulness, anger), social propensities (open, agreeable, and conscientious), and writing styles (analytical, confident and tentative) from people’s writings. Furthermore, it helps people understand how the tones are derived from various linguistic signals. It also offers actionable suggestions to revise the writings for desirable communication tones.
 
+<p align="center">
 <img src="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/img/service-gifs/tone-analyzer.gif" width="400">
+</p>
+
 
 Give it a try! Click the button below to fork into IBM DevOps Services and deploy your own copy of this application on Bluemix.
 
