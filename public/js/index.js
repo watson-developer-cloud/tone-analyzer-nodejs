@@ -67,6 +67,7 @@ $(document).ready(function() {
     $visualization = $(vizId);
 
   var CURRENT_TONE = null; // current results
+  var REPLACEABLE = null;
 
   // set initial text
   $text.val(SAMPLE_TEXT);
@@ -130,6 +131,15 @@ $(document).ready(function() {
    * @param  {String} analyzedText: analyzed text
    */
   function doToneCheck(toneResponse, analyzedText) {
+    // If the list of words with any synonym in the system is available, keep it
+    if (toneResponse.replaceable_words) {
+      REPLACEABLE = {}; 
+      toneResponse.replaceable_words.forEach(function(w) {
+        REPLACEABLE[w.toLowerCase()] = true;
+      });
+    } else {
+      REPLACEABLE = null; 
+    }
     $results.show();
 
     // normalize text
@@ -157,9 +167,11 @@ $(document).ready(function() {
       if (ele.indexOf('_' + WORD_TRAIT_CORR_TYPE.negative) > 0)
         cateName = ele.substring(0, ele.indexOf('_' + WORD_TRAIT_CORR_TYPE.negative));
 
-      $('.' + ele).css('background-color', COLOR_SCHEMA[cateName]);
-      $('.' + ele).css('color', 'white');
+      $('.' + ele).css('color', COLOR_SCHEMA[cateName]);
+      $('.' + ele).css('border', "1px solid "+COLOR_SCHEMA[cateName]);
       $('.' + ele).css('padding', '0.2em 0.5em 0.2em 0.5em');
+      $('.' + ele + ".replaceable").css('background-color', COLOR_SCHEMA[cateName]);
+      $('.' + ele + ".replaceable").css('color', 'white');
     });
 
     $('.matched-word').mouseover(function() {
@@ -185,7 +197,9 @@ $(document).ready(function() {
 
     function replacer(matchstr) {
       counter++;
-      return '<span class="matched-word ' + stylecls + '" categories="' +
+      var replaceable = REPLACEABLE && REPLACEABLE[matchstr.toLowerCase()];
+      console.log("replacer", matchstr, replaceable);
+      return '<span class="matched-word ' + (replaceable ? 'replaceable ' : '') + stylecls + '" categories="' +
         stylecls + '" offset = "' + matchIdxs[counter] + '">' + matchstr + '</span>';
     }
 
