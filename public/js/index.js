@@ -297,8 +297,8 @@ $(document).ready(function() {
         data: JSON.stringify({
           words: [word],
           limit: SYNONYM_LIMITS,
-          context: cntxt.context,
-          index: cntxt.offset,
+//          context: cntxt.context,
+//          index: cntxt.offset,
           hops: SYNONYM_HOPS
         }),
         url: 'synonym',
