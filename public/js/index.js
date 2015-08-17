@@ -51,8 +51,6 @@ var mainViz = d3.select(vizId)
   //class to make it responsive
   .classed('svg-content-responsive', true);
 
-var CURRENT_TEXT = null; // current analyzed text
-
 // startup
 $(document).ready(function() {
   var $text     = $('#textArea'),
@@ -66,6 +64,7 @@ $(document).ready(function() {
     $errorMsg   = $('.errorMsg'),
     $visualization = $(vizId);
 
+  var CURRENT_TEXT = null; // current analyzed text
   var CURRENT_TONE = null; // current results
   var REPLACEABLE = null;
 
@@ -142,6 +141,7 @@ $(document).ready(function() {
     }
     $results.show();
 
+    CURRENT_TEXT = analyzedText;
     // normalize text
     var analyzedHtmlText = analyzedText.replace(/\r\n/g, '<br />').replace(/[\r\n]/g, '<br />');
 
