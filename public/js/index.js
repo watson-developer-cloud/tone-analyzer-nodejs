@@ -89,8 +89,7 @@ $(document).ready(function() {
      * matched with LIWC categories;
      */
     var text = $text.val(),
-    CURRENT_TEXT = text;
-
+    
     $('.output-div')[0].scrollIntoView(true); // Boolean arguments
 
     $.post('/tone', {'text': text })
