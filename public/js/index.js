@@ -88,7 +88,7 @@ $(document).ready(function() {
      * send the data to the Tone Analyzer API to get words
      * matched with LIWC categories;
      */
-    var text = $text.val(),
+    var text = $text.val()
     
     $('.output-div')[0].scrollIntoView(true); // Boolean arguments
 
