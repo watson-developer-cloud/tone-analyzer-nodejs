@@ -25,19 +25,12 @@ var express = require('express'),
 // Bootstrap application settings
 require('./config/express')(app);
 
-// if bluemix credentials exists, then override local
-// var credentials = extend({
-//   version: 'v1',
-//   username: '<username>',
-//   password: '<password>'
-// }, bluemix.getServiceCreds('tone_analyzer'));
-
 var credentials = extend({
-    version: 'v1',
-    url: 'http://systemu0.almaden.ibm.com:8888/systemu/service/api',//'https://gateway-d.watsonplatform.net/tone-analyzer-experimental/api', //'<url>',
-    username: "204a7fdb-93f4-43a5-9853-8f51b8114d96", //'<username>',
-    password: "wn0l9jM4QWOf", //'<password>'
-}, bluemix.getServiceCreds('tone_analyzer')); // VCAP_SERVICES
+    url: 'http://systemu0.almaden.ibm.com:8088/tone-analyzer/api',
+  version: 'v2',
+  username: '<username>',
+  password: '<password>'
+}, bluemix.getServiceCreds('tone_analyzer'));
 
 
 // Create the service wrapper

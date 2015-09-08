@@ -294,7 +294,7 @@ $(document).ready(function() {
       $.ajax({
         type: 'POST',
         data: JSON.stringify({
-          words: [word],
+          word: word,
           limit: SYNONYM_LIMITS,
 //          context: cntxt.context,
 //          index: cntxt.offset,
