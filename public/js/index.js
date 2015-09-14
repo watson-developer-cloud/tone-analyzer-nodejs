@@ -296,8 +296,8 @@ $(document).ready(function() {
         data: {
           word: word,
           limit: SYNONYM_LIMITS,
-//          context: cntxt.context,
-//          index: cntxt.offset,
+          context: cntxt.context.join(' '),
+          index: cntxt.offset, 
           hops: SYNONYM_HOPS
         },
         url: 'synonyms',
