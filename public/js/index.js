@@ -197,7 +197,7 @@ $(document).ready(function() {
     function replacer(matchstr) {
       counter++;
       var replaceable = REPLACEABLE && REPLACEABLE[matchstr.toLowerCase()];
-      console.log("replacer", matchstr, replaceable);
+      //console.log("replacer", matchstr, replaceable);
       return '<span class="matched-word ' + (replaceable ? 'replaceable ' : '') + stylecls + '" categories="' +
         stylecls + '" offset = "' + matchIdxs[counter] + '">' + matchstr + '</span>';
     }
@@ -292,15 +292,15 @@ $(document).ready(function() {
       var cntxt = getContext(word, offset);
 
       $.ajax({
-        type: 'POST',
-        data: JSON.stringify({
+        type: 'GET',
+        data: {
           word: word,
           limit: SYNONYM_LIMITS,
 //          context: cntxt.context,
 //          index: cntxt.offset,
           hops: SYNONYM_HOPS
-        }),
-        url: 'synonym',
+        },
+        url: 'synonyms',
         dataType: 'json',
         contentType: 'application/json',
         success: function(response) {
@@ -310,7 +310,8 @@ $(document).ready(function() {
         error: onAPIError
       });
 
-      function processSynonym(allSyns, cates) {
+      function processSynonym(response, cates) {
+        var allSyns = response.synonyms;
         var $synonymTab   = $('#synonymTabs'),
           $synonymContent = $('#synonymTabContent');
 

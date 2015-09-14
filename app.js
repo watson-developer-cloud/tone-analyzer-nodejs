@@ -50,8 +50,8 @@ app.post('/tone', function(req, res, next) {
   });
 });
 
-app.post('/synonym', function(req, res, next) {
-  toneAnalyzer.synonym(req.body, function(err, data) {
+app.get('/synonyms', function(req, res, next) {
+  toneAnalyzer.synonym(req.query, function(err, data) {
     if (err)
       return next(err);
     else
