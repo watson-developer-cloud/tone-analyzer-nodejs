@@ -26,7 +26,6 @@ var express = require('express'),
 require('./config/express')(app);
 
 var credentials = extend({
-    url: 'http://systemu0.almaden.ibm.com:8088/tone-analyzer/api',
   version: 'v2',
   username: '<username>',
   password: '<password>'
