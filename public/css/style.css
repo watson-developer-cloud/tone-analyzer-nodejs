@@ -116,7 +116,11 @@ body {
     fill: #eee;
 }
 
-.matched-word:hover {
+.matched-word.replaceable {
+	/*placeholder*/	
+}
+
+.matched-word.replaceable:hover {
     font-style: italic;
     cursor: pointer;
 }

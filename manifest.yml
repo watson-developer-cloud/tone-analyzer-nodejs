@@ -8,5 +8,3 @@ applications:
   command: node app.js
   path: .
   memory: 512MB
-  services:
-  - tone-analyzer-service-experimental

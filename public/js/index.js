@@ -37,7 +37,7 @@ var toneGenomeViz = new umviz.models.toneGenome()
   .width(880)
   .height(190)
   .margin({ top: -15, right: 50, bottom: 100, left: 45 })
-  .layoutMetric('count')
+  .layoutMetric('percentile')
   .colorSchema(COLOR_SCHEMA);
 
 // Visualization container
@@ -50,8 +50,6 @@ var mainViz = d3.select(vizId)
   .attr('viewBox', '0 0 '+ toneGenomeViz.width() + ' ' + toneGenomeViz.height())
   //class to make it responsive
   .classed('svg-content-responsive', true);
-
-var CURRENT_TEXT = null; // current analyzed text
 
 // startup
 $(document).ready(function() {
@@ -66,7 +64,9 @@ $(document).ready(function() {
     $errorMsg   = $('.errorMsg'),
     $visualization = $(vizId);
 
+  var CURRENT_TEXT = null; // current analyzed text
   var CURRENT_TONE = null; // current results
+  var REPLACEABLE = null;
 
   // set initial text
   $text.val(SAMPLE_TEXT);
@@ -88,9 +88,8 @@ $(document).ready(function() {
      * send the data to the Tone Analyzer API to get words
      * matched with LIWC categories;
      */
-    var text = $text.val(),
-    CURRENT_TEXT = text;
-
+    var text = $text.val();
+    
     $('.output-div')[0].scrollIntoView(true); // Boolean arguments
 
     $.post('/tone', {'text': text })
@@ -130,8 +129,18 @@ $(document).ready(function() {
    * @param  {String} analyzedText: analyzed text
    */
   function doToneCheck(toneResponse, analyzedText) {
+    // If the list of words with any synonym in the system is available, keep it
+    if (toneResponse.replaceable_words) {
+      REPLACEABLE = {}; 
+      toneResponse.replaceable_words.forEach(function(w) {
+        REPLACEABLE[w.toLowerCase()] = true;
+      });
+    } else {
+      REPLACEABLE = null; 
+    }
     $results.show();
 
+    CURRENT_TEXT = analyzedText;
     // normalize text
     var analyzedHtmlText = analyzedText.replace(/\r\n/g, '<br />').replace(/[\r\n]/g, '<br />');
 
@@ -157,9 +166,11 @@ $(document).ready(function() {
       if (ele.indexOf('_' + WORD_TRAIT_CORR_TYPE.negative) > 0)
         cateName = ele.substring(0, ele.indexOf('_' + WORD_TRAIT_CORR_TYPE.negative));
 
-      $('.' + ele).css('background-color', COLOR_SCHEMA[cateName]);
-      $('.' + ele).css('color', 'white');
+      $('.' + ele).css('color', COLOR_SCHEMA[cateName]);
+      $('.' + ele).css('border', "1px solid "+COLOR_SCHEMA[cateName]);
       $('.' + ele).css('padding', '0.2em 0.5em 0.2em 0.5em');
+      $('.' + ele + ".replaceable").css('background-color', COLOR_SCHEMA[cateName]);
+      $('.' + ele + ".replaceable").css('color', 'white');
     });
 
     $('.matched-word').mouseover(function() {
@@ -185,7 +196,9 @@ $(document).ready(function() {
 
     function replacer(matchstr) {
       counter++;
-      return '<span class="matched-word ' + stylecls + '" categories="' +
+      var replaceable = REPLACEABLE && REPLACEABLE[matchstr.toLowerCase()];
+      //console.log("replacer", matchstr, replaceable);
+      return '<span class="matched-word ' + (replaceable ? 'replaceable ' : '') + stylecls + '" categories="' +
         stylecls + '" offset = "' + matchIdxs[counter] + '">' + matchstr + '</span>';
     }
 
@@ -279,15 +292,15 @@ $(document).ready(function() {
       var cntxt = getContext(word, offset);
 
       $.ajax({
-        type: 'POST',
-        data: JSON.stringify({
-          words: [word],
+        type: 'GET',
+        data: {
+          word: word,
           limit: SYNONYM_LIMITS,
-          context: cntxt.context,
-          index: cntxt.offset,
+          context: cntxt.context.join(' '),
+          index: cntxt.offset, 
           hops: SYNONYM_HOPS
-        }),
-        url: 'synonym',
+        },
+        url: 'synonyms',
         dataType: 'json',
         contentType: 'application/json',
         success: function(response) {
@@ -297,7 +310,8 @@ $(document).ready(function() {
         error: onAPIError
       });
 
-      function processSynonym(allSyns, cates) {
+      function processSynonym(response, cates) {
+        var allSyns = response.synonyms;
         var $synonymTab   = $('#synonymTabs'),
           $synonymContent = $('#synonymTabContent');
 

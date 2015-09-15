@@ -25,9 +25,8 @@ var express = require('express'),
 // Bootstrap application settings
 require('./config/express')(app);
 
-// if bluemix credentials exists, then override local
 var credentials = extend({
-  version: 'v1',
+  version: 'v2',
   username: '<username>',
   password: '<password>'
 }, bluemix.getServiceCreds('tone_analyzer'));
@@ -50,8 +49,8 @@ app.post('/tone', function(req, res, next) {
   });
 });
 
-app.post('/synonym', function(req, res, next) {
-  toneAnalyzer.synonym(req.body, function(err, data) {
+app.get('/synonyms', function(req, res, next) {
+  toneAnalyzer.synonym(req.query, function(err, data) {
     if (err)
       return next(err);
     else
