@@ -37,7 +37,7 @@ var toneGenomeViz = new umviz.models.toneGenome()
   .width(880)
   .height(190)
   .margin({ top: -15, right: 50, bottom: 100, left: 45 })
-  .layoutMetric('count')
+  .layoutMetric('percentile')
   .colorSchema(COLOR_SCHEMA);
 
 // Visualization container

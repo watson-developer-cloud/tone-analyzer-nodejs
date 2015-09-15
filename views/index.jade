@@ -66,13 +66,13 @@ block row-content
               div.form-group.row
                 div.col-lg-12.col-md-12.col-sm-12
                   div.tab-content
-                    div.tab-pane.active(id="wordcount", role="tabpanel")
-                      p Word Count returns the percentage of words per tone
-                        | and the total number of words for each individual
-                        | tone trait.
                     div.tab-pane(id="percentile", role="tabpanel")
                       p Percentile compares the raw output score to a preset scorecard.
                         | For this demo the scorecard is Business Email.
+                    div.tab-pane.active(id="wordcount", role="tabpanel")
+                      p Word Count returns the percentage of words per tone
+                        | and the total number of words for each individual
+                        | tone trait.    
                     div.tab-pane(id="json", role="tabpanel")
                       pre.json-div
                     div#visualization
