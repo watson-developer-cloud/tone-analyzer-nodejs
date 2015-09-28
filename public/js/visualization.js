@@ -517,8 +517,10 @@ umviz.models.toneGenome = function() {
         $('#output_div').css('color', '#ddd');
         $('.matched-word').css('opacity', 0.2);
 
-        if (corr === null)
+        if (corr === null){
           $('.' + cate + '_' + corrType.positive).css('opacity', 1);
+          $('.' + cate + '_' + corrType.negative).css('opacity', 1);
+        }
         else
           $('.' + cate + '_' + corr).css('opacity', 1);
       }
