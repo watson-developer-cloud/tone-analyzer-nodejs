@@ -115,7 +115,7 @@ umviz.models.toneGenome = function() {
 
       function toPercentage(val) {
         var tmp = val * 100;
-        return Math.floor(tmp) + '%';
+        return Math.round(tmp) + '%';
       }
 
       function render(selector, d) {
