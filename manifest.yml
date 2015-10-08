@@ -4,7 +4,11 @@ declared-services:
     label: tone_analyzer
     plan: experimental
 applications:
-- name: tone-analyzer-demo
+- services:
+  - tone-analyzer-service-experimental
+  name: tone-analyzer-demo
   command: node app.js
   path: .
   memory: 512MB
+  env:
+    NODE_ENV: production
