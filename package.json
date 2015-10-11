@@ -3,7 +3,7 @@
   "version": "0.1.1",
   "description": "A sample nodejs app for Bluemix that use the Tone Analyzer service",
   "dependencies": {
-    "body-parser": "~1.13.2",
+    "body-parser": "~1.14.1",
     "errorhandler": "~1.4.1",
     "express": "~4.13.1",
     "jade": "~1.11.0",
