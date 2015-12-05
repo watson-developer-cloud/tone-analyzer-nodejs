@@ -5,7 +5,7 @@ declared-services:
     plan: experimental
 applications:
 - services:
-  - tone-analyzer-service-experimental
+  - Tone Analyzer-tj
   name: tone-analyzer-demo
   command: node app.js
   path: .
