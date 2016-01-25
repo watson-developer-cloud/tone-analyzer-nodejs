@@ -5,7 +5,7 @@
   "dependencies": {
     "body-parser": "~1.14.1",
     "errorhandler": "~1.4.2",
-    "express": "~4.13.3",
+    "express": "~4.13.4",
     "jade": "~1.11.0",
     "watson-developer-cloud": "~1.0.6"
   },
