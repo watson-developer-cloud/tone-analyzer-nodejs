@@ -1,6 +1,6 @@
 # Tone Analyzer Node.js Starter Application
 
-  The IBM Watson [Tone Analyzer][service_url] service is a cognitive linguistic analysis service used to monitor and identify tones within a piece of writing. It detects three types of tones, including emotions (negative emotions, cheerfulness, anger), social propensities (open, agreeable, and conscientious), and writing styles (analytical, confident and tentative) from people’s writings. Furthermore, it helps people understand how the tones are derived from various linguistic signals. It also offers actionable suggestions to revise the writings for desirable communication tones.
+  The IBM Watson [Tone Analyzer][service_url] service is a cognitive linguistic analysis service that detects three types of tones from written text: emotions, social tendencies, and writing style. Emotions identified include things like anger, fear, joy, sadness, and disgust. Identified social tendencies include things from the Big Five personality traits used by some psychologists. These include openness, conscientiousness, extraversion, agreeableness, and neuroticism. Identified writing styles include confident, analytical, and tentative.
 
 Give it a try! Click the button below to fork into IBM DevOps Services and deploy your own copy of this application on Bluemix.
 
@@ -10,7 +10,7 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
 
 1. Create a Bluemix Account
 
-  [Sign up][sign_up] in Bluemix, or use an existing account. Watson Services in Beta or Experimental are free to use.
+  [Sign up][sign_up] in Bluemix, or use an existing account. Watson Beta or Experimental Services are free to use.
 
 2. Download and install the [Cloud-foundry CLI][cloud_foundry] tool
 
@@ -32,7 +32,7 @@ applications:
   $ cf login -u <your user ID>
   ```
 
-5. Create the Personality Insights service in Bluemix
+5. Create the Tone Analyzer Service in Bluemix
 
   ```sh
   $ cf create-service tone_analyzer beta tone-analyzer-service
@@ -48,9 +48,9 @@ See the full [Getting Started][getting_started] documentation for more details, 
 
 ## Running locally
 
-  The application uses [Node.js](http://nodejs.org/) and [npm](https://www.npmjs.com/) so you will have to download and install them as part of the steps below.
+  The application uses [Node.js](http://nodejs.org/) and [npm](https://www.npmjs.com/).
 
-1. Copy the credentials from your `tone-analyzer-service` service in Bluemix to `app.js`, you can see the credentials using:
+1. Copy the credentials from your `tone-analyzer-service` service in Bluemix to `app.js`. To see the credentials, use:
 
     ```sh
     $ cf env <application-name>
@@ -85,7 +85,7 @@ See the full [Getting Started][getting_started] documentation for more details, 
 
 ## Troubleshooting
 
-To troubleshoot your Bluemix app the main useful source of information are the logs, to see them, run:
+To troubleshoot your Bluemix application, use the logs. To see the logs, run:
 
   ```sh
   $ cf logs <application-name> --recent
