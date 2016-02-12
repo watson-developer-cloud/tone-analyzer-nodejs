@@ -1,15 +1,10 @@
-# Tone Analyzer Nodejs Starter Application
+# Tone Analyzer Node.js Starter Application
 
   The IBM Watson [Tone Analyzer][service_url] service is a cognitive linguistic analysis service used to monitor and identify tones within a piece of writing. It detects three types of tones, including emotions (negative emotions, cheerfulness, anger), social propensities (open, agreeable, and conscientious), and writing styles (analytical, confident and tentative) from people’s writings. Furthermore, it helps people understand how the tones are derived from various linguistic signals. It also offers actionable suggestions to revise the writings for desirable communication tones.
 
-<p align="center">
-<img src="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/img/service-gifs/tone-analyzer.gif" width="400">
-</p>
-
-
 Give it a try! Click the button below to fork into IBM DevOps Services and deploy your own copy of this application on Bluemix.
 
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy)
+[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/tone-analyzer-nodejs)
 
 ## Getting Started
 
@@ -40,7 +35,7 @@ applications:
 5. Create the Personality Insights service in Bluemix
 
   ```sh
-  $ cf create-service tone_analyzer experimental tone-analyzer-service
+  $ cf create-service tone_analyzer beta tone-analyzer-service
   ```
 
 6. Push it live!
@@ -73,7 +68,7 @@ See the full [Getting Started][getting_started] documentation for more details, 
           },
         "label": "tone_analyzer",
         "name": "tone-analyzer-service",
-        "plan": "experimental"
+        "plan": "beta"
      }]
     }
     }
@@ -99,7 +94,6 @@ To troubleshoot your Bluemix app the main useful source of information are the l
 ## License
 
   This sample code is licensed under Apache 2.0. Full license text is available in [LICENSE](LICENSE).
-  This sample code uses d3 and jquery, both distributed under a MIT license.
 
 ## Contributing
 
@@ -111,4 +105,4 @@ To troubleshoot your Bluemix app the main useful source of information are the l
 [service_url]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/tone-analyzer.html
 [cloud_foundry]: https://github.com/cloudfoundry/cli
 [getting_started]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/getting_started/
-[sign_up]: https://apps.admin.ibmcloud.com/manage/trial/bluemix.html?cm_mmc=WatsonDeveloperCloud-_-LandingSiteGetStarted-_-x-_-CreateAnAccountOnBluemixCLI
+[sign_up]: https://console.ng.bluemix.net/registration/

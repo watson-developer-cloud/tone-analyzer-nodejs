@@ -1,17 +1,7 @@
 {
-  "name": "ToneAnalyzerNodejsStarterApp",
-  "version": "0.1.1",
-  "description": "A sample nodejs app for Bluemix that use the Tone Analyzer service",
-  "dependencies": {
-    "body-parser": "~1.14.1",
-    "errorhandler": "~1.4.2",
-    "express": "~4.13.3",
-    "jade": "~1.11.0",
-    "watson-developer-cloud": "~1.0.6"
-  },
-  "engines": {
-    "node": ">=0.10.38"
-  },
+  "name": "tone-analyzer-nodejs",
+  "version": "3.1.1",
+  "description": "Web application that uses Tone Analyzer to get the tone from a text message",
   "repository": {
     "type": "git",
     "url": "https://github.com/watson-developer-cloud/tone-analyzer-nodejs.git"
@@ -19,23 +9,15 @@
   "author": "IBM Corp.",
   "contributors": [
     {
-      "name": "Hernan Badenes",
-      "email": "hbadenes@ar.ibm.com"
-    },
-    {
-      "name": "Liang Gou",
-      "email": "lgou@us.ibm.com"
-    },
-    {
       "name": "James Zhang",
       "email": "jzhang300@us.ibm.com"
     },
     {
-      "name": "Kathryn McElroy",
-      "email": "kemcelroy@us.ibm.com"
+      "name": "Eva Xiaohui Luo",
+      "email": "evaluo_xhl@us.ibm.com"
     },
     {
-      "name": "German Attanasio",
+      "name": "German Attanasio Ruiz",
       "email": "germanatt@us.ibm.com"
     }
   ],
@@ -45,5 +27,14 @@
   },
   "scripts": {
     "start": "node app.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.13.2",
+    "ejs": "^2.3.4",
+    "errorhandler": "^1.4.1",
+    "express": "^4.12.2",
+    "express-rate-limit": "^2.1.0",
+    "express-secure-only": "^0.2.1",
+    "watson-developer-cloud": "^1.2.2"
   }
 }

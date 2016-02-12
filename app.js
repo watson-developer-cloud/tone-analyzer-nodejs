@@ -16,31 +16,27 @@
 
 'use strict';
 
-var express = require('express'),
-  app       = express(),
-  bluemix   = require('./config/bluemix'),
-  extend    = require('util')._extend,
-  watson    = require('watson-developer-cloud');
+var express    = require('express'),
+  app          = express(),
+  watson       = require('watson-developer-cloud');
 
 // Bootstrap application settings
 require('./config/express')(app);
 
-var credentials = extend({
-  version: 'v2-experimental',
-  username: '<username>',//
-  password: '<password>'//
-}, bluemix.getServiceCreds('tone_analyzer'));
-
-
 // Create the service wrapper
-var toneAnalyzer = watson.tone_analyzer(credentials);
+var toneAnalyzer = watson.tone_analyzer({
+  url: 'https://gateway.watsonplatform.net/tone-analyzer-beta/api/',
+  username: '<username>',
+  password: '<password>',
+  version_date: '2016-11-02',
+  version: 'v3-beta'
+});
 
-// render index page
 app.get('/', function(req, res) {
   res.render('index');
 });
 
-app.post('/tone', function(req, res, next) {
+app.post('/api/tone', function(req, res, next) {
   toneAnalyzer.tone(req.body, function(err, data) {
     if (err)
       return next(err);
@@ -49,16 +45,7 @@ app.post('/tone', function(req, res, next) {
   });
 });
 
-app.get('/synonyms', function(req, res, next) {
-  toneAnalyzer.synonym(req.query, function(err, data) {
-    if (err)
-      return next(err);
-    else
-      return res.json(data);
-  });
-});
-
-// error-handler settings
+// error-handler application settings
 require('./config/error-handler')(app);
 
 var port = process.env.VCAP_APP_PORT || 3000;

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="css/style.css">
+  <title>Tone Analyzer</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+  <!-- top level heading -->
+  <header class="_demo--heading">
+    <div class="_demo--container">
+      <a class="wordmark" href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/">
+        <span class="wordmark--left">IBM</span>
+        <span class="wordmark--right">Watson Developer Cloud</span>
+      </a>
+      <nav class="heading-nav" role="menubar">
+        <li class="base--li heading-nav--li" role="presentation">
+          <a class="heading-nav--item" href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/services-catalog.html" role="menuitem">
+                    	Services</a>
+        </li>
+        <li class="base--li heading-nav--li" role="presentation">
+          <a class="heading-nav--item" href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/" role="menuitem">
+			                Docs</a>
+        </li>
+        <li class="base--li heading-nav--li" role="presentation">
+          <a class="heading-nav--item" href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/gallery.html" role="menuitem">
+                      App Gallery</a>
+        </li>
+        <li class="base--li heading-nav--li" role="presentation">
+          <a class="heading-nav--item" href="https://developer.ibm.com/watson/" role="menuitem">
+                        Community</a>
+        </li>
+      </nav>
+    </div>
+  </header>
+  <div class="_demo--banner banner">
+    <div class="_demo--container">
+      <div class="banner--service-container">
+        <div class="banner--service-icon-container">
+          <img class="banner--service-icon" src="images/service-icon.svg" alt="Tone Analyzer API Icon">
+        </div>
+        <div class="banner--service-info">
+          <h1 class="banner--service-title base--h1">
+                        <img class="banner--service-icon_INLINE" src="images/service-icon.svg" alt="Tone Analyzer API Icon">
+                             Tone Analyzer
+                    </h1>
+          <div class="banner--service-description">
+            This service enables people to discover and understand, and revise the impact of tone in their content. It uses linguistic analysis to detect and interpret emotional, social, and language cues found in text.
+          </div>
+        </div>
+      </div>
+      <div class="banner--service-resource-container">
+        <div class="banner--row">
+          <div class="banner--service-resource">
+            <span class="icon icon-link"></span>
+            <strong>Resources:</strong>
+          </div>
+        </div>
+        <div class="banner--row">
+          <div class="banner--service-links">
+            <li class="base--li banner--service-link-item">
+              <a href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/tone-analyzer/" target="blank" class="base--a">Documentation</a>
+            </li>
+            <li class="base--li banner--service-link-item">
+              <a href="https://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/tone-analyzer/api/v3/" target="blank" class="base--a">API Reference</a>
+            </li>
+            <li class="base--li banner--service-link-item">
+              <a href="https://github.com/watson-developer-cloud/tone-analyzer-nodejs" target="blank" class="base--a">Fork on Github</a>
+            </li>
+            <li class="base--li banner--service-link-item">
+              <a href="https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/tone-analyzer-nodejs.git" target="blank" class="base--a">Deploy on Bluemix</a>
+            </li>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- demo body -->
+  <div class="_demo--container">
+    <article class="_content base--article">
+      <div class="input">
+        <h2 class="base--h2">Choose Content</h2>
+        <p class="base--p input--description">Here are some great use cases for Tone Analyzer. Choose one, or paste your own text.</p>
+        <input role="radio" class="base--radio input--radio" type="radio" id="input-customer-call" name="rb" value="customer-call" checked="true">
+        <label class="base--inline-label input--radio-label" for="input-customer-call">Customer service chat</label>
+        <input role="radio" class="base--radio input--radio" type="radio" id="input-email" name="rb" value="email">
+        <label class="base--inline-label input--radio-label" for="input-email">Email message</label>
+        <input role="radio" class="base--radio input--radio" type="radio" id="input-corporate-announcement" name="rb" value="corporate-announcement">
+        <label class="base--inline-label input--radio-label" for="input-corporate-announcement">Corporate announcement</label>
+        <input role="radio" class="base--radio input--radio" type="radio" id="input-own-text" name="rb" value="own-text">
+        <label class="base--inline-label input--radio-label" for="input-own-text">Your own text</label>
+        <hr class="base--hr input--hr">
+        <div class="panel">
+          <textarea class="base--textarea input--textarea" rows="7"></textarea>
+        </div>
+        <div class="input--submit-button-container">
+          <button class="base--button input--submit-button" type="submit">Analyze</button>
+        </div>
+      </div>
+
+      <div class="loading">
+        <div class="loading--loader">
+          <img src="images/loading-indicator.gif">
+        </div>
+      </div>
+
+      <div class="error">
+        <div class="error--message"></div>
+      </div>
+
+      <div class="output">
+        <h2 class="base--h2">Output</h2>
+        <p class="base--p">The tone API analyzes text at the document level and the sentence level for <a href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/tone-analyzer/overview.shtml#analyzing" target="blank" class="base--a">3 categories of tones</a>: Emotion, Language, and Social. It produces 2 levels of scores, at the document-level, and the sentence-level.</p>
+        <h3 class="base--h3 output--document-title">Document-level</h3>
+        <p class="base--p output--document-description">Quickly assess the ways your text is or is not making the right impression.  Learn how to interpret these graphs for your use case in the <a href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/tone-analyzer/overview.shtml#analyzing" target="blank" class="base--a">Documentation</a>.</p>
+        <div class="summary--row">
+          <div class="summary--emotion">
+            <h4 class="">Emotion Summary</h4>
+            <div class="summary-emotion-graph bar-graph"></div>
+          </div>
+          <div class="summary--writing">
+            <h4 class="">Language Summary</h4>
+            <div class="summary-writing-graph"></div>
+          </div>
+          <div class="summary--social">
+            <h4 class="">Social Summary</h4>
+            <div class="summary-social-graph bar-graph"></div>
+          </div>
+        </div>
+        <h3 class="base--h3 output--sentence-title">Sentence-level</h3>
+        <p class="base--p output--sentence-description">Discover the sentences with the strongest emotion, language, and social cues in the context of your text. Hover over any sentence to view raw scores for all tones in a category, or rank all sentences according to a single tone.</p>
+        <div class="output--reset icon-hyperlink">
+          <span class="icon icon-reset"></span>
+          <button class="base--a output--reset-button icon-hyperlink--button icon-hyperlink--button_BLANK" href="" type="reset">
+            Start Over
+          </button>
+        </div>
+        <div class="sentences">
+          <div class="sentences--filters filters">
+            <h3 class="base--h3">Tones</h3>
+            <h4 class="base--h4">Emotion</h4>
+            <div class="filters--emotion"></div>
+
+            <h4 class="base--h4">Language</h4>
+            <div class="filters--writing"></div>
+
+            <h4 class="base--h4">Social</h4>
+            <div class="filters--social"></div>
+          </div>
+          <div class="sentences--sentence-views sentence-views">
+            <div class="tab-panels sentence-views--tab-panels" role="tabpanel">
+              <ul class="tab-panels--tab-list" role="tablist">
+                <li class="tab-panels--tab-list-item base--li" role="presentation">
+                  <a class="tab-panels--tab base--a active" href="#panel-original-text" aria-controls="panel-original-text" role="tab">Original Text</a>
+                </li>
+                <li class="tab-panels--tab-list-item base--li" role="presentation">
+                  <a class="tab-panels--tab base--a" href="#panel-sentence-rank" aria-controls="panel-sentence-rank" role="tab">Sentence Rank</a>
+                </li>
+                <li class="tab-panels--tab-list-item base--li" role="presentation">
+                  <a class="tab-panels--tab base--a" href="#panel-json" aria-controls="panel-json" role="tab">JSON</a>
+                </li>
+              </ul>
+              <div class="sentence-views--tab-content tab-panels--tab-content">
+                <div id="panel-original-text" class="sentence-views--tab-pane tab-panels--tab-pane active" role="tab-panel">
+                  <div class="original-text">
+                    <div class="original-text--legend"></div>
+                    <div class="original-text--texts-container">
+                      <div class="original-text--texts"></div>
+                    </div>
+                    <div class="original-text--small-block">
+                      <small class="base--small">
+                        In <code class="base--code">sentences_tone</code>, each <code class="base--code">sentence_id</code> receives a <code class="base--code">raw_score</code> for each tone in a category.  Understand how to normalize raw scores or customize thresholds for your use case in the <a class="base--a" href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/tone-analyzer/">Documentation</a>.
+                      </small>
+                    </div>
+                  </div>
+                </div>
+                <div id="panel-sentence-rank" class="sentence-views--tab-pane tab-panels--tab-pane" role="tab-panel">
+                  <div class="sentence-rank">
+                    <div class="sentence-rank--legend">
+                      <input role="checkbox" class="base--checkbox sentence-rank--checkbox" type="checkbox" id="sort-sentences" name="cb" value="">
+                      <label class="base--inline-label sentence-rank--sort" for="sort-sentences">
+                        <span class="sentence-rank--sort-ascending">Ascending<i class="icon icon-down-arrow"></i></span>
+                        <span class="sentence-rank--sort-descending">Descending<i class="icon icon-down-arrow icon_flipped"></i></span>
+                      </label>
+                    </div>
+                    <div class="sentence-rank--table-container">
+                      <table class="base--table sentence-rank--table">
+                      </table>
+                    </div>
+                    <div class="sentence-rank--small-block">
+                      <small class="base--small">
+                        In <code class="base--code">sentences_tone</code>, each <code class="base--code">sentence_id</code> receives a <code class="base--code">raw_score</code> for each tone in a category.  Understand how to normalize raw scores or customize thresholds for your use case in the <a class="base--a" href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/tone-analyzer/">Documentation</a>.
+                      </small>
+                    </div>
+                  </div>
+                </div>
+                <div id="panel-json" class="sentence-views--tab-pane tab-panels--tab-pane" role="tab-panel">
+                  <div class="json">
+                    <pre class="base--pre json--pre language-javascript">
+                                            <code class="base--code json--code language-javascript"></code>
+                                        </pre>
+                  </div>
+                </div>
+              </div>
+              <!-- .tab-panels--tab-content -->
+            </div>
+            <!-- .tab-panels -->
+          </div>
+          <!-- .sentences--sentence-views -->
+        </div>
+        <!-- .sentences -->
+        <div class="original-text--tooltip-container original-text--tooltip-container_hidden"></div>
+      </div>
+    </article>
+  </div>
+
+  <script type="text/html" id="barGraphTemplate">
+    <% _.each(items, function(item, key, list) { %>
+      <div class="bar-graph--row">
+        <div class="bar-graph--label-container summary-<%= className %>-graph--label-container">
+          <div class="bar-graph--label">
+            <p class="base--p">
+              <%= item.label %>
+            </p>
+            <% if (item.tooltip) { %>
+              <div class="bar-graph--tooltip">
+                <%= item.tooltip %>
+              </div>
+              <% } %>
+          </div>
+        </div>
+        <div class="bar-graph--bar-container summary-<%= className %>-graph--bar-container">
+          <div class="bar-graph--bar">
+            <div class="bar-graph--bar-value summary-<%= className %>-graph--bar-value summary-<%= className %>-graph--bar-value_<%= item.label.replace(/\s+/g, '-') %>" style="width: <%= item.score %>%;"></div>
+            <div class="summary-<%= className %>-graph--bar-tooltip summary-<%= className %>-graph--bar-tooltip_<%= item.label.replace(/\s+/g, '-') %> bar-graph--bar-tooltip" style="margin-left: <%= item.score %>%;">
+              <%= (item.score / 100).toFixed(2) %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% }); %>
+  </script>
+
+  <script type="text/html" id="verticalBarGraphTemplate">
+    <% _.each(items, function(item, key, list) { %>
+      <div class="summary-<%= className %>-graph--column">
+        <div class="summary-<%= className %>-graph--bar">
+          <div class="summary-<%= className %>-graph--bar-value" style="height: <%= item.score %>%;"></div>
+          <div class="summary-<%= className %>-graph--bar-tooltip summary-<%= className %>-graph--bar-tooltip_<%= item.label.replace(/\s+/g, '-') %> bar-graph--bar-tooltip" style="margin-bottom: <%= item.score %>%;">
+            <%= (item.score / 100).toFixed(2) %>
+          </div>
+        </div>
+        <div class="summary-<%= className %>-graph--label">
+          <%= item.label %>
+        </div>
+      </div>
+      <% }); %>
+  </script>
+
+  <script type="text/html" id="filtersTemplate">
+    <% _.each(items, function(item, key, list) { %>
+      <input class="filters--radio base--radio" type="radio" id="filter-<%= item.label.replace(/\s+/g, '-') %>" data-id="<%= item.label %>" name="tone-filters" value="<%= item.label.replace(/\s+/g, '-') %>">
+      <label class="filters--label base--block-label" for="filter-<%= item.label.replace(/\s+/g, '-') %>">
+        <%= item.label %>
+      </label>
+      <% }); %>
+  </script>
+
+  <script type="text/html" id="originalTextTemplate">
+    <% _.each(items, function(item, key, list) { %>
+      <div class="base--p original-text--sentence-container" data-index="<%= key %>">
+        <span class="original-text--sentence <%= item.className %>"><%= item.text %></span>
+      </div>
+      <% }); %>
+  </script>
+
+  <script type="text/html" id="sentenceRankTemplate">
+    <tbody class="base--tbody">
+      <% _.each(items, function(item, key, list) { %>
+        <tr class="base--tr sentence-rank--tr">
+          <td class="base--td sentence-rank--score <%= item.className %>"><b><%= item.score %></b></td>
+          <td class="base--td sentence-rank--sentence">
+            <%= item.text %>
+          </td>
+        </tr>
+        <% }); %>
+    </tbody>
+  </script>
+
+  <script type="text/html" id="originalTextTooltipTemplate">
+    <div class="original-text--tooltip <%= isSocialTone == 'Social Tone' ? 'original-text--tooltip_social' : '' %>">
+      <ul class="original-text--tooltip-ul">
+        <% _.each(items, function(item, key, list) { %>
+          <li class="original-text--tooltip-li <%= item.className %>">
+            <div class="original-text--tooltip-score"><b><%= item.score_percentage %></b></div>
+            <div class="original-text--tooltip-label">
+              <%= item.tone_name %>
+            </div>
+          </li>
+          <% }); %>
+      </ul>
+    </div>
+  </script>
+
+  <script type="text/html" id="originalTextLegendTemplate">
+    <div class="original-text--legend-bar">
+      <div class="original-text--legend-block original-text--legend-block_low original-text--legend-block_<%= className %>-low"></div>
+      <div class="original-text--legend-block original-text--legend-block_med original-text--legend-block_<%= className %>-medium"></div>
+      <div class="original-text--legend-block original-text--legend-block_high original-text--legend-block_<%= className %>-high"></div>
+      <div class="original-text--legend-label original-text--legend-label_low">Lower</div>
+      <div class="original-text--legend-label original-text--legend-label_high">Higher</div>
+    </div>
+  </script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+  <script type="text/javascript" src="js/vendors/prism.js"></script>
+  <script type="text/javascript" src="js/components/tab-panels.js"></script>
+  <script type="text/javascript" src="js/components/helpers.js"></script>
+  <script type="text/javascript" src="js/components/App.js"></script>
+  <script type="text/javascript" src="js/demo.js"></script>
+</body>
+
+</html>
