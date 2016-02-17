@@ -27,8 +27,17 @@ applications:
   The name you use will determinate your application url initially, e.g. `<application-name>.mybluemix.net`.
 
 4. Connect to Bluemix in the command line tool
+  For US Region
+	```sh
+	$ cf api https://api.ng.bluemix.net
+	```
+	
+	For EU Region
+	```sh
+	$ cf api https://api.eu-gb.bluemix.net
+	```
+	
   ```sh
-  $ cf api https://api.ng.bluemix.net
   $ cf login -u <your user ID>
   ```
 
