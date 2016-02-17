@@ -36,6 +36,6 @@
     "express-rate-limit": "^2.1.0",
     "express-secure-only": "^0.2.1",
     "helmet": "^1.1.0",
-    "watson-developer-cloud": "^1.2.2"
+    "watson-developer-cloud": "^1.2.3"
   }
 }
