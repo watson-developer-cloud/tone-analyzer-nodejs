@@ -28,15 +28,15 @@ applications:
 
 4. Connect to Bluemix in the command line tool
   For US Region
-	```sh
-	$ cf api https://api.ng.bluemix.net
-	```
-	
-	For EU Region
-	```sh
-	$ cf api https://api.eu-gb.bluemix.net
-	```
-	
+  ```sh
+  $ cf api https://api.ng.bluemix.net
+  ```
+
+  For EU Region
+  ```sh
+  $ cf api https://api.eu-gb.bluemix.net
+  ```
+
   ```sh
   $ cf login -u <your user ID>
   ```
