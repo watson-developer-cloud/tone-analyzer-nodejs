@@ -347,21 +347,22 @@ function App(documentTones, sentences, thresholds, selectedSample) {
    * Select initial filter depending on sample text picked
    */
   output.selectFilterBySample = function() {
-    var sample = {
-      'customer-call': 'Anger',
-      'email': 'Openness',
-      'corporate-announcement': 'Analytical',
-      'own-text': (function() {
-        var highestTone = 'Anger',
-            highestScore = 0;
-        _documentTones.tone_categories[0].tones.forEach(function(item) {
-          if (highestScore < item.score) {
-            highestScore = item.score;
-            highestTone = item.tone_name;
-          }
-        });
-        return highestTone;
-      })(),
+    var getHighestTone = function(toneCategory) {
+      var highestTone = _documentTones.tone_categories[_searchIndex(toneCategory)].tones[0].tone_name,
+          highestScore = 0;
+      _documentTones.tone_categories[_searchIndex(toneCategory)].tones.forEach(function(item) {
+        if (highestScore < item.score) {
+          highestScore = item.score;
+          highestTone = item.tone_name;
+        }
+      });
+      return highestTone;
+    },
+    sample = {
+      'customer-call': getHighestTone('Emotion Tone'),
+      'email': getHighestTone('Social Tone'),
+      'corporate-announcement': getHighestTone('Writing Tone'),
+      'own-text': getHighestTone('Emotion Tone')
     };
 
     if (_selectedSample in sample)

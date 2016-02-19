@@ -1199,13 +1199,12 @@ pre[class*=" language-"] {
     background-color: #075CD8; }
   .bar-graph--threshold {
     position: absolute;
-    top: 0rem;
+    top: -40%;
     left: 0%;
-    height: 100%;
-    width: 2px;
+    height: 180%;
+    width: 1px;
     margin-top: 0rem;
-    margin-left: -1px;
-    background-color: #000; }
+    background-color: #aeaeae; }
   .bar-graph--tooltip {
     position: absolute;
     background-color: #325c80;
@@ -1339,7 +1338,8 @@ pre[class*=" language-"] {
 
 .summary--emotion {
   background-color: #f9f9f9;
-  padding: 1rem; }
+  padding: 1rem;
+  height: 16.5rem; }
   @media (min-width: 768px) {
     .summary--emotion {
       width: 31.91489%;
@@ -1348,11 +1348,17 @@ pre[class*=" language-"] {
       float: left;
       display: block;
       margin-top: 0rem; } }
+  @media (min-width: 768px) {
+    .summary--emotion {
+      height: 18.5rem; } }
+  @media (min-width: 1200px) {
+    .summary--emotion {
+      height: 16.5rem; } }
 
 .summary--writing {
   background-color: #f9f9f9;
   padding: 1rem;
-  height: 14.78rem; }
+  height: 16.5rem; }
   @media (min-width: 768px) {
     .summary--writing {
       width: 31.91489%;
@@ -1361,10 +1367,17 @@ pre[class*=" language-"] {
       float: left;
       display: block;
       margin-top: 0rem; } }
+  @media (min-width: 768px) {
+    .summary--writing {
+      height: 18.5rem; } }
+  @media (min-width: 1200px) {
+    .summary--writing {
+      height: 16.5rem; } }
 
 .summary--social {
   background-color: #f9f9f9;
-  padding: 1rem; }
+  padding: 1rem;
+  height: 16.5rem; }
   @media (min-width: 768px) {
     .summary--social {
       width: 31.91489%;
@@ -1373,6 +1386,12 @@ pre[class*=" language-"] {
       float: left;
       display: block;
       margin-top: 0rem; } }
+  @media (min-width: 768px) {
+    .summary--social {
+      height: 18.5rem; } }
+  @media (min-width: 1200px) {
+    .summary--social {
+      height: 16.5rem; } }
   @media (min-width: 768px) {
     .summary--social {
       width: auto;
@@ -1385,151 +1404,172 @@ pre[class*=" language-"] {
       float: left;
       display: block; } }
 
-.summary-emotion-graph--bar-value {
-  background-color: #1AE5CD; }
-  .summary-emotion-graph--bar-value_Anger {
-    background-color: #E80521; }
-  .summary-emotion-graph--bar-value_Disgust {
-    background-color: #592684; }
-  .summary-emotion-graph--bar-value_Fear {
-    background-color: #325E2B; }
-  .summary-emotion-graph--bar-value_Joy {
-    background-color: #FFD629; }
-  .summary-emotion-graph--bar-value_Sadness {
-    background-color: #086DB2; }
-
-.summary-emotion-graph--bar-tooltip_Anger {
-  position: absolute;
-  background-color: #E80521;
-  padding: 1rem;
-  width: 5.5rem;
-  left: -2.75rem;
-  color: white;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.2;
-  visibility: hidden;
-  opacity: 0;
-  bottom: calc(100% + 1.25rem);
-  color: #ffffff; }
-  .summary-emotion-graph--bar-tooltip_Anger:after {
-    content: '';
+.summary-emotion-graph {
+  position: relative; }
+  .summary-emotion-graph--bar-value {
+    background-color: #1AE5CD; }
+    .summary-emotion-graph--bar-value_Anger {
+      background-color: #E80521; }
+    .summary-emotion-graph--bar-value_Disgust {
+      background-color: #592684; }
+    .summary-emotion-graph--bar-value_Fear {
+      background-color: #325E2B; }
+    .summary-emotion-graph--bar-value_Joy {
+      background-color: #FFD629; }
+    .summary-emotion-graph--bar-value_Sadness {
+      background-color: #086DB2; }
+  .summary-emotion-graph--bar-tooltip_Anger {
     position: absolute;
-    left: 2rem;
-    border: 0.75rem solid transparent;
-    top: 100%;
-    border-top-color: #E80521; }
-  .summary-emotion-graph--bar-tooltip_Anger .base--a {
-    color: white; }
-    .summary-emotion-graph--bar-tooltip_Anger .base--a:hover {
-      color: #e0e0e0; }
-
-.summary-emotion-graph--bar-tooltip_Disgust {
-  position: absolute;
-  background-color: #592684;
-  padding: 1rem;
-  width: 5.5rem;
-  left: -2.75rem;
-  color: white;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.2;
-  visibility: hidden;
-  opacity: 0;
-  bottom: calc(100% + 1.25rem);
-  color: #ffffff; }
-  .summary-emotion-graph--bar-tooltip_Disgust:after {
-    content: '';
+    background-color: #E80521;
+    padding: 1rem;
+    width: 5.5rem;
+    left: -2.75rem;
+    color: white;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.2;
+    visibility: hidden;
+    opacity: 0;
+    bottom: calc(100% + 1.25rem);
+    color: #ffffff; }
+    .summary-emotion-graph--bar-tooltip_Anger:after {
+      content: '';
+      position: absolute;
+      left: 2rem;
+      border: 0.75rem solid transparent;
+      top: 100%;
+      border-top-color: #E80521; }
+    .summary-emotion-graph--bar-tooltip_Anger .base--a {
+      color: white; }
+      .summary-emotion-graph--bar-tooltip_Anger .base--a:hover {
+        color: #e0e0e0; }
+  .summary-emotion-graph--bar-tooltip_Disgust {
     position: absolute;
-    left: 2rem;
-    border: 0.75rem solid transparent;
-    top: 100%;
-    border-top-color: #592684; }
-  .summary-emotion-graph--bar-tooltip_Disgust .base--a {
-    color: white; }
-    .summary-emotion-graph--bar-tooltip_Disgust .base--a:hover {
-      color: #e0e0e0; }
-
-.summary-emotion-graph--bar-tooltip_Fear {
-  position: absolute;
-  background-color: #325E2B;
-  padding: 1rem;
-  width: 5.5rem;
-  left: -2.75rem;
-  color: white;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.2;
-  visibility: hidden;
-  opacity: 0;
-  bottom: calc(100% + 1.25rem);
-  color: #ffffff; }
-  .summary-emotion-graph--bar-tooltip_Fear:after {
-    content: '';
+    background-color: #592684;
+    padding: 1rem;
+    width: 5.5rem;
+    left: -2.75rem;
+    color: white;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.2;
+    visibility: hidden;
+    opacity: 0;
+    bottom: calc(100% + 1.25rem);
+    color: #ffffff; }
+    .summary-emotion-graph--bar-tooltip_Disgust:after {
+      content: '';
+      position: absolute;
+      left: 2rem;
+      border: 0.75rem solid transparent;
+      top: 100%;
+      border-top-color: #592684; }
+    .summary-emotion-graph--bar-tooltip_Disgust .base--a {
+      color: white; }
+      .summary-emotion-graph--bar-tooltip_Disgust .base--a:hover {
+        color: #e0e0e0; }
+  .summary-emotion-graph--bar-tooltip_Fear {
     position: absolute;
-    left: 2rem;
-    border: 0.75rem solid transparent;
-    top: 100%;
-    border-top-color: #325E2B; }
-  .summary-emotion-graph--bar-tooltip_Fear .base--a {
-    color: white; }
-    .summary-emotion-graph--bar-tooltip_Fear .base--a:hover {
-      color: #e0e0e0; }
-
-.summary-emotion-graph--bar-tooltip_Joy {
-  position: absolute;
-  background-color: #FFD629;
-  padding: 1rem;
-  width: 5.5rem;
-  left: -2.75rem;
-  color: white;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.2;
-  visibility: hidden;
-  opacity: 0;
-  bottom: calc(100% + 1.25rem);
-  color: #000000; }
-  .summary-emotion-graph--bar-tooltip_Joy:after {
-    content: '';
+    background-color: #325E2B;
+    padding: 1rem;
+    width: 5.5rem;
+    left: -2.75rem;
+    color: white;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.2;
+    visibility: hidden;
+    opacity: 0;
+    bottom: calc(100% + 1.25rem);
+    color: #ffffff; }
+    .summary-emotion-graph--bar-tooltip_Fear:after {
+      content: '';
+      position: absolute;
+      left: 2rem;
+      border: 0.75rem solid transparent;
+      top: 100%;
+      border-top-color: #325E2B; }
+    .summary-emotion-graph--bar-tooltip_Fear .base--a {
+      color: white; }
+      .summary-emotion-graph--bar-tooltip_Fear .base--a:hover {
+        color: #e0e0e0; }
+  .summary-emotion-graph--bar-tooltip_Joy {
     position: absolute;
-    left: 2rem;
-    border: 0.75rem solid transparent;
-    top: 100%;
-    border-top-color: #FFD629; }
-  .summary-emotion-graph--bar-tooltip_Joy .base--a {
-    color: white; }
-    .summary-emotion-graph--bar-tooltip_Joy .base--a:hover {
-      color: #e0e0e0; }
-
-.summary-emotion-graph--bar-tooltip_Sadness {
-  position: absolute;
-  background-color: #086DB2;
-  padding: 1rem;
-  width: 5.5rem;
-  left: -2.75rem;
-  color: white;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.2;
-  visibility: hidden;
-  opacity: 0;
-  bottom: calc(100% + 1.25rem);
-  color: #ffffff; }
-  .summary-emotion-graph--bar-tooltip_Sadness:after {
-    content: '';
+    background-color: #FFD629;
+    padding: 1rem;
+    width: 5.5rem;
+    left: -2.75rem;
+    color: white;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.2;
+    visibility: hidden;
+    opacity: 0;
+    bottom: calc(100% + 1.25rem);
+    color: #000000; }
+    .summary-emotion-graph--bar-tooltip_Joy:after {
+      content: '';
+      position: absolute;
+      left: 2rem;
+      border: 0.75rem solid transparent;
+      top: 100%;
+      border-top-color: #FFD629; }
+    .summary-emotion-graph--bar-tooltip_Joy .base--a {
+      color: white; }
+      .summary-emotion-graph--bar-tooltip_Joy .base--a:hover {
+        color: #e0e0e0; }
+  .summary-emotion-graph--bar-tooltip_Sadness {
     position: absolute;
-    left: 2rem;
-    border: 0.75rem solid transparent;
+    background-color: #086DB2;
+    padding: 1rem;
+    width: 5.5rem;
+    left: -2.75rem;
+    color: white;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.2;
+    visibility: hidden;
+    opacity: 0;
+    bottom: calc(100% + 1.25rem);
+    color: #ffffff; }
+    .summary-emotion-graph--bar-tooltip_Sadness:after {
+      content: '';
+      position: absolute;
+      left: 2rem;
+      border: 0.75rem solid transparent;
+      top: 100%;
+      border-top-color: #086DB2; }
+    .summary-emotion-graph--bar-tooltip_Sadness .base--a {
+      color: white; }
+      .summary-emotion-graph--bar-tooltip_Sadness .base--a:hover {
+        color: #e0e0e0; }
+  .summary-emotion-graph--legend-label-container {
+    position: absolute;
     top: 100%;
-    border-top-color: #086DB2; }
-  .summary-emotion-graph--bar-tooltip_Sadness .base--a {
-    color: white; }
-    .summary-emotion-graph--bar-tooltip_Sadness .base--a:hover {
-      color: #e0e0e0; }
+    right: 0rem;
+    width: calc(100% - 4rem); }
+  .summary-emotion-graph--legend-label {
+    width: calc(33.33333% - 0rem);
+    margin-right: 0rem;
+    display: block;
+    float: left;
+    margin-top: 0rem;
+    text-align: center;
+    font-size: 0.8rem; }
+    .summary-emotion-graph--legend-label:nth-of-type(3n) {
+      margin-right: 0rem; }
+    @media (min-width: 768px) {
+      .summary-emotion-graph--legend-label {
+        font-size: 0.5rem; } }
 
 .summary-writing-graph {
   height: calc(100% - 2.5rem); }
+  @media (min-width: 768px) {
+    .summary-writing-graph {
+      height: calc(100% - 3.5rem); } }
+  @media (min-width: 1200px) {
+    .summary-writing-graph {
+      height: calc(100% - 2.5rem); } }
   .summary-writing-graph--column {
     width: calc(33.33333% - 0rem);
     margin-right: 0rem;
@@ -1631,13 +1671,12 @@ pre[class*=" language-"] {
     background-color: #075CD8; }
   .summary-social-graph--threshold {
     position: absolute;
-    top: 0rem;
+    top: -40%;
     left: 0%;
-    height: 100%;
-    width: 2px;
+    height: 180%;
+    width: 1px;
     margin-top: 0rem;
-    margin-left: -1px;
-    background-color: #000; }
+    background-color: #aeaeae; }
   .summary-social-graph--tooltip {
     position: absolute;
     background-color: #325c80;
@@ -1889,22 +1928,22 @@ pre[class*=" language-"] {
   .original-text--legend {
     text-align: right;
     position: relative;
-    height: 3.75rem; }
+    height: 4.75rem; }
   .original-text--legend-bar {
     position: absolute;
     right: 0rem;
     margin: 0rem; }
   .original-text--legend-block {
-    height: 2rem;
-    width: 1.75rem;
+    height: 2.5rem;
+    width: 4.5rem;
     background-color: #e0e0e0;
     margin-top: 0rem;
     position: absolute;
     right: 0rem; }
     .original-text--legend-block_low {
-      right: 3.5rem; }
+      right: 9rem; }
     .original-text--legend-block_med {
-      right: 1.75rem; }
+      right: 4.5rem; }
     .original-text--legend-block_high {
       right: 0rem; }
     .original-text--legend-block_anger-low {
@@ -1986,19 +2025,19 @@ pre[class*=" language-"] {
     .original-text--legend-block_emotional-range-high {
       background-color: #1AE5CD; }
   .original-text--legend-label {
-    margin-top: 0rem;
+    margin-top: 0.35rem;
     position: absolute;
-    top: 2rem;
+    top: 2.5rem;
     font-size: 0.8rem; }
     .original-text--legend-label_low {
-      left: calc(100% - 5.25rem); }
+      left: calc(100% - 13.5rem); }
     .original-text--legend-label_high {
       right: 0rem; }
   .original-text--texts-container {
     background-color: white;
     padding: 1rem;
     overflow-y: auto;
-    height: calc(100% - 9.5rem);
+    height: calc(100% - 10.5rem);
     margin-top: 0rem; }
   .original-text--sentence-container {
     margin-top: 0.4rem;

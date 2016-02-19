@@ -51,10 +51,10 @@ function normalize(str) {
 
 /**
  * Scrolls page to @param element
- * @param {$element} element
+ * @param {$element} $element
  */
-function scrollTo(element) {
-  $('html, body').animate({ scrollTop: element.offset().top }, 'fast');
+function scrollTo($element) {
+  $('html, body').animate({ scrollTop: $element.offset().top }, 'fast');
 }
 
 /**

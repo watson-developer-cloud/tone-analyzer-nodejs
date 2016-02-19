@@ -121,15 +121,15 @@
         <p class="base--p output--document-description">Quickly assess the ways your text is or is not making the right impression.  Learn how to interpret these graphs for your use case in the <a href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/tone-analyzer/overview.shtml#analyzing" target="blank" class="base--a">Documentation</a>.</p>
         <div class="summary--row">
           <div class="summary--emotion">
-            <h4 class="">Emotion Summary</h4>
+            <h5 class="base--h5">Emotion summary (probability)</h5>
             <div class="summary-emotion-graph bar-graph"></div>
           </div>
           <div class="summary--writing">
-            <h4 class="">Language Summary</h4>
+            <h5 class="base--h5">Language Style summary (raw score)</h5>
             <div class="summary-writing-graph"></div>
           </div>
           <div class="summary--social">
-            <h4 class="">Social Summary</h4>
+            <h5 class="base--h5">Social summary (raw score)</h5>
             <div class="summary-social-graph bar-graph"></div>
           </div>
         </div>
@@ -241,9 +241,22 @@
             <div class="summary-<%= className %>-graph--bar-tooltip summary-<%= className %>-graph--bar-tooltip_<%= item.label.replace(/\s+/g, '-') %> bar-graph--bar-tooltip" style="margin-left: <%= item.score %>%;">
               <%= (item.score / 100).toFixed(2) %>
             </div>
+            <% if (item.thresholdLow) { %>
+              <div class="bar-graph--threshold" style="<%= 'left: ' + item.thresholdLow + '%' %>"></div>
+            <% } %>
+            <% if (item.thresholdHigh) { %>
+              <div class="bar-graph--threshold" style="<%= 'left: ' + item.thresholdHigh + '%' %>"></div>
+            <% } %>
           </div>
         </div>
       </div>
+      <% if (key === list.length - 1 && item.thresholdLow) { %>
+        <div class="summary-<%= className %>-graph--legend-label-container">
+          <div class="summary-<%= className %>-graph--legend-label">Low evidence</div>
+          <div class="summary-<%= className %>-graph--legend-label">Medium</div>
+          <div class="summary-<%= className %>-graph--legend-label">High</div>
+        </div>
+      <% } %>
       <% }); %>
   </script>
 
@@ -313,8 +326,8 @@
       <div class="original-text--legend-block original-text--legend-block_low original-text--legend-block_<%= className %>-low"></div>
       <div class="original-text--legend-block original-text--legend-block_med original-text--legend-block_<%= className %>-medium"></div>
       <div class="original-text--legend-block original-text--legend-block_high original-text--legend-block_<%= className %>-high"></div>
-      <div class="original-text--legend-label original-text--legend-label_low">Lower</div>
-      <div class="original-text--legend-label original-text--legend-label_high">Higher</div>
+      <div class="original-text--legend-label original-text--legend-label_low">No evidence</div>
+      <div class="original-text--legend-label original-text--legend-label_high">Strong</div>
     </div>
   </script>
 

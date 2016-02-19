@@ -113,7 +113,8 @@ function allReady(thresholds, sampleText) {
       return {
         label: item.tone_name,
         score: app.percentagify(item.score, 'Emotion Tone'),
-        threshold: app.percentagify(app.thresholds().doc[item.tone_name][0])
+        thresholdLow: app.percentagify(app.thresholds().doc[item.tone_name][0]),
+        thresholdHigh: app.percentagify(app.thresholds().doc[item.tone_name][1])
       };
     }
 
@@ -138,7 +139,6 @@ function allReady(thresholds, sampleText) {
       return {
         label: item.tone_name,
         score: app.percentagify(item.score, 'Social Tone'),
-        threshold: app.percentagify(app.thresholds().doc[item.tone_name][1]),
         tooltip: app.toneHash()[item.tone_name].tooltip
       };
     }
@@ -332,7 +332,6 @@ function allReady(thresholds, sampleText) {
    * @param {Object} error
    */
   function _error(error) {
-    console.log();
     var message = typeof error.responseJSON.error === 'string' ?
       error.responseJSON.error :
       'Error code ' + error.responseJSON.error.code + ': ' + error.responseJSON.error.message;
