@@ -6,8 +6,6 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
 
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/tone-analyzer-nodejs)
 
-**NOTE:** The deployed code requires an Alchemy API key to become fully functional. In order to get a key, follow step 3 under [Getting Started](#getting-started). Then, using the  `EDIT CODE` link located in your application’s Bluemix dashboard page, follow step 6 of [Getting Started](#getting-started).
-
 ## Getting Started
 
 1. Create a Bluemix Account
