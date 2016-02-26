@@ -252,9 +252,8 @@
       </div>
       <% if (key === list.length - 1 && item.thresholdLow) { %>
         <div class="summary-<%= className %>-graph--legend-label-container">
-          <div class="summary-<%= className %>-graph--legend-label">Low evidence</div>
-          <div class="summary-<%= className %>-graph--legend-label">Medium</div>
-          <div class="summary-<%= className %>-graph--legend-label">High</div>
+          <div class="summary-<%= className %>-graph--legend-label summary-<%= className %>-graph--legend-label_medium">Medium</div>
+          <div class="summary-<%= className %>-graph--legend-label summary-<%= className %>-graph--legend-label_high">High</div>
         </div>
       <% } %>
       <% }); %>

@@ -1549,13 +1549,19 @@ pre[class*=" language-"] {
     right: 0rem;
     width: calc(100% - 4rem); }
   .summary-emotion-graph--legend-label {
-    width: calc(33.33333% - 0rem);
+    position: absolute;
     margin-right: 0rem;
     display: block;
     float: left;
     margin-top: 0rem;
     text-align: center;
     font-size: 0.8rem; }
+    .summary-emotion-graph--legend-label_medium {
+      left: 50%;
+      margin-left: -1.4rem; }
+    .summary-emotion-graph--legend-label_high {
+      left: 75%;
+      margin-left: -1rem; }
     .summary-emotion-graph--legend-label:nth-of-type(3n) {
       margin-right: 0rem; }
     @media (min-width: 768px) {
