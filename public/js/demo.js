@@ -332,10 +332,15 @@ function allReady(thresholds, sampleText) {
    * @param {Object} error
    */
   function _error(error) {
+    console.log(error.responseJSON.code);
     var message = typeof error.responseJSON.error === 'string' ?
       error.responseJSON.error :
       'Error code ' + error.responseJSON.error.code + ': ' + error.responseJSON.error.message;
-    $errorMessage.text(message);
+
+    if (error.responseJSON.code === 429)
+      message = 'You\'ve sent a lot of requests in a short amount of time. ' +
+        'As the CPU cores cool off a bit, wait a few seonds before sending more requests.'
+    $errorMessage.html(message);
     $input.show();
     $loading.hide();
     $output.hide();
