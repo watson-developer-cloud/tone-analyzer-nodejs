@@ -332,7 +332,6 @@ function allReady(thresholds, sampleText) {
    * @param {Object} error
    */
   function _error(error) {
-    console.log(error.responseJSON.code);
     var message = typeof error.responseJSON.error === 'string' ?
       error.responseJSON.error :
       'Error code ' + error.responseJSON.error.code + ': ' + error.responseJSON.error.message;
