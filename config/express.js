@@ -32,8 +32,8 @@ module.exports = function (app) {
   // Setup static public directory
   app.use(express.static(__dirname + '/../public'));
 
-  // Only loaded when SECURE_EXPRESS is `true`
-  if (process.env.SECURE_EXPRESS)
+  // Only loaded when VCAP_APPLICATION is `true`
+  if (process.env.VCAP_APPLICATION)
     require('./security')(app);
 
 };

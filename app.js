@@ -33,8 +33,8 @@ var toneAnalyzer = watson.tone_analyzer({
 });
 
 app.get('/', function(req, res) {
-  res.render('index');
   res.render('index', {
+    ct: req._csrfToken,
     ga: process.env.GOOGLE_ANALYTICS
   });
 });
