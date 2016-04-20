@@ -51,6 +51,4 @@ app.post('/api/tone', function(req, res, next) {
 // error-handler application settings
 require('./config/error-handler')(app);
 
-var port = process.env.VCAP_APP_PORT || 3000;
-app.listen(port);
-console.log('listening at:', port);
+module.exports = app;
