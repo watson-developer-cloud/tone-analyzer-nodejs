@@ -34,6 +34,9 @@ var toneAnalyzer = watson.tone_analyzer({
 
 app.get('/', function(req, res) {
   res.render('index');
+  res.render('index', {
+    ga: process.env.GOOGLE_ANALYTICS
+  });
 });
 
 app.post('/api/tone', function(req, res, next) {
