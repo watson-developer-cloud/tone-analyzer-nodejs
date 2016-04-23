@@ -1,4 +1,6 @@
 # Tone Analyzer Node.js Starter Application
+[![Build Status](https://travis-ci.org/watson-developer-cloud/tone-analyzer-nodejs.svg?branch=master)](http://travis-ci.org/watson-developer-cloud/tone-analyzer-nodejs)
+[![codecov.io](https://codecov.io/github/watson-developer-cloud/tone-analyzer-nodejs/coverage.svg?branch=master)](https://codecov.io/github/watson-developer-cloud/tone-analyzer-nodejs?branch=master)
 
   The IBM Watson [Tone Analyzer][service_url] service is a cognitive linguistic analysis service that detects three types of tones from written text: emotions, social tendencies, and writing style. Emotions identified include things like anger, fear, joy, sadness, and disgust. Identified social tendencies include things from the Big Five personality traits used by some psychologists. These include openness, conscientiousness, extraversion, agreeableness, and neuroticism. Identified writing styles include confident, analytical, and tentative.
 
