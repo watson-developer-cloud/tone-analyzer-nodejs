@@ -21,6 +21,14 @@
  * JQuery on ready callback function
  */
 function ready() {
+
+  // CSRF protection
+  $.ajaxSetup({
+    headers: {
+      'csrf-token': $('meta[name="ct"]').attr('content')
+    }
+  });
+
   // load all json data first
   $.when(
     $.ajax('/data/threshold_v0.1.1.json'),

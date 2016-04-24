@@ -1,1 +1,3 @@
 node_modules
+run.sh
+VCAP_SERVICES.json

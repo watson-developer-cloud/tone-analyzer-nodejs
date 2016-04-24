@@ -33,7 +33,10 @@ var toneAnalyzer = watson.tone_analyzer({
 });
 
 app.get('/', function(req, res) {
-  res.render('index');
+  res.render('index', {
+    ct: req._csrfToken,
+    ga: process.env.GOOGLE_ANALYTICS
+  });
 });
 
 app.post('/api/tone', function(req, res, next) {
@@ -48,6 +51,4 @@ app.post('/api/tone', function(req, res, next) {
 // error-handler application settings
 require('./config/error-handler')(app);
 
-var port = process.env.VCAP_APP_PORT || 3000;
-app.listen(port);
-console.log('listening at:', port);
+module.exports = app;
