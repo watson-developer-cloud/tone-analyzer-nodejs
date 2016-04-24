@@ -7,7 +7,7 @@ applications:
 - services:
   - tone-analyzer-service
   name: tone-analyzer-demo
-  command: node app.js
+  command: npm start
   path: .
   instances: 2
   memory: 512MB
