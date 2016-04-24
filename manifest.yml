@@ -9,7 +9,5 @@ applications:
   name: tone-analyzer-demo
   command: node app.js
   path: .
+  instances: 2
   memory: 512MB
-  env:
-    NODE_ENV: production
-    SECURE_EXPRESS: 1
