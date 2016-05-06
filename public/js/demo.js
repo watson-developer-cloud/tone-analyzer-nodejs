@@ -87,6 +87,8 @@ function allReady(thresholds, sampleText) {
    */
   function toneCallback(data) {
 
+    console.log('tone data', data.document_tone.tone_categories[1].category_id);
+
     $input.show();
     $loading.hide();
     $error.hide();
@@ -134,7 +136,7 @@ function allReady(thresholds, sampleText) {
     function writingMap(item) {
       return {
         label: item.tone_name,
-        score: app.percentagify(item.score, 'Writing Tone')
+        score: app.percentagify(item.score, 'Language Tone')
       };
     }
 
