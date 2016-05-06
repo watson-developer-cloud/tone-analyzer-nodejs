@@ -152,7 +152,6 @@ function App(documentTones, sentences, thresholds, selectedSample) {
    * @return {int} index positioning of tone
    */
   function _searchIndex(key) {
-    console.log(_toneHash[key], _toneHash);
     return _toneHash[key].index;
   }
 
@@ -419,8 +418,6 @@ function App(documentTones, sentences, thresholds, selectedSample) {
     };
     return prevVal;
   }, {});
-
-  console.log('hello', _toneHash);
 
   return output;
 }
