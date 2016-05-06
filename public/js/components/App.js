@@ -77,23 +77,23 @@ function App(documentTones, sentences, thresholds, selectedSample) {
           score: 0,
           tone_id: 'Analytical',
           tone_name: 'Analytical',
-          tone_category_id: 'writing_tone',
-          tone_category_name: 'Writing Tone'
+          tone_category_id: 'language_tone',
+          tone_category_name: 'Language Tone'
         }, {
           score: 0,
           tone_id: 'Confident',
           tone_name: 'Confident',
-          tone_category_id: 'writing_tone',
-          tone_category_name: 'Writing Tone'
+          tone_category_id: 'language_tone',
+          tone_category_name: 'Language Tone'
         }, {
           score: 0,
           tone_id: 'Tentative',
           tone_name: 'Tentative',
-          tone_category_id: 'writing_tone',
-          tone_category_name: 'Writing Tone'
+          tone_category_id: 'language_tone',
+          tone_category_name: 'Language Tone'
         }],
-        category_id: 'writing_tone',
-        category_name: 'Writing Tone'
+        category_id: 'language_tone',
+        category_name: 'Language Tone'
       }, {
         tones: [{
           score: 0,
@@ -361,7 +361,7 @@ function App(documentTones, sentences, thresholds, selectedSample) {
     sample = {
       'customer-call': getHighestTone('Emotion Tone'),
       'email': getHighestTone('Social Tone'),
-      'corporate-announcement': getHighestTone('Writing Tone'),
+      'corporate-announcement': getHighestTone('Language Tone'),
       'own-text': getHighestTone('Emotion Tone')
     };
 

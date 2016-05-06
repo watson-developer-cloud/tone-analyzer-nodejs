@@ -134,7 +134,7 @@ function allReady(thresholds, sampleText) {
     function writingMap(item) {
       return {
         label: item.tone_name,
-        score: app.percentagify(item.score, 'Writing Tone')
+        score: app.percentagify(item.score, 'Language Tone')
       };
     }
 
