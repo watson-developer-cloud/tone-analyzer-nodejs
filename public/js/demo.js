@@ -63,6 +63,9 @@ function allReady(thresholds, sampleText) {
       $emotionGraph = $('.summary-emotion-graph'),
       $writingGraph = $('.summary-writing-graph'),
       $socialGraph = $('.summary-social-graph'),
+      $summaryJsonButton = $('.js-toggle-summary-json'),
+      $summaryJson = $('.js-summary-json'),
+      $summaryJsonCode = $('.js-summary-json .json--code'),
       $emotionFilters = $('.filters--emotion'),
       $writingFilters = $('.filters--writing'),
       $socialFilters = $('.filters--social'),
@@ -71,7 +74,7 @@ function allReady(thresholds, sampleText) {
       $originalTextTooltipContainer = $('.original-text--tooltip-container'),
       $legend = $('.original-text--legend'),
       $sentenceRankTable = $('.sentence-rank--table'),
-      $jsonCode = $('.json--code'),
+      $sentenceJson = $('.json .json--code'),
       $outputResetButton = $('.output--reset-button'),
       barGraph_template = barGraphTemplate.innerHTML,
       verticalBarGraph_template = verticalBarGraphTemplate.innerHTML,
@@ -275,12 +278,30 @@ function allReady(thresholds, sampleText) {
     }
 
     /**
+     * Emit view update for json view sentence tones
+     * @param {Object} data
+     */
+    function updateJSONSentenceTones(data) {
+      $sentenceJson.empty();
+      $sentenceJson.html(JSON.stringify({'sentences_tone' : data['sentences_tone']}, null, 2));
+    }
+
+    /**
+     * Emit view update for json view sentence tones
+     * @param {Object} data
+     */
+    function updateJSONDocumentTones(data) {
+      $summaryJsonCode.empty();
+      $summaryJsonCode.html(JSON.stringify({'document_tone' : data['document_tone']}, null, 2));
+    }
+
+    /**
      * Emit view update for json view
      * @param {Object} data
      */
     function updateJSON(data) {
-      $jsonCode.empty();
-      $jsonCode.html(JSON.stringify(data, null, 2));
+      updateJSONSentenceTones(data);
+      updateJSONDocumentTones(data);
     }
 
     app.selectFilterBySample();
@@ -323,7 +344,7 @@ function allReady(thresholds, sampleText) {
     updateLegend();
     bindOriginalTextHoverEvents();
 
-    $jsonCode.html(JSON.stringify(data, null, 2));
+    updateJSON(data);
 
     $('.filters--radio').on('click', function() {
       clickFilter($(this).data('id'));
@@ -411,6 +432,10 @@ function allReady(thresholds, sampleText) {
   });
 
   updateTextarea($('.input--radio:checked').val());
+
+  $summaryJsonButton.click(function() {
+    $summaryJson.toggle();
+  });
 }
 
 $(document).ready(ready);

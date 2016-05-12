@@ -1806,7 +1806,10 @@ pre[class*=" language-"] {
     .summary-social-graph--label-container:hover .bar-graph--tooltip:hover {
       visibility: hidden;
       opacity: 0; }
-
+  .summary-view-code-button {
+    float: right; }
+  .summary-json {
+    display: none; }
 .sentences {
   min-width: 732px; }
   .sentences--filters {
