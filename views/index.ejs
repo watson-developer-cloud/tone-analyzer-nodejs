@@ -116,13 +116,10 @@
       </div>
 
       <div class="output">
-        <h2 class="base--h2">Output</h2>
-        <p class="base--p">The tone API analyzes text at the document level and the sentence level for <a href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/tone-analyzer/#overview" target="blank" class="base--a">3 categories of tones</a>: Emotion, Language, and Social. It produces 2 levels of scores, at the document-level, and the sentence-level.</p>
-        <h3 class="base--h3 output--document-title">Document-level</h3>
-        <p class="base--p output--document-description">Quickly assess the ways your text is or is not making the right impression.  Learn how to interpret these graphs for your use case in the <a href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/tone-analyzer/understanding-tone.shtml" target="blank" class="base--a">Documentation</a>.</p>
+        <h3 class="base--h2 output--document-title">Document-level tone</h3>
         <div class="summary--row">
           <div class="summary--emotion">
-            <h5 class="base--h5">Emotion summary (probability)</h5>
+            <h5 class="base--h5">Emotion (probability score)</h5>
             <div class="summary-emotion-graph bar-graph"></div>
           </div>
           <div class="summary--writing">
@@ -134,8 +131,8 @@
             <div class="summary-social-graph bar-graph"></div>
           </div>
         </div>
-        <h3 class="base--h3 output--sentence-title">Sentence-level</h3>
-        <p class="base--p output--sentence-description">Discover the sentences with the strongest emotion, language, and social cues in the context of your text. Hover over any sentence to view raw scores for all tones in a category, or rank all sentences according to a single tone.</p>
+        <h3 class="base--h2 output--sentence-title">Sentence-level tone</h3>
+        <p class="base--p output--sentence-description">Identify sentences with stronger tones in context or sorted by score. Highlighted sentences indicate the likelihood of a tone present. If more than one tone is present, the stronger one is shown. Click on a sentence to see a breakdown of all tones.</p>
         <div class="output--reset icon-hyperlink">
           <span class="icon icon-reset"></span>
           <button class="base--a output--reset-button icon-hyperlink--button icon-hyperlink--button_BLANK" href="" type="reset">
@@ -158,10 +155,10 @@
             <div class="tab-panels sentence-views--tab-panels" role="tabpanel">
               <ul class="tab-panels--tab-list" role="tablist">
                 <li class="tab-panels--tab-list-item base--li" role="presentation">
-                  <a class="tab-panels--tab base--a active" href="#panel-original-text" aria-controls="panel-original-text" role="tab">Original Text</a>
+                  <a class="tab-panels--tab base--a active" href="#panel-original-text" aria-controls="panel-original-text" role="tab">In context</a>
                 </li>
                 <li class="tab-panels--tab-list-item base--li" role="presentation">
-                  <a class="tab-panels--tab base--a" href="#panel-sentence-rank" aria-controls="panel-sentence-rank" role="tab">Sentence Rank</a>
+                  <a class="tab-panels--tab base--a" href="#panel-sentence-rank" aria-controls="panel-sentence-rank" role="tab">Ranked by score</a>
                 </li>
                 <li class="tab-panels--tab-list-item base--li" role="presentation">
                   <a class="tab-panels--tab base--a" href="#panel-json" aria-controls="panel-json" role="tab">JSON</a>
