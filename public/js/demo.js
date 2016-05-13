@@ -65,6 +65,8 @@ function allReady(thresholds, sampleText) {
       $socialGraph = $('.summary-social-graph'),
       $summaryJsonButton = $('.js-toggle-summary-json'),
       $summaryJson = $('.js-summary-json'),
+      $summaryJsonView = $('.js-toggle-summary-json_show'),
+      $summaryJsonHide = $('.js-toggle-summary-json_hide'),
       $summaryJsonCode = $('.js-summary-json .json--code'),
       $emotionFilters = $('.filters--emotion'),
       $writingFilters = $('.filters--writing'),
@@ -435,6 +437,8 @@ function allReady(thresholds, sampleText) {
 
   $summaryJsonButton.click(function() {
     $summaryJson.toggle();
+    $summaryJsonView.toggle();
+    $summaryJsonHide.toggle();
   });
 }
 

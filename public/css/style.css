@@ -1810,6 +1810,9 @@ pre[class*=" language-"] {
     float: right; }
   .summary-json {
     display: none; }
+  .js-toggle-summary-json_hide {
+    display: none; }
+
 .sentences {
   min-width: 732px; }
   .sentences--filters {
