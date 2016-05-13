@@ -79,6 +79,7 @@ function allReady(thresholds, sampleText) {
       $sentenceJson = $('.json .json--code'),
       $outputResetButton = $('.output--reset-button'),
       barGraph_template = barGraphTemplate.innerHTML,
+      emotionBarGraph_template = emotionBarGraphTemplate.innerHTML,
       verticalBarGraph_template = verticalBarGraphTemplate.innerHTML,
       filters_template = filtersTemplate.innerHTML,
       originalText_template = originalTextTemplate.innerHTML,
@@ -126,6 +127,7 @@ function allReady(thresholds, sampleText) {
       return {
         label: item.tone_name,
         score: app.percentagify(item.score, 'Emotion Tone'),
+        likeliness: app.percentagify(item.score, 'Emotion Tone') > app.percentagify(app.thresholds().doc[item.tone_name][0]) ? 'LIKELY' : 'UNLIKELY',
         thresholdLow: app.percentagify(app.thresholds().doc[item.tone_name][0]),
         thresholdHigh: app.percentagify(app.thresholds().doc[item.tone_name][1])
       };
@@ -312,7 +314,7 @@ function allReady(thresholds, sampleText) {
     writingTone = writingTone.map(writingMap);
     socialTone = socialTone.map(socialMap);
 
-    $emotionGraph.html(_.template(barGraph_template, {
+    $emotionGraph.html(_.template(emotionBarGraph_template, {
       items: emotionTone,
       className: 'emotion'
     }));

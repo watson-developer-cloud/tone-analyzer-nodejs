@@ -232,6 +232,37 @@
     </article>
   </div>
 
+  <script type="text/html" id="emotionBarGraphTemplate">
+    <% _.each(items, function(item, key, list) { %>
+      <div class="bar-graph--row summary-<%= className %>-graph--row">
+        <div class="bar-graph--label-container summary-<%= className %>-graph--label-container">
+          <div class="bar-graph--label">
+            <p class="base--p">
+              <%= item.label %>
+            </p>
+            <% if (item.tooltip) { %>
+              <div class="bar-graph--tooltip">
+                <%= item.tooltip %>
+              </div>
+              <% } %>
+          </div>
+        </div>
+        <div class="bar-graph--bar-container summary-<%= className %>-graph--bar-container">
+          <div class="bar-graph--bar">
+            <div class="bar-graph--bar-value summary-<%= className %>-graph--bar-value summary-<%= className %>-graph--bar-value_<%= item.label.replace(/\s+/g, '-') %>" style="width: <%= item.score %>%;"></div>
+          </div>
+        </div>
+        <div class="summary-emotion-graph--percentage-label">
+          <%= (item.score / 100).toFixed(2) %>
+          <br>
+          <span class="summary-emotion-graph--percentage-label-likeliness">
+            <%= item.likeliness %>
+          </span>
+        </div>
+      </div>
+      <% }); %>
+  </script>
+
   <script type="text/html" id="barGraphTemplate">
     <% _.each(items, function(item, key, list) { %>
       <div class="bar-graph--row">

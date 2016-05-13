@@ -1185,7 +1185,8 @@ pre[class*=" language-"] {
     margin-top: 0rem; }
   .bar-graph--label {
     font-size: 0.8rem;
-    text-align: right;
+    font-weight: 500;
+    text-align: left;
     position: relative; }
   .bar-graph--bar {
     height: 1.25rem;
@@ -1543,6 +1544,18 @@ pre[class*=" language-"] {
       color: white; }
       .summary-emotion-graph--bar-tooltip_Sadness .base--a:hover {
         color: #e0e0e0; }
+    .summary-emotion-graph--bar-container {
+      margin-right: 0.5rem;
+      width: calc(100% - 7rem); }
+    .summary-emotion-graph--percentage-label {
+      margin-top: 0rem;
+      line-height: 1;
+      text-align: center;
+      font-weight: light;
+      font-size: 0.85rem; }
+    .summary-emotion-graph--percentage-label-likeliness {
+      font-weight: light;
+      font-size: 0.5rem; }
   .summary-emotion-graph--legend-label-container {
     position: absolute;
     top: 100%;
