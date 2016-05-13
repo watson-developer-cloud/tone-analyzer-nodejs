@@ -2280,9 +2280,7 @@ pre[class*=" language-"] {
     margin-bottom: 1rem;
     color: black; }
     .original-text--tooltip-li:first-child {
-      padding-bottom: 1rem;
-      margin-bottom: 0rem;
-      border-bottom: 1px solid #c7c7c7; }
+      margin-bottom: 0rem; }
     .original-text--tooltip-li:last-child {
       margin-bottom: 0rem; }
     .original-text--tooltip-li_anger {
