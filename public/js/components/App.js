@@ -378,11 +378,11 @@ function App(documentTones, sentences, thresholds, selectedSample) {
   _cleanSentences(_rankedSentences);
   _originalSentences = _rankedSentences.slice(0);
   _socialToneHoverTexts = {
-    'Agreeableness': 'The tendency to be compassionate and cooperative towards others. <br><br><strong>Less than 0.25:</strong> more likely to be perceived as selfish, uncaring, uncooperative, self-interested, confrontational, skeptical, or arrogant. <br><br><strong>More than 0.75:</strong> more likely to be perceived as caring, sympathetic, cooperative, compromising, trustworthy, or humble.',
-    'Emotional Range': 'The extent a person\'s emotion is sensitive to the environment. <br><br><strong>Less than 0.25:</strong> more likely to be perceived as calm, bland, content, relaxed, unconcerned, or careful. <br><br><strong>More than 0.75:</strong> more likely to be perceived as concerned, frustrated, angry, passionate, upset, stressed, insecure, or impulsive.',
-    'Openness': 'The extent a person is open to experience a variety of activities. <br><br><strong>Less than 0.25:</strong> more likely to be perceived as no-nonsense, straightforward, blunt, or preferring tradition and the obvious over the complex, ambiguous, and subtle. <br><br><strong>More than 0.75:</strong> more likely to be perceived as intellectual, curious, emotionally-aware, imaginative, willing to try new things, appreciating beauty, or open to change.',
-    'Conscientiousness': 'The tendency to act in an organized or thoughtful way. <br><br><strong>Less than 0.25:</strong> more likely to be perceived as spontaneous, laid-back, reckless, unmethodical, remiss, or disorganized. <br><br><strong>More than 0.75:</strong> more likely to be perceived as disciplined, dutiful, achievement-striving, confident, driven, or organized.',
-    'Extraversion': 'The tendency to seek stimulation in the company of others. <br><br><strong>Less than 0.25:</strong> more likely to be perceived as independent, timid, introverted, restrained, boring, or dreary. <br><br><strong>More than 0.75:</strong> more likely to be perceived as engaging, seeking attention, needy, assertive, outgoing, sociable, cheerful, excitement-seeking, or busy.'
+    'Agreeableness': 'The tendency to be compassionate and cooperative towards others.',
+    'Emotional Range': 'The extent a person\'s emotion is sensitive to the environment.',
+    'Openness': 'The extent a person is open to experience a variety of activities.',
+    'Conscientiousness': 'The tendency to act in an organized or thoughtful way.',
+    'Extraversion': 'The tendency to seek stimulation in the company of others.'
   };
 
   // Constructing the _toneHash hashmap
