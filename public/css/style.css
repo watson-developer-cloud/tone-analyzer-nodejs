@@ -1871,80 +1871,54 @@ pre[class*=" language-"] {
     .filters--writing .filters--label:last-child,
     .filters--social .filters--label:last-child {
       border-bottom: 1px solid #e0e0e0; }
-    .filters--radio#filter-Anger + .filters--label {
-       }
     .filters--radio#filter-Anger:checked + .filters--label {
       background-color: #274b5f;
       border-color: #274b5f;
       color: #ffffff; }
-    .filters--radio#filter-Disgust + .filters--label {
-       }
     .filters--radio#filter-Disgust:checked + .filters--label {
       background-color: #274b5f;
       border-color: #274b5f;
       color: #ffffff; }
-    .filters--radio#filter-Fear + .filters--label {
-       }
     .filters--radio#filter-Fear:checked + .filters--label {
       background-color: #274b5f;
       border-color: #274b5f;
       color: #ffffff; }
-    .filters--radio#filter-Joy + .filters--label {
-       }
     .filters--radio#filter-Joy:checked + .filters--label {
       background-color: #274b5f;
       border-color: #274b5f;
       color: #ffffff; }
-    .filters--radio#filter-Sadness + .filters--label {
-       }
     .filters--radio#filter-Sadness:checked + .filters--label {
       background-color: #274b5f;
       border-color: #274b5f;
       color: #ffffff; }
-    .filters--radio#filter-Analytical + .filters--label {
-       }
     .filters--radio#filter-Analytical:checked + .filters--label {
       background-color: #274b5f;
       border-color: #274b5f;
       color: #ffffff; }
-    .filters--radio#filter-Confident + .filters--label {
-       }
     .filters--radio#filter-Confident:checked + .filters--label {
       background-color: #274b5f;
       border-color: #274b5f;
       color: #ffffff; }
-    .filters--radio#filter-Tentative + .filters--label {
-       }
     .filters--radio#filter-Tentative:checked + .filters--label {
       background-color: #274b5f;
       border-color: #274b5f;
       color: #ffffff; }
-    .filters--radio#filter-Openness + .filters--label {
-       }
     .filters--radio#filter-Openness:checked + .filters--label {
       background-color: #274b5f;
       border-color: #274b5f;
       color: #ffffff; }
-    .filters--radio#filter-Conscientiousness + .filters--label {
-       }
     .filters--radio#filter-Conscientiousness:checked + .filters--label {
       background-color: #274b5f;
       border-color: #274b5f;
       color: #ffffff; }
-    .filters--radio#filter-Extraversion + .filters--label {
-       }
     .filters--radio#filter-Extraversion:checked + .filters--label {
       background-color: #274b5f;
       border-color: #274b5f;
       color: #ffffff; }
-    .filters--radio#filter-Agreeableness + .filters--label {
-       }
     .filters--radio#filter-Agreeableness:checked + .filters--label {
       background-color: #274b5f;
       border-color: #274b5f;
       color: #ffffff; }
-    .filters--radio#filter-Emotional-Range + .filters--label {
-       }
     .filters--radio#filter-Emotional-Range:checked + .filters--label {
       background-color: #274b5f;
       border-color: #274b5f;
