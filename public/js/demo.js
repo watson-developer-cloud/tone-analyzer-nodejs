@@ -319,7 +319,7 @@ function allReady(thresholds, sampleText) {
       className: 'emotion'
     }));
 
-    $writingGraph.html(_.template(verticalBarGraph_template, {
+    $writingGraph.html(_.template(barGraph_template, {
       items: writingTone,
       className: 'writing'
     }));

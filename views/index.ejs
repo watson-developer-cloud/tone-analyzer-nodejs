@@ -119,15 +119,15 @@
         <h3 class="base--h2 output--document-title">Document-level tone</h3>
         <div class="summary--row">
           <div class="summary--emotion">
-            <h5 class="base--h5">Emotion (probability score)</h5>
+            <h5 class="base--h5 summary--header">Emotion (probability score)</h5>
             <div class="summary-emotion-graph bar-graph"></div>
           </div>
           <div class="summary--writing">
-            <h5 class="base--h5">Language Style summary (raw score)</h5>
+            <h5 class="base--h5 summary--header">Writing Style (raw score)</h5>
             <div class="summary-writing-graph"></div>
           </div>
           <div class="summary--social">
-            <h5 class="base--h5">Social summary (raw score)</h5>
+            <h5 class="base--h5 summary--header">Social summary (raw score)</h5>
             <div class="summary-social-graph bar-graph"></div>
           </div>
         </div>
@@ -281,24 +281,12 @@
         <div class="bar-graph--bar-container summary-<%= className %>-graph--bar-container">
           <div class="bar-graph--bar">
             <div class="bar-graph--bar-value summary-<%= className %>-graph--bar-value summary-<%= className %>-graph--bar-value_<%= item.label.replace(/\s+/g, '-') %>" style="width: <%= item.score %>%;"></div>
-            <div class="summary-<%= className %>-graph--bar-tooltip summary-<%= className %>-graph--bar-tooltip_<%= item.label.replace(/\s+/g, '-') %> bar-graph--bar-tooltip" style="margin-left: <%= item.score %>%;">
-              <%= (item.score / 100).toFixed(2) %>
-            </div>
-            <% if (item.thresholdLow) { %>
-              <div class="bar-graph--threshold" style="<%= 'left: ' + item.thresholdLow + '%' %>"></div>
-            <% } %>
-            <% if (item.thresholdHigh) { %>
-              <div class="bar-graph--threshold" style="<%= 'left: ' + item.thresholdHigh + '%' %>"></div>
-            <% } %>
           </div>
         </div>
-      </div>
-      <% if (key === list.length - 1 && item.thresholdLow) { %>
-        <div class="summary-<%= className %>-graph--legend-label-container">
-          <div class="summary-<%= className %>-graph--legend-label summary-<%= className %>-graph--legend-label_medium">Medium</div>
-          <div class="summary-<%= className %>-graph--legend-label summary-<%= className %>-graph--legend-label_high">High</div>
+        <div class="bar-graph--percentage-label">
+          <%= (item.score / 100).toFixed(2) %>
         </div>
-      <% } %>
+      </div>
       <% }); %>
   </script>
 
