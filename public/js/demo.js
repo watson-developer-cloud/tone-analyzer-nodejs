@@ -85,7 +85,8 @@ function allReady(thresholds, sampleText) {
       originalText_template = originalTextTemplate.innerHTML,
       sentenceRank_template = sentenceRankTemplate.innerHTML,
       originalTextTooltip_template = originalTextTooltipTemplate.innerHTML,
-      originalTextLegend_template = originalTextLegendTemplate.innerHTML;
+      originalTextLegend_template = originalTextLegendTemplate.innerHTML,
+      lastSentenceID = 0;
 
   /**
    * Callback function for AJAX post to get tone analyzer data
@@ -253,31 +254,36 @@ function allReady(thresholds, sampleText) {
      * interactions
      */
     function bindOriginalTextHoverEvents() {
-      $('.original-text--sentence-container').hover(function(e) {
+      $('.original-text--sentence-container').click(function(e) {
+        e.stopPropagation();
         var id = $(this).data('index');
-        app.currentHoveredOriginalSentence(this);
-        updateOriginalTextTooltip(id);
-        $originalTextTooltipContainer.removeClass('original-text--tooltip-container_hidden');
-        app.isHoveringOriginalText(true);
-        $('.original-text--sentence-container').not('[data-index="'+id+'"]').addClass('original-text--sentence-container_grayed');
-      }, function(e) {
-        $originalTextTooltipContainer.addClass('original-text--tooltip-container_hidden');
-        app.isHoveringOriginalText(false);
-        $('.original-text--sentence-container').removeClass('original-text--sentence-container_grayed');
+        // if we clicked on same sentence last time, then hide tooltip
+        if (lastSentenceID === id) {
+          $originalTextTooltipContainer.toggleClass('original-text--tooltip-container_hidden');
+        } else {
+          app.currentHoveredOriginalSentence(this);
+          updateOriginalTextTooltip(id);
+          $originalTextTooltipContainer.removeClass('original-text--tooltip-container_hidden');
+          app.isHoveringOriginalText(true);
+          $('.original-text--sentence-container').not('[data-index="'+id+'"]');
+
+          positionOriginalTextTooltip(e);
+        }
+        lastSentenceID = id;
+      });
+
+      $('body').click(function(e) {
+        if (!$(e.target).hasClass('original-text--sentence-container')) {
+          $originalTextTooltipContainer.addClass('original-text--tooltip-container_hidden');
+        }
       });
 
       $(document).scroll(function(e) {
-        positionOriginalTextTooltip(e);
+        $originalTextTooltipContainer.addClass('original-text--tooltip-container_hidden');
       });
-
-      $originalText.scroll(function(e) {
-        positionOriginalTextTooltip(e);
-        if (app.isHoveringOriginalText())
-          $originalTextTooltipContainer.addClass('original-text--tooltip-container_hidden');
-      });
-
-      $originalText.mousemove(function(e) {
-        positionOriginalTextTooltip(e);
+      //
+      $('.original-text--texts-container').scroll(function(e) {
+        $originalTextTooltipContainer.addClass('original-text--tooltip-container_hidden');
       });
     }
 
