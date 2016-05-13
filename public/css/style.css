@@ -2074,7 +2074,7 @@ pre[class*=" language-"] {
     background-color: white;
     padding: 1rem;
     overflow-y: auto;
-    height: calc(100% - 10.5rem);
+    height: calc(100% - 5rem);
     margin-top: 0rem; }
   .original-text--sentence-container {
     margin-top: 0.4rem;
