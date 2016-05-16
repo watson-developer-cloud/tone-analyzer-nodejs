@@ -1344,6 +1344,25 @@ pre[class*=" language-"] {
     text-align: center;
     color: #e71d32; }
 
+.summary--emotion-description {
+  display: block; }
+  @media (min-width: 768px) {
+    .summary--emotion-description {
+      width: 31.91489%;
+      margin-left: 0%;
+      margin-right: 2.12766%;
+      float: left;
+      margin-top: 0rem; } }
+
+.summary--writing-and-social-description {
+  display: block; }
+  @media (min-width: 768px) {
+    .summary--writing-and-social-description {
+      width: 65.95745%;
+      float: left;
+      display: block;
+      margin-top: 0rem; } }
+
 .summary--emotion {
   background-color: #f9f9f9;
   padding: 1rem;
