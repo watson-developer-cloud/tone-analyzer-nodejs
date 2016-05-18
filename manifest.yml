@@ -2,7 +2,7 @@
 declared-services:
   tone-analyzer-service:
     label: tone_analyzer
-    plan: beta
+    plan: standard
 applications:
 - services:
   - tone-analyzer-service

@@ -17,23 +17,26 @@
 'use strict';
 
 // Module dependencies
-var express    = require('express'),
-  bodyParser   = require('body-parser');
+var express = require('express');
+var bodyParser = require('body-parser');
+var path = require('path');
 
-module.exports = function (app) {
+module.exports = function(app) {
   app.enable('trust proxy');
 
   // Configure Express
   app.set('view engine', 'ejs');
   require('ejs').delimiter = '$';
-  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(bodyParser.urlencoded({
+    extended: true
+  }));
   app.use(bodyParser.json());
 
   // Setup static public directory
-  app.use(express.static(__dirname + '/../public'));
+  app.use(express.static(path.join(__dirname, '..', '/public')));
 
   // Only loaded when VCAP_APPLICATION is `true`
-  if (process.env.VCAP_APPLICATION)
+  if (process.env.VCAP_APPLICATION) {
     require('./security')(app);
-
+  }
 };

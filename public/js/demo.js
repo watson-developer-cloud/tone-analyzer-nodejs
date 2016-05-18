@@ -53,40 +53,40 @@ function ready() {
  */
 function allReady(thresholds, sampleText) {
   var $input = $('.input'),
-      $output = $('.output'),
-      $loading = $('.loading'),
-      $error = $('.error'),
-      $errorMessage = $('.error--message'),
-      $inputRadio = $('.input--radio'),
-      $textarea = $('.input--textarea'),
-      $submitButton = $('.input--submit-button'),
-      $emotionGraph = $('.summary-emotion-graph'),
-      $writingGraph = $('.summary-writing-graph'),
-      $socialGraph = $('.summary-social-graph'),
-      $summaryJsonButton = $('.js-toggle-summary-json'),
-      $summaryJson = $('.js-summary-json'),
-      $summaryJsonView = $('.js-toggle-summary-json_show'),
-      $summaryJsonHide = $('.js-toggle-summary-json_hide'),
-      $summaryJsonCode = $('.js-summary-json .json--code'),
-      $emotionFilters = $('.filters--emotion'),
-      $writingFilters = $('.filters--writing'),
-      $socialFilters = $('.filters--social'),
-      $originalText = $('.original-text'),
-      $originalTexts = $('.original-text--texts'),
-      $originalTextTooltipContainer = $('.original-text--tooltip-container'),
-      $legend = $('.original-text--legend'),
-      $sentenceRankTable = $('.sentence-rank--table'),
-      $sentenceJson = $('.json .json--code'),
-      $outputResetButton = $('.output--reset-button'),
-      barGraph_template = barGraphTemplate.innerHTML,
-      emotionBarGraph_template = emotionBarGraphTemplate.innerHTML,
-      verticalBarGraph_template = verticalBarGraphTemplate.innerHTML,
-      filters_template = filtersTemplate.innerHTML,
-      originalText_template = originalTextTemplate.innerHTML,
-      sentenceRank_template = sentenceRankTemplate.innerHTML,
-      originalTextTooltip_template = originalTextTooltipTemplate.innerHTML,
-      originalTextLegend_template = originalTextLegendTemplate.innerHTML,
-      lastSentenceID = 0;
+    $output = $('.output'),
+    $loading = $('.loading'),
+    $error = $('.error'),
+    $errorMessage = $('.error--message'),
+    $inputRadio = $('.input--radio'),
+    $textarea = $('.input--textarea'),
+    $submitButton = $('.input--submit-button'),
+    $emotionGraph = $('.summary-emotion-graph'),
+    $writingGraph = $('.summary-writing-graph'),
+    $socialGraph = $('.summary-social-graph'),
+    $summaryJsonButton = $('.js-toggle-summary-json'),
+    $summaryJson = $('.js-summary-json'),
+    $summaryJsonView = $('.js-toggle-summary-json_show'),
+    $summaryJsonHide = $('.js-toggle-summary-json_hide'),
+    $summaryJsonCode = $('.js-summary-json .json--code'),
+    $emotionFilters = $('.filters--emotion'),
+    $writingFilters = $('.filters--writing'),
+    $socialFilters = $('.filters--social'),
+    $originalText = $('.original-text'),
+    $originalTexts = $('.original-text--texts'),
+    $originalTextTooltipContainer = $('.original-text--tooltip-container'),
+    $legend = $('.original-text--legend'),
+    $sentenceRankTable = $('.sentence-rank--table'),
+    $sentenceJson = $('.json .json--code'),
+    $outputResetButton = $('.output--reset-button'),
+    barGraph_template = barGraphTemplate.innerHTML,
+    emotionBarGraph_template = emotionBarGraphTemplate.innerHTML,
+    verticalBarGraph_template = verticalBarGraphTemplate.innerHTML,
+    filters_template = filtersTemplate.innerHTML,
+    originalText_template = originalTextTemplate.innerHTML,
+    sentenceRank_template = sentenceRankTemplate.innerHTML,
+    originalTextTooltip_template = originalTextTooltipTemplate.innerHTML,
+    originalTextLegend_template = originalTextLegendTemplate.innerHTML,
+    lastSentenceID = 0;
 
   /**
    * Callback function for AJAX post to get tone analyzer data
@@ -101,12 +101,12 @@ function allReady(thresholds, sampleText) {
     scrollTo($output);
 
     var emotionTone = data.document_tone.tone_categories[0].tones,
-        writingTone = data.document_tone.tone_categories[1].tones,
-        socialTone = data.document_tone.tone_categories[2].tones,
-        selectedSample = $('input[name=rb]:checked').val(),
-        selectedSampleText = $textarea.val(),
-        sentences,
-        app;
+      writingTone = data.document_tone.tone_categories[1].tones,
+      socialTone = data.document_tone.tone_categories[2].tones,
+      selectedSample = $('input[name=rb]:checked').val(),
+      selectedSampleText = $textarea.val(),
+      sentences,
+      app;
 
     // if only one sentence, sentences will not exist, so mutate sentences_tone manually
     if (data.sentences_tone === undefined) {
@@ -216,10 +216,10 @@ function allReady(thresholds, sampleText) {
      */
     function positionOriginalTextTooltip(e) {
       var element = app.currentHoveredOriginalSentence(),
-          box = element.getBoundingClientRect(),
-          originalText = document.querySelector('.original-text'),
-          top = box.top,
-          left = box.left + originalText.getBoundingClientRect().width * 0.05;
+        box = element.getBoundingClientRect(),
+        originalText = document.querySelector('.original-text'),
+        top = box.top,
+        left = box.left + originalText.getBoundingClientRect().width * 0.05;
 
       if (e !== undefined)
         left = e.clientX;
@@ -265,7 +265,7 @@ function allReady(thresholds, sampleText) {
           updateOriginalTextTooltip(id);
           $originalTextTooltipContainer.removeClass('original-text--tooltip-container_hidden');
           app.isHoveringOriginalText(true);
-          $('.original-text--sentence-container').not('[data-index="'+id+'"]');
+          $('.original-text--sentence-container').not('[data-index="' + id + '"]');
 
           positionOriginalTextTooltip(e);
         }
@@ -377,7 +377,7 @@ function allReady(thresholds, sampleText) {
 
     if (error.responseJSON.code === 429)
       message = 'You\'ve sent a lot of requests in a short amount of time. ' +
-        'As the CPU cores cool off a bit, wait a few seonds before sending more requests.'
+        'As the CPU cores cool off a bit, wait a few seonds before sending more requests.';
     $errorMessage.html(message);
     $input.show();
     $loading.hide();

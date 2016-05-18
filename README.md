@@ -22,7 +22,7 @@ applications:
 - services:
   - tone-analyzer-service
   name: <application-name>
-  command: node server.js
+  command: npm start
   path: .
   memory: 256M
   ```
@@ -46,7 +46,7 @@ applications:
 5. Create the Tone Analyzer Service in Bluemix
 
   ```sh
-  $ cf create-service tone_analyzer beta tone-analyzer-service
+  $ cf create-service tone_analyzer standard tone-analyzer-service
   ```
 
 6. Push it live!
@@ -79,7 +79,7 @@ See the full [Getting Started][getting_started] documentation for more details, 
           },
         "label": "tone_analyzer",
         "name": "tone-analyzer-service",
-        "plan": "beta"
+        "plan": "standard"
      }]
     }
     }
@@ -91,7 +91,7 @@ See the full [Getting Started][getting_started] documentation for more details, 
 3. Go to the project folder in a terminal and run:
     `npm install`
 4. Start the application
-5.  `node server.js`
+5.  `npm start`
 6. Go to `http://localhost:3000`
 
 ## Troubleshooting
