@@ -27,18 +27,18 @@
  */
 function App(documentTones, sentences, thresholds, selectedSample) {
   var _selectedFilter = 'Anger',
-      _selectedTone = 'Emotion Tone',
-      _selectedSample = selectedSample || 'customer-call',
-      _lowToHigh = false,
-      _currentHoveredOriginalSentence = document.querySelector('body'),
-      _rankedSentences = sentences,
-      _originalSentences,
-      _documentTones = documentTones,
-      _thresholds = thresholds,
-      _isHoveringOriginalText = false,
-      _socialToneHoverTexts,
-      _toneHash,
-      TONE_CATEGORIES_RESET = [{
+    _selectedTone = 'Emotion Tone',
+    _selectedSample = selectedSample || 'customer-call',
+    _lowToHigh = false,
+    _currentHoveredOriginalSentence = document.querySelector('body'),
+    _rankedSentences = sentences,
+    _originalSentences,
+    _documentTones = documentTones,
+    _thresholds = thresholds,
+    _isHoveringOriginalText = false,
+    _socialToneHoverTexts,
+    _toneHash,
+    TONE_CATEGORIES_RESET = [{
         tones: [{
           score: 0,
           tone_id: 'Anger',
@@ -129,10 +129,10 @@ function App(documentTones, sentences, thresholds, selectedSample) {
         category_id: 'social_tone',
         category_name: 'Social Tone'
       }],      SCORE_DECIMAL_PLACE = 2,
-      PERCENTAGE_DECIMAL_PLACE = 1,
-      SOCIAL_TONE_MIN_RANGE = -1,
-      SOCIAL_TONE_MAX_RANGE = 1,
-      output = {};
+    PERCENTAGE_DECIMAL_PLACE = 1,
+    SOCIAL_TONE_MIN_RANGE = -1,
+    SOCIAL_TONE_MAX_RANGE = 1,
+    output = {};
 
   /**
    * Make sure sentences have proper tone data values.
@@ -165,9 +165,9 @@ function App(documentTones, sentences, thresholds, selectedSample) {
    */
   function _toneLevel(toneKey, score, classNameType) {
     var output,
-        toneValue = _toneHash[toneKey],
-        newScore = score,
-        baseThreshold = 0;
+      toneValue = _toneHash[toneKey],
+      newScore = score,
+      baseThreshold = 0;
 
     if (newScore <= baseThreshold)
       output = '';
@@ -292,7 +292,7 @@ function App(documentTones, sentences, thresholds, selectedSample) {
             return b.tone_categories[_searchIndex(_selectedTone)].tones[_searchIndex(_selectedFilter)].score
               - a.tone_categories[_searchIndex(_selectedTone)].tones[_searchIndex(_selectedFilter)].score;
           },
-        map = function(item) {
+      map = function(item) {
           var score = item.tone_categories[_searchIndex(_selectedTone)].tones[_searchIndex(_selectedFilter)].score.toFixed(SCORE_DECIMAL_PLACE);
           return {
             text: item.text,
@@ -300,7 +300,7 @@ function App(documentTones, sentences, thresholds, selectedSample) {
             className: 'sentence-rank--score_' + normalize(_selectedFilter)
           };
         },
-        filter = (_selectedTone === 'Social Tone') ?
+      filter = (_selectedTone === 'Social Tone') ?
           function(item) {
             return item.score >= -1;
           } :
@@ -348,17 +348,17 @@ function App(documentTones, sentences, thresholds, selectedSample) {
    */
   output.selectFilterBySample = function() {
     var getHighestTone = function(toneCategory) {
-      var highestTone = _documentTones.tone_categories[_searchIndex(toneCategory)].tones[0].tone_name,
-          highestScore = 0;
-      _documentTones.tone_categories[_searchIndex(toneCategory)].tones.forEach(function(item) {
+        var highestTone = _documentTones.tone_categories[_searchIndex(toneCategory)].tones[0].tone_name,
+        highestScore = 0;
+        _documentTones.tone_categories[_searchIndex(toneCategory)].tones.forEach(function(item) {
         if (highestScore < item.score) {
           highestScore = item.score;
           highestTone = item.tone_name;
         }
       });
-      return highestTone;
-    },
-    sample = {
+        return highestTone;
+      },
+      sample = {
       'customer-call': getHighestTone('Emotion Tone'),
       'email': getHighestTone('Social Tone'),
       'corporate-announcement': getHighestTone('Language Tone'),

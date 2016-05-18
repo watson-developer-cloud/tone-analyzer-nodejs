@@ -2,7 +2,7 @@
 Tabbed Panels js
 */
 (function() {
-  $('.tab-panels--tab').click(function(e){
+  $('.tab-panels--tab').click(function(e) {
     e.preventDefault();
     var self = $(this);
     var inputGroup = self.closest('.tab-panels');

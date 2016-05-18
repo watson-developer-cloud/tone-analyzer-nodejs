@@ -17,12 +17,12 @@
 'use strict';
 
 // security.js
-var rateLimit  = require('express-rate-limit'),
-  helmet       = require('helmet'),
-  csrf         = require('csurf'),
-  cookieParser = require('cookie-parser');
+var rateLimit  = require('express-rate-limit');
+var helmet       = require('helmet');
+var csrf         = require('csurf');
+var cookieParser = require('cookie-parser');
 
-module.exports = function (app) {
+module.exports = function(app) {
   app.enable('trust proxy');
 
   // 1. helmet with defaults
@@ -34,9 +34,9 @@ module.exports = function (app) {
     delayMs: 0,
     max: 6,
     message: JSON.stringify({
-      error:'Too many requests, please try again in 30 seconds.',
+      error: 'Too many requests, please try again in 30 seconds.',
       code: 429
-    }),
+    })
   }));
 
   // 3. setup cookies
@@ -46,7 +46,6 @@ module.exports = function (app) {
   // 4. csrf
   var csrfProtection = csrf({ cookie: true });
   app.get('/', csrfProtection, function(req, res, next) {
-    console.log(req.csrfToken());
     req._csrfToken = req.csrfToken();
     next();
   });

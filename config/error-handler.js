@@ -16,8 +16,7 @@
 
 'use strict';
 
-module.exports = function (app) {
-
+module.exports = function(app) {
   // catch 404 and forward to error handler
   app.use(function(req, res, next) {
     var err = new Error('Not Found');
@@ -33,8 +32,7 @@ module.exports = function (app) {
       error: err.error || err.message
     };
     console.log('error:', error);
-
+    next ? '' : '';
     res.status(error.code).json(error);
   });
-
 };

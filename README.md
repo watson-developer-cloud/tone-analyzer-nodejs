@@ -20,9 +20,9 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
   ```none
 applications:
 - services:
-  - tone-analyzer-service
+  - tone-analyzer-standard
   name: <application-name>
-  command: node server.js
+  command: npm start
   path: .
   memory: 256M
   ```
@@ -46,7 +46,7 @@ applications:
 5. Create the Tone Analyzer Service in Bluemix
 
   ```sh
-  $ cf create-service tone_analyzer beta tone-analyzer-service
+  $ cf create-service tone_analyzer standard tone-analyzer-standard
   ```
 
 6. Push it live!
@@ -61,7 +61,7 @@ See the full [Getting Started][getting_started] documentation for more details, 
 
   The application uses [Node.js](http://nodejs.org/) and [npm](https://www.npmjs.com/).
 
-1. Copy the credentials from your `tone-analyzer-service` service in Bluemix to `app.js`. To see the credentials, use:
+1. Copy the credentials from your `tone-analyzer-standard` service in Bluemix to `app.js`. To see the credentials, use:
 
     ```sh
     $ cf env <application-name>
@@ -78,8 +78,8 @@ See the full [Getting Started][getting_started] documentation for more details, 
             "username": "<username>"
           },
         "label": "tone_analyzer",
-        "name": "tone-analyzer-service",
-        "plan": "beta"
+        "name": "tone-analyzer-standard",
+        "plan": "standard"
      }]
     }
     }
@@ -91,7 +91,7 @@ See the full [Getting Started][getting_started] documentation for more details, 
 3. Go to the project folder in a terminal and run:
     `npm install`
 4. Start the application
-5.  `node server.js`
+5.  `npm start`
 6. Go to `http://localhost:3000`
 
 ## Troubleshooting

@@ -25,7 +25,7 @@ require('./config/express')(app);
 
 // Create the service wrapper
 var toneAnalyzer = watson.tone_analyzer({
-  url: 'https://gateway.watsonplatform.net/tone-analyzer-beta/api/',
+  url: 'https://gateway.watsonplatform.net/tone-analyzer/api/',
   username: '<username>',
   password: '<password>',
   version_date: '2016-05-19',
