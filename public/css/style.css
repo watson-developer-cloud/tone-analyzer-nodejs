@@ -1578,7 +1578,7 @@ pre[class*=" language-"] {
     .summary-emotion-graph--percentage-label {
       margin-top: 0rem;
       line-height: 1;
-      text-align: center;
+      text-align: left;
       font-weight: light;
       font-size: 0.85rem; }
     .summary-emotion-graph--percentage-label-likeliness {
