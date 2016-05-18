@@ -51,7 +51,7 @@
                              Tone Analyzer
                     </h1>
           <div class="banner--service-description">
-            This service enables people to discover and understand, and revise the impact of tone in their content. It uses linguistic analysis to detect and interpret emotional, social, and language cues found in text.
+            This service uses linguistic analysis to detect and interpret emotions, social tendencies, and language style cues found in text.
           </div>
         </div>
       </div>
@@ -86,8 +86,8 @@
   <div class="_demo--container">
     <article class="_content base--article">
       <div class="input">
-        <h2 class="base--h2">Choose Content</h2>
-        <p class="base--p input--description">Here are some great use cases for Tone Analyzer. Choose one, or paste your own text.</p>
+        <h2 class="base--h2">Sample use cases</h2>
+        <p class="base--p input--description">Choose an example to learn how you can adjust the tone of your content to change people's perceptions, or improve its effectiveness. <a class="base--a" href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/tone-analyzer/index.shtml#usecases" target="new">Learn more</a>.</p>
         <input role="radio" class="base--radio input--radio" type="radio" id="input-customer-call" name="rb" value="customer-call" checked="true">
         <label class="base--inline-label input--radio-label" for="input-customer-call">Customer service chat</label>
         <input role="radio" class="base--radio input--radio" type="radio" id="input-email" name="rb" value="email">
@@ -116,29 +116,47 @@
       </div>
 
       <div class="output">
-        <h3 class="base--h2 output--document-title">Document-level tone</h3>
+        <h2 class="base--h2">Output</h2>
+        <p class="base--p output--document-description">The Tone Analyzer Service analyzes text at the document level and the sentence level. Use the document level analysis to get a sense of the overall tone of the document, and use the sentence level analysis to identify specific areas of your content where tones are the strongest.</p>
+        <h3 class="base--h3 output--document-title">Document-level</h3>
         <div class="summary--row">
           <div class="summary--emotion">
-            <h5 class="base--h5">Emotion (probability score)</h5>
+            <h5 class="base--h5 summary--header">Emotion</h5>
             <div class="summary-emotion-graph bar-graph"></div>
           </div>
           <div class="summary--writing">
-            <h5 class="base--h5">Language Style summary (raw score)</h5>
+            <h5 class="base--h5 summary--header">Language Style</h5>
             <div class="summary-writing-graph"></div>
           </div>
           <div class="summary--social">
-            <h5 class="base--h5">Social summary (raw score)</h5>
+            <h5 class="base--h5 summary--header">Social Tendencies</h5>
             <div class="summary-social-graph bar-graph"></div>
           </div>
         </div>
-        <h3 class="base--h2 output--sentence-title">Sentence-level tone</h3>
-        <p class="base--p output--sentence-description">Identify sentences with stronger tones in context or sorted by score. Highlighted sentences indicate the likelihood of a tone present. If more than one tone is present, the stronger one is shown. Click on a sentence to see a breakdown of all tones.</p>
-        <div class="output--reset icon-hyperlink">
-          <span class="icon icon-reset"></span>
-          <button class="base--a output--reset-button icon-hyperlink--button icon-hyperlink--button_BLANK" href="" type="reset">
-            Start Over
-          </button>
+        <div class="summary--row">
+          <div class="summary--emotion-description">
+            <p class="base--p">The Emotion graph represents the likelihood that an emotion tone is present in the text. <a class="base--a" target="_blank" href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/tone-analyzer/understanding-tone.shtml#emotional">Learn more</a>.</p>
+          </div>
+          <div class="summary--writing-and-social-description">
+            <p class="base--p">The Language Style and Social Tendencies graphs represent the amount of a language or social tone present in the text. <a class="base--a" target="_blank" href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/tone-analyzer/understanding-tone.shtml#social">Learn more</a>.</p>
+          </div>
         </div>
+        <div class="summary-row">
+          <span class="icon-hyperlink summary-view-code-button">
+  					<img class="icon icon-code" src="images/icons/code.svg" />
+  					<button class="base--a icon-hyperlink--button_BLANK js-toggle-summary-json" href="">
+  						<span class="js-toggle-summary-json_show">View JSON</span>
+              <span class="js-toggle-summary-json_hide">Hide JSON</span>
+  			    </button>
+  			  </span>
+        </div>
+        <div class="summary-json js-summary-json">
+          <pre class="base--pre json--pre language-javascript">
+            <code class="base--code json--code language-javascript"></code>
+          </pre>
+        </div>
+        <h3 class="base--h3 output--sentence-title">Sentence-level</h3>
+        <p class="base--p output--sentence-description">Identify sentences with stronger tones in context or sorted by score. Highlighted sentences indicate the likelihood of a tone present. If more than one tone is present, the stronger one is shown. Click on a sentence to see a breakdown of all tones.</p>
         <div class="sentences">
           <div class="sentences--filters filters">
             <h3 class="base--h3">Tones</h3>
@@ -148,7 +166,7 @@
             <h4 class="base--h4">Language</h4>
             <div class="filters--writing"></div>
 
-            <h4 class="base--h4">Social</h4>
+            <h4 class="base--h4">Social Tendencies</h4>
             <div class="filters--social"></div>
           </div>
           <div class="sentences--sentence-views sentence-views">
@@ -170,11 +188,6 @@
                     <div class="original-text--legend"></div>
                     <div class="original-text--texts-container">
                       <div class="original-text--texts"></div>
-                    </div>
-                    <div class="original-text--small-block">
-                      <small class="base--small">
-                        In <code class="base--code">sentences_tone</code>, each <code class="base--code">sentence_id</code> receives a <code class="base--code">raw_score</code> for each tone in a category.  Understand how to normalize raw scores or customize thresholds for your use case in the <a class="base--a" href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/tone-analyzer/">Documentation</a>.
-                      </small>
                     </div>
                   </div>
                 </div>
@@ -213,10 +226,48 @@
           <!-- .sentences--sentence-views -->
         </div>
         <!-- .sentences -->
+        <div class="output--reset icon-hyperlink">
+          <span class="icon icon-reset"></span>
+          <button class="base--a output--reset-button icon-hyperlink--button icon-hyperlink--button_BLANK" href="" type="reset">
+            Start Over
+          </button>
+        </div>
         <div class="original-text--tooltip-container original-text--tooltip-container_hidden"></div>
       </div>
     </article>
   </div>
+
+
+  <script type="text/html" id="emotionBarGraphTemplate">
+    <% _.each(items, function(item, key, list) { %>
+      <div class="bar-graph--row summary-<%= className %>-graph--row">
+        <div class="bar-graph--label-container summary-<%= className %>-graph--label-container">
+          <div class="bar-graph--label">
+            <p class="base--p">
+              <%= item.label %>
+            </p>
+            <% if (item.tooltip) { %>
+              <div class="bar-graph--tooltip">
+                <%= item.tooltip %>
+              </div>
+              <% } %>
+          </div>
+        </div>
+        <div class="bar-graph--bar-container summary-<%= className %>-graph--bar-container">
+          <div class="bar-graph--bar">
+            <div class="bar-graph--bar-value summary-<%= className %>-graph--bar-value summary-<%= className %>-graph--bar-value_<%= item.label.replace(/\s+/g, '-') %>" style="width: <%= item.score %>%;"></div>
+          </div>
+        </div>
+        <div class="summary-emotion-graph--percentage-label">
+          <%= (item.score / 100).toFixed(2) %>
+          <br>
+          <span class="summary-emotion-graph--percentage-label-likeliness">
+            <%= item.likeliness %>
+          </span>
+        </div>
+      </div>
+      <% }); %>
+  </script>
 
   <script type="text/html" id="barGraphTemplate">
     <% _.each(items, function(item, key, list) { %>
@@ -236,24 +287,12 @@
         <div class="bar-graph--bar-container summary-<%= className %>-graph--bar-container">
           <div class="bar-graph--bar">
             <div class="bar-graph--bar-value summary-<%= className %>-graph--bar-value summary-<%= className %>-graph--bar-value_<%= item.label.replace(/\s+/g, '-') %>" style="width: <%= item.score %>%;"></div>
-            <div class="summary-<%= className %>-graph--bar-tooltip summary-<%= className %>-graph--bar-tooltip_<%= item.label.replace(/\s+/g, '-') %> bar-graph--bar-tooltip" style="margin-left: <%= item.score %>%;">
-              <%= (item.score / 100).toFixed(2) %>
-            </div>
-            <% if (item.thresholdLow) { %>
-              <div class="bar-graph--threshold" style="<%= 'left: ' + item.thresholdLow + '%' %>"></div>
-            <% } %>
-            <% if (item.thresholdHigh) { %>
-              <div class="bar-graph--threshold" style="<%= 'left: ' + item.thresholdHigh + '%' %>"></div>
-            <% } %>
           </div>
         </div>
-      </div>
-      <% if (key === list.length - 1 && item.thresholdLow) { %>
-        <div class="summary-<%= className %>-graph--legend-label-container">
-          <div class="summary-<%= className %>-graph--legend-label summary-<%= className %>-graph--legend-label_medium">Medium</div>
-          <div class="summary-<%= className %>-graph--legend-label summary-<%= className %>-graph--legend-label_high">High</div>
+        <div class="bar-graph--percentage-label">
+          <%= (item.score / 100).toFixed(2) %>
         </div>
-      <% } %>
+      </div>
       <% }); %>
   </script>
 

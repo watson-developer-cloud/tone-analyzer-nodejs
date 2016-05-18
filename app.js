@@ -28,8 +28,8 @@ var toneAnalyzer = watson.tone_analyzer({
   url: 'https://gateway.watsonplatform.net/tone-analyzer-beta/api/',
   username: '<username>',
   password: '<password>',
-  version_date: '2016-11-02',
-  version: 'v3-beta'
+  version_date: '2016-05-19',
+  version: 'v3'
 });
 
 app.get('/', function(req, res) {

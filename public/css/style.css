@@ -1159,9 +1159,11 @@ pre[class*=" language-"] {
       display: block; }
 
 .bar-graph {
+  margin-top: 0rem;
   display: block;
   width: 100%; }
   .bar-graph--row {
+    margin-top: 1.25rem;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -1180,12 +1182,13 @@ pre[class*=" language-"] {
     vertical-align: middle; }
   .bar-graph--bar-container {
     display: inline-block;
-    width: calc(100% - 4rem);
+    width: calc(100% - 6rem);
     vertical-align: middle;
     margin-top: 0rem; }
   .bar-graph--label {
     font-size: 0.8rem;
-    text-align: right;
+    font-weight: 500;
+    text-align: left;
     position: relative; }
   .bar-graph--bar {
     height: 1.25rem;
@@ -1197,6 +1200,11 @@ pre[class*=" language-"] {
     -webkit-transition: 0.2s;
     transition: 0.2s;
     background-color: #075CD8; }
+  .bar-graph--percentage-label {
+    margin-top: 0rem;
+    font-size: 0.85rem;
+    font-weight: light;
+    margin-left: 0.5rem; }
   .bar-graph--threshold {
     position: absolute;
     top: -40%;
@@ -1336,10 +1344,29 @@ pre[class*=" language-"] {
     text-align: center;
     color: #e71d32; }
 
+.summary--emotion-description {
+  display: block; }
+  @media (min-width: 768px) {
+    .summary--emotion-description {
+      width: 31.91489%;
+      margin-left: 0%;
+      margin-right: 2.12766%;
+      float: left;
+      margin-top: 0rem; } }
+
+.summary--writing-and-social-description {
+  display: block; }
+  @media (min-width: 768px) {
+    .summary--writing-and-social-description {
+      width: 65.95745%;
+      float: left;
+      display: block;
+      margin-top: 0rem; } }
+
 .summary--emotion {
   background-color: #f9f9f9;
   padding: 1rem;
-  height: 16.5rem; }
+  height: 17rem; }
   @media (min-width: 768px) {
     .summary--emotion {
       width: 31.91489%;
@@ -1350,7 +1377,7 @@ pre[class*=" language-"] {
       margin-top: 0rem; } }
   @media (min-width: 768px) {
     .summary--emotion {
-      height: 18.5rem; } }
+      height: 17rem; } }
   @media (min-width: 1200px) {
     .summary--emotion {
       height: 16.5rem; } }
@@ -1358,7 +1385,7 @@ pre[class*=" language-"] {
 .summary--writing {
   background-color: #f9f9f9;
   padding: 1rem;
-  height: 16.5rem; }
+  height: 17rem; }
   @media (min-width: 768px) {
     .summary--writing {
       width: 31.91489%;
@@ -1369,7 +1396,7 @@ pre[class*=" language-"] {
       margin-top: 0rem; } }
   @media (min-width: 768px) {
     .summary--writing {
-      height: 18.5rem; } }
+      height: 17rem; } }
   @media (min-width: 1200px) {
     .summary--writing {
       height: 16.5rem; } }
@@ -1377,7 +1404,7 @@ pre[class*=" language-"] {
 .summary--social {
   background-color: #f9f9f9;
   padding: 1rem;
-  height: 16.5rem; }
+  height: 17rem; }
   @media (min-width: 768px) {
     .summary--social {
       width: 31.91489%;
@@ -1388,7 +1415,7 @@ pre[class*=" language-"] {
       margin-top: 0rem; } }
   @media (min-width: 768px) {
     .summary--social {
-      height: 18.5rem; } }
+      height: 17rem; } }
   @media (min-width: 1200px) {
     .summary--social {
       height: 16.5rem; } }
@@ -1406,6 +1433,8 @@ pre[class*=" language-"] {
 
 .summary-emotion-graph {
   position: relative; }
+  .summary-emotion-graph--row {
+    margin-top: 1rem; }
   .summary-emotion-graph--bar-value {
     background-color: #1AE5CD; }
     .summary-emotion-graph--bar-value_Anger {
@@ -1543,6 +1572,18 @@ pre[class*=" language-"] {
       color: white; }
       .summary-emotion-graph--bar-tooltip_Sadness .base--a:hover {
         color: #e0e0e0; }
+    .summary-emotion-graph--bar-container {
+      margin-right: 0.5rem;
+      width: calc(100% - 7rem); }
+    .summary-emotion-graph--percentage-label {
+      margin-top: 0rem;
+      line-height: 1;
+      text-align: left;
+      font-weight: light;
+      font-size: 0.85rem; }
+    .summary-emotion-graph--percentage-label-likeliness {
+      font-weight: light;
+      font-size: 0.5rem; }
   .summary-emotion-graph--legend-label-container {
     position: absolute;
     top: 100%;
@@ -1569,6 +1610,7 @@ pre[class*=" language-"] {
         font-size: 0.5rem; } }
 
 .summary-writing-graph {
+  margin-top: 0rem;
   height: calc(100% - 2.5rem); }
   @media (min-width: 768px) {
     .summary-writing-graph {
@@ -1592,7 +1634,7 @@ pre[class*=" language-"] {
     background-color: #e0e0e0;
     position: relative; }
   .summary-writing-graph--bar-value {
-    background-color: #075CD8;
+    background-color: #274b5f;
     position: absolute;
     bottom: 0rem;
     width: 100%; }
@@ -1602,7 +1644,7 @@ pre[class*=" language-"] {
     margin-top: 0.4rem; }
   .summary-writing-graph--bar-tooltip {
     position: absolute;
-    background-color: #075CD8;
+    background-color: #274b5f;
     padding: 1rem;
     width: 5.5rem;
     left: -2.125rem;
@@ -1622,7 +1664,7 @@ pre[class*=" language-"] {
       left: 2rem;
       border: 0.75rem solid transparent;
       top: 100%;
-      border-top-color: #075CD8; }
+      border-top-color: #274b5f; }
     .summary-writing-graph--bar-tooltip .base--a {
       color: white; }
       .summary-writing-graph--bar-tooltip .base--a:hover {
@@ -1651,14 +1693,16 @@ pre[class*=" language-"] {
     -webkit-align-items: center;
         -ms-flex-align: center;
             align-items: center; }
+    .summary-social-graph--row:first-child {
+      margin-top: 0rem; }
   .summary-social-graph--label-container {
     display: inline-block;
     width: 8rem;
-    margin-right: 0.5rem;
+    margin-right: 0rem;
     vertical-align: middle; }
   .summary-social-graph--bar-container {
     display: inline-block;
-    width: calc(100% - 8.5rem);
+    width: calc(100% - 10rem);
     vertical-align: middle;
     margin-top: 0rem; }
   .summary-social-graph--label {
@@ -1745,10 +1789,10 @@ pre[class*=" language-"] {
   .summary-social-graph--tooltip br {
     margin-top: 0rem; }
   .summary-social-graph--bar-value {
-    background-color: #1AE5CD; }
+    background-color: #1cb4a0; }
   .summary-social-graph--bar-tooltip {
     position: absolute;
-    background-color: #17ceb9;
+    background-color: #1cb4a0;
     padding: 1rem;
     width: 5.5rem;
     left: -2.75rem;
@@ -1766,14 +1810,14 @@ pre[class*=" language-"] {
       left: 2rem;
       border: 0.75rem solid transparent;
       top: 100%;
-      border-top-color: #17ceb9; }
+      border-top-color: #1cb4a0; }
     .summary-social-graph--bar-tooltip .base--a {
       color: white; }
       .summary-social-graph--bar-tooltip .base--a:hover {
         color: #e0e0e0; }
   .summary-social-graph--label-container .bar-graph--tooltip {
     position: absolute;
-    background-color: #17ceb9;
+    background-color: #1cb4a0;
     padding: 1rem;
     width: 20rem;
     left: -5rem;
@@ -1793,7 +1837,7 @@ pre[class*=" language-"] {
       left: 9rem;
       border: 1rem solid transparent;
       top: 100%;
-      border-top-color: #17ceb9; }
+      border-top-color: #1cb4a0; }
     .summary-social-graph--label-container .bar-graph--tooltip .base--a {
       color: white; }
       .summary-social-graph--label-container .bar-graph--tooltip .base--a:hover {
@@ -1806,6 +1850,12 @@ pre[class*=" language-"] {
     .summary-social-graph--label-container:hover .bar-graph--tooltip:hover {
       visibility: hidden;
       opacity: 0; }
+  .summary-view-code-button {
+    float: right; }
+  .summary-json {
+    display: none; }
+  .js-toggle-summary-json_hide {
+    display: none; }
 
 .sentences {
   min-width: 732px; }
@@ -1840,84 +1890,58 @@ pre[class*=" language-"] {
     .filters--writing .filters--label:last-child,
     .filters--social .filters--label:last-child {
       border-bottom: 1px solid #e0e0e0; }
-    .filters--radio#filter-Anger + .filters--label {
-      border-left-color: #E80521; }
     .filters--radio#filter-Anger:checked + .filters--label {
-      background-color: #E80521;
-      border-color: #E80521;
+      background-color: #274b5f;
+      border-color: #274b5f;
       color: #ffffff; }
-    .filters--radio#filter-Disgust + .filters--label {
-      border-left-color: #592684; }
     .filters--radio#filter-Disgust:checked + .filters--label {
-      background-color: #592684;
-      border-color: #592684;
+      background-color: #274b5f;
+      border-color: #274b5f;
       color: #ffffff; }
-    .filters--radio#filter-Fear + .filters--label {
-      border-left-color: #325E2B; }
     .filters--radio#filter-Fear:checked + .filters--label {
-      background-color: #325E2B;
-      border-color: #325E2B;
+      background-color: #274b5f;
+      border-color: #274b5f;
       color: #ffffff; }
-    .filters--radio#filter-Joy + .filters--label {
-      border-left-color: #FFD629; }
     .filters--radio#filter-Joy:checked + .filters--label {
-      background-color: #FFD629;
-      border-color: #FFD629;
-      color: #000000; }
-    .filters--radio#filter-Sadness + .filters--label {
-      border-left-color: #086DB2; }
+      background-color: #274b5f;
+      border-color: #274b5f;
+      color: #ffffff; }
     .filters--radio#filter-Sadness:checked + .filters--label {
-      background-color: #086DB2;
-      border-color: #086DB2;
+      background-color: #274b5f;
+      border-color: #274b5f;
       color: #ffffff; }
-    .filters--radio#filter-Analytical + .filters--label {
-      border-left-color: #075CD8; }
     .filters--radio#filter-Analytical:checked + .filters--label {
-      background-color: #075CD8;
-      border-color: #075CD8;
+      background-color: #274b5f;
+      border-color: #274b5f;
       color: #ffffff; }
-    .filters--radio#filter-Confident + .filters--label {
-      border-left-color: #075CD8; }
     .filters--radio#filter-Confident:checked + .filters--label {
-      background-color: #075CD8;
-      border-color: #075CD8;
+      background-color: #274b5f;
+      border-color: #274b5f;
       color: #ffffff; }
-    .filters--radio#filter-Tentative + .filters--label {
-      border-left-color: #075CD8; }
     .filters--radio#filter-Tentative:checked + .filters--label {
-      background-color: #075CD8;
-      border-color: #075CD8;
+      background-color: #274b5f;
+      border-color: #274b5f;
       color: #ffffff; }
-    .filters--radio#filter-Openness + .filters--label {
-      border-left-color: #1AE5CD; }
     .filters--radio#filter-Openness:checked + .filters--label {
-      background-color: #1AE5CD;
-      border-color: #1AE5CD;
-      color: #000000; }
-    .filters--radio#filter-Conscientiousness + .filters--label {
-      border-left-color: #1AE5CD; }
+      background-color: #274b5f;
+      border-color: #274b5f;
+      color: #ffffff; }
     .filters--radio#filter-Conscientiousness:checked + .filters--label {
-      background-color: #1AE5CD;
-      border-color: #1AE5CD;
-      color: #000000; }
-    .filters--radio#filter-Extraversion + .filters--label {
-      border-left-color: #1AE5CD; }
+      background-color: #274b5f;
+      border-color: #274b5f;
+      color: #ffffff; }
     .filters--radio#filter-Extraversion:checked + .filters--label {
-      background-color: #1AE5CD;
-      border-color: #1AE5CD;
-      color: #000000; }
-    .filters--radio#filter-Agreeableness + .filters--label {
-      border-left-color: #1AE5CD; }
+      background-color: #274b5f;
+      border-color: #274b5f;
+      color: #ffffff; }
     .filters--radio#filter-Agreeableness:checked + .filters--label {
-      background-color: #1AE5CD;
-      border-color: #1AE5CD;
-      color: #000000; }
-    .filters--radio#filter-Emotional-Range + .filters--label {
-      border-left-color: #1AE5CD; }
+      background-color: #274b5f;
+      border-color: #274b5f;
+      color: #ffffff; }
     .filters--radio#filter-Emotional-Range:checked + .filters--label {
-      background-color: #1AE5CD;
-      border-color: #1AE5CD;
-      color: #000000; }
+      background-color: #274b5f;
+      border-color: #274b5f;
+      color: #ffffff; }
 
 .sentence-views--tab-panels {
   border: none;
@@ -2043,7 +2067,7 @@ pre[class*=" language-"] {
     background-color: white;
     padding: 1rem;
     overflow-y: auto;
-    height: calc(100% - 10.5rem);
+    height: calc(100% - 5rem);
     margin-top: 0rem; }
   .original-text--sentence-container {
     margin-top: 0.4rem;
@@ -2249,9 +2273,7 @@ pre[class*=" language-"] {
     margin-bottom: 1rem;
     color: black; }
     .original-text--tooltip-li:first-child {
-      padding-bottom: 1rem;
-      margin-bottom: 0rem;
-      border-bottom: 1px solid #c7c7c7; }
+      margin-bottom: 0rem; }
     .original-text--tooltip-li:last-child {
       margin-bottom: 0rem; }
     .original-text--tooltip-li_anger {

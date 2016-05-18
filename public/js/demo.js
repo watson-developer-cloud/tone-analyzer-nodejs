@@ -63,6 +63,11 @@ function allReady(thresholds, sampleText) {
       $emotionGraph = $('.summary-emotion-graph'),
       $writingGraph = $('.summary-writing-graph'),
       $socialGraph = $('.summary-social-graph'),
+      $summaryJsonButton = $('.js-toggle-summary-json'),
+      $summaryJson = $('.js-summary-json'),
+      $summaryJsonView = $('.js-toggle-summary-json_show'),
+      $summaryJsonHide = $('.js-toggle-summary-json_hide'),
+      $summaryJsonCode = $('.js-summary-json .json--code'),
       $emotionFilters = $('.filters--emotion'),
       $writingFilters = $('.filters--writing'),
       $socialFilters = $('.filters--social'),
@@ -71,15 +76,17 @@ function allReady(thresholds, sampleText) {
       $originalTextTooltipContainer = $('.original-text--tooltip-container'),
       $legend = $('.original-text--legend'),
       $sentenceRankTable = $('.sentence-rank--table'),
-      $jsonCode = $('.json--code'),
+      $sentenceJson = $('.json .json--code'),
       $outputResetButton = $('.output--reset-button'),
       barGraph_template = barGraphTemplate.innerHTML,
+      emotionBarGraph_template = emotionBarGraphTemplate.innerHTML,
       verticalBarGraph_template = verticalBarGraphTemplate.innerHTML,
       filters_template = filtersTemplate.innerHTML,
       originalText_template = originalTextTemplate.innerHTML,
       sentenceRank_template = sentenceRankTemplate.innerHTML,
       originalTextTooltip_template = originalTextTooltipTemplate.innerHTML,
-      originalTextLegend_template = originalTextLegendTemplate.innerHTML;
+      originalTextLegend_template = originalTextLegendTemplate.innerHTML,
+      lastSentenceID = 0;
 
   /**
    * Callback function for AJAX post to get tone analyzer data
@@ -121,6 +128,7 @@ function allReady(thresholds, sampleText) {
       return {
         label: item.tone_name,
         score: app.percentagify(item.score, 'Emotion Tone'),
+        likeliness: app.percentagify(item.score, 'Emotion Tone') > app.percentagify(app.thresholds().doc[item.tone_name][0]) ? 'LIKELY' : 'UNLIKELY',
         thresholdLow: app.percentagify(app.thresholds().doc[item.tone_name][0]),
         thresholdHigh: app.percentagify(app.thresholds().doc[item.tone_name][1])
       };
@@ -246,32 +254,55 @@ function allReady(thresholds, sampleText) {
      * interactions
      */
     function bindOriginalTextHoverEvents() {
-      $('.original-text--sentence-container').hover(function(e) {
+      $('.original-text--sentence-container').click(function(e) {
+        e.stopPropagation();
         var id = $(this).data('index');
-        app.currentHoveredOriginalSentence(this);
-        updateOriginalTextTooltip(id);
-        $originalTextTooltipContainer.removeClass('original-text--tooltip-container_hidden');
-        app.isHoveringOriginalText(true);
-        $('.original-text--sentence-container').not('[data-index="'+id+'"]').addClass('original-text--sentence-container_grayed');
-      }, function(e) {
-        $originalTextTooltipContainer.addClass('original-text--tooltip-container_hidden');
-        app.isHoveringOriginalText(false);
-        $('.original-text--sentence-container').removeClass('original-text--sentence-container_grayed');
+        // if we clicked on same sentence last time, then hide tooltip
+        if (lastSentenceID === id) {
+          $originalTextTooltipContainer.toggleClass('original-text--tooltip-container_hidden');
+        } else {
+          app.currentHoveredOriginalSentence(this);
+          updateOriginalTextTooltip(id);
+          $originalTextTooltipContainer.removeClass('original-text--tooltip-container_hidden');
+          app.isHoveringOriginalText(true);
+          $('.original-text--sentence-container').not('[data-index="'+id+'"]');
+
+          positionOriginalTextTooltip(e);
+        }
+        lastSentenceID = id;
+      });
+
+      $('body').click(function(e) {
+        if (!$(e.target).hasClass('original-text--sentence-container')) {
+          $originalTextTooltipContainer.addClass('original-text--tooltip-container_hidden');
+        }
       });
 
       $(document).scroll(function(e) {
-        positionOriginalTextTooltip(e);
+        $originalTextTooltipContainer.addClass('original-text--tooltip-container_hidden');
       });
+      //
+      $('.original-text--texts-container').scroll(function(e) {
+        $originalTextTooltipContainer.addClass('original-text--tooltip-container_hidden');
+      });
+    }
 
-      $originalText.scroll(function(e) {
-        positionOriginalTextTooltip(e);
-        if (app.isHoveringOriginalText())
-          $originalTextTooltipContainer.addClass('original-text--tooltip-container_hidden');
-      });
+    /**
+     * Emit view update for json view sentence tones
+     * @param {Object} data
+     */
+    function updateJSONSentenceTones(data) {
+      $sentenceJson.empty();
+      $sentenceJson.html(JSON.stringify({'sentences_tone' : data['sentences_tone']}, null, 2));
+    }
 
-      $originalText.mousemove(function(e) {
-        positionOriginalTextTooltip(e);
-      });
+    /**
+     * Emit view update for json view sentence tones
+     * @param {Object} data
+     */
+    function updateJSONDocumentTones(data) {
+      $summaryJsonCode.empty();
+      $summaryJsonCode.html(JSON.stringify({'document_tone' : data['document_tone']}, null, 2));
     }
 
     /**
@@ -279,8 +310,8 @@ function allReady(thresholds, sampleText) {
      * @param {Object} data
      */
     function updateJSON(data) {
-      $jsonCode.empty();
-      $jsonCode.html(JSON.stringify(data, null, 2));
+      updateJSONSentenceTones(data);
+      updateJSONDocumentTones(data);
     }
 
     app.selectFilterBySample();
@@ -289,12 +320,12 @@ function allReady(thresholds, sampleText) {
     writingTone = writingTone.map(writingMap);
     socialTone = socialTone.map(socialMap);
 
-    $emotionGraph.html(_.template(barGraph_template, {
+    $emotionGraph.html(_.template(emotionBarGraph_template, {
       items: emotionTone,
       className: 'emotion'
     }));
 
-    $writingGraph.html(_.template(verticalBarGraph_template, {
+    $writingGraph.html(_.template(barGraph_template, {
       items: writingTone,
       className: 'writing'
     }));
@@ -323,7 +354,7 @@ function allReady(thresholds, sampleText) {
     updateLegend();
     bindOriginalTextHoverEvents();
 
-    $jsonCode.html(JSON.stringify(data, null, 2));
+    updateJSON(data);
 
     $('.filters--radio').on('click', function() {
       clickFilter($(this).data('id'));
@@ -411,6 +442,12 @@ function allReady(thresholds, sampleText) {
   });
 
   updateTextarea($('.input--radio:checked').val());
+
+  $summaryJsonButton.click(function() {
+    $summaryJson.toggle();
+    $summaryJsonView.toggle();
+    $summaryJsonHide.toggle();
+  });
 }
 
 $(document).ready(ready);
