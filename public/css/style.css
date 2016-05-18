@@ -623,7 +623,7 @@ body {
 .base--button,
 .base--STYLED button {
   padding: 0.5em 1em;
-  color: #a53725;
+  color: #435D7E;
   font-weight: bold;
   background-color: transparent;
   border: 2px solid #d74108;
@@ -651,7 +651,7 @@ body {
   .base--STYLED button[type='submit']:focus,
   .base--STYLED button[type='submit']:hover {
     padding: 0.5em 1em;
-    color: #a53725;
+    color: #435D7E;
     font-weight: bold;
     background-color: #264a60;
     border: 2px solid #264a60;
@@ -684,7 +684,7 @@ body {
 
 .base--a,
 .base--STYLED a {
-  color: #a53725; }
+  color: #435D7E; }
   .base--a:hover,
   .base--STYLED a:hover, .base--a:focus,
   .base--STYLED a:focus {
@@ -789,7 +789,7 @@ pre[class*=" language-"] {
   margin-left: 1em;
   font-style: italic;
   color: #5a5a5a;
-  border-left: 0.25em solid #6d120f; }
+  border-left: 0.25em solid #435D7E; }
 
 .base--table,
 .base--STYLED table {
@@ -899,12 +899,12 @@ pre[class*=" language-"] {
   text-decoration: underline;
   padding: 0rem;
   margin: 0rem;
-  color: #a53725; }
+  color: #435D7E; }
   .icon-hyperlink--button_BLANK:hover, .icon-hyperlink--button_BLANK:focus {
     color: #aeaeae; }
 
 .icon-hyperlink .icon {
-  color: #a53725; }
+  color: #435D7E; }
 
 .icon-hyperlink .icon-reset {
   font-size: 1.5em; }
@@ -1028,12 +1028,12 @@ pre[class*=" language-"] {
   text-decoration: underline;
   padding: 0rem;
   margin: 0rem;
-  color: #a53725; }
+  color: #435D7E; }
   .icon-hyperlink button[type="reset"]:hover, .icon-hyperlink button[type="reset"]:focus {
     color: #aeaeae; }
 
 .icon-hyperlink .icon {
-  color: #a53725; }
+  color: #435D7E; }
 
 .icon-hyperlink .icon-reset {
   font-size: 1.5em; }
@@ -1145,11 +1145,11 @@ pre[class*=" language-"] {
     text-decoration: none;
     padding: 0 1rem 1rem; }
     .tab-panels--tab:focus, .tab-panels--tab:hover {
-      border-bottom: 6px solid #6d120f;
-      color: #6d120f; }
+      border-bottom: 6px solid #435D7E;
+      color: #435D7E; }
     .tab-panels--tab.active {
       font-weight: 700;
-      border-bottom: 6px solid #a53725; }
+      border-bottom: 6px solid #435D7E; }
   .tab-panels--tab-content .base--textarea {
     min-height: 11.7rem; }
   .tab-panels--tab-pane {
