@@ -25,8 +25,8 @@
       "Extraversion": [0.50, 0.75],
       "Agreeableness": [0.50, 0.75],
       "Emotional Range": [0.50, 0.75],
-      "Confident": [0.50, 0.75],
-      "Analytical": [0.50, 0.75],
-      "Tentative": [0.50, 0.75] 
+      "Confident": [0.001, 0.75],
+      "Analytical": [0.001, 0.75],
+      "Tentative": [0.001, 0.75] 
     }
 }
