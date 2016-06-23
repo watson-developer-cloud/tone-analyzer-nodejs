@@ -41,10 +41,10 @@ app.get('/', function(req, res) {
 
 app.post('/api/tone', function(req, res, next) {
   toneAnalyzer.tone(req.body, function(err, data) {
-    if (err)
+    if (err) {
       return next(err);
-    else
-      return res.json(data);
+    }
+    return res.json(data);
   });
 });
 

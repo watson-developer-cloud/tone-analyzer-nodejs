@@ -13,17 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-/* global $:false, normalize, move */
+ /* global normalize, move */
+ /* eslint no-unused-vars: "warn" */
 
 /**
  * This is a JS constructor that controls this application's model and state
  * logic.
- * @param {Object} document tone data
- * @param {Array} sentence tone array
- * @param {Object} threshold data
- * @param {String} selected sample id
+ * @param {Object} documentTones tone data
+ * @param {Array} sentences sentence tone array
+ * @param {Object} thresholds threshold data
+ * @param {String} selectedSample selected sample id
  * @return {Object} exposed functions that interact with application state logic
+ *
  */
 function App(documentTones, sentences, thresholds, selectedSample) {
   var _selectedFilter = 'Anger',
@@ -39,96 +40,96 @@ function App(documentTones, sentences, thresholds, selectedSample) {
     _socialToneHoverTexts,
     _toneHash,
     TONE_CATEGORIES_RESET = [{
-        tones: [{
-          score: 0,
-          tone_id: 'Anger',
-          tone_name: 'Anger',
-          tone_category_id: 'emotion_tone',
-          tone_category_name: 'Emotion Tone'
-        }, {
-          score: 0,
-          tone_id: 'Disgust',
-          tone_name: 'Disgust',
-          tone_category_id: 'emotion_tone',
-          tone_category_name: 'Emotion Tone'
-        }, {
-          score: 0,
-          tone_id: 'Fear',
-          tone_name: 'Fear',
-          tone_category_id: 'emotion_tone',
-          tone_category_name: 'Emotion Tone'
-        }, {
-          score: 0,
-          tone_id: 'Joy',
-          tone_name: 'Joy',
-          tone_category_id: 'emotion_tone',
-          tone_category_name: 'Emotion Tone'
-        }, {
-          score: 0,
-          tone_id: 'Sadness',
-          tone_name: 'Sadness',
-          tone_category_id: 'emotion_tone',
-          tone_category_name: 'Emotion Tone'
-        }],
-        category_id: 'emotion_tone',
-        category_name: 'Emotion Tone'
+      tones: [{
+        score: 0,
+        tone_id: 'Anger',
+        tone_name: 'Anger',
+        tone_category_id: 'emotion_tone',
+        tone_category_name: 'Emotion Tone'
       }, {
-        tones: [{
-          score: 0,
-          tone_id: 'Analytical',
-          tone_name: 'Analytical',
-          tone_category_id: 'language_tone',
-          tone_category_name: 'Language Tone'
-        }, {
-          score: 0,
-          tone_id: 'Confident',
-          tone_name: 'Confident',
-          tone_category_id: 'language_tone',
-          tone_category_name: 'Language Tone'
-        }, {
-          score: 0,
-          tone_id: 'Tentative',
-          tone_name: 'Tentative',
-          tone_category_id: 'language_tone',
-          tone_category_name: 'Language Tone'
-        }],
-        category_id: 'language_tone',
-        category_name: 'Language Tone'
+        score: 0,
+        tone_id: 'Disgust',
+        tone_name: 'Disgust',
+        tone_category_id: 'emotion_tone',
+        tone_category_name: 'Emotion Tone'
       }, {
-        tones: [{
-          score: 0,
-          tone_id: 'Openness_Big5',
-          tone_name: 'Openness',
-          tone_category_id: 'social_tone',
-          tone_category_name: 'Social Tone'
-        }, {
-          score: 0,
-          tone_id: 'Conscientiousness_Big5',
-          tone_name: 'Conscientiousness',
-          tone_category_id: 'social_tone',
-          tone_category_name: 'Social Tone'
-        }, {
-          score: 0,
-          tone_id: 'Extraversion_Big5',
-          tone_name: 'Extraversion',
-          tone_category_id: 'social_tone',
-          tone_category_name: 'Social Tone'
-        }, {
-          score: 0,
-          tone_id: 'Agreeableness_Big5',
-          tone_name: 'Agreeableness',
-          tone_category_id: 'social_tone',
-          tone_category_name: 'Social Tone'
-        }, {
-          score: 0,
-          tone_id: 'Neuroticism_Big5',
-          tone_name: 'Emotional Range',
-          tone_category_id: 'social_tone',
-          tone_category_name: 'Social Tone'
-        }],
-        category_id: 'social_tone',
-        category_name: 'Social Tone'
-      }],      SCORE_DECIMAL_PLACE = 2,
+        score: 0,
+        tone_id: 'Fear',
+        tone_name: 'Fear',
+        tone_category_id: 'emotion_tone',
+        tone_category_name: 'Emotion Tone'
+      }, {
+        score: 0,
+        tone_id: 'Joy',
+        tone_name: 'Joy',
+        tone_category_id: 'emotion_tone',
+        tone_category_name: 'Emotion Tone'
+      }, {
+        score: 0,
+        tone_id: 'Sadness',
+        tone_name: 'Sadness',
+        tone_category_id: 'emotion_tone',
+        tone_category_name: 'Emotion Tone'
+      }],
+      category_id: 'emotion_tone',
+      category_name: 'Emotion Tone'
+    }, {
+      tones: [{
+        score: 0,
+        tone_id: 'Analytical',
+        tone_name: 'Analytical',
+        tone_category_id: 'language_tone',
+        tone_category_name: 'Language Tone'
+      }, {
+        score: 0,
+        tone_id: 'Confident',
+        tone_name: 'Confident',
+        tone_category_id: 'language_tone',
+        tone_category_name: 'Language Tone'
+      }, {
+        score: 0,
+        tone_id: 'Tentative',
+        tone_name: 'Tentative',
+        tone_category_id: 'language_tone',
+        tone_category_name: 'Language Tone'
+      }],
+      category_id: 'language_tone',
+      category_name: 'Language Tone'
+    }, {
+      tones: [{
+        score: 0,
+        tone_id: 'Openness_Big5',
+        tone_name: 'Openness',
+        tone_category_id: 'social_tone',
+        tone_category_name: 'Social Tone'
+      }, {
+        score: 0,
+        tone_id: 'Conscientiousness_Big5',
+        tone_name: 'Conscientiousness',
+        tone_category_id: 'social_tone',
+        tone_category_name: 'Social Tone'
+      }, {
+        score: 0,
+        tone_id: 'Extraversion_Big5',
+        tone_name: 'Extraversion',
+        tone_category_id: 'social_tone',
+        tone_category_name: 'Social Tone'
+      }, {
+        score: 0,
+        tone_id: 'Agreeableness_Big5',
+        tone_name: 'Agreeableness',
+        tone_category_id: 'social_tone',
+        tone_category_name: 'Social Tone'
+      }, {
+        score: 0,
+        tone_id: 'Neuroticism_Big5',
+        tone_name: 'Emotional Range',
+        tone_category_id: 'social_tone',
+        tone_category_name: 'Social Tone'
+      }],
+      category_id: 'social_tone',
+      category_name: 'Social Tone'
+    }],      SCORE_DECIMAL_PLACE = 2,
     PERCENTAGE_DECIMAL_PLACE = 1,
     SOCIAL_TONE_MIN_RANGE = -1,
     SOCIAL_TONE_MAX_RANGE = 1,
@@ -137,18 +138,20 @@ function App(documentTones, sentences, thresholds, selectedSample) {
   /**
    * Make sure sentences have proper tone data values.
    * Mutates _rankedSentences
+   * @return {undefined}
    */
   function _cleanSentences() {
     // look for empty tone_categories and set tone_categories to 0 values
     _rankedSentences.forEach(function(item) {
-      if (item.tone_categories.length === 0)
+      if (item.tone_categories.length === 0) {
         item.tone_categories = TONE_CATEGORIES_RESET.slice(0);
+      }
     });
   }
 
   /**
    * Get index of a tone
-   * @param {String} tone name as key
+   * @param {String} key tone name as key
    * @return {int} index positioning of tone
    */
   function _searchIndex(key) {
@@ -158,32 +161,32 @@ function App(documentTones, sentences, thresholds, selectedSample) {
   /**
    * This is a helper function to determine which classname to use by
    * comparing tone score with thresholds.
-   * @param {String} tone name as key
-   * @param {int} tone score to evaluate
-   * @param {String} class name type
+   * @param {String} toneKey tone name as key
+   * @param {int} score score to evaluate
+   * @param {String} classNameType class name type
    * @return {String} resulting class name
    */
   function _toneLevel(toneKey, score, classNameType) {
-    var output,
+    var outputTone,
       toneValue = _toneHash[toneKey],
       newScore = score,
       baseThreshold = 0;
 
-    if (newScore <= baseThreshold)
-      output = '';
-    else if (newScore < toneValue.low.score)
-      output = toneValue.low[classNameType];
-    else if (newScore > toneValue.high.score)
-      output = toneValue.high[classNameType];
-    else
-      output = toneValue.medium[classNameType];
-
-    return output;
+    if (newScore <= baseThreshold) {
+      outputTone = '';
+    } else if (newScore < toneValue.low.score) {
+      outputTone = toneValue.low[classNameType];
+    } else if (newScore > toneValue.high.score) {
+      outputTone = toneValue.high[classNameType];
+    } else {
+      outputTone = toneValue.medium[classNameType];
+    }
+    return outputTone;
   }
 
   /**
    * Percentagify
-   * @param {float} decimal score
+   * @param {float} score decimal score
    * @return {String} percentage score in PERCENTAGE_DECIMAL_PLACE placements
    */
   function _percentagify(score) {
@@ -193,10 +196,8 @@ function App(documentTones, sentences, thresholds, selectedSample) {
   /**
    * Getter / Setter for _selectedFilter
    * Also sets _selectedTone appropriately
-   * @param {String} setter tone name
-   * @return (getter) {String} _selectedFilter
-   * or
-   * @return (setter) {Object} Constructor returned object
+   * @param {String} str setter tone name
+   * @return {String} _selectedFilter
    */
   output.selectedFilter = function(str) {
     if (!arguments.length) return _selectedFilter;
@@ -224,10 +225,8 @@ function App(documentTones, sentences, thresholds, selectedSample) {
 
   /**
    * Getter / Setter for _lowToHigh
-   * @param {bool} setter boolean
-   * @return (getter) {bool} _lowToHigh
-   * or
-   * @return (setter) {Object} Constructor returned object
+   * @param {bool} bool setter boolean
+   * @return {bool} (getter) {bool} _lowToHigh
    */
   output.lowToHigh = function(bool) {
     if (!arguments.length) return _lowToHigh;
@@ -246,10 +245,8 @@ function App(documentTones, sentences, thresholds, selectedSample) {
 
   /**
    * Getter / Setter for _isHoveringOriginalText
-   * @param {bool} setter boolean
-   * @return (getter) {bool} _isHoveringOriginalText
-   * or
-   * @return (setter) {Object} Constructor returned object
+   * @param {bool} bool setter boolean
+   * @return {bool} (getter) _isHoveringOriginalText
    */
   output.isHoveringOriginalText = function(bool) {
     if (!arguments.length) return _isHoveringOriginalText;
@@ -267,10 +264,8 @@ function App(documentTones, sentences, thresholds, selectedSample) {
 
   /**
    * Getter / Setter for _currentHoveredOriginalSentence
-   * @param {DOMElement} setter element
-   * @return (getter) {DOMElement} _currentHoveredOriginalSentence
-   * or
-   * @return (setter) {Object} Constructor returned object
+   * @param {DOMElement} element setter element
+   * @return {DOMElement} (getter)  _currentHoveredOriginalSentence
    */
   output.currentHoveredOriginalSentence = function(element) {
     if (!arguments.length) return _currentHoveredOriginalSentence;
@@ -293,20 +288,13 @@ function App(documentTones, sentences, thresholds, selectedSample) {
               - a.tone_categories[_searchIndex(_selectedTone)].tones[_searchIndex(_selectedFilter)].score;
           },
       map = function(item) {
-          var score = item.tone_categories[_searchIndex(_selectedTone)].tones[_searchIndex(_selectedFilter)].score.toFixed(SCORE_DECIMAL_PLACE);
-          return {
-            text: item.text,
-            score: score,
-            className: 'sentence-rank--score_' + normalize(_selectedFilter)
-          };
-        },
-      filter = (_selectedTone === 'Social Tone') ?
-          function(item) {
-            return item.score >= -1;
-          } :
-          function(item) {
-            return item.score > 0;
-          };
+        var score = item.tone_categories[_searchIndex(_selectedTone)].tones[_searchIndex(_selectedFilter)].score.toFixed(SCORE_DECIMAL_PLACE);
+        return {
+          text: item.text,
+          score: score,
+          className: 'sentence-rank--score_' + normalize(_selectedFilter)
+        };
+      };
     return _rankedSentences.sort(sort).map(map);
   };
 
@@ -326,7 +314,7 @@ function App(documentTones, sentences, thresholds, selectedSample) {
 
   /**
    * Export an adaptation of original sentences tooltip model
-   * @param {int} sentence index
+   * @param {int} sentenceIndex sentence index
    * @return {Array} array of {Object} sentence data
    */
   output.updateOriginalSentencesTooltips = function(sentenceIndex) {
@@ -345,28 +333,30 @@ function App(documentTones, sentences, thresholds, selectedSample) {
 
   /**
    * Select initial filter depending on sample text picked
+   * @return {undefined}
    */
   output.selectFilterBySample = function() {
     var getHighestTone = function(toneCategory) {
         var highestTone = _documentTones.tone_categories[_searchIndex(toneCategory)].tones[0].tone_name,
-        highestScore = 0;
+          highestScore = 0;
         _documentTones.tone_categories[_searchIndex(toneCategory)].tones.forEach(function(item) {
-        if (highestScore < item.score) {
-          highestScore = item.score;
-          highestTone = item.tone_name;
-        }
-      });
+          if (highestScore < item.score) {
+            highestScore = item.score;
+            highestTone = item.tone_name;
+          }
+        });
         return highestTone;
       },
       sample = {
-      'customer-call': getHighestTone('Emotion Tone'),
-      'email': getHighestTone('Social Tone'),
-      'corporate-announcement': getHighestTone('Language Tone'),
-      'own-text': getHighestTone('Emotion Tone')
-    };
+        'customer-call': getHighestTone('Emotion Tone'),
+        'email': getHighestTone('Social Tone'),
+        'corporate-announcement': getHighestTone('Language Tone'),
+        'own-text': getHighestTone('Emotion Tone')
+      };
 
-    if (_selectedSample in sample)
+    if (_selectedSample in sample) {
       output.selectedFilter(sample[_selectedSample]);
+    }
   };
 
   /**
@@ -387,7 +377,7 @@ function App(documentTones, sentences, thresholds, selectedSample) {
 
   // Constructing the _toneHash hashmap
   _toneHash = sentences[0].tone_categories.reduce(function(prevVal, curVal, curIndex) {
-    prevVal = curVal.tones.reduce(function(prevVal2, curVal2, curIndex2) {
+    var reducedPrevVal = curVal.tones.reduce(function(prevVal2, curVal2, curIndex2) {
       prevVal2[curVal2.tone_name] = {
         index: curIndex2,
         tone: curVal.category_name,
@@ -407,16 +397,16 @@ function App(documentTones, sentences, thresholds, selectedSample) {
         }
       };
 
-      if (curVal.category_name === 'Social Tone')
+      if (curVal.category_name === 'Social Tone') {
         prevVal2[curVal2.tone_name].tooltip = _socialToneHoverTexts[curVal2.tone_name];
-
+      }
       return prevVal2;
     }, prevVal);
-    prevVal[curVal.category_name] = {
+    reducedPrevVal[curVal.category_name] = {
       index: curIndex,
       tone: curVal.category_name
     };
-    return prevVal;
+    return reducedPrevVal;
   }, {});
 
   return output;

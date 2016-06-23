@@ -2,6 +2,7 @@
   "rules": {
     "no-console": 0,
     "func-names": 0,
+    "one-var": 0,
     "vars-on-top": 0,
     "consistent-return": 0
   },

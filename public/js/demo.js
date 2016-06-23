@@ -13,15 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
- /* global $:false, _, normalize, scrollTo, move, Application */
+ /* eslint camelcase: "warn" */
+ /* global  _, normalize, scrollTo, move,
+     Application, App
+     barGraphTemplate,
+     emotionBarGraphTemplate,
+     filtersTemplate,
+     originalTextTemplate,
+     sentenceRankTemplate,
+     originalTextTooltipTemplate,
+     originalTextLegendTemplate
+  */
 
 'use strict';
 /*
  * JQuery on ready callback function
  */
 function ready() {
-
   // CSRF protection
   $.ajaxSetup({
     headers: {
@@ -48,8 +56,9 @@ function ready() {
 
 /**
  * Load application after initial json data is loaded
- * @param {Object} thresholds json
- * @param {Object} collection of sample text json
+ * @param {Object} thresholds thresholds json
+ * @param {Object} sampleText collection of sample text json
+ * @return {undefined}
  */
 function allReady(thresholds, sampleText) {
   var $input = $('.input'),
@@ -71,7 +80,6 @@ function allReady(thresholds, sampleText) {
     $emotionFilters = $('.filters--emotion'),
     $writingFilters = $('.filters--writing'),
     $socialFilters = $('.filters--social'),
-    $originalText = $('.original-text'),
     $originalTexts = $('.original-text--texts'),
     $originalTextTooltipContainer = $('.original-text--tooltip-container'),
     $legend = $('.original-text--legend'),
@@ -80,7 +88,6 @@ function allReady(thresholds, sampleText) {
     $outputResetButton = $('.output--reset-button'),
     barGraph_template = barGraphTemplate.innerHTML,
     emotionBarGraph_template = emotionBarGraphTemplate.innerHTML,
-    verticalBarGraph_template = verticalBarGraphTemplate.innerHTML,
     filters_template = filtersTemplate.innerHTML,
     originalText_template = originalTextTemplate.innerHTML,
     sentenceRank_template = sentenceRankTemplate.innerHTML,
@@ -90,10 +97,10 @@ function allReady(thresholds, sampleText) {
 
   /**
    * Callback function for AJAX post to get tone analyzer data
-   * @param {Object} response data from api
+   * @param {Object} data response data from api
+   * @return {undefined}
    */
   function toneCallback(data) {
-
     $input.show();
     $loading.hide();
     $error.hide();
@@ -109,7 +116,7 @@ function allReady(thresholds, sampleText) {
       app;
 
     // if only one sentence, sentences will not exist, so mutate sentences_tone manually
-    if (data.sentences_tone === undefined) {
+    if (typeof (data.sentences_tone) === 'undefined') {
       data.sentences_tone = [{
         sentence_id: 0,
         text: selectedSampleText,
@@ -121,7 +128,7 @@ function allReady(thresholds, sampleText) {
 
     /**
      * Map Callback function for emotion document tones
-     * @param {Object} current iterating element
+     * @param {Object} item current iterating element
      * @return {Object} label, score, threshold
      */
     function emotionMap(item) {
@@ -136,7 +143,7 @@ function allReady(thresholds, sampleText) {
 
     /**
      * Map Callback function for writing document tones
-     * @param {Object} current iterating element
+     * @param {Object} item current iterating element
      * @return {Object} label, score
      */
     function writingMap(item) {
@@ -148,7 +155,7 @@ function allReady(thresholds, sampleText) {
 
     /**
      * Map Callback function for social document tones
-     * @param {Object} current iterating element
+     * @param {Object} item current iterating element
      * @return {Object} label, score, threshold percent, tooltip text
      */
     function socialMap(item) {
@@ -161,6 +168,7 @@ function allReady(thresholds, sampleText) {
 
     /**
      * Make sure height of sentences view is same as filters view
+     * @return {undefined}
      */
     function matchSentenceViewsHeight() {
       $('.sentences--sentence-views').css('height', $('.sentences--filters')[0].getBoundingClientRect().height + 'px');
@@ -168,6 +176,7 @@ function allReady(thresholds, sampleText) {
 
     /**
      * Toggle sentence rank, Emit view update
+     * @return {undefined}
      */
     function toggleSort() {
       app.toggleLowToHigh();
@@ -176,10 +185,11 @@ function allReady(thresholds, sampleText) {
 
     /**
      * Select tone, Emit view update
-     * @param {String} tone name
+     * @param {String} toneName tone name
+     * @return {undefined}
      */
-    function clickFilter(tone_name) {
-      app.selectedFilter(tone_name);
+    function clickFilter(toneName) {
+      app.selectedFilter(toneName);
       updateOriginalText();
       updateSentenceRank();
       updateLegend();
@@ -187,6 +197,7 @@ function allReady(thresholds, sampleText) {
 
     /**
      * Select right filter
+     * @return {undefined}
      */
     function updateFilters() {
       $('.filters--radio[data-id=' + app.selectedFilter() + ']').prop('checked', true);
@@ -194,6 +205,7 @@ function allReady(thresholds, sampleText) {
 
     /**
      * Emit view update for original text view
+     * @return {undefined}
      */
     function updateOriginalText() {
       $originalTexts.html(_.template(originalText_template, {
@@ -203,6 +215,7 @@ function allReady(thresholds, sampleText) {
 
     /**
      * Emit view update for sentence rank view
+     * @return {undefined}
      */
     function updateSentenceRank() {
       $sentenceRankTable.html(_.template(sentenceRank_template, {
@@ -212,7 +225,8 @@ function allReady(thresholds, sampleText) {
 
     /**
      * Update original text tooltip positioning
-     * @param {Object} event data object
+     * @param {Object} e event data object
+     * @return {undefined}
      */
     function positionOriginalTextTooltip(e) {
       var element = app.currentHoveredOriginalSentence(),
@@ -221,8 +235,9 @@ function allReady(thresholds, sampleText) {
         top = box.top,
         left = box.left + originalText.getBoundingClientRect().width * 0.05;
 
-      if (e !== undefined)
+      if (typeof (e) !== 'undefined') {
         left = e.clientX;
+      }
       $originalTextTooltipContainer.css({
         'top': top,
         'left': left
@@ -232,6 +247,7 @@ function allReady(thresholds, sampleText) {
     /**
      * Emit view update for original text tooltip view
      * @param {int} index of currently hovering original sentence element
+     * @return {undefined}
      */
     function updateOriginalTextTooltip(index) {
       $originalTextTooltipContainer.html(_.template(originalTextTooltip_template, {
@@ -242,6 +258,7 @@ function allReady(thresholds, sampleText) {
 
     /**
      * Emit view update for legend view
+     * @return {undefined}
      */
     function updateLegend() {
       $legend.html(_.template(originalTextLegend_template, {
@@ -252,6 +269,7 @@ function allReady(thresholds, sampleText) {
     /**
      * Bind original text view hover events for original text tooltip
      * interactions
+     * @return {undefined}
      */
     function bindOriginalTextHoverEvents() {
       $('.original-text--sentence-container').click(function(e) {
@@ -278,40 +296,41 @@ function allReady(thresholds, sampleText) {
         }
       });
 
-      $(document).scroll(function(e) {
+      $(document).scroll(function() {
         $originalTextTooltipContainer.addClass('original-text--tooltip-container_hidden');
       });
-      //
-      $('.original-text--texts-container').scroll(function(e) {
+
+      $('.original-text--texts-container').scroll(function() {
         $originalTextTooltipContainer.addClass('original-text--tooltip-container_hidden');
       });
     }
 
     /**
      * Emit view update for json view sentence tones
-     * @param {Object} data
+     * @return {undefined}
      */
-    function updateJSONSentenceTones(data) {
+    function updateJSONSentenceTones() {
       $sentenceJson.empty();
-      $sentenceJson.html(JSON.stringify({'sentences_tone' : data['sentences_tone']}, null, 2));
+      $sentenceJson.html(JSON.stringify({'sentences_tone': data.sentences_tone}, null, 2));
     }
 
     /**
      * Emit view update for json view sentence tones
-     * @param {Object} data
+     * @return {undefined}
      */
-    function updateJSONDocumentTones(data) {
+    function updateJSONDocumentTones() {
       $summaryJsonCode.empty();
-      $summaryJsonCode.html(JSON.stringify({'document_tone' : data['document_tone']}, null, 2));
+      $summaryJsonCode.html(JSON.stringify({'document_tone': data.document_tone}, null, 2));
     }
 
     /**
      * Emit view update for json view
-     * @param {Object} data
+     * @param {Object} jdonData The data
+     * @return {undefined}
      */
-    function updateJSON(data) {
-      updateJSONSentenceTones(data);
-      updateJSONDocumentTones(data);
+    function updateJSON(jdonData) {
+      updateJSONSentenceTones(jdonData);
+      updateJSONDocumentTones(jdonData);
     }
 
     app.selectFilterBySample();
@@ -368,16 +387,18 @@ function allReady(thresholds, sampleText) {
 
   /**
    * AJAX Post request on error callback
-   * @param {Object} error
+   * @param {Object} error The error
+   * @return {undefined}
    */
   function _error(error) {
     var message = typeof error.responseJSON.error === 'string' ?
       error.responseJSON.error :
       'Error code ' + error.responseJSON.error.code + ': ' + error.responseJSON.error.message;
 
-    if (error.responseJSON.code === 429)
+    if (error.responseJSON.code === 429) {
       message = 'You\'ve sent a lot of requests in a short amount of time. ' +
         'As the CPU cores cool off a bit, wait a few seonds before sending more requests.';
+    }
     $errorMessage.html(message);
     $input.show();
     $loading.hide();
@@ -388,7 +409,8 @@ function allReady(thresholds, sampleText) {
 
   /**
    * AJAX Post request for tone analyzer api
-   * @param {String} request body text
+   * @param {String} text request body text
+   * @return {undefined}
    */
   function getToneAnalysis(text) {
     $.post('/api/tone', {'text': text }, toneCallback)
@@ -397,7 +419,8 @@ function allReady(thresholds, sampleText) {
 
   /**
    * Emit view update for input text area view
-   * @param {String} sample text id
+   * @param {String} value sample text id
+   * @return {undefined}
    */
   function updateTextarea(value) {
     $textarea.val(sampleText[value]);
@@ -405,6 +428,7 @@ function allReady(thresholds, sampleText) {
 
   /**
    * Reset views to beginning state
+   * @return {undefined}
    */
   function reset() {
     $input.show();

@@ -17,9 +17,9 @@
 'use strict';
 
 // security.js
-var rateLimit  = require('express-rate-limit');
-var helmet       = require('helmet');
-var csrf         = require('csurf');
+var rateLimit = require('express-rate-limit');
+var helmet = require('helmet');
+var csrf = require('csurf');
 var cookieParser = require('cookie-parser');
 
 module.exports = function(app) {
