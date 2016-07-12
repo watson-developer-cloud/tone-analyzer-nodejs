@@ -132,10 +132,13 @@ function allReady(thresholds, sampleText) {
      * @return {Object} label, score, threshold
      */
     function emotionMap(item) {
+
+    var v1 = parseFloat(app.percentagify(item.score, 'Emotion Tone'));
+    var v2 = parseFloat(app.percentagify(app.thresholds().doc[item.tone_name][0]));
       return {
         label: item.tone_name,
         score: app.percentagify(item.score, 'Emotion Tone'),
-        likeliness: app.percentagify(item.score, 'Emotion Tone') > app.percentagify(app.thresholds().doc[item.tone_name][0]) ? 'LIKELY' : 'UNLIKELY',
+        likeliness: v1 > v2 ? 'LIKELY' : 'UNLIKELY',
         thresholdLow: app.percentagify(app.thresholds().doc[item.tone_name][0]),
         thresholdHigh: app.percentagify(app.thresholds().doc[item.tone_name][1])
       };
