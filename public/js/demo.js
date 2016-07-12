@@ -86,13 +86,13 @@ function allReady(thresholds, sampleText) {
     $sentenceRankTable = $('.sentence-rank--table'),
     $sentenceJson = $('.json .json--code'),
     $outputResetButton = $('.output--reset-button'),
-    barGraph_template = barGraphTemplate.innerHTML,
-    emotionBarGraph_template = emotionBarGraphTemplate.innerHTML,
-    filters_template = filtersTemplate.innerHTML,
-    originalText_template = originalTextTemplate.innerHTML,
-    sentenceRank_template = sentenceRankTemplate.innerHTML,
-    originalTextTooltip_template = originalTextTooltipTemplate.innerHTML,
-    originalTextLegend_template = originalTextLegendTemplate.innerHTML,
+    barGraph_template = barGraphTemplate.innerHTML, // eslint-disable-line camelcase
+    emotionBarGraph_template = emotionBarGraphTemplate.innerHTML, // eslint-disable-line camelcase
+    filters_template = filtersTemplate.innerHTML, // eslint-disable-line camelcase
+    originalText_template = originalTextTemplate.innerHTML, // eslint-disable-line camelcase
+    sentenceRank_template = sentenceRankTemplate.innerHTML, // eslint-disable-line camelcase
+    originalTextTooltip_template = originalTextTooltipTemplate.innerHTML, // eslint-disable-line camelcase
+    originalTextLegend_template = originalTextLegendTemplate.innerHTML, // eslint-disable-line camelcase
     lastSentenceID = 0;
 
   /**
