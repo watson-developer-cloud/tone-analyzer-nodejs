@@ -38,6 +38,7 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
     _thresholds = thresholds,
     _isHoveringOriginalText = false,
     _socialToneHoverTexts,
+    _languageToneHoverTexts,
     _toneHash,
     TONE_CATEGORIES_RESET = [{
       tones: [{
@@ -368,11 +369,17 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
   _cleanSentences(_rankedSentences);
   _originalSentences = _rankedSentences.slice(0);
   _socialToneHoverTexts = {
-    'Agreeableness': 'The tendency to be compassionate and cooperative towards others.',
-    'Emotional Range': 'The extent a person\'s emotion is sensitive to the environment.',
-    'Openness': 'The extent a person is open to experience a variety of activities.',
-    'Conscientiousness': 'The tendency to act in an organized or thoughtful way.',
-    'Extraversion': 'The tendency to seek stimulation in the company of others.'
+    'Agreeableness': 'Higher value, writer more likely to be perceived as, compassionate and cooperative towards others.',
+    'Emotional Range': 'Higher value, writer likely to be perceived as someone sensitive to the environment.',
+    'Openness': 'Higher value, writer more likely to be perceived as open to experiences for a variety of activities.',
+    'Conscientiousness': 'Higher value, the writer likely to be percieved as someone who would act in an organized or thoughtful way.',
+    'Extraversion': 'Higher value, the writer is likely to be perceived as someone who would seek stimulation in the company of others.'
+  };
+
+  _languageToneHoverTexts = {
+    'Analytical': 'A writer\'s reasoning and analytical attitude about things. Higher value, more likely to be perceived as intellectual, rational, systematic, emotionless, or impersonal.',
+    'Confident': 'A writer\'s degree of certainty. Higher value, more likely to be perceived as assured, collected, hopeful, or egotistical.',
+    'Tentative': 'A writer\'s degree of inhibition. Higher value, more likely to be perceived as questionable, doubtful, limited, or debatable.'
   };
 
   // Constructing the _toneHash hashmap
@@ -399,6 +406,10 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
 
       if (curVal.category_name === 'Social Tone') {
         prevVal2[curVal2.tone_name].tooltip = _socialToneHoverTexts[curVal2.tone_name];
+      }
+
+      if (curVal.category_name === 'Language Tone') {
+        prevVal2[curVal2.tone_name].tooltip = _languageToneHoverTexts[curVal2.tone_name];
       }
       return prevVal2;
     }, prevVal);
