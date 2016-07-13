@@ -187,7 +187,7 @@ function App(documentTones, sentences, thresholds, selectedSample) {
   /**
    * Percentagify
    * @param {float} score decimal score
-   * @return {String} percentage score in PERCENTAGE_DECIMAL_PLACE placements
+   * @return {float} percentage score in PERCENTAGE_DECIMAL_PLACE placements
    */
   function _percentagify(score) {
     return parseFloat((score * 100).toFixed(PERCENTAGE_DECIMAL_PLACE));
