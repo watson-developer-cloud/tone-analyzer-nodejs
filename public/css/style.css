@@ -1658,6 +1658,10 @@ pre[class*=" language-"] {
     text-align: center;
     -webkit-transition: 0.1s;
     transition: 0.1s; }
+.summary-writing-graph--label-container:hover .bar-graph--tooltip {
+    visibility: visible;
+    opacity: 1;
+}
     .summary-writing-graph--bar-tooltip:after {
       content: '';
       position: absolute;
