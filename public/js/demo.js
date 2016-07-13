@@ -132,9 +132,8 @@ function allReady(thresholds, sampleText) {
      * @return {Object} label, score, threshold
      */
     function emotionMap(item) {
-
-    var v1 = app.percentagify(item.score, 'Emotion Tone');
-    var v2 = app.percentagify(app.thresholds().doc[item.tone_name][0]);
+      var v1 = app.percentagify(item.score, 'Emotion Tone');
+      var v2 = app.percentagify(app.thresholds().doc[item.tone_name][0]);
       return {
         label: item.tone_name,
         score: app.percentagify(item.score, 'Emotion Tone'),
