@@ -26,7 +26,7 @@
  * @return {Object} exposed functions that interact with application state logic
  *
  */
-function App(documentTones, sentences, thresholds, selectedSample) {
+function App(documentTones, sentences, thresholds, selectedSample) { // eslint-disable-line no-unused-vars
   var _selectedFilter = 'Anger',
     _selectedTone = 'Emotion Tone',
     _selectedSample = selectedSample || 'customer-call',
@@ -131,8 +131,8 @@ function App(documentTones, sentences, thresholds, selectedSample) {
       category_name: 'Social Tone'
     }],      SCORE_DECIMAL_PLACE = 2,
     PERCENTAGE_DECIMAL_PLACE = 1,
-    SOCIAL_TONE_MIN_RANGE = -1,
-    SOCIAL_TONE_MAX_RANGE = 1,
+    SOCIAL_TONE_MIN_RANGE = -1, // eslint-disable-line no-unused-vars
+    SOCIAL_TONE_MAX_RANGE = 1,  // eslint-disable-line no-unused-vars
     output = {};
 
   /**

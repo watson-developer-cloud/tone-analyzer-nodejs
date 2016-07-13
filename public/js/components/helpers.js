@@ -77,7 +77,7 @@ function move(arr, oldIndex, newIndex) {
   if (internalNewIndex >= internalArray.length) {
     var k = internalNewIndex - internalArray.length;
     while ((k--) + 1) {
-      internalArray.push(undefined);
+      internalArray.push(undefined); // eslint-disable-line no-undefined
     }
   }
   internalArray.splice(internalNewIndex, 0, internalArray.splice(internalOldIndex, 1)[0]);
