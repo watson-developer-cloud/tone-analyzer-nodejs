@@ -1581,6 +1581,10 @@ pre[class*=" language-"] {
       text-align: left;
       font-weight: light;
       font-size: 0.85rem; }
+.summary-emotion-graph--label-container:hover .bar-graph--tooltip {
+    visibility: visible;
+    opacity: 1;
+}   
     .summary-emotion-graph--percentage-label-likeliness {
       font-weight: light;
       font-size: 0.5rem; }

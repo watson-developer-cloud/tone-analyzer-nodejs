@@ -39,6 +39,7 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
     _isHoveringOriginalText = false,
     _socialToneHoverTexts,
     _languageToneHoverTexts,
+    _emotionToneHoverTexts,
     _toneHash,
     TONE_CATEGORIES_RESET = [{
       tones: [{
@@ -382,6 +383,14 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
     'Tentative': 'A writer\'s degree of inhibition. Higher value, more likely to be perceived as questionable, doubtful, limited, or debatable.'
   };
 
+  _emotionToneHoverTexts = {
+    'Anger': 'Likelihood of writer being perceived as angry. Low value indicates unlikely to be perceived as angry. High value indicates very likely to be perceived as angry. ',
+    'Disgust': 'Likelihood of writer being perceived as disgusted. Low value, unlikely to be perceived as disgusted. High value, very likely to be perceived as disgusted.',
+    'Fear': 'Likelihood of writer being perceived as scared. Low value indicates unlikely to be perceived as fearful. High value, very likely to be perceived as scared.',
+    'Joy': 'Likelihood of writer being perceived as happy. Low value, unlikely to be perceived as joyful. High value very likely to be perceived as happy.',
+    'Sadness': 'Likelihood of writer being perceived as sad. Low value, unlikely to be perceived as sad. High value very likely to be perceived as sad.'
+  };
+
   // Constructing the _toneHash hashmap
   _toneHash = sentences[0].tone_categories.reduce(function(prevVal, curVal, curIndex) {
     var reducedPrevVal = curVal.tones.reduce(function(prevVal2, curVal2, curIndex2) {
@@ -410,6 +419,9 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
 
       if (curVal.category_name === 'Language Tone') {
         prevVal2[curVal2.tone_name].tooltip = _languageToneHoverTexts[curVal2.tone_name];
+      }
+      if (curVal.category_name === 'Emotion Tone') {
+        prevVal2[curVal2.tone_name].tooltip = _emotionToneHoverTexts[curVal2.tone_name];
       }
       return prevVal2;
     }, prevVal);

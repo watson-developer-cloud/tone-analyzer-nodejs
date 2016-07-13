@@ -137,6 +137,7 @@ function allReady(thresholds, sampleText) {
       return {
         label: item.tone_name,
         score: app.percentagify(item.score, 'Emotion Tone'),
+        tooltip: app.toneHash()[item.tone_name].tooltip,
         likeliness: v1 > v2 ? 'LIKELY' : 'UNLIKELY',
         thresholdLow: app.percentagify(app.thresholds().doc[item.tone_name][0]),
         thresholdHigh: app.percentagify(app.thresholds().doc[item.tone_name][1])
