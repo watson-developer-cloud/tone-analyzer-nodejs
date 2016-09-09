@@ -44,7 +44,7 @@
     "express-rate-limit": "^2.1.0",
     "express-secure-only": "^0.2.1",
     "helmet": "^2.1.1",
-    "watson-developer-cloud": "^1.12.4"
+    "watson-developer-cloud": "^2.2.0"
   },
   "devDependencies": {
     "babel-eslint": "^6.0.4",

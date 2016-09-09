@@ -615,29 +615,29 @@
 
   <script type="text/html" id="emotionBarGraphTemplate">
     <% _.each(items, function(item, key, list) { %>
-      <div class="bar-graph--row summary-<%= className %>-graph--row">
-        <div class="bar-graph--label-container summary-<%= className %>-graph--label-container">
+      <div class="bar-graph--row summary-<%- className %>-graph--row">
+        <div class="bar-graph--label-container summary-<%- className %>-graph--label-container">
           <div class="bar-graph--label">
             <p class="base--p">
-              <%= item.label %>
+              <%- item.label %>
             </p>
             <% if (item.tooltip) { %>
               <div class="bar-graph--tooltip">
-                <%= item.tooltip %>
+                <%- item.tooltip %>
               </div>
               <% } %>
           </div>
         </div>
-        <div class="bar-graph--bar-container summary-<%= className %>-graph--bar-container">
+        <div class="bar-graph--bar-container summary-<%- className %>-graph--bar-container">
           <div class="bar-graph--bar">
-            <div class="bar-graph--bar-value summary-<%= className %>-graph--bar-value summary-<%= className %>-graph--bar-value_<%= item.label.replace(/\s+/g, '-') %>" style="width: <%= item.score %>%;"></div>
+            <div class="bar-graph--bar-value summary-<%- className %>-graph--bar-value summary-<%- className %>-graph--bar-value_<%- item.label.replace(/\s+/g, '-') %>" style="width: <%- item.score %>%;"></div>
           </div>
         </div>
         <div class="summary-emotion-graph--percentage-label">
-          <%= (item.score / 100).toFixed(2) %>
+          <%- (item.score / 100).toFixed(2) %>
           <br>
           <span class="summary-emotion-graph--percentage-label-likeliness">
-            <%= item.likeliness %>
+            <%- item.likeliness %>
           </span>
         </div>
       </div>
@@ -647,25 +647,25 @@
   <script type="text/html" id="barGraphTemplate">
     <% _.each(items, function(item, key, list) { %>
       <div class="bar-graph--row">
-        <div class="bar-graph--label-container summary-<%= className %>-graph--label-container">
+        <div class="bar-graph--label-container summary-<%- className %>-graph--label-container">
           <div class="bar-graph--label">
             <p class="base--p">
-              <%= item.label %>
+              <%- item.label %>
             </p>
             <% if (item.tooltip) { %>
               <div class="bar-graph--tooltip">
-                <%= item.tooltip %>
+                <%- item.tooltip %>
               </div>
               <% } %>
           </div>
         </div>
-        <div class="bar-graph--bar-container summary-<%= className %>-graph--bar-container">
+        <div class="bar-graph--bar-container summary-<%- className %>-graph--bar-container">
           <div class="bar-graph--bar">
-            <div class="bar-graph--bar-value summary-<%= className %>-graph--bar-value summary-<%= className %>-graph--bar-value_<%= item.label.replace(/\s+/g, '-') %>" style="width: <%= item.score %>%;"></div>
+            <div class="bar-graph--bar-value summary-<%- className %>-graph--bar-value summary-<%- className %>-graph--bar-value_<%- item.label.replace(/\s+/g, '-') %>" style="width: <%- item.score %>%;"></div>
           </div>
         </div>
         <div class="bar-graph--percentage-label">
-          <%= (item.score / 100).toFixed(2) %>
+          <%- (item.score / 100).toFixed(2) %>
         </div>
       </div>
       <% }); %>
@@ -673,15 +673,15 @@
 
   <script type="text/html" id="verticalBarGraphTemplate">
     <% _.each(items, function(item, key, list) { %>
-      <div class="summary-<%= className %>-graph--column">
-        <div class="summary-<%= className %>-graph--bar">
-          <div class="summary-<%= className %>-graph--bar-value" style="height: <%= item.score %>%;"></div>
-          <div class="summary-<%= className %>-graph--bar-tooltip summary-<%= className %>-graph--bar-tooltip_<%= item.label.replace(/\s+/g, '-') %> bar-graph--bar-tooltip" style="margin-bottom: <%= item.score %>%;">
-            <%= (item.score / 100).toFixed(2) %>
+      <div class="summary-<%- className %>-graph--column">
+        <div class="summary-<%- className %>-graph--bar">
+          <div class="summary-<%- className %>-graph--bar-value" style="height: <%- item.score %>%;"></div>
+          <div class="summary-<%- className %>-graph--bar-tooltip summary-<%- className %>-graph--bar-tooltip_<%- item.label.replace(/\s+/g, '-') %> bar-graph--bar-tooltip" style="margin-bottom: <%- item.score %>%;">
+            <%- (item.score / 100).toFixed(2) %>
           </div>
         </div>
-        <div class="summary-<%= className %>-graph--label">
-          <%= item.label %>
+        <div class="summary-<%- className %>-graph--label">
+          <%- item.label %>
         </div>
       </div>
       <% }); %>
@@ -689,17 +689,21 @@
 
   <script type="text/html" id="filtersTemplate">
     <% _.each(items, function(item, key, list) { %>
-      <input class="filters--radio base--radio" type="radio" id="filter-<%= item.label.replace(/\s+/g, '-') %>" data-id="<%= item.label %>" name="tone-filters" value="<%= item.label.replace(/\s+/g, '-') %>">
-      <label class="filters--label base--block-label" for="filter-<%= item.label.replace(/\s+/g, '-') %>">
-        <%= item.label %>
+      <input class="filters--radio base--radio" type="radio" id="filter-<%- item.label.replace(/\s+/g, '-') %>" data-id="<%- item.label %>" name="tone-filters" value="<%- item.label.replace(/\s+/g, '-') %>">
+      <label class="filters--label base--block-label" for="filter-<%- item.label.replace(/\s+/g, '-') %>">
+        <%- item.label %>
       </label>
       <% }); %>
   </script>
 
   <script type="text/html" id="originalTextTemplate">
     <% _.each(items, function(item, key, list) { %>
-      <div class="base--p original-text--sentence-container" data-index="<%= key %>">
-        <span class="original-text--sentence <%= item.className %>"><%= item.text %></span>
+      <div class="base--p original-text--sentence-container" data-index="<%- key %>">
+        <span class="original-text--sentence <%- item.className %>">
+          <% item.text.split(/\r?\n/g).forEach(function(line, index, arr) { %>
+            <%- line %>
+            <% if (index +1 != arr.length) { %><br /><% } %>
+          <% }) %></span>
       </div>
       <% }); %>
   </script>
@@ -708,9 +712,9 @@
     <tbody class="base--tbody">
       <% _.each(items, function(item, key, list) { %>
         <tr class="base--tr sentence-rank--tr">
-          <td class="base--td sentence-rank--score <%= item.className %>"><b><%= item.score %></b></td>
+          <td class="base--td sentence-rank--score <%- item.className %>"><b><%- item.score %></b></td>
           <td class="base--td sentence-rank--sentence">
-            <%= item.text %>
+            <%- item.text %>
           </td>
         </tr>
         <% }); %>
@@ -718,13 +722,13 @@
   </script>
 
   <script type="text/html" id="originalTextTooltipTemplate">
-    <div class="original-text--tooltip <%= isSocialTone == 'Social Tone' ? 'original-text--tooltip_social' : '' %>">
+    <div class="original-text--tooltip <%- isSocialTone == 'Social Tone' ? 'original-text--tooltip_social' : '' %>">
       <ul class="original-text--tooltip-ul">
         <% _.each(items, function(item, key, list) { %>
-          <li class="original-text--tooltip-li <%= item.className %>">
-            <div class="original-text--tooltip-score"><b><%= item.score_percentage %></b></div>
+          <li class="original-text--tooltip-li <%- item.className %>">
+            <div class="original-text--tooltip-score"><b><%- item.score_percentage %></b></div>
             <div class="original-text--tooltip-label">
-              <%= item.tone_name %>
+              <%- item.tone_name %>
             </div>
           </li>
           <% }); %>
@@ -734,9 +738,9 @@
 
   <script type="text/html" id="originalTextLegendTemplate">
     <div class="original-text--legend-bar">
-      <div class="original-text--legend-block original-text--legend-block_low original-text--legend-block_<%= className %>-low"></div>
-      <div class="original-text--legend-block original-text--legend-block_med original-text--legend-block_<%= className %>-medium"></div>
-      <div class="original-text--legend-block original-text--legend-block_high original-text--legend-block_<%= className %>-high"></div>
+      <div class="original-text--legend-block original-text--legend-block_low original-text--legend-block_<%- className %>-low"></div>
+      <div class="original-text--legend-block original-text--legend-block_med original-text--legend-block_<%- className %>-medium"></div>
+      <div class="original-text--legend-block original-text--legend-block_high original-text--legend-block_<%- className %>-high"></div>
       <div class="original-text--legend-label original-text--legend-label_low">None</div>
       <div class="original-text--legend-label original-text--legend-label_high">Strong</div>
     </div>
@@ -749,15 +753,7 @@
   <script type="text/javascript" src="js/components/helpers.js"></script>
   <script type="text/javascript" src="js/components/App.js"></script>
   <script type="text/javascript" src="js/demo.js"></script>
-  <script type="text/javascript">
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', '<$= ga $>', 'auto');
-    ga('send', 'pageview');
-  </script>
+  <script type="text/javascript" src="js/vendors/google-analytics.js"></script>
 </body>
 
 </html>

@@ -25,8 +25,58 @@ var cookieParser = require('cookie-parser');
 module.exports = function(app) {
   app.enable('trust proxy');
 
-  // 1. helmet with defaults
-  app.use(helmet({ cacheControl: false }));
+  // 1. helmet with custom CSP header
+  var cspReportUrl = '/report-csp-violation';
+  app.use(helmet({
+    cacheControl: false,
+    contentSecurityPolicy: {
+      // Specify directives as normal.
+      directives: {
+        defaultSrc: ["'self'"], // default value for unspecified directives that end in -src
+        scriptSrc: [
+          "'self'",
+          "'unsafe-eval'", // underscore.js requires this for templates :(
+          'https://cdnjs.cloudflare.com/',
+          'https://ajax.googleapis.com/',
+          'www.google-analytics.com'
+        ], // jquery cdn, etc. try to avid "'unsafe-inline'" and "'unsafe-eval'"
+        styleSrc: ["'self'", "'unsafe-inline'"], // no inline css
+        imgSrc: ['*', 'data:'], // should be "'self'" and possibly 'data:' for most apps, but vr demo loads random user-supplied image urls, and apparently * doesn't include data: URIs
+        connectSrc: ["'self'", '*.watsonplatform.net'], // ajax domains
+        // fontSrc: ["'self'"], // cdn?
+        objectSrc: [], // embeds (e.g. flash)
+        // mediaSrc: ["'self'", '*.watsonplatform.net'], // allow watson TTS streams
+        childSrc: [], // child iframes
+        frameAncestors: [], // parent iframes
+        formAction: ["'self'"], // where can forms submit to
+        pluginTypes: [], // e.g. flash, pdf
+        // sandbox: ['allow-forms', 'allow-scripts', 'allow-same-origin'], // options: allow-forms allow-same-origin allow-scripts allow-top-navigation
+        reportUri: cspReportUrl
+      },
+
+      // Set to true if you only want browsers to report errors, not block them.
+      // You may also set this to a function(req, res) in order to decide dynamically
+      // whether to use reportOnly mode, e.g., to allow for a dynamic kill switch.
+      reportOnly: false,
+
+      // Set to true if you want to blindly set all headers: Content-Security-Policy,
+      // X-WebKit-CSP, and X-Content-Security-Policy.
+      setAllHeaders: false,
+
+      // Set to true if you want to disable CSP on Android where it can be buggy.
+      disableAndroid: false,
+
+      // Set to false if you want to completely disable any user-agent sniffing.
+      // This may make the headers less compatible but it will be much faster.
+      // This defaults to `true`.
+      browserSniff: true
+    }
+  }));
+  // endpoint to report CSP violations
+  app.post(cspReportUrl, function(req, res) {
+    console.log('Content Security Policy Violation:\n', req.body);
+    res.status(204).send(); // 204 = No Content
+  });
 
   // 2. rate limiting
   app.use('/api/', rateLimit({

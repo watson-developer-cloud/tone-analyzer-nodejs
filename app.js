@@ -16,20 +16,21 @@
 
 'use strict';
 
-var express    = require('express'),
-  app          = express(),
-  watson       = require('watson-developer-cloud');
+require('dotenv').load({silent: true});
+var express = require('express'),
+  app = express();
+var ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 
 // Bootstrap application settings
 require('./config/express')(app);
 
 // Create the service wrapper
-var toneAnalyzer = watson.tone_analyzer({
-  url: 'https://gateway.watsonplatform.net/tone-analyzer/api/',
-  username: '<username>',
-  password: '<password>',
-  version_date: '2016-05-19',
-  version: 'v3'
+var toneAnalyzer = new ToneAnalyzerV3({
+  // If unspecified here, the TONE_ANALYZER_USERNAME and TONE_ANALYZER_PASSWORD environment properties will be checked
+  // After that, the SDK will fall back to the bluemix-provided VCAP_SERVICES environment property
+  // username: '<username>',
+  // password: '<password>',
+  version_date: '2016-05-19'
 });
 
 app.get('/', function(req, res) {
