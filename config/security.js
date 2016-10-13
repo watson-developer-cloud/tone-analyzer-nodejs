@@ -26,7 +26,10 @@ module.exports = function(app) {
   app.enable('trust proxy');
 
   // 1. helmet with defaults
-  app.use(helmet({ cacheControl: false }));
+  app.use(helmet({
+    cacheControl: false,
+    frameguard: false
+  }));
 
   // 2. rate limiting
   app.use('/api/', rateLimit({
