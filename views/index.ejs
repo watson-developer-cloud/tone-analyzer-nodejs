@@ -337,6 +337,39 @@
           display: block;
       }
 
+      .results-table--feedback-inputs {
+        margin-top: .5em;
+        margin-bottom: .5em;
+        padding-top: .5em;
+        padding-bottom: .5em;
+      }
+
+      .document-level-thankyou, .sentence-level-thankyou {
+        display: none;
+        background: green;
+        color: white;
+        margin-top: .5em;
+        margin-bottom: .5em;
+        padding-top: .5em;
+        padding-bottom: .5em;
+      }
+
+      .thankyou {
+        transition: opacity 1s ease-out;
+        opacity: 0;
+        height: 0;
+        overflow: hidden;
+      }
+
+      .thankyou.active {
+        opacity: 1;
+        height: auto;
+      }
+
+      .vote {
+        margin-left: .5em;
+      }
+
       @media (max-width: 700px) {
           .left-box {
               width: 100%;
@@ -502,6 +535,26 @@
             <p class="base--p">The Language Style and Social Tendencies graphs represent the amount of a language or social tone present in the text. <a class="base--a" target="_blank" href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/tone-analyzer/understanding-tone.shtml#social">Learn more</a>.</p>
           </div>
         </div>
+        <div class="summary--row">
+
+                      <div class="results-table--feedback-inputs dcl">
+                        <label><em class="base--em">Do you agree with this result?</em></label>
+                        <input type="radio"  checked="false" role="radio" id="class-yes" name="document-level" value="no" class="base--radio results-table--input-yes">
+                        <label for="class-yes" class="base--inline-label vote results-table--input-yes-label">Yes</label>
+                        <input type="radio"  checked="false" role="radio" id="class-no" name="document-level" value="no" class="base--radio results-table--input-no">
+                        <label for="class-no" class="base--inline-label vote results-table--input-no-label">No</label>
+                      </div>
+                 <!------>
+                    <div class="document-level-thankyou" style="text-align:center">
+                      <span class="results-table--feedback-thanks">
+                        <em class="base--em">Thank You</em>
+                      </span>
+                    </div>
+                 <!------>
+
+                </div>
+
+
         <div class="summary-row">
           <span class="icon-hyperlink summary-view-code-button">
   					<img class="icon icon-code" src="images/icons/code.svg" />
@@ -585,6 +638,23 @@
             <!-- .tab-panels -->
           </div>
           <!-- .sentences--sentence-views -->
+
+        </div>
+        <div class="summary--row">
+                     <div class="results-table--feedback-inputs scl">
+                       <label><em class="base--em">Do you agree with this result? </em></label>
+                       <input type="radio" role="radio" checked="false" id="class-yes-sentance" name="sentence-level" value="yes" class="base--radio results-table--input-yes">
+                       <label for="class-yes-sentance" class="base--inline-label vote results-table--input-yes-label">Yes</label>
+                       <input type="radio" role="radio" checked="false" id="class-no-sentance" name="sentence-level" value="no" class="base--radio results-table--input-no">
+                       <label for="class-no-sentance" class="base--inline-label vote results-table--input-no-label">No</label>
+                     </div>
+               <!------>
+                   <div class="sentence-level-thankyou" style="text-align:center">
+                     <span class="results-table--feedback-thanks">
+                       <em class="base--em">Thank You</em>
+                     </span>
+                   </div>
+                <!------>
         </div>
         <!-- .sentences -->
         <div class="output--reset icon-hyperlink">
@@ -758,6 +828,31 @@
     ga('create', '<$= ga $>', 'auto');
     ga('send', 'pageview');
   </script>
+  <script type="text/javascript">
+  $(document).ready(function(){
+    $('input[name="document-level"]').prop('checked', false);
+    $('input[name="sentence-level"]').prop('checked', false);
+
+    $(".input--submit-button, .output--reset-button").click(function() {
+      $('input[name="document-level"]').prop('checked', false);
+      $('input[name="sentence-level"]').prop('checked', false);
+      });
+  		$("input[name='document-level']").click(function() {
+        setTimeout(function(){
+          $('.dcl').hide(0).delay(2000).show(0);
+  				$('.document-level-thankyou').show(0).delay(2000).hide(0);
+        }, 100);
+  		});
+      		$("input[name='sentence-level']").click(function() {
+          setTimeout(function(){
+          $('.scl').hide(0).delay(2000).show(0);
+  				$('.sentence-level-thankyou').show(0).delay(2000).hide(0);
+        }, 100);
+  		});
+  });
+  </script>
+
+
 </body>
 
 </html>
