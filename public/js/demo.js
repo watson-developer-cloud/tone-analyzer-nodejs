@@ -221,9 +221,11 @@ function allReady(thresholds, sampleText) {
      */
     function updateOriginalText() {
       $originalTexts.html(_.template(originalText_template, {
-        items: app.updateOriginalSentences()
-      }));
+       items: app.updateOriginalSentences()
+     }));
+      $originalTextDescription.html(app.updateOriginalTextDescription());
     }
+
 
     /**
      * Emit view update for sentence rank view
