@@ -17,8 +17,9 @@
 'use strict';
 
 require('dotenv').load({silent: true});
-var express = require('express'),
-  app = express();
+
+var express = require('express');
+var app = express();
 var ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 
 // Bootstrap application settings
@@ -35,7 +36,6 @@ var toneAnalyzer = new ToneAnalyzerV3({
 
 app.get('/', function(req, res) {
   res.render('index', {
-    ct: req._csrfToken,
     ga: process.env.GOOGLE_ANALYTICS
   });
 });
