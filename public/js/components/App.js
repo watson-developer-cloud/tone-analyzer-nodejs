@@ -147,7 +147,7 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
    */
   function _cleanSentences() {
     // look for empty tone_categories and set tone_categories to 0 values
-    _rankedSentences.forEach(function(item) {
+    _rankedSentences.forEach(function (item) {
       if (item.tone_categories.length === 0) {
         item.tone_categories = TONE_CATEGORIES_RESET.slice(0);
       }
@@ -204,7 +204,7 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
    * @param {String} str setter tone name
    * @return {String} _selectedFilter
    */
-  output.selectedFilter = function(str) {
+  output.selectedFilter = function (str) {
     if (!arguments.length) return _selectedFilter;
     _selectedFilter = str;
     _selectedTone = _toneHash[_selectedFilter].tone;
@@ -216,7 +216,7 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
    * Getter for _selectedTone
    * @return {String} _selectedTone
    */
-  output.selectedTone = function() {
+  output.selectedTone = function () {
     return _selectedTone;
   };
 
@@ -224,7 +224,7 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
    * Getter for _toneHash
    * @return {Object} _toneHash
    */
-  output.toneHash = function() {
+  output.toneHash = function () {
     return _toneHash;
   };
 
@@ -233,7 +233,7 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
    * @param {bool} bool setter boolean
    * @return {bool} (getter) {bool} _lowToHigh
    */
-  output.lowToHigh = function(bool) {
+  output.lowToHigh = function (bool) {
     if (!arguments.length) return _lowToHigh;
     _lowToHigh = bool;
     return output;
@@ -243,7 +243,7 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
    * Switch bool value of _lowToHigh
    * @return {Object} Constructor returned object
    */
-  output.toggleLowToHigh = function() {
+  output.toggleLowToHigh = function () {
     _lowToHigh = !_lowToHigh;
     return output;
   };
@@ -253,7 +253,7 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
    * @param {bool} bool setter boolean
    * @return {bool} (getter) _isHoveringOriginalText
    */
-  output.isHoveringOriginalText = function(bool) {
+  output.isHoveringOriginalText = function (bool) {
     if (!arguments.length) return _isHoveringOriginalText;
     _isHoveringOriginalText = bool;
     return output;
@@ -263,7 +263,7 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
    * Getter for _thresholds
    * @return {Object} _thresholds
    */
-  output.thresholds = function() {
+  output.thresholds = function () {
     return _thresholds;
   };
 
@@ -272,7 +272,7 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
    * @param {DOMElement} element setter element
    * @return {DOMElement} (getter)  _currentHoveredOriginalSentence
    */
-  output.currentHoveredOriginalSentence = function(element) {
+  output.currentHoveredOriginalSentence = function (element) {
     if (!arguments.length) return _currentHoveredOriginalSentence;
     _currentHoveredOriginalSentence = element;
     return output;
@@ -282,9 +282,9 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
    * Export an adaptation of _rankedSentences model
    * @return {Array} array of {Object} sentence data
    */
-  output.updateRankedSentences = function() {
+  output.updateRankedSentences = function () {
     var sort = _lowToHigh ?
-          function(a, b) {
+          function (a, b) {
             return a.tone_categories[_searchIndex(_selectedTone)].tones[_searchIndex(_selectedFilter)].score
               - b.tone_categories[_searchIndex(_selectedTone)].tones[_searchIndex(_selectedFilter)].score;
           } :
@@ -292,7 +292,7 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
             return b.tone_categories[_searchIndex(_selectedTone)].tones[_searchIndex(_selectedFilter)].score
               - a.tone_categories[_searchIndex(_selectedTone)].tones[_searchIndex(_selectedFilter)].score;
           },
-      map = function(item) {
+      map = function (item) {
         var score = item.tone_categories[_searchIndex(_selectedTone)].tones[_searchIndex(_selectedFilter)].score.toFixed(SCORE_DECIMAL_PLACE);
         return {
           text: item.text,
@@ -308,7 +308,7 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
    * @return {Array} array of {Object} sentence data
    */
   output.updateOriginalSentences = function() {
-    var map = function(item) {
+    var map = function (item) {
       var result = item;
       result.className = _toneLevel(_selectedFilter, item.tone_categories[_searchIndex(_selectedTone)].tones[_searchIndex(_selectedFilter)].score, 'className_OT');
       result.text = result.text.replace(/\r?\n/g, '<br />');
@@ -319,9 +319,9 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
 
   /**
    * Export a the current tone description
-   * @return {String}
+   * return {String}
    */
-  output.updateOriginalTextDescription = function() {
+  output.updateOriginalTextDescription = function () {
     return _toneHash[_selectedFilter].description;
   };
 
@@ -330,8 +330,8 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
    * @param {int} sentenceIndex sentence index
    * @return {Array} array of {Object} sentence data
    */
-  output.updateOriginalSentencesTooltips = function(sentenceIndex) {
-    var map = function(item) {
+  output.updateOriginalSentencesTooltips = function (sentenceIndex) {
+    var map = function (item) {
       var result = item;
       result.score_percentage = item.score.toFixed(SCORE_DECIMAL_PLACE);
       result.className = 'original-text--tooltip-li_' + normalize(result.tone_name);
@@ -348,8 +348,8 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
    * Select initial filter depending on sample text picked
    * @return {undefined}
    */
-  output.selectFilterBySample = function() {
-    var getHighestTone = function(toneCategory) {
+  output.selectFilterBySample = function () {
+    var getHighestTone = function (toneCategory) {
         var highestTone = _documentTones.tone_categories[_searchIndex(toneCategory)].tones[0].tone_name,
           highestScore = 0;
         _documentTones.tone_categories[_searchIndex(toneCategory)].tones.forEach(function(item) {
@@ -426,8 +426,8 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
   };
 
   // Constructing the _toneHash hashmap
-  _toneHash = sentences[0].tone_categories.reduce(function(prevVal, curVal, curIndex) {
-    var reducedPrevVal = curVal.tones.reduce(function(prevVal2, curVal2, curIndex2) {
+  _toneHash = sentences[0].tone_categories.reduce(function (prevVal, curVal, curIndex) {
+    var reducedPrevVal = curVal.tones.reduce(function (prevVal2, curVal2, curIndex2) {
       prevVal2[curVal2.tone_name] = {
         index: curIndex2,
         tone: curVal.category_name,
