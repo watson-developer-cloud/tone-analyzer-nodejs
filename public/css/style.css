@@ -1323,7 +1323,8 @@ pre[class*=" language-"] {
   .output--document-description {
     margin-top: 1rem; }
   .output--document-title {
-    margin-top: 2rem; }
+    margin-top: 2rem;
+    padding-left: 0rem; }
   .output--sentence-title {
     margin-top: 2rem; }
   .output--reset {
@@ -1366,7 +1367,7 @@ pre[class*=" language-"] {
 .summary--emotion {
   background-color: #f9f9f9;
   padding: 1rem;
-  height: 21.5rem; }
+  height: 26.5rem; }
   @media (min-width: 768px) {
     .summary--emotion {
       width: 31.91489%;
@@ -1377,15 +1378,15 @@ pre[class*=" language-"] {
       margin-top: 0rem; } }
   @media (min-width: 768px) {
     .summary--emotion {
-      height: 21.5rem; } }
+      height: 26.5rem; } }
   @media (min-width: 1200px) {
     .summary--emotion {
-      height: 21.5rem; } }
+      height: 26.5rem; } }
 
 .summary--writing {
   background-color: #f9f9f9;
   padding: 1rem;
-  height: 21.5rem; }
+  height: 26.5rem; }
   @media (min-width: 768px) {
     .summary--writing {
       width: 31.91489%;
@@ -1396,15 +1397,15 @@ pre[class*=" language-"] {
       margin-top: 0rem; } }
   @media (min-width: 768px) {
     .summary--writing {
-      height: 21.5rem; } }
+      height: 26.5rem; } }
   @media (min-width: 1200px) {
     .summary--writing {
-      height: 21.5rem; } }
+      height: 26.5rem; } }
 
 .summary--social {
   background-color: #f9f9f9;
   padding: 1rem;
-  height: 21.5rem; }
+  height: 26.5rem; }
   @media (min-width: 768px) {
     .summary--social {
       width: 31.91489%;
@@ -1415,10 +1416,10 @@ pre[class*=" language-"] {
       margin-top: 0rem; } }
   @media (min-width: 768px) {
     .summary--social {
-      height: 21.5rem; } }
+      height: 26.5rem; } }
   @media (min-width: 1200px) {
     .summary--social {
-      height: 21.5rem; } }
+      height: 26.5rem; } }
   @media (min-width: 768px) {
     .summary--social {
       width: auto;
@@ -1430,6 +1431,11 @@ pre[class*=" language-"] {
       margin-left: 0%;
       float: left;
       display: block; } }
+
+.summary--score-desc {
+  font-size: 0.85em;
+  margin-top: 0.5rem;
+}
 
 .summary-emotion-graph {
   position: relative; }
@@ -1685,6 +1691,17 @@ pre[class*=" language-"] {
       .summary-writing-graph--bar:hover .summary-writing-graph--bar-tooltip:hover {
         visibility: hidden;
         opacity: 0; }
+        .summary-writing-graph--percentage-label {
+          margin-top: 0rem;
+          line-height: 1;
+          text-align: left;
+          font-weight: light;
+          font-size: 0.85rem; }
+    .summary-writing-graph--percentage-label-likeliness {
+      font-weight: light;
+      font-size: 0.5rem; }
+    .summary-writing-graph--bar-container {
+      width: calc(100% - 7rem); }
 
 .summary-social-graph {
   display: block;
@@ -1858,6 +1875,17 @@ pre[class*=" language-"] {
     .summary-social-graph--label-container:hover .bar-graph--tooltip:hover {
       visibility: hidden;
       opacity: 0; }
+      .summary-social-graph--percentage-label {
+        margin-top: 0rem;
+        line-height: 1;
+        text-align: left;
+        font-weight: light;
+        font-size: 0.85rem; }
+  .summary-social-graph--percentage-label-likeliness {
+    font-weight: light;
+    font-size: 0.5rem; }
+  .summary-social-graph--bar-container {
+    width: calc(100% - 11rem); }
   .summary-view-code-button {
     float: right; }
   .summary-json {
@@ -1963,6 +1991,11 @@ pre[class*=" language-"] {
 
 .original-text {
   height: 100%; }
+  .original-text--description {
+    text-align: left;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    height: 38px; }
   .original-text--legend {
     text-align: right;
     position: relative;
@@ -2088,7 +2121,7 @@ pre[class*=" language-"] {
     background-color: white;
     padding: 1rem;
     overflow-y: auto;
-    height: calc(100% - 5rem);
+    height: calc(100% - 8rem);
     margin-top: 0rem; }
   .original-text--sentence-container {
     margin-top: 0.4rem;

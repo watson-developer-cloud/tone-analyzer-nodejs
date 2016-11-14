@@ -40,6 +40,9 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
     _socialToneHoverTexts,
     _languageToneHoverTexts,
     _emotionToneHoverTexts,
+    _socialToneDescription,
+    _languageToneDescription,
+    _emotionToneDescription,
     _toneHash,
     TONE_CATEGORIES_RESET = [{
       tones: [{
@@ -315,6 +318,14 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
   };
 
   /**
+   * Export a the current tone description
+   * @return {String}
+   */
+  output.updateOriginalTextDescription = function() {
+    return _toneHash[_selectedFilter].description;
+  };
+
+  /**
    * Export an adaptation of original sentences tooltip model
    * @param {int} sentenceIndex sentence index
    * @return {Array} array of {Object} sentence data
@@ -387,8 +398,31 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
     'Anger': 'Likelihood of writer being perceived as angry. Low value indicates unlikely to be perceived as angry. High value indicates very likely to be perceived as angry. ',
     'Disgust': 'Likelihood of writer being perceived as disgusted. Low value, unlikely to be perceived as disgusted. High value, very likely to be perceived as disgusted.',
     'Fear': 'Likelihood of writer being perceived as scared. Low value indicates unlikely to be perceived as fearful. High value, very likely to be perceived as scared.',
-    'Joy': 'Likelihood of writer being perceived as happy. Low value, unlikely to be perceived as joyful. High value very likely to be perceived as happy.',
+    'Joy': 'Joy or happiness has shades of enjoyment, satisfaction and pleasure. There is a sense of well-being, inner peace, love, safety and contentment.',
     'Sadness': 'Likelihood of writer being perceived as sad. Low value, unlikely to be perceived as sad. High value very likely to be perceived as sad.'
+  };
+
+  // Original Text Descriptions
+  _socialToneDescription = {
+    'Agreeableness': '<b>Description:</b> The tendency to be compassionate and cooperative towards others.',
+    'Emotional Range': '<b>Description:</b> The extent a persona\'s emotion is sensitive to the environment.	',
+    'Openness': '<b>Description:</b> The extent a person is open to experience a variety of activities.',
+    'Conscientiousness': '<b>Description:</b> The tendency to act in an organized or thoughtful way.',
+    'Extraversion': '<b>Description:</b> The tendency to seek stimulation in the company of others.'
+  };
+
+  _languageToneDescription = {
+    'Analytical': '<b>Description:</b> A person\'s reasoning and analytical attitude about things.',
+    'Confident': '<b>Description:</b> A person\'s degree of certainty.',
+    'Tentative': '<b>Description:</b> A person\'s degree of inhibition.'
+  };
+
+  _emotionToneDescription = {
+    'Anger': '<b>Description:</b> Evoked due to injustice, conflict, humiliation, negligence or betrayal. If anger is active, the individual attacks the target, verbally or physically. If anger is passive, the person silently sulks and feels tension and hostility. ',
+    'Disgust': '<b>Description:</b> An emotional response of revulsion to something considered offensive or unpleasant. It is a sensation that refers to something revolting.',
+    'Fear': '<b>Description:</b> A response to impending danger. It is a survival mechanism that is a reaction to some negative stimulus. It may be a mild caution or an extreme phobia.',
+    'Joy': '<b>Description:</b> Joy or happiness has shades of enjoyment, satisfaction and pleasure. There is a sense of well-being, inner peace, love, safety and contentment.',
+    'Sadness': '<b>Description:</b> Indicates a feeling of loss and disadvantage. When a person can be observed to be quiet, less energetic and withdrawn, it may be inferred that sadness exists.'
   };
 
   // Constructing the _toneHash hashmap
@@ -415,13 +449,16 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
 
       if (curVal.category_name === 'Social Tone') {
         prevVal2[curVal2.tone_name].tooltip = _socialToneHoverTexts[curVal2.tone_name];
+        prevVal2[curVal2.tone_name].description = _socialToneDescription[curVal2.tone_name];
       }
 
       if (curVal.category_name === 'Language Tone') {
         prevVal2[curVal2.tone_name].tooltip = _languageToneHoverTexts[curVal2.tone_name];
+        prevVal2[curVal2.tone_name].description = _languageToneDescription[curVal2.tone_name];
       }
       if (curVal.category_name === 'Emotion Tone') {
         prevVal2[curVal2.tone_name].tooltip = _emotionToneHoverTexts[curVal2.tone_name];
+        prevVal2[curVal2.tone_name].description = _emotionToneDescription[curVal2.tone_name];
       }
       return prevVal2;
     }, prevVal);

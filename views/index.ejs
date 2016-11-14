@@ -516,14 +516,14 @@
       <div class="output">
         <h2 class="base--h2">Output</h2>
         <p class="base--p output--document-description">The Tone Analyzer Service analyzes text at the document level and the sentence level. Use the document level analysis to get a sense of the overall tone of the document, and use the sentence level analysis to identify specific areas of your content where tones are the strongest.</p>
-        <p class="base--p output--document-description">To understand how to interpret your tone score, see <a href="https://www.ibm.com/watson/developercloud/doc/tone-analyzer/understanding-tone.shtml">Understand your Tone Score.</a></p>
-        <h3 class="base--h3 output--document-title" style="padding-left: 0rem;">Document-level</h3>
+        <p class="base--p output--document-description">To understand how to interpret your tone score, see <a class="base--a" target="_blank" href="https://www.ibm.com/watson/developercloud/doc/tone-analyzer/understanding-tone.shtml">Understand your Tone Score</a>.</p>
+        <h3 class="base--h3 output--document-title">Document-level</h3>
 
 
         <div class="summary--row">
           <div class="summary--emotion">
             <h5 class="base--h5 summary--header">Emotion</h5>
-            <p class="score_desc">
+            <p class="base--p summary--score-desc">
               &lt; .5 = not likely present <br>
               &ge; .5 = likely present <br>
               &gt; .75 = very likely present <br>
@@ -532,7 +532,7 @@
           </div>
           <div class="summary--writing">
             <h5 class="base--h5 summary--header">Language Style</h5>
-            <p class="score_desc">
+            <p class="base--p summary--score-desc">
               &lt; .5 = not likely present <br>
               &ge; .5 = likely present <br>
               &gt; .75 = very likely present <br>
@@ -541,7 +541,7 @@
           </div>
           <div class="summary--social">
             <h5 class="base--h5 summary--header">Social Tendencies</h5>
-            <p class="score_desc">
+            <p class="base--p summary--score-desc">
               &lt; .5 = not likely present <br>
               &ge; .5 = likely present <br>
               &gt; .75 = very likely present <br>
@@ -557,7 +557,7 @@
             <p class="base--p">The Language Style and Social Tendencies graphs represent the amount of a language or social tone present in the text. <a class="base--a" target="_blank" href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/tone-analyzer/understanding-tone.shtml#social">Learn more</a>.</p>
           </div>
         </div>
-        <p class="base--p output--document-description">For details on how Tone Analyzer detects tone in text see, <a href="https://www.ibm.com/watson/developercloud/doc/tone-analyzer/understanding-tone.shtml">The Science Behind the Tone Analyzer Service</a>.</p>
+        <p class="base--p output--document-description">For details on how Tone Analyzer detects tone in text see, <a class="base--a" target="_blank" href="https://www.ibm.com/watson/developercloud/doc/tone-analyzer/understanding-tone.shtml">The Science Behind the Tone Analyzer Service</a>.</p>
         <div class="summary--row">
 
                       <div class="results-table--feedback-inputs dcl">
@@ -622,6 +622,7 @@
               <div class="sentence-views--tab-content tab-panels--tab-content">
                 <div id="panel-original-text" class="sentence-views--tab-pane tab-panels--tab-pane active" role="tab-panel">
                   <div class="original-text">
+                    <div class="original-text--description"></div>
                     <div class="original-text--legend"></div>
                     <div class="original-text--texts-container">
                       <div class="original-text--texts"></div>
@@ -757,10 +758,10 @@
             <div class="bar-graph--bar-value summary-<%= className %>-graph--bar-value summary-<%= className %>-graph--bar-value_<%= item.label.replace(/\s+/g, '-') %>" style="width: <%= item.score %>%;"></div>
           </div>
         </div>
-        <div class="bar-graph--percentage-label">
+        <div class="summary-<%= className %>-graph--percentage-label bar-graph--percentage-label">
           <%= (item.score / 100).toFixed(2) %>
           <br>
-          <span>
+          <span class="summary-<%= className %>-graph--percentage-label-likeliness">
             <%= item.likeliness %>
           </span>
         </div>
@@ -835,7 +836,6 @@
 
   <script type="text/html" id="originalTextLegendTemplate">
     <div class="original-text--legend-bar">
-      <div class="description--<%= className %>" style="text-align: left; float: left; margin-right: 210px; font-size: 0.8rem;"> </div>
       <div class="original-text--legend-block original-text--legend-block_low original-text--legend-block_<%= className %>-low">&lt; .5</div>
       <div class="original-text--legend-block original-text--legend-block_med original-text--legend-block_<%= className %>-medium">.5 - .75</div>
       <div class="original-text--legend-block original-text--legend-block_high original-text--legend-block_<%= className %>-high">&gt; .75</div>

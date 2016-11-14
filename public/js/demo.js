@@ -82,6 +82,7 @@ function allReady(thresholds, sampleText) {
     $socialFilters = $('.filters--social'),
     $originalTexts = $('.original-text--texts'),
     $originalTextTooltipContainer = $('.original-text--tooltip-container'),
+    $originalTextDescription = $('.original-text--description'),
     $legend = $('.original-text--legend'),
     $sentenceRankTable = $('.sentence-rank--table'),
     $sentenceJson = $('.json .json--code'),
@@ -150,10 +151,13 @@ function allReady(thresholds, sampleText) {
      * @return {Object} label, score
      */
     function writingMap(item) {
+      var v1 = app.percentagify(item.score, 'Language Tone');
+      var v2 = app.percentagify(app.thresholds().doc[item.tone_name][0]);
       return {
         label: item.tone_name,
         score: app.percentagify(item.score, 'Language Tone'),
-        tooltip: app.toneHash()[item.tone_name].tooltip
+        tooltip: app.toneHash()[item.tone_name].tooltip,
+        likeliness: v1 > v2 ? 'LIKELY' : 'UNLIKELY'
       };
     }
 
@@ -163,10 +167,13 @@ function allReady(thresholds, sampleText) {
      * @return {Object} label, score, threshold percent, tooltip text
      */
     function socialMap(item) {
+      var v1 = app.percentagify(item.score, 'Social Tone');
+      var v2 = app.percentagify(app.thresholds().doc[item.tone_name][0]);
       return {
         label: item.tone_name,
         score: app.percentagify(item.score, 'Social Tone'),
-        tooltip: app.toneHash()[item.tone_name].tooltip
+        tooltip: app.toneHash()[item.tone_name].tooltip,
+        likeliness: v1 > v2 ? 'LIKELY' : 'UNLIKELY'
       };
     }
 
@@ -197,6 +204,7 @@ function allReady(thresholds, sampleText) {
       updateOriginalText();
       updateSentenceRank();
       updateLegend();
+      updateOriginalText();
     }
 
     /**
