@@ -1,17 +1,20 @@
 language: node_js
-sudo: true
-node_js: stable
+dist: trusty
+sudo: required
+node_js: 6
 script:
-- npm run lint
-- npm test
+- npm run test
+
+cache:
+  directories:
+  - node_modules
+
 env:
   global:
   - CF_APP=tone-analyzer-demo
   - CF_API=https://api.ng.bluemix.net
   - CF_ORGANIZATION=WatsonPlatformServices
   - CF_SPACE=demos
-  - secure: "1ArUhDyjOH/g7MdGNRCDrDintTMPk1bihDB7ZjTv9p+nxQS090r8VtnkeQgo+yzaK8HHLiG14LFiaWK6eIVf6HnlgyeX3Hh7KsF/rnb0w7TPbPvYpolmDHyLB7FdWtLVVTZPVUpxkiJID6PEh/ENSnC1GWDGpIn9LlyElmVt5sMZAXqs77XJNT0ogxHz1OjZB7UqWwsEPrNmdPEPGkRloxcDdM3m19VCmwL/WoI1a1T9r48L7p8IeM5bQ+olIWnNzoboOw2O+gEUzzHeE8ufXp9eWSju6fO8JCPkNLsGMpVwR8aIoFvOcZPE5W7UfzAeQkYwuayDndqg+lFZd32+tFMr8e6OT590B1fI8Ut9F4cRkGG5ivV16/SJJKrWRp0vRiGZ/N7yCbW+YE2OcsxquXDt5VqRPqW+nAjMCw7ADxq5C3zBMxQK9ST1p0pTVJLLrIq0QUjfYhTEjYufeWaxLXgVdyXE6QLm1Z2REjXLBzUs8Wc1AkJbbhfJ03RJvj39A3dlNgy8F5UbC3AVAQ817xaRPcho4LakfDulTvUooIL0j5ROh81Q/d/DDlnrs4ymlsGqNmJ7ZfMxvtXDesFyy+ZlqmxxRTA8NOpzBMSHP4GZ9oq+HMudPyVVaZexSewouBXj6bOG0uNG8iWa8YCKDnlxiNAmCEEodcLlb+XEhVQ="
-  - secure: "bFhB3yakclo4ebxm63JN2BBAptN/UI/OrIBMqeK0a6AufHekbwJWxPjtt3yqruKnop1aLfkTi8MF8C8eQOp8NZ8oVRBzjGmv3h+cTFD9cgcig7Ut0660/TwABIJv8rRMTaOy3CxsRKAVFjMnFFx6YWbKu1+T+5EUfjIiXALzEVOfAr67Y1aR6ACApS9GlUJ2PDErdQVcm6JJ81h/TLLOmmnUoTGv/5O+OUUxzwwLeW+f5jMVgoIUfN9+z1SWzPkBdZhHT91KeihPl1GgBeonBWpCQMGbCuEbB97K0BrbExvZXjqcs4avJr/u2SIOP9NFcw69O59ey5LTBNhW3PcMDDtGFiQ5fjCjP9ldWSnBXYcVd3V9FatX/KnHOE8GtXzCVZt3W3cMnL0s/9wfhfkBuuZscKE8hbKbcMXe9Xtc1Qik8hefCmCWek3utFtW2mLklVo9Y3Ec+p7h7cq7k1LI6zCxHolAGXBu2fXoF6ErJKW1Y8WB4b6EJnpb+XUUgBmw8yZDVDdTKONYDg+EgEqUYB4kzSbvfgH6i8A9nb6rSY3qJUJoj+q5h/EBAxtFz4YEb6QVrT3gkE8acnYRgAKTukX5t5uwO1B7svBaWjZvxfaTBx0GSQmTMNXThgM62ExKEEfkZr5i9Dgu83pGXBEyGS9T+p6gHziE8bZfvU9SWK8="
 before_deploy: npm install -g cf-blue-green
 deploy:
   provider: script

@@ -2,406 +2,408 @@
 <html>
 
 <head>
-  <link rel="stylesheet" href="css/style.css">
   <title>Tone Analyzer</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="ct" content="<$= ct $>">
+  <meta name="og:title" content="IBM Watson Tone Analyzer">
+  <meta name="og:description" content="This service uses linguistic analysis to detect and interpret emotions, social tendencies, and language style cues found in text.">
   <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="css/style.css">
   <style>
-      .container {
-          width: auto;
-          border-top: 1px solid #D6D7D6;
-          padding-top: 20px;
-          display: none;
-      }
+    .container {
+      width: auto;
+      border-top: 1px solid #D6D7D6;
+      padding-top: 20px;
+      display: none;
+    }
 
+    .left-box {
+      float: left;
+      width: 20%;
+      cursor: pointer;
+      background-color: #ffffff;
+    }
+
+    .redlink {
+      color: #d74108 !important;
+    }
+
+    .results-frame {
+      width: 79%;
+      float: left;
+      padding-top: 0px;
+      padding-left: 20px;
+    }
+
+    .ml-item-active {
+      border-right: #0078C1 20px solid;
+    }
+
+    .ml-item {
+      padding: 10px;
+      margin-top: 0px;
+      margin-bottom: 5px;
+      background: #f4f4f4;
+    }
+
+    .ml-item:hover {
+      background: #f4f4f4;
+    }
+
+    .base--button_submit {
+      width: 30%;
+    }
+
+    .int-hide {
+      display: none;
+    }
+
+    .arrowup {
+      background-image: url('images/icons/arrowup.svg');
+      background-repeat: no-repeat;
+      background-attachment: inherit;
+      background-position: 98% 50%;
+      background-color: #ececec;
+      background-size: 20px 20px;
+    }
+
+    .code {
+      background-image: url('images/icons/code.svg');
+      background-size: 20px 20px;
+      background-repeat: no-repeat;
+      background-attachment: inherit;
+    }
+
+    .arrowdown {
+      background-image: url('images/icons/arrowdown.svg');
+      background-repeat: no-repeat;
+      background-attachment: inherit;
+      background-position: 98% 50%;
+      background-color: #ececec;
+      background-size: 20px 20px;
+    }
+
+    .arrowup-main {
+      background-image: url('images/icons/arrowup.svg');
+      background-repeat: no-repeat;
+      background-attachment: inherit;
+      background-position: 95% 50%;
+      background-size: 1em;
+    }
+
+    .base--h1 {
+      font-size: 2.4em;
+    }
+
+    .arrowdown-main {
+      background-image: url('images/icons/arrowdown.svg');
+      background-repeat: no-repeat;
+      background-attachment: inherit;
+      background-position: 88% 50%;
+      background-size: 1em;
+    }
+
+    .add-1-result {
+      margin-top: 0px;
+    }
+
+    .right-float {
+      text-align: right;
+      margin-bottom: 10px;
+      margin-right: .5em;
+      margin-top: 0rem;
+      width: 30%;
+      float: right;
+    }
+
+    .btn-all-results-keywords,
+    .btn-all-results-entities,
+    .btn-all-results-concepts,
+    .btn-all-results-targetsentiment,
+    .btn-all-results-relations {
+      cursor: pointer;
+      color: #435D7E;
+      text-decoration: underline;
+      font-size: 1em;
+      float: left;
+      width: 20%;
+      text-align: left;
+      margin-top: 5px;
+      display: block;
+    }
+
+    .nested-relations {
+      font-size: .9em;
+    }
+
+    .output-header-tagline {
+      font-size: .9em;
+      margin-top: 5px;
+      padding-left: 1em;
+      padding-right: 1em;
+    }
+
+    .icon-hyperlink {
+      float: right;
+    }
+
+    .container-relations {
+      width: 100%;
+      border: 1px solid #e0e0e0;
+      border-bottom: 0px;
+    }
+
+    .element-relations {
+      border-bottom: 1px solid #e0e0e0;
+      margin-top: 0px;
+    }
+
+    .header-relations {
+      padding: 10px;
+      cursor: pointer;
+      margin-top: 0px;
+    }
+
+    .output {
+      background: #ffffff;
+    }
+
+    .hiden-relation {
+      display: none;
+    }
+
+    .content-relations {
+      background: #ffffff;
+      margin-top: 0rem;
+      margin-bottom: 1.5em;
+      display: none;
+      margin-top: 1.5em;
+    }
+
+    #div2,
+    #div3,
+    #div4,
+    #div5,
+    #div6,
+    #div7,
+    #div8,
+    #div9,
+    #div10,
+    #div11,
+    #div12,
+    #div13,
+    .base--table,
+    #div14,
+    .banner--row {
+      margin-top: 0px;
+    }
+
+    .banner--service-resource {
+      /*margin-left: 8%;*/
+    }
+
+    .base--h3 {
+      line-height: .8em;
+      padding-left: .5em;
+      padding-right: .5em;
+    }
+
+    .icon-reset:before {
+      color: #435D7E;
+    }
+
+    .icon-hyperlink--button {
+      color: #435D7E;
+    }
+
+    .base--a:visited {
+      color: #435D7E;
+    }
+
+    .base--a {
+      color: #435D7E;
+    }
+
+    .relations-headline {
+      padding-top: .3em;
+      font-size: 1.5em;
+    }
+
+    .footer-container {
+      margin-bottom: 4em;
+      margin-top: 4em;
+    }
+
+    .bottom-links {
+      margin-right: 1.5em;
+      float: left;
+      border: 2px solid black;
+      padding: .5em 2em .5em 2em;
+      color: #2e2e2e;
+      font-weight: bold;
+      background-color: #f4f4f4;
+      cursor: pointer;
+      -webkit-transition: background-color 1s;
+      -moz-transition: background-color 1s;
+      -ms-transition: background-color 1s;
+      -o-transition: background-color 1s;
+      transition: background-color 1s;
+    }
+
+    .bottom-links:hover {
+      background-color: #2e2e2e;
+      color: white;
+    }
+
+    .bottom-links.base--a {
+      color: #2e2e2e;
+      text-decoration: none;
+    }
+
+    .bottom-links.base--a:hover {
+      background-color: #2e2e2e;
+      color: white;
+    }
+
+    img.icons {
+      width: 20px;
+      margin-left: .5em;
+    }
+
+    .json-btn {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .API--json {
+      color: #ffffff;
+      margin-left: 1em;
+      white-space: pre-wrap;
+    }
+
+    .input--API {
+      background-color: #323232;
+      border: 2px solid #777677;
+      margin-top: 0;
+      width: 100%;
+      height: 250px;
+      overflow: overlay;
+      font-family: "Courier New", "Lucida Console", monospace;
+      overflow: auto;
+    }
+
+    .loading-gif {
+      max-width: 246px;
+      height: auto;
+      margin: auto;
+    }
+
+    .loading--icon {
+      text-align: center;
+    }
+
+    .base--code {
+      color: white;
+    }
+
+    .base--thead {
+      font-weight: bold;
+      color: #325c80;
+      border-bottom: 1px solid #d5d6d5;
+      background-color: #ffffff;
+    }
+
+    .footer-title {
+      font-size: 2.1em;
+    }
+
+    .footer-tagline {
+      font-size: 1.4em;
+      margin-top: .5em;
+      color: #2e2e2e;
+    }
+
+    .footer-banner {
+      background-image: url('images/watson-logo.svg');
+      background-position: right;
+      background-repeat: no-repeat;
+      background-size: 30em;
+      width: 992px;
+      margin: auto;
+    }
+
+    .bottom-banner {
+      border-top: 2px solid #ececec;
+      display: block;
+    }
+
+    .results-table--feedback-inputs {
+      margin-top: .5em;
+      margin-bottom: .5em;
+      padding-top: .5em;
+      padding-bottom: .5em;
+    }
+
+    .document-level-thankyou,
+    .sentence-level-thankyou {
+      display: none;
+      background: green;
+      color: white;
+      margin-top: .5em;
+      margin-bottom: .5em;
+      padding-top: .5em;
+      padding-bottom: .5em;
+    }
+
+    .thankyou {
+      transition: opacity 1s ease-out;
+      opacity: 0;
+      height: 0;
+      overflow: hidden;
+    }
+
+    .thankyou.active {
+      opacity: 1;
+      height: auto;
+    }
+
+    .vote {
+      margin-left: .5em;
+    }
+
+    @media (max-width: 700px) {
       .left-box {
-          float: left;
-          width: 20%;
-          cursor: pointer;
-          background-color: #ffffff;
+        width: 100%;
       }
-
-      .redlink {
-          color: #d74108 !important;
-      }
-
-      .results-frame {
-          width: 79%;
-          float: left;
-          padding-top: 0px;
-          padding-left: 20px;
-      }
-
-      .ml-item-active {
-          border-right: #0078C1 20px solid;
-      }
-
       .ml-item {
-          padding: 10px;
-          margin-top: 0px;
-          margin-bottom: 5px;
-          background: #f4f4f4;
+        padding: 10px;
       }
-
-      .ml-item:hover {
-          background: #f4f4f4;
+      .results-frame {
+        width: 100%;
+        padding-left: 0px;
       }
-
-      .base--button_submit {
-          width: 30%;
+      .btn-all-results {
+        width: 35%;
       }
-
-      .int-hide {
-          display: none;
-      }
-
-      .arrowup {
-          background-image: url('images/icons/arrowup.svg');
-          background-repeat: no-repeat;
-          background-attachment: inherit;
-          background-position: 98% 50%;
-          background-color: #ececec;
-          background-size: 20px 20px;
-      }
-
-      .code {
-          background-image: url('images/icons/code.svg');
-          background-size: 20px 20px;
-          background-repeat: no-repeat;
-          background-attachment: inherit;
-      }
-
-      .arrowdown {
-          background-image: url('images/icons/arrowdown.svg');
-          background-repeat: no-repeat;
-          background-attachment: inherit;
-          background-position: 98% 50%;
-          background-color: #ececec;
-          background-size: 20px 20px;
-      }
-
-      .arrowup-main {
-          background-image: url('images/icons/arrowup.svg');
-          background-repeat: no-repeat;
-          background-attachment: inherit;
-          background-position: 95% 50%;
-          background-size: 1em;
-      }
-
-      .base--h1 {
-          font-size: 2.4em;
-      }
-
-      .arrowdown-main {
-          background-image: url('images/icons/arrowdown.svg');
-          background-repeat: no-repeat;
-          background-attachment: inherit;
-          background-position: 88% 50%;
-          background-size: 1em;
-      }
-
-      .add-1-result {
-          margin-top: 0px;
-      }
-
-      .right-float {
-          text-align: right;
-          margin-bottom: 10px;
-          margin-right: .5em;
-          margin-top: 0rem;
-          width: 30%;
-          float: right;
-      }
-
-      .btn-all-results-keywords,
-      .btn-all-results-entities,
-      .btn-all-results-concepts,
-      .btn-all-results-targetsentiment,
-      .btn-all-results-relations {
-          cursor: pointer;
-          color: #435D7E;
-          text-decoration: underline;
-          font-size: 1em;
-          float: left;
-          width: 20%;
-          text-align: left;
-          margin-top: 5px;
-          display: block;
-      }
-
-      .nested-relations {
-          font-size: .9em;
-      }
-
-      .output-header-tagline {
-          font-size: .9em;
-          margin-top: 5px;
-          padding-left: 1em;
-          padding-right: 1em;
-      }
-
-      .icon-hyperlink {
-          float: right;
-      }
-
-      .container-relations {
-          width: 100%;
-          border: 1px solid #e0e0e0;
-          border-bottom: 0px;
-      }
-
-      .element-relations {
-          border-bottom: 1px solid #e0e0e0;
-          margin-top: 0px;
-      }
-
-      .header-relations {
-          padding: 10px;
-          cursor: pointer;
-          margin-top: 0px;
-      }
-
-      .output {
-          background: #ffffff;
-      }
-
-      .hiden-relation {
-          display: none;
-      }
-
-      .content-relations {
-          background: #ffffff;
-          margin-top: 0rem;
-          margin-bottom: 1.5em;
-          display: none;
-          margin-top: 1.5em;
-      }
-
-      #div2,
-      #div3,
-      #div4,
-      #div5,
-      #div6,
-      #div7,
-      #div8,
-      #div9,
-      #div10,
-      #div11,
-      #div12,
-      #div13,
-      .base--table,
-      #div14,
-      .banner--row {
-          margin-top: 0px;
-      }
-
-      .banner--service-resource {
-          /*margin-left: 8%;*/
-      }
-
-      .base--h3 {
-          line-height: .8em;
-          padding-left: .5em;
-          padding-right: .5em;
-      }
-
-      .icon-reset:before {
-          color: #435D7E;
-      }
-
-      .icon-hyperlink--button {
-          color: #435D7E;
-      }
-
-      .base--a:visited {
-          color: #435D7E;
-      }
-
-      .base--a {
-          color: #435D7E;
-      }
-
-      .relations-headline {
-          padding-top: .3em;
-          font-size: 1.5em;
-      }
-
-      .footer-container {
-          margin-bottom: 4em;
-          margin-top: 4em;
-      }
-
-      .bottom-links {
-          margin-right: 1.5em;
-          float: left;
-          border: 2px solid black;
-          padding: .5em 2em .5em 2em;
-          color: #2e2e2e;
-          font-weight: bold;
-          background-color: #f4f4f4;
-          cursor: pointer;
-          -webkit-transition: background-color 1s;
-          -moz-transition: background-color 1s;
-          -ms-transition: background-color 1s;
-          -o-transition: background-color 1s;
-          transition: background-color 1s;
-      }
-
-      .bottom-links:hover {
-          background-color: #2e2e2e;
-          color: white;
-      }
-
-      .bottom-links.base--a {
-        color: #2e2e2e;
-        text-decoration: none;
-      }
-
-      .bottom-links.base--a:hover {
-          background-color: #2e2e2e;
-          color: white;
-      }
-
-      img.icons {
-          width: 20px;
-          margin-left: .5em;
-      }
-
-      .json-btn {
-          cursor: pointer;
-          text-decoration: underline;
-      }
-
-      .API--json {
-          color: #ffffff;
-          margin-left: 1em;
-          white-space: pre-wrap;
-      }
-
-      .input--API {
-          background-color: #323232;
-          border: 2px solid #777677;
-          margin-top: 0;
-          width: 100%;
-          height: 250px;
-          overflow: overlay;
-          font-family: "Courier New", "Lucida Console", monospace;
-          overflow: auto;
-      }
-
-      .loading-gif {
-          max-width: 246px;
-          height: auto;
-          margin: auto;
-      }
-
-      .loading--icon {
-          text-align: center;
-      }
-
-      .base--code {
-          color: white;
-      }
-
-      .base--thead {
-          font-weight: bold;
-          color: #325c80;
-          border-bottom: 1px solid #d5d6d5;
-          background-color: #ffffff;
-      }
-
-      .footer-title {
-          font-size: 2.1em;
-      }
-
-      .footer-tagline {
-          font-size: 1.4em;
-          margin-top: .5em;
-          color: #2e2e2e;
-      }
-
       .footer-banner {
-          background-image: url('images/watson-logo.svg');
-          background-position: right;
-          background-repeat: no-repeat;
-          background-size: 30em;
-          width: 992px;
-          margin: auto;
+        background-image: none;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
       }
-
-      .bottom-banner {
-          border-top: 2px solid #ececec;
-          display: block;
+      .footer-tagline {
+        font-size: 1em;
       }
-
-      .results-table--feedback-inputs {
-        margin-top: .5em;
-        margin-bottom: .5em;
-        padding-top: .5em;
-        padding-bottom: .5em;
+      .footer-title {
+        font-size: 1.5em;
+        color: #2e2e2e;
       }
-
-      .document-level-thankyou, .sentence-level-thankyou {
-        display: none;
-        background: green;
-        color: white;
-        margin-top: .5em;
-        margin-bottom: .5em;
-        padding-top: .5em;
-        padding-bottom: .5em;
+      .footer-container {
+        margin-left: 2em;
+        margin-top: 1em;
       }
-
-      .thankyou {
-        transition: opacity 1s ease-out;
-        opacity: 0;
-        height: 0;
-        overflow: hidden;
-      }
-
-      .thankyou.active {
-        opacity: 1;
-        height: auto;
-      }
-
-      .vote {
-        margin-left: .5em;
-      }
-
-      @media (max-width: 700px) {
-          .left-box {
-              width: 100%;
-          }
-          .ml-item {
-              padding: 10px;
-          }
-          .results-frame {
-              width: 100%;
-              padding-left: 0px;
-          }
-          .btn-all-results {
-              width: 35%;
-          }
-          .footer-banner {
-              background-image: none;
-              width: 100%;
-              margin-left: 0;
-              margin-right: 0;
-          }
-          .footer-tagline {
-              font-size: 1em;
-          }
-          .footer-title {
-              font-size: 1.5em;
-              color: #2e2e2e;
-          }
-          .footer-container {
-              margin-left: 2em;
-              margin-top: 1em;
-          }
-      }
+    }
   </style>
 </head>
 
@@ -466,9 +468,6 @@
             </li>
             <li class="base--li banner--service-link-item">
               <a href="https://github.com/watson-developer-cloud/tone-analyzer-nodejs" target="blank" class="base--a">Fork on Github</a>
-            </li>
-            <li class="base--li banner--service-link-item">
-              <a href="https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/tone-analyzer-nodejs.git" target="blank" class="base--a">Deploy on Bluemix</a>
             </li>
           </div>
         </div>
@@ -537,32 +536,31 @@
         </div>
         <div class="summary--row">
 
-                      <div class="results-table--feedback-inputs dcl">
-                        <label><em class="base--em">Do you agree with this result?</em></label>
-                        <input type="radio"  checked="false" role="radio" id="class-yes" name="document-level" value="no" class="base--radio results-table--input-yes">
-                        <label for="class-yes" class="base--inline-label vote results-table--input-yes-label">Yes</label>
-                        <input type="radio"  checked="false" role="radio" id="class-no" name="document-level" value="no" class="base--radio results-table--input-no">
-                        <label for="class-no" class="base--inline-label vote results-table--input-no-label">No</label>
-                      </div>
-                 <!------>
-                    <div class="document-level-thankyou" style="text-align:center">
-                      <span class="results-table--feedback-thanks">
+          <div class="results-table--feedback-inputs dcl">
+            <label><em class="base--em">Do you agree with this result?</em></label>
+            <input type="radio" checked="false" role="radio" id="class-yes" name="document-level" value="no" class="base--radio results-table--input-yes">
+            <label for="class-yes" class="base--inline-label vote results-table--input-yes-label">Yes</label>
+            <input type="radio" checked="false" role="radio" id="class-no" name="document-level" value="no" class="base--radio results-table--input-no">
+            <label for="class-no" class="base--inline-label vote results-table--input-no-label">No</label>
+          </div>
+          <!------>
+          <div class="document-level-thankyou" style="text-align:center">
+            <span class="results-table--feedback-thanks">
                         <em class="base--em">Thank You</em>
                       </span>
-                    </div>
-                 <!------>
+          </div>
+          <!------>
 
-                </div>
-
+        </div>
 
         <div class="summary-row">
           <span class="icon-hyperlink summary-view-code-button">
   					<img class="icon icon-code" src="images/icons/code.svg" />
   					<button class="base--a icon-hyperlink--button_BLANK js-toggle-summary-json" href="">
   						<span class="js-toggle-summary-json_show">View JSON</span>
-              <span class="js-toggle-summary-json_hide">Hide JSON</span>
-  			    </button>
-  			  </span>
+          <span class="js-toggle-summary-json_hide">Hide JSON</span>
+          </button>
+          </span>
         </div>
         <div class="summary-json js-summary-json">
           <pre class="base--pre json--pre language-javascript">
@@ -628,8 +626,8 @@
                 <div id="panel-json" class="sentence-views--tab-pane tab-panels--tab-pane" role="tab-panel">
                   <div class="json">
                     <pre class="base--pre json--pre language-javascript">
-                                            <code class="base--code json--code language-javascript"></code>
-                                        </pre>
+                      <code class="base--code json--code language-javascript"></code>
+                    </pre>
                   </div>
                 </div>
               </div>
@@ -641,20 +639,18 @@
 
         </div>
         <div class="summary--row">
-                     <div class="results-table--feedback-inputs scl">
-                       <label><em class="base--em">Do you agree with this result? </em></label>
-                       <input type="radio" role="radio" checked="false" id="class-yes-sentance" name="sentence-level" value="yes" class="base--radio results-table--input-yes">
-                       <label for="class-yes-sentance" class="base--inline-label vote results-table--input-yes-label">Yes</label>
-                       <input type="radio" role="radio" checked="false" id="class-no-sentance" name="sentence-level" value="no" class="base--radio results-table--input-no">
-                       <label for="class-no-sentance" class="base--inline-label vote results-table--input-no-label">No</label>
-                     </div>
-               <!------>
-                   <div class="sentence-level-thankyou" style="text-align:center">
-                     <span class="results-table--feedback-thanks">
-                       <em class="base--em">Thank You</em>
-                     </span>
-                   </div>
-                <!------>
+          <div class="results-table--feedback-inputs scl">
+            <label><em class="base--em">Do you agree with this result? </em></label>
+            <input type="radio" role="radio" checked="false" id="class-yes-sentance" name="sentence-level" value="yes" class="base--radio results-table--input-yes">
+            <label for="class-yes-sentance" class="base--inline-label vote results-table--input-yes-label">Yes</label>
+            <input type="radio" role="radio" checked="false" id="class-no-sentance" name="sentence-level" value="no" class="base--radio results-table--input-no">
+            <label for="class-no-sentance" class="base--inline-label vote results-table--input-no-label">No</label>
+          </div>
+          <div class="sentence-level-thankyou" style="text-align:center">
+            <span class="results-table--feedback-thanks">
+             <em class="base--em">Thank You</em>
+            </span>
+          </div>
         </div>
         <!-- .sentences -->
         <div class="output--reset icon-hyperlink">
@@ -669,45 +665,44 @@
   </div>
   <div class="_demo--banner bottom-banner ">
 
-      <div class="footer-banner">
-          <div class="_demo--container footer-container">
-              <div class="footer-title">Next Up: Build your own app</div>
+    <div class="footer-banner">
+      <div class="_demo--container footer-container">
+        <div class="footer-title">Next Up: Build your own app</div>
 
-              <div class="footer-tagline">Use Tone Analyzer to get started.</div>
+        <div class="footer-tagline">Use Tone Analyzer to get started.</div>
 
-              <a class="base--a bottom-links" href="https://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/tone-analyzer/api/v3/" target="_blank">API Reference</a>
-              <a class="base--a bottom-links" href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/tone-analyzer/index.shtml" target="_blank">Documentation</a>
-              <a class="base--a bottom-links" href="https://github.com/watson-developer-cloud/tone-analyzer-nodejs" target="_blank">Fork on Github</a>
-              <a class="base--a bottom-links" href="https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/tone-analyzer-nodejs.git" target="_blank">Deploy on Bluemix</a>
-          </div>
+        <a class="base--a bottom-links" href="https://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/tone-analyzer/api/v3/" target="_blank">API Reference</a>
+        <a class="base--a bottom-links" href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/tone-analyzer/index.shtml" target="_blank">Documentation</a>
+        <a class="base--a bottom-links" href="https://github.com/watson-developer-cloud/tone-analyzer-nodejs" target="_blank">Fork on Github</a>
       </div>
+    </div>
   </div>
 
   <script type="text/html" id="emotionBarGraphTemplate">
     <% _.each(items, function(item, key, list) { %>
-      <div class="bar-graph--row summary-<%= className %>-graph--row">
-        <div class="bar-graph--label-container summary-<%= className %>-graph--label-container">
+      <div class="bar-graph--row summary-<%- className %>-graph--row">
+        <div class="bar-graph--label-container summary-<%- className %>-graph--label-container">
           <div class="bar-graph--label">
             <p class="base--p">
-              <%= item.label %>
+              <%- item.label %>
             </p>
             <% if (item.tooltip) { %>
               <div class="bar-graph--tooltip">
-                <%= item.tooltip %>
+                <%- item.tooltip %>
               </div>
               <% } %>
           </div>
         </div>
-        <div class="bar-graph--bar-container summary-<%= className %>-graph--bar-container">
+        <div class="bar-graph--bar-container summary-<%- className %>-graph--bar-container">
           <div class="bar-graph--bar">
-            <div class="bar-graph--bar-value summary-<%= className %>-graph--bar-value summary-<%= className %>-graph--bar-value_<%= item.label.replace(/\s+/g, '-') %>" style="width: <%= item.score %>%;"></div>
+            <div class="bar-graph--bar-value summary-<%- className %>-graph--bar-value summary-<%- className %>-graph--bar-value_<%- item.label.replace(/\s+/g, '-') %>" style="width: <%- item.score %>%;"></div>
           </div>
         </div>
         <div class="summary-emotion-graph--percentage-label">
-          <%= (item.score / 100).toFixed(2) %>
-          <br>
-          <span class="summary-emotion-graph--percentage-label-likeliness">
-            <%= item.likeliness %>
+          <%- (item.score / 100).toFixed(2) %>
+            <br>
+            <span class="summary-emotion-graph--percentage-label-likeliness">
+            <%- item.likeliness %>
           </span>
         </div>
       </div>
@@ -717,25 +712,25 @@
   <script type="text/html" id="barGraphTemplate">
     <% _.each(items, function(item, key, list) { %>
       <div class="bar-graph--row">
-        <div class="bar-graph--label-container summary-<%= className %>-graph--label-container">
+        <div class="bar-graph--label-container summary-<%- className %>-graph--label-container">
           <div class="bar-graph--label">
             <p class="base--p">
-              <%= item.label %>
+              <%- item.label %>
             </p>
             <% if (item.tooltip) { %>
               <div class="bar-graph--tooltip">
-                <%= item.tooltip %>
+                <%- item.tooltip %>
               </div>
               <% } %>
           </div>
         </div>
-        <div class="bar-graph--bar-container summary-<%= className %>-graph--bar-container">
+        <div class="bar-graph--bar-container summary-<%- className %>-graph--bar-container">
           <div class="bar-graph--bar">
-            <div class="bar-graph--bar-value summary-<%= className %>-graph--bar-value summary-<%= className %>-graph--bar-value_<%= item.label.replace(/\s+/g, '-') %>" style="width: <%= item.score %>%;"></div>
+            <div class="bar-graph--bar-value summary-<%- className %>-graph--bar-value summary-<%- className %>-graph--bar-value_<%- item.label.replace(/\s+/g, '-') %>" style="width: <%- item.score %>%;"></div>
           </div>
         </div>
         <div class="bar-graph--percentage-label">
-          <%= (item.score / 100).toFixed(2) %>
+          <%- (item.score / 100).toFixed(2) %>
         </div>
       </div>
       <% }); %>
@@ -743,15 +738,15 @@
 
   <script type="text/html" id="verticalBarGraphTemplate">
     <% _.each(items, function(item, key, list) { %>
-      <div class="summary-<%= className %>-graph--column">
-        <div class="summary-<%= className %>-graph--bar">
-          <div class="summary-<%= className %>-graph--bar-value" style="height: <%= item.score %>%;"></div>
-          <div class="summary-<%= className %>-graph--bar-tooltip summary-<%= className %>-graph--bar-tooltip_<%= item.label.replace(/\s+/g, '-') %> bar-graph--bar-tooltip" style="margin-bottom: <%= item.score %>%;">
-            <%= (item.score / 100).toFixed(2) %>
+      <div class="summary-<%- className %>-graph--column">
+        <div class="summary-<%- className %>-graph--bar">
+          <div class="summary-<%- className %>-graph--bar-value" style="height: <%- item.score %>%;"></div>
+          <div class="summary-<%- className %>-graph--bar-tooltip summary-<%- className %>-graph--bar-tooltip_<%- item.label.replace(/\s+/g, '-') %> bar-graph--bar-tooltip" style="margin-bottom: <%- item.score %>%;">
+            <%- (item.score / 100).toFixed(2) %>
           </div>
         </div>
-        <div class="summary-<%= className %>-graph--label">
-          <%= item.label %>
+        <div class="summary-<%- className %>-graph--label">
+          <%- item.label %>
         </div>
       </div>
       <% }); %>
@@ -759,17 +754,21 @@
 
   <script type="text/html" id="filtersTemplate">
     <% _.each(items, function(item, key, list) { %>
-      <input class="filters--radio base--radio" type="radio" id="filter-<%= item.label.replace(/\s+/g, '-') %>" data-id="<%= item.label %>" name="tone-filters" value="<%= item.label.replace(/\s+/g, '-') %>">
-      <label class="filters--label base--block-label" for="filter-<%= item.label.replace(/\s+/g, '-') %>">
-        <%= item.label %>
+      <input class="filters--radio base--radio" type="radio" id="filter-<%- item.label.replace(/\s+/g, '-') %>" data-id="<%- item.label %>" name="tone-filters" value="<%- item.label.replace(/\s+/g, '-') %>">
+      <label class="filters--label base--block-label" for="filter-<%- item.label.replace(/\s+/g, '-') %>">
+        <%- item.label %>
       </label>
       <% }); %>
   </script>
 
   <script type="text/html" id="originalTextTemplate">
     <% _.each(items, function(item, key, list) { %>
-      <div class="base--p original-text--sentence-container" data-index="<%= key %>">
-        <span class="original-text--sentence <%= item.className %>"><%= item.text %></span>
+      <div class="base--p original-text--sentence-container" data-index="<%- key %>">
+        <span class="original-text--sentence <%- item.className %>">
+          <% item.text.split(/\r?\n/g).forEach(function(line, index, arr) { %>
+            <%- line %>
+            <% if (index +1 != arr.length) { %><br /><% } %>
+          <% }) %></span>
       </div>
       <% }); %>
   </script>
@@ -778,9 +777,9 @@
     <tbody class="base--tbody">
       <% _.each(items, function(item, key, list) { %>
         <tr class="base--tr sentence-rank--tr">
-          <td class="base--td sentence-rank--score <%= item.className %>"><b><%= item.score %></b></td>
+          <td class="base--td sentence-rank--score <%- item.className %>"><b><%- item.score %></b></td>
           <td class="base--td sentence-rank--sentence">
-            <%= item.text %>
+            <%- item.text %>
           </td>
         </tr>
         <% }); %>
@@ -788,13 +787,13 @@
   </script>
 
   <script type="text/html" id="originalTextTooltipTemplate">
-    <div class="original-text--tooltip <%= isSocialTone == 'Social Tone' ? 'original-text--tooltip_social' : '' %>">
+    <div class="original-text--tooltip <%- isSocialTone == 'Social Tone' ? 'original-text--tooltip_social' : '' %>">
       <ul class="original-text--tooltip-ul">
         <% _.each(items, function(item, key, list) { %>
-          <li class="original-text--tooltip-li <%= item.className %>">
-            <div class="original-text--tooltip-score"><b><%= item.score_percentage %></b></div>
+          <li class="original-text--tooltip-li <%- item.className %>">
+            <div class="original-text--tooltip-score"><b><%- item.score_percentage %></b></div>
             <div class="original-text--tooltip-label">
-              <%= item.tone_name %>
+              <%- item.tone_name %>
             </div>
           </li>
           <% }); %>
@@ -804,9 +803,9 @@
 
   <script type="text/html" id="originalTextLegendTemplate">
     <div class="original-text--legend-bar">
-      <div class="original-text--legend-block original-text--legend-block_low original-text--legend-block_<%= className %>-low"></div>
-      <div class="original-text--legend-block original-text--legend-block_med original-text--legend-block_<%= className %>-medium"></div>
-      <div class="original-text--legend-block original-text--legend-block_high original-text--legend-block_<%= className %>-high"></div>
+      <div class="original-text--legend-block original-text--legend-block_low original-text--legend-block_<%- className %>-low"></div>
+      <div class="original-text--legend-block original-text--legend-block_med original-text--legend-block_<%- className %>-medium"></div>
+      <div class="original-text--legend-block original-text--legend-block_high original-text--legend-block_<%- className %>-high"></div>
       <div class="original-text--legend-label original-text--legend-label_low">None</div>
       <div class="original-text--legend-label original-text--legend-label_high">Strong</div>
     </div>
@@ -820,39 +819,27 @@
   <script type="text/javascript" src="js/components/App.js"></script>
   <script type="text/javascript" src="js/demo.js"></script>
   <script type="text/javascript">
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', '<$= ga $>', 'auto');
-    ga('send', 'pageview');
-  </script>
-  <script type="text/javascript">
-  $(document).ready(function(){
-    $('input[name="document-level"]').prop('checked', false);
-    $('input[name="sentence-level"]').prop('checked', false);
-
-    $(".input--submit-button, .output--reset-button").click(function() {
+    $(document).ready(function() {
       $('input[name="document-level"]').prop('checked', false);
       $('input[name="sentence-level"]').prop('checked', false);
+      $(".input--submit-button, .output--reset-button").click(function() {
+        $('input[name="document-level"]').prop('checked', false);
+        $('input[name="sentence-level"]').prop('checked', false);
       });
-  		$("input[name='document-level']").click(function() {
-        setTimeout(function(){
+      $("input[name='document-level']").click(function() {
+        setTimeout(function() {
           $('.dcl').hide(0).delay(2000).show(0);
-  				$('.document-level-thankyou').show(0).delay(2000).hide(0);
+          $('.document-level-thankyou').show(0).delay(2000).hide(0);
         }, 100);
-  		});
-      		$("input[name='sentence-level']").click(function() {
-          setTimeout(function(){
+      });
+      $("input[name='sentence-level']").click(function() {
+        setTimeout(function() {
           $('.scl').hide(0).delay(2000).show(0);
-  				$('.sentence-level-thankyou').show(0).delay(2000).hide(0);
+          $('.sentence-level-thankyou').show(0).delay(2000).hide(0);
         }, 100);
-  		});
-  });
+      });
+    });
   </script>
-
-
 </body>
 
 </html>

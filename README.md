@@ -1,106 +1,85 @@
-# Tone Analyzer Node.js Starter Application
-[![Build Status](https://travis-ci.org/watson-developer-cloud/tone-analyzer-nodejs.svg?branch=master)](http://travis-ci.org/watson-developer-cloud/tone-analyzer-nodejs)
-[![codecov.io](https://codecov.io/github/watson-developer-cloud/tone-analyzer-nodejs/coverage.svg?branch=master)](https://codecov.io/github/watson-developer-cloud/tone-analyzer-nodejs?branch=master)
+# Tone Analyzer Starter Application [![Build Status](https://travis-ci.org/watson-developer-cloud/tone-analyzer-nodejs.svg?branch=master)](http://travis-ci.org/watson-developer-cloud/tone-analyzer-nodejs)
 
-  The IBM Watson [Tone Analyzer][service_url] service is a cognitive linguistic analysis service that detects three types of tones from written text: emotions, social tendencies, and writing style. Emotions identified include things like anger, fear, joy, sadness, and disgust. Identified social tendencies include things from the Big Five personality traits used by some psychologists. These include openness, conscientiousness, extraversion, agreeableness, and neuroticism. Identified writing styles include confident, analytical, and tentative.
+  The IBM Watson [Tone Analyzer][docs] service is a cognitive linguistic analysis service that detects three types of tones from written text: emotions, social tendencies, and writing style. Emotions identified include things like anger, fear, joy, sadness, and disgust. Identified social tendencies include things from the Big Five personality traits used by some psychologists. These include openness, conscientiousness, extraversion, agreeableness, and neuroticism. Identified writing styles include confident, analytical, and tentative.
 
-Give it a try! Click the button below to fork into IBM DevOps Services and deploy your own copy of this application on Bluemix.
+## Getting started
 
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/tone-analyzer-nodejs)
+1. You need a Bluemix account. If you don't have one, [sign up][sign_up]. Experimental Watson Services are free to use.
 
-## Getting Started
+1. Download and install the [Cloud-foundry CLI][cloud_foundry] tool if you haven't already.
 
-1. Create a Bluemix Account
+1. Edit the `manifest.yml` file and change `<application-name>` to something unique. The name you use determines the URL of your application. For example, `<application-name>.mybluemix.net`.
 
-  [Sign up][sign_up] in Bluemix, or use an existing account. Watson Beta or Experimental Services are free to use.
+  ```yaml
+  applications:
+  - services:
+    - my-service-instance
+    name: <application-name>
+    command: npm start
+    path: .
+    memory: 512M
+  ```
 
-2. Download and install the [Cloud-foundry CLI][cloud_foundry] tool
+1. Connect to Bluemix with the command line tool.
 
-3. Edit the `manifest.yml` file and change the `<application-name>` to something unique.
+  ```sh
+  cf api https://api.ng.bluemix.net
+  cf login
+  ```
+
+1. Create and retrieve service keys to access the [Tone Analyzer][docs] service:
+
   ```none
-applications:
-- services:
-  - tone-analyzer-standard
-  name: <application-name>
-  command: npm start
-  path: .
-  memory: 256M
-  ```
-  The name you use will determinate your application url initially, e.g. `<application-name>.mybluemix.net`.
-
-4. Connect to Bluemix in the command line tool
-  For US Region
-  ```sh
-  $ cf api https://api.ng.bluemix.net
+  cf create-service tone_analyzer standard my-tone-analyzer-service
+  cf create-service-key my-tone-analyzer-service myKey
+  cf service-key my-tone-analyzer-service myKey
   ```
 
-  For EU Region
-  ```sh
-  $ cf api https://api.eu-gb.bluemix.net
+1. Create a `.env` file in the root directory by copying the sample `.env.example` file using the following command:
+
+  ```none
+  cp .env.example .env
+  ```
+  You will update the `.env` with the information you retrieved in steps 5.
+
+1. Install the dependencies you application need:
+
+  ```none
+  npm install
   ```
 
-  ```sh
-  $ cf login -u <your user ID>
+1. Start the application locally:
+
+  ```none
+  npm start
   ```
 
-5. Create the Tone Analyzer Service in Bluemix
+1. Point your browser to [http://localhost:3000](http://localhost:3000).
 
-  ```sh
-  $ cf create-service tone_analyzer standard tone-analyzer-standard
+1. **Optional:** Push the application to Bluemix:
+
+  ```none
+  cf push
   ```
 
-6. Push it live!
+After completing the steps above, you are ready to test your application. Start a browser and enter the URL of your application.
 
-  ```sh
-  $ cf push
-  ```
+            <your application name>.mybluemix.net
 
-See the full [Getting Started][getting_started] documentation for more details, including code snippets and references.
 
-## Running locally
+For more details about developing applications that use Watson Developer Cloud services in Bluemix, see [Getting started with Watson Developer Cloud and Bluemix][getting_started].
 
-  The application uses [Node.js](http://nodejs.org/) and [npm](https://www.npmjs.com/).
-
-1. Copy the credentials from your `tone-analyzer-standard` service in Bluemix to `app.js`. To see the credentials, use:
-
-    ```sh
-    $ cf env <application-name>
-    ```
-    Example output:
-    ```sh
-    System-Provided:
-    {
-    "VCAP_SERVICES": {
-      "tone_analyzer": [{
-          "credentials": {
-            "url": "<url>",
-            "password": "<password>",
-            "username": "<username>"
-          },
-        "label": "tone_analyzer",
-        "name": "tone-analyzer-standard",
-        "plan": "standard"
-     }]
-    }
-    }
-    ```
-
-    You need to copy `username`, `password` and `url`.
-
-2. Install [Node.js](http://nodejs.org/)
-3. Go to the project folder in a terminal and run:
-    `npm install`
-4. Start the application
-5.  `npm start`
-6. Go to `http://localhost:3000`
 
 ## Troubleshooting
 
-To troubleshoot your Bluemix application, use the logs. To see the logs, run:
+* The main source of troubleshooting and recovery information is the Bluemix log. To view the log, run the following command:
 
   ```sh
-  $ cf logs <application-name> --recent
+  cf logs <application-name> --recent
   ```
+
+* For more details about the service, see the [documentation][docs] for the Tone Analyzer.
+
 
 ## License
 
@@ -130,7 +109,7 @@ This data is collected from the `VCAP_APPLICATION` environment variable in IBM B
 Deployment tracking can be disabled by removing `require('cf-deployment-tracker-client').track();` from the beginning of the `server.js` file at the root of this repo.
 
 [deploy_track_url]: https://github.com/cloudant-labs/deployment-tracker
-[service_url]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/tone-analyzer.html
+[docs]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/tone-analyzer
 [cloud_foundry]: https://github.com/cloudfoundry/cli
 [getting_started]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/getting_started/
 [sign_up]: https://console.ng.bluemix.net/registration/

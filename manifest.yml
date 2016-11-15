@@ -1,11 +1,11 @@
 ---
 declared-services:
-  tone-analyzer-standard:
+  my-tone-analyzer-service:
     label: tone_analyzer
     plan: standard
 applications:
 - services:
-  - tone-analyzer-standard
+  - my-tone-analyzer-service
   name: tone-analyzer-demo
   command: npm start
   path: .
