@@ -19,9 +19,13 @@
 // security.js
 var rateLimit = require('express-rate-limit');
 var helmet = require('helmet');
+var secure = require('express-secure-only');
 
 module.exports = function(app) {
   app.enable('trust proxy');
+
+  // 0. redirects http to https
+  app.use(secure());
 
   // 1. helmet with defaults
   app.use(helmet({

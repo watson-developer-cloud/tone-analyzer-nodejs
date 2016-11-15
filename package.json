@@ -42,6 +42,7 @@
     "express": "^4.12.2",
     "express-rate-limit": "^2.5.0",
     "express-secure-only": "^0.2.1",
+    "helmet": "^3.1.0",
     "watson-developer-cloud": "^2.2.0"
   },
   "devDependencies": {
