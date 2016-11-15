@@ -14,8 +14,8 @@
  * limitations under the License.
  */
  /* eslint camelcase: "warn" */
- /* global  _, normalize, scrollTo, move,
-     Application, App
+ /* global  _, normalize, scrollTo,
+     App
      barGraphTemplate,
      emotionBarGraphTemplate,
      filtersTemplate,

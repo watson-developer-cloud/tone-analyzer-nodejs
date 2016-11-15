@@ -38,18 +38,15 @@
     "cf-deployment-tracker-client": "^0.1.1",
     "dotenv": "^2.0.0",
     "ejs": "^2.5.2",
-    "eslint": "^2.13.1",
+    "eslint": "^3.10.1",
     "express": "^4.12.2",
     "express-rate-limit": "^2.5.0",
     "express-secure-only": "^0.2.1",
     "watson-developer-cloud": "^2.2.0"
   },
   "devDependencies": {
-    "babel-eslint": "^6.0.4",
     "codecov": "^1.0.1",
     "eslint": "^2.8.0",
-    "eslint-config-airbnb-es5": "^1.0.9",
-    "eslint-plugin-react": "^5.1.1",
     "istanbul": "^0.4.5",
     "mocha": "^3.1.2",
     "supertest": "^2.0.1"
