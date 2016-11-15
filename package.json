@@ -1,6 +1,6 @@
 {
   "name": "tone-analyzer-nodejs",
-  "version": "3.1.1",
+  "version": "4.0.0",
   "description": "Web application that uses Tone Analyzer to get the tone from a text message",
   "repository": {
     "type": "git",
@@ -27,33 +27,28 @@
   },
   "scripts": {
     "start": "node server.js",
-    "test": "istanbul cover ./node_modules/mocha/bin/_mocha",
+    "test": "npm run lint && npm run test-unit",
+    "test-unit": "istanbul cover ./node_modules/mocha/bin/_mocha test/unit",
     "lint": "eslint .",
     "autofix": "eslint --fix .",
     "codecov": "npm run test && (codecov || true)"
   },
   "dependencies": {
     "body-parser": "^1.13.2",
-    "cf-deployment-tracker-client": "0.0.8",
-    "cookie-parser": "^1.4.1",
-    "csurf": "^1.8.3",
+    "cf-deployment-tracker-client": "^0.1.1",
     "dotenv": "^2.0.0",
-    "ejs": "^2.3.4",
-    "errorhandler": "^1.4.1",
+    "ejs": "^2.5.2",
+    "eslint": "^3.10.1",
     "express": "^4.12.2",
-    "express-rate-limit": "^2.1.0",
+    "express-rate-limit": "^2.5.0",
     "express-secure-only": "^0.2.1",
-    "helmet": "^2.1.1",
-    "watson-developer-cloud": "^1.12.4"
+    "watson-developer-cloud": "^2.2.0"
   },
   "devDependencies": {
-    "babel-eslint": "^6.0.4",
     "codecov": "^1.0.1",
     "eslint": "^2.8.0",
-    "eslint-config-airbnb-es5": "^1.0.9",
-    "eslint-plugin-react": "^5.1.1",
-    "istanbul": "^0.4.2",
-    "mocha": "^2.4.5",
-    "supertest": "^1.2.0"
+    "istanbul": "^0.4.5",
+    "mocha": "^3.1.2",
+    "supertest": "^2.0.1"
   }
 }

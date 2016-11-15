@@ -311,7 +311,6 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
     var map = function (item) {
       var result = item;
       result.className = _toneLevel(_selectedFilter, item.tone_categories[_searchIndex(_selectedTone)].tones[_searchIndex(_selectedFilter)].score, 'className_OT');
-      result.text = result.text.replace(/\r?\n/g, '<br />');
       return result;
     };
     return _originalSentences.map(map);

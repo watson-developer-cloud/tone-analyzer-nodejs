@@ -31,6 +31,7 @@ module.exports = function(app) {
       code: err.code || 500,
       error: err.error || err.message
     };
+    // eslint-disable-next-line no-console
     console.log('error:', error);
     next ? '' : '';
     res.status(error.code).json(error);

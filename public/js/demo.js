@@ -14,8 +14,8 @@
  * limitations under the License.
  */
  /* eslint camelcase: "warn" */
- /* global  _, normalize, scrollTo, move,
-     Application, App
+ /* global  _, normalize, scrollTo,
+     App
      barGraphTemplate,
      emotionBarGraphTemplate,
      filtersTemplate,
@@ -325,7 +325,7 @@ function allReady(thresholds, sampleText) {
      */
     function updateJSONSentenceTones() {
       $sentenceJson.empty();
-      $sentenceJson.html(JSON.stringify({'sentences_tone': data.sentences_tone}, null, 2));
+      $sentenceJson.text(JSON.stringify({'sentences_tone': data.sentences_tone}, null, 2));
     }
 
     /**
@@ -334,7 +334,7 @@ function allReady(thresholds, sampleText) {
      */
     function updateJSONDocumentTones() {
       $summaryJsonCode.empty();
-      $summaryJsonCode.html(JSON.stringify({'document_tone': data.document_tone}, null, 2));
+      $summaryJsonCode.text(JSON.stringify({'document_tone': data.document_tone}, null, 2));
     }
 
     /**
@@ -413,7 +413,7 @@ function allReady(thresholds, sampleText) {
       message = 'You\'ve sent a lot of requests in a short amount of time. ' +
         'As the CPU cores cool off a bit, wait a few seonds before sending more requests.';
     }
-    $errorMessage.html(message);
+    $errorMessage.text(message);
     $input.show();
     $loading.hide();
     $output.hide();
