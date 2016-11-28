@@ -400,28 +400,28 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
     'Joy': 'Joy or happiness has shades of enjoyment, satisfaction and pleasure. There is a sense of well-being, inner peace, love, safety and contentment.',
     'Sadness': 'Likelihood of writer being perceived as sad. Low value, unlikely to be perceived as sad. High value very likely to be perceived as sad.'
   };
-
+ 
   // Original Text Descriptions
   _socialToneDescription = {
-    'Agreeableness': '<b>Description:</b> The tendency to be compassionate and cooperative towards others.',
-    'Emotional Range': '<b>Description:</b> The extent a persona\'s emotion is sensitive to the environment.	',
-    'Openness': '<b>Description:</b> The extent a person is open to experience a variety of activities.',
-    'Conscientiousness': '<b>Description:</b> The tendency to act in an organized or thoughtful way.',
-    'Extraversion': '<b>Description:</b> The tendency to seek stimulation in the company of others.'
+    'Agreeableness': '<b>Agreeableness:</b> The tendency to be compassionate and cooperative towards others.',
+    'Emotional Range': '<b>Emotional Range:</b> The extent a persona\'s emotion is sensitive to the environment.	',
+    'Openness': '<b>Openness:</b> The extent a person is open to experience a variety of activities.',
+    'Conscientiousness': '<b>Conscientiousness:</b> The tendency to act in an organized or thoughtful way.',
+    'Extraversion': '<b>Extraversion:</b> The tendency to seek stimulation in the company of others.'
   };
 
   _languageToneDescription = {
-    'Analytical': '<b>Description:</b> A person\'s reasoning and analytical attitude about things.',
-    'Confident': '<b>Description:</b> A person\'s degree of certainty.',
-    'Tentative': '<b>Description:</b> A person\'s degree of inhibition.'
+    'Analytical': '<b>Analytical:</b> A person\'s reasoning and analytical attitude about things.',
+    'Confident': '<b>Confident:</b> A person\'s degree of certainty.',
+    'Tentative': '<b>Tentative:</b> A person\'s degree of inhibition.'
   };
 
   _emotionToneDescription = {
-    'Anger': '<b>Description:</b> Evoked due to injustice, conflict, humiliation, negligence or betrayal. If anger is active, the individual attacks the target, verbally or physically. If anger is passive, the person silently sulks and feels tension and hostility. ',
-    'Disgust': '<b>Description:</b> An emotional response of revulsion to something considered offensive or unpleasant. It is a sensation that refers to something revolting.',
-    'Fear': '<b>Description:</b> A response to impending danger. It is a survival mechanism that is a reaction to some negative stimulus. It may be a mild caution or an extreme phobia.',
-    'Joy': '<b>Description:</b> Joy or happiness has shades of enjoyment, satisfaction and pleasure. There is a sense of well-being, inner peace, love, safety and contentment.',
-    'Sadness': '<b>Description:</b> Indicates a feeling of loss and disadvantage. When a person can be observed to be quiet, less energetic and withdrawn, it may be inferred that sadness exists.'
+    'Anger': '<b>Anger:</b> Evoked due to injustice, conflict, humiliation, negligence or betrayal. If anger is active, the individual attacks the target, verbally or physically. If anger is passive, the person silently sulks and feels tension and hostility. ',
+    'Disgust': '<b>Disgust:</b> An emotional response of revulsion to something considered offensive or unpleasant. It is a sensation that refers to something revolting.',
+    'Fear': '<b>Fear:</b> A response to impending danger. It is a survival mechanism that is a reaction to some negative stimulus. It may be a mild caution or an extreme phobia.',
+    'Joy': '<b>Joy:</b> Joy or happiness has shades of enjoyment, satisfaction and pleasure. There is a sense of well-being, inner peace, love, safety and contentment.',
+    'Sadness': '<b>Sadness:</b> Indicates a feeling of loss and disadvantage. When a person can be observed to be quiet, less energetic and withdrawn, it may be inferred that sadness exists.'
   };
 
   // Constructing the _toneHash hashmap
