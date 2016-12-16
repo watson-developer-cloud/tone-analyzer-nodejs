@@ -135,11 +135,12 @@ function allReady(thresholds, sampleText) {
     function emotionMap(item) {
       var v1 = app.percentagify(item.score, 'Emotion Tone');
       var v2 = app.percentagify(app.thresholds().doc[item.tone_name][0]);
+      var v3 = app.percentagify(app.thresholds().doc[item.tone_name][1]);
       return {
         label: item.tone_name,
         score: app.percentagify(item.score, 'Emotion Tone'),
         tooltip: app.toneHash()[item.tone_name].tooltip,
-        likeliness: v1 > v2 ? 'LIKELY' : 'UNLIKELY',
+        likeliness:  v1 > v3 ? 'VERY LIKELY' :  v1 > v2 ? 'LIKELY' : 'UNLIKELY',
         thresholdLow: app.percentagify(app.thresholds().doc[item.tone_name][0]),
         thresholdHigh: app.percentagify(app.thresholds().doc[item.tone_name][1])
       };
@@ -153,11 +154,12 @@ function allReady(thresholds, sampleText) {
     function writingMap(item) {
       var v1 = app.percentagify(item.score, 'Language Tone');
       var v2 = app.percentagify(app.thresholds().doc[item.tone_name][0]);
+      var v3 = app.percentagify(app.thresholds().doc[item.tone_name][1]);
       return {
         label: item.tone_name,
         score: app.percentagify(item.score, 'Language Tone'),
         tooltip: app.toneHash()[item.tone_name].tooltip,
-        likeliness: v1 > v2 ? 'LIKELY' : 'UNLIKELY'
+        likeliness:  v1 > v3 ? 'VERY LIKELY' :  v1 > v2 ? 'LIKELY' : 'UNLIKELY'
       };
     }
 
@@ -169,11 +171,12 @@ function allReady(thresholds, sampleText) {
     function socialMap(item) {
       var v1 = app.percentagify(item.score, 'Social Tone');
       var v2 = app.percentagify(app.thresholds().doc[item.tone_name][0]);
+      var v3 = app.percentagify(app.thresholds().doc[item.tone_name][1]);
       return {
         label: item.tone_name,
         score: app.percentagify(item.score, 'Social Tone'),
         tooltip: app.toneHash()[item.tone_name].tooltip,
-        likeliness: v1 > v2 ? 'LIKELY' : 'UNLIKELY'
+        likeliness:  v1 > v3 ? 'VERY LIKELY' :  v1 > v2 ? 'LIKELY' : 'UNLIKELY'
       };
     }
 
