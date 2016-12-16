@@ -1586,6 +1586,7 @@ pre[class*=" language-"] {
       line-height: 1;
       text-align: left;
       font-weight: light;
+      width: 4rem;
       font-size: 0.85rem; }
 .summary-emotion-graph--label-container:hover .bar-graph--tooltip {
     visibility: visible;
@@ -1696,7 +1697,8 @@ pre[class*=" language-"] {
           line-height: 1;
           text-align: left;
           font-weight: light;
-          font-size: 0.85rem; }
+          font-size: 0.85rem;
+          width: 4rem; }
     .summary-writing-graph--percentage-label-likeliness {
       font-weight: light;
       font-size: 0.5rem; }
@@ -1880,7 +1882,8 @@ pre[class*=" language-"] {
         line-height: 1;
         text-align: left;
         font-weight: light;
-        font-size: 0.85rem; }
+        font-size: 0.85rem;
+        width: 4rem; }
   .summary-social-graph--percentage-label-likeliness {
     font-weight: light;
     font-size: 0.5rem; }
