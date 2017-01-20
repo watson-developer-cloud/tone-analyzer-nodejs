@@ -34,20 +34,20 @@
     "codecov": "npm run test && (codecov || true)"
   },
   "dependencies": {
-    "body-parser": "^1.15.2",
+    "body-parser": "^1.16.0",
     "cf-deployment-tracker-client": "^0.1.2",
-    "dotenv": "^2.0.0",
+    "dotenv": "^4.0.0",
     "ejs": "^2.5.5",
     "eslint": "^3.10.1",
     "express": "^4.14.0",
     "express-rate-limit": "^2.6.0",
     "express-secure-only": "^0.2.1",
-    "helmet": "^3.1.0",
-    "watson-developer-cloud": "^2.14.3"
+    "helmet": "^3.4.0",
+    "watson-developer-cloud": "^2.15.2"
   },
   "devDependencies": {
     "codecov": "^1.0.1",
-    "eslint": "^3.12.2",
+    "eslint": "^3.13.1",
     "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
     "supertest": "^2.0.1"
