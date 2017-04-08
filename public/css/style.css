@@ -2530,3 +2530,10 @@ pre[class^="language-"] > code[class^="language-"], pre[class^="language-"] > co
       float: left;
       margin-left: 0;
       margin-right: 1.69492%; } }
+
+.dim {
+    opacity: 0.4;
+    filter: alpha(opacity=40); /* msie */
+}
+
+.show { }
