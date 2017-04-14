@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="og:title" content="IBM Watson Tone Analyzer">
-  <meta name="og:description" content="This service uses linguistic analysis to detect and interpret emotions, social tendencies, and language style cues found in text.">
+  <meta name="og:description" content="This service uses linguistic analysis to detect and interpret emotions, social tendencies, and language style cues found in text. Tones detected within the General Purpose Endpoint include joy, fear, sadness, anger, disgust, analytical, confident, tentative, openness, conscientiousness, extraversion, agreeableness, and emotional range.">
   <link rel="shortcut icon" href="/images/favicon.png" type="image/png">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/extra.css">
@@ -52,7 +52,7 @@
                              Tone Analyzer
                     </h1>
           <div class="banner--service-description">
-            This service uses linguistic analysis to detect and interpret emotions, social tendencies, and language style cues found in text.
+             This service uses linguistic analysis to detect and interpret emotions, social tendencies, and language style cues found in text. Tones detected within the General Purpose Endpoint include joy, fear, sadness, anger, disgust, analytical, confident, tentative, openness, conscientiousness, extraversion, agreeableness, and emotional range.
           </div>
         </div>
       </div>
@@ -89,14 +89,15 @@
       <div class="input">
         <h2 class="base--h2">Sample use cases</h2>
         <p class="base--p input--description">Choose an example to learn how you can adjust the tone of your content to change people's perceptions, or improve its effectiveness. <a class="base--a" href="http://www.ibm.com/watson/developercloud/doc/tone-analyzer/index.shtml#usecases" target="new">Learn more</a>.</p>
-        <input role="radio" class="base--radio input--radio" type="radio" id="input-customer-call" name="rb" value="customer-call" checked="true">
-        <label class="base--inline-label input--radio-label" for="input-customer-call">Customer service chat</label>
+        <input role="radio" class="base--radio input--radio" type="radio" id="input-tweets" name="rb" value="tweets" checked="true">
+        <label class="base--inline-label input--radio-label" for="input-tweets">Tweets</label>
+        <input role="radio" class="base--radio input--radio" type="radio" id="input-online-review" name="rb" value="review">
+        <label class="base--inline-label input--radio-label" for="input-online-review">Online Review</label>
         <input role="radio" class="base--radio input--radio" type="radio" id="input-email" name="rb" value="email">
         <label class="base--inline-label input--radio-label" for="input-email">Email message</label>
-        <input role="radio" class="base--radio input--radio" type="radio" id="input-corporate-announcement" name="rb" value="corporate-announcement">
-        <label class="base--inline-label input--radio-label" for="input-corporate-announcement">Corporate announcement</label>
         <input role="radio" class="base--radio input--radio" type="radio" id="input-own-text" name="rb" value="own-text">
         <label class="base--inline-label input--radio-label" for="input-own-text">Your own text</label>
+        <p class="base--p input--description">Analyzing Customer Engagement Data? Try out the <a class="base--a" href="http://customer-engagement-demo.mybluemix.net" target="new">Tone Analyzer Customer Engagement Endpoint</a>.</p>
         <hr class="base--hr input--hr">
         <div class="panel">
           <textarea class="base--textarea input--textarea" rows="7"></textarea>
@@ -145,6 +146,7 @@
             <div class="summary-social-graph bar-graph"></div>
           </div>
         </div>
+<!--
         <div class="summary--row">
           <div class="summary--emotion-description">
             <p class="base--p">The Emotion graph represents the likelihood that an emotion tone is present in the text. <a class="base--a" target="_blank" href="http://www.ibm.com/watson/developercloud/doc/tone-analyzer/understanding-tone.shtml#emotional">Learn more</a>.</p>
@@ -163,16 +165,14 @@
             <input type="radio" checked="false" role="radio" id="class-no" name="document-level" value="no" class="base--radio results-table--input-no">
             <label for="class-no" class="base--inline-label vote results-table--input-no-label">No</label>
           </div>
-          <!------>
           <div class="document-level-thankyou" style="text-align:center">
             <span class="results-table--feedback-thanks">
                         <em class="base--em">Thank You</em>
                       </span>
           </div>
-          <!------>
 
         </div>
-
+-->
         <div class="summary-row">
           <span class="icon-hyperlink summary-view-code-button">
   					<img class="icon icon-code" src="images/icons/code.svg" />
@@ -207,12 +207,14 @@
                 <li class="tab-panels--tab-list-item base--li" role="presentation">
                   <a class="tab-panels--tab base--a active" href="#panel-original-text" aria-controls="panel-original-text" role="tab">In context</a>
                 </li>
+<!--
                 <li class="tab-panels--tab-list-item base--li" role="presentation">
                   <a class="tab-panels--tab base--a" href="#panel-sentence-rank" aria-controls="panel-sentence-rank" role="tab">Ranked by score</a>
                 </li>
                 <li class="tab-panels--tab-list-item base--li" role="presentation">
                   <a class="tab-panels--tab base--a" href="#panel-json" aria-controls="panel-json" role="tab">JSON</a>
                 </li>
+-->
               </ul>
               <div class="sentence-views--tab-content tab-panels--tab-content">
                 <div id="panel-original-text" class="sentence-views--tab-pane tab-panels--tab-pane active" role="tab-panel">
@@ -259,6 +261,7 @@
           <!-- .sentences--sentence-views -->
 
         </div>
+<!--
         <div class="summary--row">
           <div class="results-table--feedback-inputs scl">
             <label><em class="base--em">Do you agree with this result? </em></label>
@@ -273,6 +276,7 @@
             </span>
           </div>
         </div>
+-->
         <!-- .sentences -->
         <div class="output--reset icon-hyperlink">
           <span class="icon icon-reset"></span>
@@ -301,7 +305,7 @@
 
   <script type="text/html" id="emotionBarGraphTemplate">
     <% _.each(items, function(item, key, list) { %>
-      <div class="bar-graph--row summary-<%- className %>-graph--row">
+      <div class="bar-graph--row summary-<%- className %>-graph--row <%- item.visible %>">
         <div class="bar-graph--label-container summary-<%- className %>-graph--label-container">
           <div class="bar-graph--label">
             <p class="base--p">
@@ -332,7 +336,7 @@
 
   <script type="text/html" id="barGraphTemplate">
     <% _.each(items, function(item, key, list) { %>
-      <div class="bar-graph--row">
+      <div class="bar-graph--row <%- item.visible %>">
         <div class="bar-graph--label-container summary-<%- className %>-graph--label-container">
           <div class="bar-graph--label">
             <p class="base--p">

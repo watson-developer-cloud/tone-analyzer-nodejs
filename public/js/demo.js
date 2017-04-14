@@ -40,13 +40,13 @@ function ready() {
   // load all json data first
   $.when(
     $.ajax('/data/threshold_v0.1.1.json'),
-    $.ajax('/data/customer-call.txt'),
-    $.ajax('/data/corporate-announcement.txt'),
+    $.ajax('/data/tweets.txt'),
+    $.ajax('/data/review.txt'),
     $.ajax('/data/personal-email.txt'))
-    .done(function(thresholds, customerCall, corporateAnnouncement, personalEmail) {
+    .done(function(thresholds, tweets, review, personalEmail) {
       var sampleText = {
-        'customer-call': customerCall[0],
-        'corporate-announcement': corporateAnnouncement[0],
+        'review': review[0],
+        'tweets': tweets[0],
         'email': personalEmail[0],
         'own-text': ''
       };
@@ -141,6 +141,7 @@ function allReady(thresholds, sampleText) {
         score: app.percentagify(item.score, 'Emotion Tone'),
         tooltip: app.toneHash()[item.tone_name].tooltip,
         likeliness:  v1 > v3 ? 'VERY LIKELY' :  v1 > v2 ? 'LIKELY' : 'UNLIKELY',
+        visible:  v1 > v3 ? 'show' :  v1 > v2 ? 'show' : 'dim',
         thresholdLow: app.percentagify(app.thresholds().doc[item.tone_name][0]),
         thresholdHigh: app.percentagify(app.thresholds().doc[item.tone_name][1])
       };
@@ -159,6 +160,7 @@ function allReady(thresholds, sampleText) {
         label: item.tone_name,
         score: app.percentagify(item.score, 'Language Tone'),
         tooltip: app.toneHash()[item.tone_name].tooltip,
+        visible:  v1 > v3 ? 'show' :  v1 > v2 ? 'show' : 'dim',
         likeliness:  v1 > v3 ? 'VERY LIKELY' :  v1 > v2 ? 'LIKELY' : 'UNLIKELY'
       };
     }
@@ -176,7 +178,8 @@ function allReady(thresholds, sampleText) {
         label: item.tone_name,
         score: app.percentagify(item.score, 'Social Tone'),
         tooltip: app.toneHash()[item.tone_name].tooltip,
-        likeliness:  v1 > v3 ? 'VERY LIKELY' :  v1 > v2 ? 'LIKELY' : 'UNLIKELY'
+        likeliness:  v1 > v3 ? 'VERY LIKELY' :  v1 > v2 ? 'LIKELY' : 'UNLIKELY',
+        visible:  v1 > v3 ? 'show' :  v1 > v2 ? 'show' : 'dim'
       };
     }
 
@@ -359,12 +362,12 @@ function allReady(thresholds, sampleText) {
     $emotionGraph.html(_.template(emotionBarGraph_template, {
       items: emotionTone,
       className: 'emotion'
-    }));
+    })); 
 
     $writingGraph.html(_.template(barGraph_template, {
       items: writingTone,
       className: 'writing'
-    }));
+    })); 
 
     $socialGraph.html(_.template(barGraph_template, {
       items: socialTone,
@@ -453,7 +456,7 @@ function allReady(thresholds, sampleText) {
     $output.hide();
     $error.hide();
     scrollTo($input);
-    $('#input-customer-call').trigger('click');
+    $('#input-tweets').trigger('click');
   }
 
   /**
