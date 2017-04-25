@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "body-parser": "^1.16.0",
-    "cf-deployment-tracker-client": "^0.1.2",
+    "cf-deployment-tracker-client": "^0.x",
     "dotenv": "^4.0.0",
     "ejs": "^2.5.5",
     "eslint": "^3.10.1",
