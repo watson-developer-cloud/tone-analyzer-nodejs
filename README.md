@@ -30,7 +30,7 @@
 1. Create and retrieve service keys to access the [Tone Analyzer][docs] service:
 
   ```none
-  cf create-service tone_analyzer standard my-tone-analyzer-service
+  cf create-service tone_analyzer lite my-tone-analyzer-service
   cf create-service-key my-tone-analyzer-service myKey
   cf service-key my-tone-analyzer-service myKey
   ```
