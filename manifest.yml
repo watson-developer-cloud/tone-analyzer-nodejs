@@ -2,7 +2,7 @@
 declared-services:
   my-tone-analyzer-service:
     label: tone_analyzer
-    plan: standard
+    plan: lite
 applications:
 - services:
   - my-tone-analyzer-service
