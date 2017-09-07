@@ -1899,6 +1899,7 @@ pre[class*=" language-"] {
 .sentences {
   min-width: 732px; }
   .sentences--filters {
+    height: 30rem;
     width: 31.91489%;
     margin-left: 0%;
     float: left;
