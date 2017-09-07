@@ -118,10 +118,10 @@ function allReady(thresholds, sampleText) {
 
     // if only one sentence, sentences will not exist, so mutate sentences_tone manually
     if (typeof (data.sentences_tone) === 'undefined') {
-      data.sentences_tone = [{
-        sentence_id: 0,
+      data.sentencesTone = [{
+        sentenceId: 0,
         text: selectedSampleText,
-        tone_categories: data.document_tone.tone_categories
+        toneCategories: data.document_tone.tone_categories
       }];
     }
     sentences = data.sentences_tone;

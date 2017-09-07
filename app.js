@@ -36,8 +36,7 @@ var toneAnalyzer = new ToneAnalyzerV3({
 
 app.get('/', function(req, res) {
   res.render('index', {
-    ga: process.env.GOOGLE_ANALYTICS,
-    bluemixAnalytics: process.env.BLUEMIX_ANALYTICS
+    bluemixAnalytics: !!process.env.BLUEMIX_ANALYTICS,
   });
 });
 
