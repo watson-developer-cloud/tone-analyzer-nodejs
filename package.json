@@ -34,22 +34,22 @@
     "codecov": "npm run test && (codecov || true)"
   },
   "dependencies": {
-    "body-parser": "^1.16.0",
+    "body-parser": "^1.17.2",
     "cf-deployment-tracker-client": "^0.x",
     "dotenv": "^4.0.0",
-    "ejs": "^2.5.5",
+    "ejs": "^2.5.7",
     "eslint": "^3.10.1",
-    "express": "^4.14.0",
-    "express-rate-limit": "^2.6.0",
+    "express": "^4.15.4",
+    "express-rate-limit": "^2.9.0",
     "express-secure-only": "^0.2.1",
-    "helmet": "^3.4.0",
-    "watson-developer-cloud": "^2.15.2"
+    "helmet": "^3.8.1",
+    "watson-developer-cloud": "^2.39.0"
   },
   "devDependencies": {
-    "codecov": "^1.0.1",
-    "eslint": "^3.13.1",
+    "codecov": "^2.3.0",
+    "eslint": "^4.6.1",
     "istanbul": "^0.4.5",
-    "mocha": "^3.2.0",
-    "supertest": "^2.0.1"
+    "mocha": "^3.5.0",
+    "supertest": "^3.0.0"
   }
 }
