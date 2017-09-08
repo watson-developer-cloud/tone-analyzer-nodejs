@@ -2,6 +2,8 @@
 
   The IBM Watson [Tone Analyzer][docs] service is a cognitive linguistic analysis service that detects three types of tones from written text: emotions, social tendencies, and writing style. Emotions identified include things like anger, fear, joy, sadness, and disgust. Identified social tendencies include things from the Big Five personality traits used by some psychologists. These include openness, conscientiousness, extraversion, agreeableness, and neuroticism. Identified writing styles include confident, analytical, and tentative.
 
+[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/tone-analyzer-nodejs.git)
+
 ## Getting started
 
 1. You need a Bluemix account. If you don't have one, [sign up][sign_up]. Experimental Watson Services are free to use.
