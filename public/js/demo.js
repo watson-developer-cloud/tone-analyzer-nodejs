@@ -108,23 +108,52 @@ function allReady(thresholds, sampleText) {
     $output.show();
     scrollTo($output);
 
+    /*
     var emotionTone = data.document_tone.tone_categories[0].tones,
       writingTone = data.document_tone.tone_categories[1].tones,
       socialTone = data.document_tone.tone_categories[2].tones,
+    */
+    var emotionTone = data.document_tone.tones,
       selectedSample = $('input[name=rb]:checked').val(),
       selectedSampleText = $textarea.val(),
-      sentences,
+      sentences, sentenceTone = [],
       app;
 
     // if only one sentence, sentences will not exist, so mutate sentences_tone manually
-    if (typeof (data.sentences_tone) === 'undefined') {
+    console.log("TYPE:"+typeof (data.sentences_tone));
+    if (typeof (data.sentences_tone) === 'undefined' || data.sentences_tone === null) {
+      console.log("NO SENTENCE TONE");
       data.sentences_tone = [{
         sentence_id: 0,
         text: selectedSampleText,
-        tone_categories: data.document_tone.tone_categories
+        tones: data.document_tone.tones
+        //tone_categories: data.document_tone.tone_categories
       }];
     }
     sentences = data.sentences_tone;
+    console.log("SENTENCES:"+sentences);
+
+     
+    sentences.forEach(function(elements) {
+      console.log("elements: "+ JSON.stringify(elements));
+      elements.tones.forEach(function(item) {
+        console.log("item: "+ JSON.stringify(item));
+        var tonePresent = false;
+        sentenceTone.map(function(obj) {return obj.tone_id;}).forEach(function(elem){
+          console.log("elem: "+ JSON.stringify(elem));
+          if (item.tone_id == elem){
+            tonePresent = true;
+          }
+        })
+        if (!tonePresent){
+          sentenceTone = sentenceTone.concat(item);
+        }
+        if (sentenceTone.length == 0){
+          sentenceTone = sentenceTone.concat(item);
+            
+        }
+      })
+    });
     app = new App(data.document_tone, sentences.slice(0), thresholds, selectedSample); // clone sentences
 
     /**
@@ -356,34 +385,16 @@ function allReady(thresholds, sampleText) {
     app.selectFilterBySample();
 
     emotionTone = emotionTone.map(emotionMap);
-    writingTone = writingTone.map(writingMap);
-    socialTone = socialTone.map(socialMap);
+    sentenceTone = sentenceTone.map(emotionMap);
 
     $emotionGraph.html(_.template(emotionBarGraph_template, {
       items: emotionTone,
       className: 'emotion'
-    })); 
-
-    $writingGraph.html(_.template(barGraph_template, {
-      items: writingTone,
-      className: 'writing'
-    })); 
-
-    $socialGraph.html(_.template(barGraph_template, {
-      items: socialTone,
-      className: 'social'
     }));
 
     $emotionFilters.html(_.template(filters_template, {
-      items: emotionTone
-    }));
-
-    $writingFilters.html(_.template(filters_template, {
-      items: writingTone
-    }));
-
-    $socialFilters.html(_.template(filters_template, {
-      items: socialTone
+      //items: emotionTone
+      items: sentenceTone
     }));
 
     updateFilters();
