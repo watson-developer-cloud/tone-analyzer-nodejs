@@ -1445,14 +1445,18 @@ pre[class*=" language-"] {
     background-color: #1AE5CD; }
     .summary-emotion-graph--bar-value_Anger {
       background-color: #E80521; }
-    .summary-emotion-graph--bar-value_Disgust {
-      background-color: #592684; }
     .summary-emotion-graph--bar-value_Fear {
       background-color: #325E2B; }
     .summary-emotion-graph--bar-value_Joy {
       background-color: #FFD629; }
     .summary-emotion-graph--bar-value_Sadness {
       background-color: #086DB2; }
+    .summary-emotion-graph--bar-value_Analytical {
+      background-color: #075CD8; }
+    .summary-emotion-graph--bar-value_Confident {
+      background-color: #592684; }
+    .summary-emotion-graph--bar-value_Tentative {
+      background-color: #1AE5CD; }
   .summary-emotion-graph--bar-tooltip_Anger {
     position: absolute;
     background-color: #E80521;
@@ -1934,10 +1938,6 @@ pre[class*=" language-"] {
       background-color: #274b5f;
       border-color: #274b5f;
       color: #ffffff; }
-    .filters--radio#filter-Disgust:checked + .filters--label {
-      background-color: #274b5f;
-      border-color: #274b5f;
-      color: #ffffff; }
     .filters--radio#filter-Fear:checked + .filters--label {
       background-color: #274b5f;
       border-color: #274b5f;
@@ -1959,26 +1959,6 @@ pre[class*=" language-"] {
       border-color: #274b5f;
       color: #ffffff; }
     .filters--radio#filter-Tentative:checked + .filters--label {
-      background-color: #274b5f;
-      border-color: #274b5f;
-      color: #ffffff; }
-    .filters--radio#filter-Openness:checked + .filters--label {
-      background-color: #274b5f;
-      border-color: #274b5f;
-      color: #ffffff; }
-    .filters--radio#filter-Conscientiousness:checked + .filters--label {
-      background-color: #274b5f;
-      border-color: #274b5f;
-      color: #ffffff; }
-    .filters--radio#filter-Extraversion:checked + .filters--label {
-      background-color: #274b5f;
-      border-color: #274b5f;
-      color: #ffffff; }
-    .filters--radio#filter-Agreeableness:checked + .filters--label {
-      background-color: #274b5f;
-      border-color: #274b5f;
-      color: #ffffff; }
-    .filters--radio#filter-Emotional-Range:checked + .filters--label {
       background-color: #274b5f;
       border-color: #274b5f;
       color: #ffffff; }
@@ -2034,12 +2014,6 @@ pre[class*=" language-"] {
       background-color: #FFA197; }
     .original-text--legend-block_anger-high {
       background-color: #E80521; }
-    .original-text--legend-block_disgust-low {
-      background-color: #FFF; }
-    .original-text--legend-block_disgust-medium {
-      background-color: #A779D8; }
-    .original-text--legend-block_disgust-high {
-      background-color: #592684; }
     .original-text--legend-block_fear-low {
       background-color: #FFF; }
     .original-text--legend-block_fear-medium {
@@ -2076,42 +2050,9 @@ pre[class*=" language-"] {
     .original-text--legend-block_tentative-medium {
       background-color: #94FFEF; }
     .original-text--legend-block_tentative-high {
-      background-color: #1AE5CD; }
-    .original-text--legend-block_openness-low {
-      background-color: #FFF; }
-    .original-text--legend-block_openness-medium {
-      background-color: #94FFEF; }
-    .original-text--legend-block_openness-high {
       color: #000000;
       background-color: #1AE5CD; }
-    .original-text--legend-block_conscientiousness-low {
-      background-color: #FFF; }
-    .original-text--legend-block_conscientiousness-medium {
-      background-color: #94FFEF; }
-    .original-text--legend-block_conscientiousness-high {
-      color: #000000;
-      background-color: #1AE5CD; }
-    .original-text--legend-block_extraversion-low {
-      background-color: #FFF; }
-    .original-text--legend-block_extraversion-medium {
-      background-color: #94FFEF; }
-    .original-text--legend-block_extraversion-high {
-      color: #000000;
-      background-color: #1AE5CD; }
-    .original-text--legend-block_agreeableness-low {
-      background-color: #FFF; }
-    .original-text--legend-block_agreeableness-medium {
-      background-color: #94FFEF; }
-    .original-text--legend-block_agreeableness-high {
-      background-color: #1AE5CD;
-      color: #000000; }
-    .original-text--legend-block_emotional-range-low {
-      background-color: #FFF; }
-    .original-text--legend-block_emotional-range-medium {
-      background-color: #94FFEF; }
-    .original-text--legend-block_emotional-range-high {
-      background-color: #1AE5CD;
-      color: #000000; }
+
   .original-text--legend-label {
     margin-top: 0.35rem;
     position: absolute;
@@ -2145,15 +2086,6 @@ pre[class*=" language-"] {
       color: #000000; }
     .original-text--sentence_anger-high {
       background-color: #E80521;
-      color: #ffffff; }
-    .original-text--sentence_disgust-low {
-      background-color: #FFF;
-      color: #000000; }
-    .original-text--sentence_disgust-medium {
-      background-color: #A779D8;
-      color: #000000; }
-    .original-text--sentence_disgust-high {
-      background-color: #592684;
       color: #ffffff; }
     .original-text--sentence_fear-low {
       background-color: #FFF;
@@ -2207,51 +2139,6 @@ pre[class*=" language-"] {
       background-color: #94FFEF;
       color: #000000; }
     .original-text--sentence_tentative-high {
-      background-color: #1AE5CD;
-      color: #000000; }
-    .original-text--sentence_openness-low {
-      background-color: #FFF;
-      color: #000000; }
-    .original-text--sentence_openness-medium {
-      background-color: #94FFEF;
-      color: #000000; }
-    .original-text--sentence_openness-high {
-      background-color: #1AE5CD;
-      color: #000000; }
-    .original-text--sentence_conscientiousness-low {
-      background-color: #FFF;
-      color: #000000; }
-    .original-text--sentence_conscientiousness-medium {
-      background-color: #94FFEF;
-      color: #000000; }
-    .original-text--sentence_conscientiousness-high {
-      background-color: #1AE5CD;
-      color: #000000; }
-    .original-text--sentence_extraversion-low {
-      background-color: #FFF;
-      color: #000000; }
-    .original-text--sentence_extraversion-medium {
-      background-color: #94FFEF;
-      color: #000000; }
-    .original-text--sentence_extraversion-high {
-      background-color: #1AE5CD;
-      color: #000000; }
-    .original-text--sentence_agreeableness-low {
-      background-color: #FFF;
-      color: #000000; }
-    .original-text--sentence_agreeableness-medium {
-      background-color: #94FFEF;
-      color: #000000; }
-    .original-text--sentence_agreeableness-high {
-      background-color: #1AE5CD;
-      color: #000000; }
-    .original-text--sentence_emotional-range-low {
-      background-color: #FFF;
-      color: #000000; }
-    .original-text--sentence_emotional-range-medium {
-      background-color: #94FFEF;
-      color: #000000; }
-    .original-text--sentence_emotional-range-high {
       background-color: #1AE5CD;
       color: #000000; }
   .original-text--tooltip-container {
@@ -2336,8 +2223,6 @@ pre[class*=" language-"] {
       margin-bottom: 0rem; }
     .original-text--tooltip-li_anger {
       color: #E80521; }
-    .original-text--tooltip-li_disgust {
-      color: #592684; }
     .original-text--tooltip-li_fear {
       color: #325E2B; }
     .original-text--tooltip-li_joy {
@@ -2347,18 +2232,8 @@ pre[class*=" language-"] {
     .original-text--tooltip-li_analytical {
       color: #075CD8; }
     .original-text--tooltip-li_confident {
-      color: #075CD8; }
+      color: #592684; }
     .original-text--tooltip-li_tentative {
-      color: #075CD8; }
-    .original-text--tooltip-li_openness {
-      color: #1AE5CD; }
-    .original-text--tooltip-li_conscientiousness {
-      color: #1AE5CD; }
-    .original-text--tooltip-li_extraversion {
-      color: #1AE5CD; }
-    .original-text--tooltip-li_agreeableness {
-      color: #1AE5CD; }
-    .original-text--tooltip-li_emotional-range {
       color: #1AE5CD; }
   .original-text--tooltip-score {
     display: inline-block;
@@ -2388,8 +2263,6 @@ pre[class*=" language-"] {
     width: 4.7rem; }
     .sentence-rank--score_anger {
       color: #E80521; }
-    .sentence-rank--score_disgust {
-      color: #592684; }
     .sentence-rank--score_fear {
       color: #325E2B; }
     .sentence-rank--score_joy {
@@ -2399,18 +2272,8 @@ pre[class*=" language-"] {
     .sentence-rank--score_analytical {
       color: #075CD8; }
     .sentence-rank--score_confident {
-      color: #075CD8; }
+      color: #592684; }
     .sentence-rank--score_tentative {
-      color: #075CD8; }
-    .sentence-rank--score_openness {
-      color: #1AE5CD; }
-    .sentence-rank--score_conscientiousness {
-      color: #1AE5CD; }
-    .sentence-rank--score_extraversion {
-      color: #1AE5CD; }
-    .sentence-rank--score_agreeableness {
-      color: #1AE5CD; }
-    .sentence-rank--score_emotional-range {
       color: #1AE5CD; }
   .sentence-rank--legend {
     text-align: right; }
