@@ -16,7 +16,6 @@
  /* eslint camelcase: "warn" */
  /* global  _, normalize, scrollTo,
      App
-     barGraphTemplate,
      emotionBarGraphTemplate,
      filtersTemplate,
      originalTextTemplate,
@@ -70,16 +69,12 @@ function allReady(thresholds, sampleText) {
     $textarea = $('.input--textarea'),
     $submitButton = $('.input--submit-button'),
     $emotionGraph = $('.summary-emotion-graph'),
-    $writingGraph = $('.summary-writing-graph'),
-    $socialGraph = $('.summary-social-graph'),
     $summaryJsonButton = $('.js-toggle-summary-json'),
     $summaryJson = $('.js-summary-json'),
     $summaryJsonView = $('.js-toggle-summary-json_show'),
     $summaryJsonHide = $('.js-toggle-summary-json_hide'),
     $summaryJsonCode = $('.js-summary-json .json--code'),
     $emotionFilters = $('.filters--emotion'),
-    $writingFilters = $('.filters--writing'),
-    $socialFilters = $('.filters--social'),
     $originalTexts = $('.original-text--texts'),
     $originalTextTooltipContainer = $('.original-text--tooltip-container'),
     $originalTextDescription = $('.original-text--description'),
@@ -87,7 +82,6 @@ function allReady(thresholds, sampleText) {
     $sentenceRankTable = $('.sentence-rank--table'),
     $sentenceJson = $('.json .json--code'),
     $outputResetButton = $('.output--reset-button'),
-    barGraph_template = barGraphTemplate.innerHTML, // eslint-disable-line camelcase
     emotionBarGraph_template = emotionBarGraphTemplate.innerHTML, // eslint-disable-line camelcase
     filters_template = filtersTemplate.innerHTML, // eslint-disable-line camelcase
     originalText_template = originalTextTemplate.innerHTML, // eslint-disable-line camelcase
@@ -120,41 +114,26 @@ function allReady(thresholds, sampleText) {
       app;
 
     // if only one sentence, sentences will not exist, so mutate sentences_tone manually
-    console.log("TYPE:"+typeof (data.sentences_tone));
     if (typeof (data.sentences_tone) === 'undefined' || data.sentences_tone === null) {
-      console.log("NO SENTENCE TONE");
       data.sentences_tone = [{
         sentence_id: 0,
         text: selectedSampleText,
         tones: data.document_tone.tones
-        //tone_categories: data.document_tone.tone_categories
       }];
     }
     sentences = data.sentences_tone;
-    console.log("SENTENCES:"+sentences);
 
-     
+    //Populate sentencesTone with all unique tones in sentences, to be displayed in sentence view
     sentences.forEach(function(elements) {
-      console.log("elements: "+ JSON.stringify(elements));
       elements.tones.forEach(function(item) {
-        console.log("item: "+ JSON.stringify(item));
-        var tonePresent = false;
-        sentenceTone.map(function(obj) {return obj.tone_id;}).forEach(function(elem){
-          console.log("elem: "+ JSON.stringify(elem));
-          if (item.tone_id == elem){
-            tonePresent = true;
-          }
-        })
-        if (!tonePresent){
-          sentenceTone = sentenceTone.concat(item);
-        }
-        if (sentenceTone.length == 0){
-          sentenceTone = sentenceTone.concat(item);
-            
-        }
-      })
+        sentenceTone[item.tone_id] = item;
+      });
     });
-    app = new App(data.document_tone, sentences.slice(0), thresholds, selectedSample); // clone sentences
+    sentenceTone = Object.keys(sentenceTone).sort().map(function(obj) {
+      return sentenceTone[obj];
+    });
+
+    app = new App(data.document_tone, sentences.slice(0), thresholds, selectedSample, sentenceTone); // clone sentences
 
     /**
      * Map Callback function for emotion document tones
@@ -169,46 +148,10 @@ function allReady(thresholds, sampleText) {
         label: item.tone_name,
         score: app.percentagify(item.score, 'Emotion Tone'),
         tooltip: app.toneHash()[item.tone_name].tooltip,
-        likeliness:  v1 > v3 ? 'VERY LIKELY' :  v1 > v2 ? 'LIKELY' : 'UNLIKELY',
-        visible:  v1 > v3 ? 'show' :  v1 > v2 ? 'show' : 'dim',
+        likeliness:  v1 > v3 ? 'VERY LIKELY' :  v1 >= v2 ? 'LIKELY' : 'UNLIKELY',
+        visible:  v1 > v3 ? 'show' :  v1 >= v2 ? 'show' : 'dim',
         thresholdLow: app.percentagify(app.thresholds().doc[item.tone_name][0]),
         thresholdHigh: app.percentagify(app.thresholds().doc[item.tone_name][1])
-      };
-    }
-
-    /**
-     * Map Callback function for writing document tones
-     * @param {Object} item current iterating element
-     * @return {Object} label, score
-     */
-    function writingMap(item) {
-      var v1 = app.percentagify(item.score, 'Language Tone');
-      var v2 = app.percentagify(app.thresholds().doc[item.tone_name][0]);
-      var v3 = app.percentagify(app.thresholds().doc[item.tone_name][1]);
-      return {
-        label: item.tone_name,
-        score: app.percentagify(item.score, 'Language Tone'),
-        tooltip: app.toneHash()[item.tone_name].tooltip,
-        visible:  v1 > v3 ? 'show' :  v1 > v2 ? 'show' : 'dim',
-        likeliness:  v1 > v3 ? 'VERY LIKELY' :  v1 > v2 ? 'LIKELY' : 'UNLIKELY'
-      };
-    }
-
-    /**
-     * Map Callback function for social document tones
-     * @param {Object} item current iterating element
-     * @return {Object} label, score, threshold percent, tooltip text
-     */
-    function socialMap(item) {
-      var v1 = app.percentagify(item.score, 'Social Tone');
-      var v2 = app.percentagify(app.thresholds().doc[item.tone_name][0]);
-      var v3 = app.percentagify(app.thresholds().doc[item.tone_name][1]);
-      return {
-        label: item.tone_name,
-        score: app.percentagify(item.score, 'Social Tone'),
-        tooltip: app.toneHash()[item.tone_name].tooltip,
-        likeliness:  v1 > v3 ? 'VERY LIKELY' :  v1 > v2 ? 'LIKELY' : 'UNLIKELY',
-        visible:  v1 > v3 ? 'show' :  v1 > v2 ? 'show' : 'dim'
       };
     }
 
@@ -247,6 +190,9 @@ function allReady(thresholds, sampleText) {
      * @return {undefined}
      */
     function updateFilters() {
+      if (app.selectedFilter() == 'None' && sentences[0].tones.length > 0){
+        app.selectedFilter(sentences[0].tones[0].tone_name);
+      }
       $('.filters--radio[data-id=' + app.selectedFilter() + ']').prop('checked', true);
     }
 
@@ -299,9 +245,10 @@ function allReady(thresholds, sampleText) {
      * @return {undefined}
      */
     function updateOriginalTextTooltip(index) {
+      //TODO don't update tooltip if tone is not in sentence
       $originalTextTooltipContainer.html(_.template(originalTextTooltip_template, {
         items: app.updateOriginalSentencesTooltips(index),
-        isSocialTone: app.selectedTone()
+        isSocialTone: 'Emotion Tone'
       }));
     }
 
@@ -387,15 +334,28 @@ function allReady(thresholds, sampleText) {
     emotionTone = emotionTone.map(emotionMap);
     sentenceTone = sentenceTone.map(emotionMap);
 
-    $emotionGraph.html(_.template(emotionBarGraph_template, {
-      items: emotionTone,
-      className: 'emotion'
-    }));
+    //Display message if no dominant tones at document level
+    //TODO add style for the message being displayed
+    if (emotionTone == null || emotionTone.length == 0){
+      $emotionGraph.html('No dominant tones detected in the document.');
+    }
+    else{
+      $emotionGraph.html(_.template(emotionBarGraph_template, {
+        items: emotionTone,
+        className: 'emotion'
+      }));
+    }
 
-    $emotionFilters.html(_.template(filters_template, {
-      //items: emotionTone
-      items: sentenceTone
-    }));
+    //Display message if no dominant tones at sentence level
+    //TODO add style for the message being displayed
+    if (sentenceTone == null || sentenceTone.length == 0){
+      $emotionFilters.html('No dominant tones detected in the sentences.');
+    }
+    else{
+      $emotionFilters.html(_.template(filters_template, {
+        items: sentenceTone
+      }));
+    }
 
     updateFilters();
     matchSentenceViewsHeight();
