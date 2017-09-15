@@ -19,16 +19,16 @@
 /**
  * This is a JS constructor that controls this application's model and state
  * logic.
- * @param {Object} documentTones tone data
+ * @param {Object} documentTones tone data at document level
  * @param {Array} sentences sentence tone array
  * @param {Object} thresholds threshold data
  * @param {String} selectedSample selected sample id
+ * @param {Object} sentenceTones tone data at sentence level
  * @return {Object} exposed functions that interact with application state logic
  *
  */
-function App(documentTones, sentences, thresholds, selectedSample) { // eslint-disable-line no-unused-vars
-  var _selectedFilter = 'Anger',
-    _selectedTone = 'Emotion Tone',
+function App(documentTones, sentences, thresholds, selectedSample, sentenceTones) { // eslint-disable-line no-unused-vars
+  var _selectedFilter = 'None',
     _selectedSample = selectedSample || 'customer-call',
     _lowToHigh = false,
     _currentHoveredOriginalSentence = document.querySelector('body'),
@@ -37,104 +37,14 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
     _documentTones = documentTones,
     _thresholds = thresholds,
     _isHoveringOriginalText = false,
-    _socialToneHoverTexts,
-    _languageToneHoverTexts,
     _emotionToneHoverTexts,
-    _socialToneDescription,
-    _languageToneDescription,
     _emotionToneDescription,
     _toneHash,
-    TONE_CATEGORIES_RESET = [{
-      tones: [{
-        score: 0,
-        tone_id: 'Anger',
-        tone_name: 'Anger',
-        tone_category_id: 'emotion_tone',
-        tone_category_name: 'Emotion Tone'
-      }, {
-        score: 0,
-        tone_id: 'Disgust',
-        tone_name: 'Disgust',
-        tone_category_id: 'emotion_tone',
-        tone_category_name: 'Emotion Tone'
-      }, {
-        score: 0,
-        tone_id: 'Fear',
-        tone_name: 'Fear',
-        tone_category_id: 'emotion_tone',
-        tone_category_name: 'Emotion Tone'
-      }, {
-        score: 0,
-        tone_id: 'Joy',
-        tone_name: 'Joy',
-        tone_category_id: 'emotion_tone',
-        tone_category_name: 'Emotion Tone'
-      }, {
-        score: 0,
-        tone_id: 'Sadness',
-        tone_name: 'Sadness',
-        tone_category_id: 'emotion_tone',
-        tone_category_name: 'Emotion Tone'
-      }],
-      category_id: 'emotion_tone',
-      category_name: 'Emotion Tone'
-    }, {
-      tones: [{
-        score: 0,
-        tone_id: 'Analytical',
-        tone_name: 'Analytical',
-        tone_category_id: 'language_tone',
-        tone_category_name: 'Language Tone'
-      }, {
-        score: 0,
-        tone_id: 'Confident',
-        tone_name: 'Confident',
-        tone_category_id: 'language_tone',
-        tone_category_name: 'Language Tone'
-      }, {
-        score: 0,
-        tone_id: 'Tentative',
-        tone_name: 'Tentative',
-        tone_category_id: 'language_tone',
-        tone_category_name: 'Language Tone'
-      }],
-      category_id: 'language_tone',
-      category_name: 'Language Tone'
-    }, {
-      tones: [{
-        score: 0,
-        tone_id: 'Openness_Big5',
-        tone_name: 'Openness',
-        tone_category_id: 'social_tone',
-        tone_category_name: 'Social Tone'
-      }, {
-        score: 0,
-        tone_id: 'Conscientiousness_Big5',
-        tone_name: 'Conscientiousness',
-        tone_category_id: 'social_tone',
-        tone_category_name: 'Social Tone'
-      }, {
-        score: 0,
-        tone_id: 'Extraversion_Big5',
-        tone_name: 'Extraversion',
-        tone_category_id: 'social_tone',
-        tone_category_name: 'Social Tone'
-      }, {
-        score: 0,
-        tone_id: 'Agreeableness_Big5',
-        tone_name: 'Agreeableness',
-        tone_category_id: 'social_tone',
-        tone_category_name: 'Social Tone'
-      }, {
-        score: 0,
-        tone_id: 'Neuroticism_Big5',
-        tone_name: 'Emotional Range',
-        tone_category_id: 'social_tone',
-        tone_category_name: 'Social Tone'
-      }],
-      category_id: 'social_tone',
-      category_name: 'Social Tone'
-    }],      SCORE_DECIMAL_PLACE = 2,
+    NO_TONE = [{
+      tone_id: 'none',
+      tone_name: 'None'
+    }],
+    SCORE_DECIMAL_PLACE = 2,
     PERCENTAGE_DECIMAL_PLACE = 1,
     SOCIAL_TONE_MIN_RANGE = -1, // eslint-disable-line no-unused-vars
     SOCIAL_TONE_MAX_RANGE = 1,  // eslint-disable-line no-unused-vars
@@ -145,6 +55,7 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
    * Mutates _rankedSentences
    * @return {undefined}
    */
+   /*
   function _cleanSentences() {
     // look for empty tone_categories and set tone_categories to 0 values
     _rankedSentences.forEach(function (item) {
@@ -153,19 +64,27 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
       }
     });
   }
+  */
 
   /**
    * Get index of a tone
    * @param {String} key tone name as key
    * @return {int} index positioning of tone
    */
+   /*
   function _searchIndex(key) {
     return _toneHash[key].index;
   }
+  */
 
+  /**
+   * Get index of a tone in the sentence object
+   * @param {String} key tone name as key
+   * @param {object} obj sentence object as obj
+   * @return {int} index positioning of tone
+   */
   function _searchIndexObject(key, obj) {
     var item = obj, i=0, index;
-    //console.log("_searchIndexObject key item.tones:"+key+JSON.stringify(item.tones));
     item.tones.forEach (function(element){
       if (key == element.tone_name){
         index = i;
@@ -189,7 +108,6 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
       newScore = score,
       baseThreshold = 0;
 
-    console.log("_toneLevel toneKey, score,toneValue: "+toneKey, score,toneValue)
     if (newScore <= baseThreshold) {
       outputTone = '';
     } else if (newScore < toneValue.low.score) {
@@ -213,25 +131,14 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
 
   /**
    * Getter / Setter for _selectedFilter
-   * Also sets _selectedTone appropriately
    * @param {String} str setter tone name
    * @return {String} _selectedFilter
    */
   output.selectedFilter = function (str) {
-    if (!arguments.length || str == null) return _selectedFilter;
-    //if (str == null) return output;
+    if (!arguments.length) return _selectedFilter;
+    if (str == null) str = 'None';
     _selectedFilter = str;
-    _selectedTone = _toneHash[_selectedFilter].tone;
-
     return output;
-  };
-
-  /**
-   * Getter for _selectedTone
-   * @return {String} _selectedTone
-   */
-  output.selectedTone = function () {
-    return _selectedTone;
   };
 
   /**
@@ -312,14 +219,14 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
         */
           function (a, b) {
             var aIndex = _searchIndexObject(_selectedFilter, a),
-            bIndex = _searchIndexObject(_selectedFilter, b), aScore = 0, bScore = 0;
+              bIndex = _searchIndexObject(_selectedFilter, b), aScore = 0, bScore = 0;
             if (aIndex != null) aScore = a.tones[aIndex].score;
             if (bIndex != null) bScore = b.tones[bIndex].score;
             return aScore - bScore;
           } :
           function(a, b) {
             var aIndex = _searchIndexObject(_selectedFilter, a),
-            bIndex = _searchIndexObject(_selectedFilter, b), aScore = 0, bScore = 0;
+              bIndex = _searchIndexObject(_selectedFilter, b), aScore = 0, bScore = 0;
             if (aIndex != null) aScore = a.tones[aIndex].score;
             if (bIndex != null) bScore = b.tones[bIndex].score;
 
@@ -327,8 +234,8 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
           },
       map = function (item) {
         var itemIndex = _searchIndexObject(_selectedFilter, item),
-            score = 0;
-        if (itemIndex != null) score = item.tones[itemIndex].score.toFixed(SCORE_DECIMAL_PLACE);        
+          score = 0;
+        if (itemIndex != null) score = item.tones[itemIndex].score.toFixed(SCORE_DECIMAL_PLACE);
         return {
           text: item.text,
           score: score,
@@ -346,10 +253,9 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
     var map = function (item) {
       var result = item;
       //result.className = _toneLevel(_selectedFilter, item.tones[_searchIndex(_selectedFilter)].score, 'className_OT');
-      var tone_score;
+      var tone_score, index;
       //If the tone was not present in the text, then assign it a score of 0
-      console.log("updateOriginalSentences item:"+JSON.stringify(item));
-      index = _searchIndexObject(_selectedFilter, item)
+      index = _searchIndexObject(_selectedFilter, item);
       if ( index == null){
         tone_score = 0;
       }
@@ -358,7 +264,6 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
       }
 
       result.className = _toneLevel(_selectedFilter, tone_score, 'className_OT');
-      console.log("updateOriginalSentences tone_score+_selectedFilter+result.className:"+tone_score+_selectedFilter+result.className)
       return result;
     };
     return _originalSentences.map(map);
@@ -378,6 +283,7 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
    * @return {Array} array of {Object} sentence data
    */
   output.updateOriginalSentencesTooltips = function (sentenceIndex) {
+    //TODO If selected filter tone is not present in this sentence, then don't update
     var map = function (item) {
       var result = item;
       result.score_percentage = item.score.toFixed(SCORE_DECIMAL_PLACE);
@@ -387,7 +293,7 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
 
     return move(
       _originalSentences[sentenceIndex].tones.slice(0).map(map),
-      _searchIndex(_selectedFilter),
+      _searchIndexObject(_selectedFilter, _originalSentences[sentenceIndex]),//_searchIndex(_selectedFilter),
       0);
   };
 
@@ -396,9 +302,9 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
    * @return {undefined}
    */
   output.selectFilterBySample = function () {
-    var getHighestTone = function (toneCategory) {
+    var getHighestTone = function () {
         if (_documentTones.tones.length == 0){
-          return;
+          return 'None';
         }
         var highestTone = _documentTones.tones[0].tone_name,
           highestScore = 0;
@@ -411,10 +317,10 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
         return highestTone;
       },
       sample = {
-        'customer-call': getHighestTone('Emotion Tone'),
-        'email': getHighestTone('Social Tone'),
-        'corporate-announcement': getHighestTone('Language Tone'),
-        'own-text': getHighestTone('Emotion Tone')
+        'customer-call': getHighestTone(),
+        'email': getHighestTone(),
+        'corporate-announcement': getHighestTone(),
+        'own-text': getHighestTone()
       };
 
     if (_selectedSample in sample) {
@@ -432,6 +338,7 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
   _originalSentences = _rankedSentences.slice(0);
 
   _emotionToneHoverTexts = {
+    'None': '',
     'Anger': 'Likelihood of writer being perceived as angry. Low value indicates unlikely to be perceived as angry. High value indicates very likely to be perceived as angry. ',
     'Disgust': 'Likelihood of writer being perceived as disgusted. Low value, unlikely to be perceived as disgusted. High value, very likely to be perceived as disgusted.',
     'Fear': 'Likelihood of writer being perceived as scared. Low value indicates unlikely to be perceived as fearful. High value, very likely to be perceived as scared.',
@@ -439,11 +346,12 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
     'Sadness': 'Likelihood of writer being perceived as sad. Low value, unlikely to be perceived as sad. High value very likely to be perceived as sad.',
     'Analytical': 'A writer\'s reasoning and analytical attitude about things. Higher value, more likely to be perceived as intellectual, rational, systematic, emotionless, or impersonal.',
     'Confident': 'A writer\'s degree of certainty. Higher value, more likely to be perceived as assured, collected, hopeful, or egotistical.',
-    'Tentative': 'A writer\'s degree of inhibition. Higher value, more likely to be perceived as questionable, doubtful, limited, or debatable.'    
+    'Tentative': 'A writer\'s degree of inhibition. Higher value, more likely to be perceived as questionable, doubtful, limited, or debatable.'
   };
- 
+
   // Original Text Descriptions
   _emotionToneDescription = {
+    'None': '',
     'Anger': '<b>Anger:</b> Evoked due to injustice, conflict, humiliation, negligence or betrayal. If anger is active, the individual attacks the target, verbally or physically. If anger is passive, the person silently sulks and feels tension and hostility. ',
     'Disgust': '<b>Disgust:</b> An emotional response of revulsion to something considered offensive or unpleasant. It is a sensation that refers to something revolting.',
     'Fear': '<b>Fear:</b> A response to impending danger. It is a survival mechanism that is a reaction to some negative stimulus. It may be a mild caution or an extreme phobia.',
@@ -451,49 +359,33 @@ function App(documentTones, sentences, thresholds, selectedSample) { // eslint-d
     'Sadness': '<b>Sadness:</b> Indicates a feeling of loss and disadvantage. When a person can be observed to be quiet, less energetic and withdrawn, it may be inferred that sadness exists.',
     'Analytical': '<b>Analytical:</b> A person\'s reasoning and analytical attitude about things.',
     'Confident': '<b>Confident:</b> A person\'s degree of certainty.',
-    'Tentative': '<b>Tentative:</b> A person\'s degree of inhibition.'    
+    'Tentative': '<b>Tentative:</b> A person\'s degree of inhibition.'
   };
 
   // Constructing the _toneHash hashmap
-  var _allTones = [{ tone_id: 'anger', tone_name: 'Anger'}, { tone_id: 'fear', tone_name: 'Fear'}, { tone_id: 'joy', tone_name: 'Joy'}, { tone_id: 'sadness', tone_name: 'Sadness'}, { tone_id: 'analytical', tone_name: 'Analytical'}, { tone_id: 'confident', tone_name: 'Confident'}, { tone_id: 'tentative', tone_name: 'Tentative'}];
-  //_toneHash = sentences[0].tone_categories.reduce(function (prevVal, curVal, curIndex) {
-    //var reducedPrevVal = curVal.tones.reduce(function (prevVal2, curVal2, curIndex2) {
-    _toneHash = _allTones.reduce(function (prevVal2, curVal2, curIndex2) {
-      prevVal2[curVal2.tone_name] = {
-        index: curIndex2,
-        //tone: curVal.category_name,
-        low: {
-          score: _thresholds.sentence[curVal2.tone_name][0],
-          className_OT: 'original-text--sentence_' + normalize(curVal2.tone_name) + '-low',
-          className_SR: 'sentence-rank--score_' + normalize(curVal2.tone_name) + '-low'
-        },
-        medium: {
-          className_OT: 'original-text--sentence_' + normalize(curVal2.tone_name) + '-medium',
-          className_SR: 'sentence-rank--score_' + normalize(curVal2.tone_name) + '-medium'
-        },
-        high: {
-          score: _thresholds.sentence[curVal2.tone_name][1],
-          className_OT: 'original-text--sentence_' + normalize(curVal2.tone_name) + '-high',
-          className_SR: 'sentence-rank--score_' + normalize(curVal2.tone_name) + '-high'
-        }
-      };
-      /*
-      if (curVal.category_name === 'Social Tone') {
-        prevVal2[curVal2.tone_name].tooltip = _socialToneHoverTexts[curVal2.tone_name];
-        prevVal2[curVal2.tone_name].description = _socialToneDescription[curVal2.tone_name];
+  _toneHash = documentTones.tones.concat(sentenceTones, NO_TONE).reduce(function (prevVal2, curVal2, curIndex2) {
+    prevVal2[curVal2.tone_name] = {
+      index: curIndex2,
+      low: {
+        score: _thresholds.sentence[curVal2.tone_name][0],
+        className_OT: 'original-text--sentence_' + normalize(curVal2.tone_name) + '-low',
+        className_SR: 'sentence-rank--score_' + normalize(curVal2.tone_name) + '-low'
+      },
+      medium: {
+        className_OT: 'original-text--sentence_' + normalize(curVal2.tone_name) + '-medium',
+        className_SR: 'sentence-rank--score_' + normalize(curVal2.tone_name) + '-medium'
+      },
+      high: {
+        score: _thresholds.sentence[curVal2.tone_name][1],
+        className_OT: 'original-text--sentence_' + normalize(curVal2.tone_name) + '-high',
+        className_SR: 'sentence-rank--score_' + normalize(curVal2.tone_name) + '-high'
       }
+    };
+    prevVal2[curVal2.tone_name].tooltip = _emotionToneHoverTexts[curVal2.tone_name];
+    prevVal2[curVal2.tone_name].description = _emotionToneDescription[curVal2.tone_name];
 
-      if (curVal.category_name === 'Language Tone') {
-        prevVal2[curVal2.tone_name].tooltip = _languageToneHoverTexts[curVal2.tone_name];
-        prevVal2[curVal2.tone_name].description = _languageToneDescription[curVal2.tone_name];
-      }
-      if (curVal.category_name === 'Emotion Tone') {
-      */
-      prevVal2[curVal2.tone_name].tooltip = _emotionToneHoverTexts[curVal2.tone_name];
-      prevVal2[curVal2.tone_name].description = _emotionToneDescription[curVal2.tone_name];
-      //}
-      return prevVal2;
-    }, {});
+    return prevVal2;
+  }, {});
 
   return output;
 }
