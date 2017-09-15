@@ -2141,6 +2141,9 @@ pre[class*=" language-"] {
     .original-text--sentence_tentative-high {
       background-color: #1AE5CD;
       color: #000000; }
+    .original-text--sentence_tentative-high {
+      background-color: #1AE5CD;
+      color: #000000; }
   .original-text--tooltip-container {
     position: fixed;
     top: 10rem;

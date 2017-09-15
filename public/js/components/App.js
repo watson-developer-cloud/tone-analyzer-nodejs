@@ -94,6 +94,18 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
     return index;
   }
 
+  function _searchIndexObject(key, obj) {
+    var item = obj, i=0, index;
+    //console.log("_searchIndexObject key item.tones:"+key+JSON.stringify(item.tones));
+    item.tones.forEach (function(element){
+      if (key == element.tone_name){
+        index = i;
+      }
+      ++i;
+    });
+    return index;
+  }
+
   /**
    * This is a helper function to determine which classname to use by
    * comparing tone score with thresholds.
@@ -108,6 +120,7 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
       newScore = score,
       baseThreshold = 0;
 
+    console.log("_toneLevel toneKey, score,toneValue: "+toneKey, score,toneValue)
     if (newScore <= baseThreshold) {
       outputTone = '';
     } else if (newScore < toneValue.low.score) {
