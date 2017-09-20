@@ -363,7 +363,7 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
 
   // Original Text Descriptions
   _emotionToneDescription = {
-    'No Tone': 'No dominant tones detected in the sentences.',
+    'No Tone': '',
     'Anger': '<b>Anger:</b> Evoked due to injustice, conflict, humiliation, negligence or betrayal. If anger is active, the individual attacks the target, verbally or physically. If anger is passive, the person silently sulks and feels tension and hostility. ',
     'Disgust': '<b>Disgust:</b> An emotional response of revulsion to something considered offensive or unpleasant. It is a sensation that refers to something revolting.',
     'Fear': '<b>Fear:</b> A response to impending danger. It is a survival mechanism that is a reaction to some negative stimulus. It may be a mild caution or an extreme phobia.',
