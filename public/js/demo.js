@@ -89,7 +89,7 @@ function allReady(thresholds, sampleText) {
     sentenceRank_template = sentenceRankTemplate.innerHTML, // eslint-disable-line camelcase
     originalTextTooltip_template = originalTextTooltipTemplate.innerHTML, // eslint-disable-line camelcase
     originalTextLegend_template = originalTextLegendTemplate.innerHTML, // eslint-disable-line camelcase
-    lastSentenceID = 0;
+    lastSentenceID;
 
   /**
    * Callback function for AJAX post to get tone analyzer data
@@ -272,6 +272,11 @@ function allReady(thresholds, sampleText) {
       if (sentenceTone.length > 0){
         $legend.html(_.template(originalTextLegend_template, {
           className: normalize(app.selectedFilter())
+        }));
+      }
+      else{
+        $legend.html(_.template(originalTextLegend_template, {
+          className: ''
         }));
       }
     }
