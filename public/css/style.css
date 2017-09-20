@@ -1438,7 +1438,9 @@ pre[class*=" language-"] {
 }
 
 .summary-emotion-graph {
-  position: relative; }
+  position: relative;
+  font-size: 0.9em;
+  margin-top: 0.5rem; }
   .summary-emotion-graph--row {
     margin-top: 1rem; }
   .summary-emotion-graph--bar-value {
@@ -1936,6 +1938,9 @@ pre[class*=" language-"] {
     border-left: 4px solid #ececec;
     font-size: 0.9rem;
     font-weight: 400; }
+    .filters--emotion{
+      font-size: 0.9em;
+      margin-top: 1rem; }
     .filters--emotion .filters--label:last-child,
     .filters--writing .filters--label:last-child,
     .filters--social .filters--label:last-child {
