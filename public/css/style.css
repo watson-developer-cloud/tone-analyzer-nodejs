@@ -2250,6 +2250,10 @@ pre[class*=" language-"] {
       color: #592684; }
     .original-text--tooltip-li_tentative {
       color: #1AE5CD; }
+    .original-text--tooltip-li_no-tone{
+      font-size: 1em; }
+    .original-text--tooltip-li_error{
+      font-size: 0.9em; }
   .original-text--tooltip-score {
     display: inline-block;
     width: 3rem;
