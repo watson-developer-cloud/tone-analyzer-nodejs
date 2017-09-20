@@ -28,22 +28,27 @@
  *
  */
 function App(documentTones, sentences, thresholds, selectedSample, sentenceTones) { // eslint-disable-line no-unused-vars
-  var _selectedFilter = 'None',
+  var _selectedFilter = 'No Tone',
     _selectedSample = selectedSample || 'customer-call',
     _lowToHigh = false,
     _currentHoveredOriginalSentence = document.querySelector('body'),
     _rankedSentences = sentences,
     _originalSentences,
     _documentTones = documentTones,
+    _sentenceTones = sentenceTones,
     _thresholds = thresholds,
     _isHoveringOriginalText = false,
     _emotionToneHoverTexts,
     _emotionToneDescription,
     _toneHash,
-    NO_TONE = [{
-      tone_id: 'none',
-      tone_name: 'None'
-    }],
+    NO_TONE = {
+      tone_id: 'no-tone',
+      tone_name: 'No Tone'
+    },
+    ERROR_TONE = {
+      tone_id: 'error',
+      tone_name: 'Error'
+    },
     SCORE_DECIMAL_PLACE = 2,
     PERCENTAGE_DECIMAL_PLACE = 1,
     SOCIAL_TONE_MIN_RANGE = -1, // eslint-disable-line no-unused-vars
@@ -55,16 +60,16 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
    * Mutates _rankedSentences
    * @return {undefined}
    */
-   /*
+
   function _cleanSentences() {
-    // look for empty tone_categories and set tone_categories to 0 values
+    // look for empty tones in sentences and set it to noTone
     _rankedSentences.forEach(function (item) {
-      if (item.tone_categories.length === 0) {
-        item.tone_categories = TONE_CATEGORIES_RESET.slice(0);
+      if (item.tones.length === 0) {
+        item.tones = [{'score':0, 'tone_id':NO_TONE.tone_id, 'tone_name':NO_TONE.tone_name}];
       }
     });
   }
-  */
+
 
   /**
    * Get index of a tone
@@ -94,18 +99,6 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
     return index;
   }
 
-  function _searchIndexObject(key, obj) {
-    var item = obj, i=0, index;
-    //console.log("_searchIndexObject key item.tones:"+key+JSON.stringify(item.tones));
-    item.tones.forEach (function(element){
-      if (key == element.tone_name){
-        index = i;
-      }
-      ++i;
-    });
-    return index;
-  }
-
   /**
    * This is a helper function to determine which classname to use by
    * comparing tone score with thresholds.
@@ -119,9 +112,12 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
       toneValue = _toneHash[toneKey],
       newScore = score,
       baseThreshold = 0;
-
-    console.log("_toneLevel toneKey, score,toneValue: "+toneKey, score,toneValue)
-    if (newScore <= baseThreshold) {
+    //Assign class based on score, error or no-tone
+    if (toneKey == ERROR_TONE.tone_name){
+      outputTone = 'original-text--sentence_'+normalize(ERROR_TONE.tone_name);
+    } else if (toneKey == NO_TONE.tone_name){
+      outputTone = 'original-text--sentence_'+normalize(NO_TONE.tone_name);
+    } else if (newScore <= baseThreshold) {
       outputTone = '';
     } else if (newScore < toneValue.low.score) {
       outputTone = toneValue.low[classNameType];
@@ -149,7 +145,7 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
    */
   output.selectedFilter = function (str) {
     if (!arguments.length) return _selectedFilter;
-    if (str == null) str = 'None';
+    if (str == null) str = NO_TONE.tone_name;
     _selectedFilter = str;
     return output;
   };
@@ -264,9 +260,7 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
    */
   output.updateOriginalSentences = function() {
     var map = function (item) {
-      var result = item;
-      //result.className = _toneLevel(_selectedFilter, item.tones[_searchIndex(_selectedFilter)].score, 'className_OT');
-      var tone_score, index;
+      var result = item, tone_score, index;
       //If the tone was not present in the text, then assign it a score of 0
       index = _searchIndexObject(_selectedFilter, item);
       if ( index == null){
@@ -276,7 +270,12 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
         tone_score = item.tones[index].score;
       }
 
-      result.className = _toneLevel(_selectedFilter, tone_score, 'className_OT');
+      if (ERROR_TONE.tone_id in item){
+        result.className = _toneLevel(ERROR_TONE.tone_name, tone_score, 'className_OT');
+      }
+      else{
+        result.className = _toneLevel(_selectedFilter, tone_score, 'className_OT');
+      }
       return result;
     };
     return _originalSentences.map(map);
@@ -299,8 +298,17 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
     //TODO If selected filter tone is not present in this sentence, then don't update
     var map = function (item) {
       var result = item;
-      result.score_percentage = item.score.toFixed(SCORE_DECIMAL_PLACE);
       result.className = 'original-text--tooltip-li_' + normalize(result.tone_name);
+
+      //Assign score only if there a tone in sentence
+      if (item.tone_name != NO_TONE.tone_name){
+        result.score_percentage = item.score.toFixed(SCORE_DECIMAL_PLACE);
+      }
+      if (ERROR_TONE.tone_id in _originalSentences[sentenceIndex]){
+        result.error = _originalSentences[sentenceIndex].error; //Text displayed in tooltip will be the error message
+        result.className = 'original-text--tooltip-li_' + normalize(ERROR_TONE.tone_name);
+      }
+
       return result;
     };
 
@@ -316,29 +324,20 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
    */
   output.selectFilterBySample = function () {
     var getHighestTone = function () {
-        if (_documentTones.tones.length == 0){
-          return 'None';
+      if (_sentenceTones.length == 0){
+        return NO_TONE.tone_name;
+      }
+      var highestTone = _sentenceTones[0].tone_name,
+        highestScore = 0;
+      _sentenceTones.forEach(function(item) {
+        if (highestScore < item.score) {
+          highestScore = item.score;
+          highestTone = item.tone_name;
         }
-        var highestTone = _documentTones.tones[0].tone_name,
-          highestScore = 0;
-        _documentTones.tones.forEach(function(item) {
-          if (highestScore < item.score) {
-            highestScore = item.score;
-            highestTone = item.tone_name;
-          }
-        });
-        return highestTone;
-      },
-      sample = {
-        'customer-call': getHighestTone(),
-        'email': getHighestTone(),
-        'corporate-announcement': getHighestTone(),
-        'own-text': getHighestTone()
-      };
-
-    if (_selectedSample in sample) {
-      output.selectedFilter(sample[_selectedSample]);
-    }
+      });
+      return highestTone;
+    };
+    output.selectedFilter(getHighestTone());
   };
 
   /**
@@ -347,11 +346,11 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
   output.percentagify = _percentagify;
 
   // cleaning and setting up everything
-  //_cleanSentences(_rankedSentences); //Removing since tone_categories have been removed from both document and sentence level
+  _cleanSentences(_rankedSentences);
   _originalSentences = _rankedSentences.slice(0);
 
   _emotionToneHoverTexts = {
-    'None': '',
+    'No Tone': '',
     'Anger': 'Likelihood of writer being perceived as angry. Low value indicates unlikely to be perceived as angry. High value indicates very likely to be perceived as angry. ',
     'Disgust': 'Likelihood of writer being perceived as disgusted. Low value, unlikely to be perceived as disgusted. High value, very likely to be perceived as disgusted.',
     'Fear': 'Likelihood of writer being perceived as scared. Low value indicates unlikely to be perceived as fearful. High value, very likely to be perceived as scared.',
@@ -364,7 +363,7 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
 
   // Original Text Descriptions
   _emotionToneDescription = {
-    'None': '',
+    'No Tone': 'No dominant tones detected in the sentences.',
     'Anger': '<b>Anger:</b> Evoked due to injustice, conflict, humiliation, negligence or betrayal. If anger is active, the individual attacks the target, verbally or physically. If anger is passive, the person silently sulks and feels tension and hostility. ',
     'Disgust': '<b>Disgust:</b> An emotional response of revulsion to something considered offensive or unpleasant. It is a sensation that refers to something revolting.',
     'Fear': '<b>Fear:</b> A response to impending danger. It is a survival mechanism that is a reaction to some negative stimulus. It may be a mild caution or an extreme phobia.',
@@ -376,7 +375,7 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
   };
 
   // Constructing the _toneHash hashmap
-  _toneHash = documentTones.tones.concat(sentenceTones, NO_TONE).reduce(function (prevVal2, curVal2, curIndex2) {
+  _toneHash = _documentTones.tones.concat(_sentenceTones, NO_TONE).reduce(function (prevVal2, curVal2, curIndex2) {
     prevVal2[curVal2.tone_name] = {
       index: curIndex2,
       low: {

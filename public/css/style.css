@@ -1915,6 +1915,12 @@ pre[class*=" language-"] {
     display: block;
     margin-top: 0rem; }
 
+.document--warning{
+  color: #E80521;
+  font-size: 0.85em;
+  margin-top: 0.5rem;
+}
+
 .filters {
   padding: 1.5rem 1.5rem 0rem;
   background-color: #ececec; }
@@ -2141,9 +2147,10 @@ pre[class*=" language-"] {
     .original-text--sentence_tentative-high {
       background-color: #1AE5CD;
       color: #000000; }
-    .original-text--sentence_tentative-high {
-      background-color: #1AE5CD;
-      color: #000000; }
+    .original-text--sentence_error {
+      background-color: #DFE3E6;
+      color: #5A5A5A;
+    }
   .original-text--tooltip-container {
     position: fixed;
     top: 10rem;

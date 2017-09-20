@@ -82,6 +82,7 @@ function allReady(thresholds, sampleText) {
     $sentenceRankTable = $('.sentence-rank--table'),
     $sentenceJson = $('.json .json--code'),
     $outputResetButton = $('.output--reset-button'),
+    $documentWarning = $('.document--warning'),
     emotionBarGraph_template = emotionBarGraphTemplate.innerHTML, // eslint-disable-line camelcase
     filters_template = filtersTemplate.innerHTML, // eslint-disable-line camelcase
     originalText_template = originalTextTemplate.innerHTML, // eslint-disable-line camelcase
@@ -102,11 +103,6 @@ function allReady(thresholds, sampleText) {
     $output.show();
     scrollTo($output);
 
-    /*
-    var emotionTone = data.document_tone.tone_categories[0].tones,
-      writingTone = data.document_tone.tone_categories[1].tones,
-      socialTone = data.document_tone.tone_categories[2].tones,
-    */
     var emotionTone = data.document_tone.tones,
       selectedSample = $('input[name=rb]:checked').val(),
       selectedSampleText = $textarea.val(),
@@ -121,17 +117,27 @@ function allReady(thresholds, sampleText) {
         tones: data.document_tone.tones
       }];
     }
-    sentences = data.sentences_tone;
+    sentences = data.sentences_tone.splice(0);
 
     //Populate sentencesTone with all unique tones in sentences, to be displayed in sentence view
     sentences.forEach(function(elements) {
       elements.tones.forEach(function(item) {
-        sentenceTone[item.tone_id] = item;
+        if (sentenceTone[item.tone_id] == null || sentenceTone[item.tone_id].score < item.score){
+          sentenceTone[item.tone_id] = item;
+        }
       });
     });
     sentenceTone = Object.keys(sentenceTone).sort().map(function(obj) {
       return sentenceTone[obj];
     });
+
+    //Display document level warning if present
+    if(data.document_tone.warning != null){
+      $documentWarning.html(data.document_tone.warning);
+    }
+    else{
+      $documentWarning.outerHTML = '';
+    }
 
     app = new App(data.document_tone, sentences.slice(0), thresholds, selectedSample, sentenceTone); // clone sentences
 
@@ -190,10 +196,11 @@ function allReady(thresholds, sampleText) {
      * @return {undefined}
      */
     function updateFilters() {
-      if (app.selectedFilter() == 'None' && sentences[0].tones.length > 0){
-        app.selectedFilter(sentences[0].tones[0].tone_name);
+      if (app.selectedFilter() == 'No Tone' && sentences[0].tones.length > 0){
+        //app.selectedFilter(sentences[0].tones[0].tone_name);
+        app.selectFilterBySample();
       }
-      $('.filters--radio[data-id=' + app.selectedFilter() + ']').prop('checked', true);
+      $('.filters--radio[data-id=' + normalize(app.selectedFilter()) + ']').prop('checked', true);
     }
 
     /**
@@ -245,7 +252,6 @@ function allReady(thresholds, sampleText) {
      * @return {undefined}
      */
     function updateOriginalTextTooltip(index) {
-      //TODO don't update tooltip if tone is not in sentence
       $originalTextTooltipContainer.html(_.template(originalTextTooltip_template, {
         items: app.updateOriginalSentencesTooltips(index),
         isSocialTone: 'Emotion Tone'
@@ -257,9 +263,11 @@ function allReady(thresholds, sampleText) {
      * @return {undefined}
      */
     function updateLegend() {
-      $legend.html(_.template(originalTextLegend_template, {
-        className: normalize(app.selectedFilter())
-      }));
+      if (sentenceTone.length > 0){
+        $legend.html(_.template(originalTextLegend_template, {
+          className: normalize(app.selectedFilter())
+        }));
+      }
     }
 
     /**
@@ -363,7 +371,6 @@ function allReady(thresholds, sampleText) {
     updateSentenceRank();
     updateLegend();
     bindOriginalTextHoverEvents();
-
     updateJSON(data);
 
     $('.filters--radio').on('click', function() {

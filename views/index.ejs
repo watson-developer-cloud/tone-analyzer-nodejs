@@ -128,6 +128,7 @@
             <p class="base--p summary--score-desc">
               &gt; .5 = likely present <br> &gt; .75 = very likely present <br>
             </p>
+            <div class="document--warning"></div>
             <div class="summary-emotion-graph bar-graph"></div>
           </div>
         </div>
@@ -402,10 +403,12 @@
       <ul class="original-text--tooltip-ul">
         <% _.each(items, function(item, key, list) { %>
           <li class="original-text--tooltip-li <%- item.className %>">
-            <div class="original-text--tooltip-score"><b><%- item.score_percentage %></b></div>
-            <div class="original-text--tooltip-label">
-              <%- item.tone_name %>
-            </div>
+            <% if (item.score_percentage > 0) { %><div class="original-text--tooltip-score"><b><%- item.score_percentage %></b></div><%} %>
+            <% if (item.error) {%>
+              <div class="original-text--tooltip-error"><b>ERROR: </b><%- item.error %></div>
+            <%} else {%>
+              <div class="original-text--tooltip-label"><%- item.tone_name %></div>
+            <%} %>
           </li>
           <% }); %>
       </ul>
