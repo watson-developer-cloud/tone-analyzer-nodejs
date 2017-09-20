@@ -197,10 +197,16 @@ function allReady(thresholds, sampleText) {
      */
     function updateFilters() {
       if (app.selectedFilter() == 'No Tone' && sentences[0].tones.length > 0){
-        //app.selectedFilter(sentences[0].tones[0].tone_name);
-        app.selectFilterBySample();
+        app.selectedFilter(sentences[0].tones[0].tone_name);
       }
-      $('.filters--radio[data-id=' + normalize(app.selectedFilter()) + ']').prop('checked', true);
+
+      //Normalize only in case of 'No Tone'
+      if (app.selectedFilter() == 'No Tone') {
+        $('.filters--radio[data-id=' + normalize(app.selectedFilter()) + ']').prop('checked', true);
+      }
+      else {
+        $('.filters--radio[data-id=' + app.selectedFilter() + ']').prop('checked', true);
+      }
     }
 
     /**
