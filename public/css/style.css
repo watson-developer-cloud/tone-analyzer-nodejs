@@ -1646,6 +1646,7 @@ pre[class*=" language-"] {
       color: #ffffff; }
 
 .sentence-views--tab-panels {
+  padding-top: 1rem;
   border: none;
   height: 100%; }
 
