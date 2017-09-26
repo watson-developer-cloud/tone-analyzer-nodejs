@@ -136,6 +136,7 @@ function allReady(thresholds, sampleText) {
       $documentWarning.html(data.document_tone.warning);
     }
     else{
+      $documentWarning.html('');
       $documentWarning.outerHTML = '';
     }
 
