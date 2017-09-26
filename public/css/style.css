@@ -1382,7 +1382,7 @@ pre[class*=" language-"] {
 .summary-emotion-graph {
   position: relative;
   font-size: 0.9em;
-  margin-top: 0.5rem; }
+  margin-top: 0rem; }
   .summary-emotion-graph--row {
     margin-top: 1rem; }
   .summary-emotion-graph--bar-value {
