@@ -352,7 +352,6 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
   _emotionToneHoverTexts = {
     'No Tone': '',
     'Anger': 'Likelihood of writer being perceived as angry. Low value indicates unlikely to be perceived as angry. High value indicates very likely to be perceived as angry. ',
-    'Disgust': 'Likelihood of writer being perceived as disgusted. Low value, unlikely to be perceived as disgusted. High value, very likely to be perceived as disgusted.',
     'Fear': 'Likelihood of writer being perceived as scared. Low value indicates unlikely to be perceived as fearful. High value, very likely to be perceived as scared.',
     'Joy': 'Joy or happiness has shades of enjoyment, satisfaction and pleasure. There is a sense of well-being, inner peace, love, safety and contentment.',
     'Sadness': 'Likelihood of writer being perceived as sad. Low value, unlikely to be perceived as sad. High value very likely to be perceived as sad.',
@@ -365,7 +364,6 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
   _emotionToneDescription = {
     'No Tone': '',
     'Anger': '<b>Anger:</b> Evoked due to injustice, conflict, humiliation, negligence or betrayal. If anger is active, the individual attacks the target, verbally or physically. If anger is passive, the person silently sulks and feels tension and hostility. ',
-    'Disgust': '<b>Disgust:</b> An emotional response of revulsion to something considered offensive or unpleasant. It is a sensation that refers to something revolting.',
     'Fear': '<b>Fear:</b> A response to impending danger. It is a survival mechanism that is a reaction to some negative stimulus. It may be a mild caution or an extreme phobia.',
     'Joy': '<b>Joy:</b> Joy or happiness has shades of enjoyment, satisfaction and pleasure. There is a sense of well-being, inner peace, love, safety and contentment.',
     'Sadness': '<b>Sadness:</b> Indicates a feeling of loss and disadvantage. When a person can be observed to be quiet, less energetic and withdrawn, it may be inferred that sadness exists.',
