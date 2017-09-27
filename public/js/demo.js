@@ -355,7 +355,6 @@ function allReady(thresholds, sampleText) {
     sentenceTone = sentenceTone.map(emotionMap);
 
     //Display message if no dominant tones at document level
-    //TODO add style for the message being displayed
     if (emotionTone == null || emotionTone.length == 0){
       $emotionGraph.html('No dominant tones detected in the document.');
     }
@@ -367,7 +366,6 @@ function allReady(thresholds, sampleText) {
     }
 
     //Display message if no dominant tones at sentence level
-    //TODO add style for the message being displayed
     if (sentenceTone == null || sentenceTone.length == 0){
       $emotionFilters.html('No dominant tones detected in the sentences.');
     }
@@ -458,6 +456,7 @@ function allReady(thresholds, sampleText) {
     $output.hide();
     $error.hide();
     scrollTo($loading);
+    lastSentenceID = null;
     getToneAnalysis($textarea.val());
   });
 
