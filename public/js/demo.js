@@ -16,7 +16,6 @@
  /* eslint camelcase: "warn" */
  /* global  _, normalize, scrollTo,
      App
-     barGraphTemplate,
      emotionBarGraphTemplate,
      filtersTemplate,
      originalTextTemplate,
@@ -70,16 +69,12 @@ function allReady(thresholds, sampleText) {
     $textarea = $('.input--textarea'),
     $submitButton = $('.input--submit-button'),
     $emotionGraph = $('.summary-emotion-graph'),
-    $writingGraph = $('.summary-writing-graph'),
-    $socialGraph = $('.summary-social-graph'),
     $summaryJsonButton = $('.js-toggle-summary-json'),
     $summaryJson = $('.js-summary-json'),
     $summaryJsonView = $('.js-toggle-summary-json_show'),
     $summaryJsonHide = $('.js-toggle-summary-json_hide'),
     $summaryJsonCode = $('.js-summary-json .json--code'),
     $emotionFilters = $('.filters--emotion'),
-    $writingFilters = $('.filters--writing'),
-    $socialFilters = $('.filters--social'),
     $originalTexts = $('.original-text--texts'),
     $originalTextTooltipContainer = $('.original-text--tooltip-container'),
     $originalTextDescription = $('.original-text--description'),
@@ -87,14 +82,14 @@ function allReady(thresholds, sampleText) {
     $sentenceRankTable = $('.sentence-rank--table'),
     $sentenceJson = $('.json .json--code'),
     $outputResetButton = $('.output--reset-button'),
-    barGraph_template = barGraphTemplate.innerHTML, // eslint-disable-line camelcase
+    $documentWarning = $('.document--warning'),
     emotionBarGraph_template = emotionBarGraphTemplate.innerHTML, // eslint-disable-line camelcase
     filters_template = filtersTemplate.innerHTML, // eslint-disable-line camelcase
     originalText_template = originalTextTemplate.innerHTML, // eslint-disable-line camelcase
     sentenceRank_template = sentenceRankTemplate.innerHTML, // eslint-disable-line camelcase
     originalTextTooltip_template = originalTextTooltipTemplate.innerHTML, // eslint-disable-line camelcase
     originalTextLegend_template = originalTextLegendTemplate.innerHTML, // eslint-disable-line camelcase
-    lastSentenceID = 0;
+    lastSentenceID;
 
   /**
    * Callback function for AJAX post to get tone analyzer data
@@ -108,24 +103,44 @@ function allReady(thresholds, sampleText) {
     $output.show();
     scrollTo($output);
 
-    var emotionTone = data.document_tone.tone_categories[0].tones,
-      writingTone = data.document_tone.tone_categories[1].tones,
-      socialTone = data.document_tone.tone_categories[2].tones,
+    var emotionTone = data.document_tone.tones,
       selectedSample = $('input[name=rb]:checked').val(),
       selectedSampleText = $textarea.val(),
-      sentences,
+      sentences, sentenceTone = [],
       app;
 
     // if only one sentence, sentences will not exist, so mutate sentences_tone manually
-    if (typeof (data.sentences_tone) === 'undefined') {
+    if (typeof (data.sentences_tone) === 'undefined' || data.sentences_tone === null) {
       data.sentences_tone = [{
         sentence_id: 0,
         text: selectedSampleText,
-        tone_categories: data.document_tone.tone_categories
+        tones: data.document_tone.tones
       }];
     }
-    sentences = data.sentences_tone;
-    app = new App(data.document_tone, sentences.slice(0), thresholds, selectedSample); // clone sentences
+    sentences = data.sentences_tone.splice(0);
+
+    //Populate sentencesTone with all unique tones in sentences, to be displayed in sentence view
+    sentences.forEach(function(elements) {
+      elements.tones.forEach(function(item) {
+        if (sentenceTone[item.tone_id] == null || sentenceTone[item.tone_id].score < item.score){
+          sentenceTone[item.tone_id] = item;
+        }
+      });
+    });
+    sentenceTone = Object.keys(sentenceTone).sort().map(function(obj) {
+      return sentenceTone[obj];
+    });
+
+    //Display document level warning if present
+    if(data.document_tone.warning != null){
+      $documentWarning.html(data.document_tone.warning);
+    }
+    else{
+      $documentWarning.html('');
+      $documentWarning.outerHTML = '';
+    }
+
+    app = new App(data.document_tone, sentences.slice(0), thresholds, selectedSample, sentenceTone); // clone sentences
 
     /**
      * Map Callback function for emotion document tones
@@ -140,46 +155,10 @@ function allReady(thresholds, sampleText) {
         label: item.tone_name,
         score: app.percentagify(item.score, 'Emotion Tone'),
         tooltip: app.toneHash()[item.tone_name].tooltip,
-        likeliness:  v1 > v3 ? 'VERY LIKELY' :  v1 > v2 ? 'LIKELY' : 'UNLIKELY',
-        visible:  v1 > v3 ? 'show' :  v1 > v2 ? 'show' : 'dim',
+        likeliness:  v1 > v3 ? 'VERY LIKELY' :  v1 >= v2 ? 'LIKELY' : 'UNLIKELY',
+        visible:  v1 > v3 ? 'show' :  v1 >= v2 ? 'show' : 'dim',
         thresholdLow: app.percentagify(app.thresholds().doc[item.tone_name][0]),
         thresholdHigh: app.percentagify(app.thresholds().doc[item.tone_name][1])
-      };
-    }
-
-    /**
-     * Map Callback function for writing document tones
-     * @param {Object} item current iterating element
-     * @return {Object} label, score
-     */
-    function writingMap(item) {
-      var v1 = app.percentagify(item.score, 'Language Tone');
-      var v2 = app.percentagify(app.thresholds().doc[item.tone_name][0]);
-      var v3 = app.percentagify(app.thresholds().doc[item.tone_name][1]);
-      return {
-        label: item.tone_name,
-        score: app.percentagify(item.score, 'Language Tone'),
-        tooltip: app.toneHash()[item.tone_name].tooltip,
-        visible:  v1 > v3 ? 'show' :  v1 > v2 ? 'show' : 'dim',
-        likeliness:  v1 > v3 ? 'VERY LIKELY' :  v1 > v2 ? 'LIKELY' : 'UNLIKELY'
-      };
-    }
-
-    /**
-     * Map Callback function for social document tones
-     * @param {Object} item current iterating element
-     * @return {Object} label, score, threshold percent, tooltip text
-     */
-    function socialMap(item) {
-      var v1 = app.percentagify(item.score, 'Social Tone');
-      var v2 = app.percentagify(app.thresholds().doc[item.tone_name][0]);
-      var v3 = app.percentagify(app.thresholds().doc[item.tone_name][1]);
-      return {
-        label: item.tone_name,
-        score: app.percentagify(item.score, 'Social Tone'),
-        tooltip: app.toneHash()[item.tone_name].tooltip,
-        likeliness:  v1 > v3 ? 'VERY LIKELY' :  v1 > v2 ? 'LIKELY' : 'UNLIKELY',
-        visible:  v1 > v3 ? 'show' :  v1 > v2 ? 'show' : 'dim'
       };
     }
 
@@ -218,7 +197,17 @@ function allReady(thresholds, sampleText) {
      * @return {undefined}
      */
     function updateFilters() {
-      $('.filters--radio[data-id=' + app.selectedFilter() + ']').prop('checked', true);
+      if (app.selectedFilter() == 'No Tone' && sentences[0].tones.length > 0){
+        app.selectedFilter(sentences[0].tones[0].tone_name);
+      }
+
+      //Normalize only in case of 'No Tone'
+      if (app.selectedFilter() == 'No Tone') {
+        $('.filters--radio[data-id=' + normalize(app.selectedFilter()) + ']').prop('checked', true);
+      }
+      else {
+        $('.filters--radio[data-id=' + app.selectedFilter() + ']').prop('checked', true);
+      }
     }
 
     /**
@@ -272,7 +261,7 @@ function allReady(thresholds, sampleText) {
     function updateOriginalTextTooltip(index) {
       $originalTextTooltipContainer.html(_.template(originalTextTooltip_template, {
         items: app.updateOriginalSentencesTooltips(index),
-        isSocialTone: app.selectedTone()
+        isSocialTone: 'Emotion Tone'
       }));
     }
 
@@ -281,9 +270,16 @@ function allReady(thresholds, sampleText) {
      * @return {undefined}
      */
     function updateLegend() {
-      $legend.html(_.template(originalTextLegend_template, {
-        className: normalize(app.selectedFilter())
-      }));
+      if (sentenceTone.length > 0){
+        $legend.html(_.template(originalTextLegend_template, {
+          className: normalize(app.selectedFilter())
+        }));
+      }
+      else{
+        $legend.html(_.template(originalTextLegend_template, {
+          className: ''
+        }));
+      }
     }
 
     /**
@@ -356,35 +352,28 @@ function allReady(thresholds, sampleText) {
     app.selectFilterBySample();
 
     emotionTone = emotionTone.map(emotionMap);
-    writingTone = writingTone.map(writingMap);
-    socialTone = socialTone.map(socialMap);
+    sentenceTone = sentenceTone.map(emotionMap);
 
-    $emotionGraph.html(_.template(emotionBarGraph_template, {
-      items: emotionTone,
-      className: 'emotion'
-    })); 
+    //Display message if no dominant tones at document level
+    if (emotionTone == null || emotionTone.length == 0){
+      $emotionGraph.html('No dominant tones detected in the document.');
+    }
+    else{
+      $emotionGraph.html(_.template(emotionBarGraph_template, {
+        items: emotionTone,
+        className: 'emotion'
+      }));
+    }
 
-    $writingGraph.html(_.template(barGraph_template, {
-      items: writingTone,
-      className: 'writing'
-    })); 
-
-    $socialGraph.html(_.template(barGraph_template, {
-      items: socialTone,
-      className: 'social'
-    }));
-
-    $emotionFilters.html(_.template(filters_template, {
-      items: emotionTone
-    }));
-
-    $writingFilters.html(_.template(filters_template, {
-      items: writingTone
-    }));
-
-    $socialFilters.html(_.template(filters_template, {
-      items: socialTone
-    }));
+    //Display message if no dominant tones at sentence level
+    if (sentenceTone == null || sentenceTone.length == 0){
+      $emotionFilters.html('No dominant tones detected in the sentences.');
+    }
+    else{
+      $emotionFilters.html(_.template(filters_template, {
+        items: sentenceTone
+      }));
+    }
 
     updateFilters();
     matchSentenceViewsHeight();
@@ -392,7 +381,6 @@ function allReady(thresholds, sampleText) {
     updateSentenceRank();
     updateLegend();
     bindOriginalTextHoverEvents();
-
     updateJSON(data);
 
     $('.filters--radio').on('click', function() {
@@ -468,6 +456,7 @@ function allReady(thresholds, sampleText) {
     $output.hide();
     $error.hide();
     scrollTo($loading);
+    lastSentenceID = null;
     getToneAnalysis($textarea.val());
   });
 

@@ -29,6 +29,7 @@
     "start": "node server.js",
     "test": "npm run lint && npm run test-unit",
     "test-unit": "istanbul cover ./node_modules/mocha/bin/_mocha test/unit",
+    "test-integration": "istanbul cover ./node_modules/mocha/bin/_mocha test/integration",
     "lint": "eslint .",
     "autofix": "eslint --fix .",
     "codecov": "npm run test && (codecov || true)"

@@ -1,32 +1,22 @@
 {
     "doc": {
+      "No Tone":[0, 1],
       "Joy":[0.5, 0.75],
-      "Disgust":[0.5,0.75],
       "Fear":[0.5,0.75],
       "Anger":[0.5, 0.75],
       "Sadness":[0.5, 0.75],
-      "Openness": [0.50, 0.75],
-      "Conscientiousness": [0.50, 0.75],
-      "Extraversion": [0.50, 0.75],
-      "Agreeableness": [0.50, 0.75],
-      "Emotional Range": [0.50, 0.75],
       "Confident": [0.50, 0.75],
       "Analytical": [0.50, 0.75],
-      "Tentative": [0.50, 0.75] 
+      "Tentative": [0.50, 0.75]
     },
     "sentence": {
+      "No Tone":[0, 1],
       "Joy":[0.5, 0.75],
-      "Disgust":[0.5,0.75],
       "Fear":[0.5,0.75],
       "Anger":[0.5, 0.75],
       "Sadness":[0.5, 0.75],
-      "Openness": [0.50, 0.75],
-      "Conscientiousness": [0.50, 0.75],
-      "Extraversion": [0.50, 0.75],
-      "Agreeableness": [0.50, 0.75],
-      "Emotional Range": [0.50, 0.75],
       "Confident": [0.001, 0.75],
       "Analytical": [0.001, 0.75],
-      "Tentative": [0.001, 0.75] 
+      "Tentative": [0.001, 0.75]
     }
 }

@@ -126,23 +126,10 @@
           <div class="summary--emotion">
             <h5 class="base--h5 summary--header">Emotion</h5>
             <p class="base--p summary--score-desc">
-              &lt; .5 = not likely present <br> &gt; .5 = likely present <br> &gt; .75 = very likely present <br>
+              &gt; .5 = likely present <br> &gt; .75 = very likely present <br>
             </p>
+            <div class="document--warning"></div>
             <div class="summary-emotion-graph bar-graph"></div>
-          </div>
-          <div class="summary--writing">
-            <h5 class="base--h5 summary--header">Language Style</h5>
-            <p class="base--p summary--score-desc">
-              &lt; .5 = not likely present <br> &gt; .5 = likely present <br> &gt; .75 = very likely present <br>
-            </p>
-            <div class="summary-writing-graph"></div>
-          </div>
-          <div class="summary--social">
-            <h5 class="base--h5 summary--header">Social Tendencies</h5>
-            <p class="base--p summary--score-desc">
-              &lt; .5 = not likely present <br> &gt; .5 = likely present <br> &gt; .75 = very likely present <br>
-            </p>
-            <div class="summary-social-graph bar-graph"></div>
           </div>
         </div>
 <!--
@@ -191,14 +178,7 @@
         <div class="sentences">
           <div class="sentences--filters filters">
             <h3 class="base--h3" style="padding-left: 0rem;">Tones</h3>
-            <h4 class="base--h4">Emotion</h4>
             <div class="filters--emotion"></div>
-
-            <h4 class="base--h4">Language</h4>
-            <div class="filters--writing"></div>
-
-            <h4 class="base--h4">Social Tendencies</h4>
-            <div class="filters--social"></div>
           </div>
           <div class="sentences--sentence-views sentence-views">
             <div class="tab-panels sentence-views--tab-panels" role="tabpanel">
@@ -423,10 +403,12 @@
       <ul class="original-text--tooltip-ul">
         <% _.each(items, function(item, key, list) { %>
           <li class="original-text--tooltip-li <%- item.className %>">
-            <div class="original-text--tooltip-score"><b><%- item.score_percentage %></b></div>
-            <div class="original-text--tooltip-label">
-              <%- item.tone_name %>
-            </div>
+            <% if (item.score_percentage > 0) { %><div class="original-text--tooltip-score"><b><%- item.score_percentage %></b></div><%} %>
+            <% if (item.error) {%>
+              <div class="original-text--tooltip_error"><b>ERROR: </b><%- item.error %></div>
+            <%} else {%>
+              <div class="original-text--tooltip-label"><%- item.tone_name %></div>
+            <%} %>
           </li>
           <% }); %>
       </ul>

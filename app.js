@@ -31,7 +31,7 @@ var toneAnalyzer = new ToneAnalyzerV3({
   // After that, the SDK will fall back to the bluemix-provided VCAP_SERVICES environment property
   // username: '<username>',
   // password: '<password>',
-  version_date: '2016-05-19'
+  version_date: '2017-09-21'
 });
 
 app.get('/', function(req, res) {
