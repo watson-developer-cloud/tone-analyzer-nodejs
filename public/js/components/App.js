@@ -29,7 +29,6 @@
  */
 function App(documentTones, sentences, thresholds, selectedSample, sentenceTones) { // eslint-disable-line no-unused-vars
   var _selectedFilter = 'No Tone',
-    _selectedSample = selectedSample || 'customer-call',
     _lowToHigh = false,
     _currentHoveredOriginalSentence = document.querySelector('body'),
     _rankedSentences = sentences,
@@ -69,18 +68,6 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
       }
     });
   }
-
-
-  /**
-   * Get index of a tone
-   * @param {String} key tone name as key
-   * @return {int} index positioning of tone
-   */
-   /*
-  function _searchIndex(key) {
-    return _toneHash[key].index;
-  }
-  */
 
   /**
    * Get index of a tone in the sentence object
@@ -214,18 +201,6 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
    */
   output.updateRankedSentences = function () {
     var sort = _lowToHigh ?
-    /*
-          function (a, b) {
-            return a.tones[_searchIndex(_selectedFilter)].score
-              - b.tones[_searchIndex(_selectedFilter)].score;
-          } :
-          function(a, b) {
-            return b.tones[_searchIndex(_selectedFilter)].score
-              - a.tones[_searchIndex(_selectedFilter)].score;
-          },
-      map = function (item) {
-        var score = item.tones[_searchIndex(_selectedFilter)].score.toFixed(SCORE_DECIMAL_PLACE);
-        */
           function (a, b) {
             var aIndex = _searchIndexObject(_selectedFilter, a),
               bIndex = _searchIndexObject(_selectedFilter, b), aScore = 0, bScore = 0;
@@ -295,7 +270,6 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
    * @return {Array} array of {Object} sentence data
    */
   output.updateOriginalSentencesTooltips = function (sentenceIndex) {
-    //TODO If selected filter tone is not present in this sentence, then don't update
     var map = function (item) {
       var result = item;
       result.className = 'original-text--tooltip-li_' + normalize(result.tone_name);
