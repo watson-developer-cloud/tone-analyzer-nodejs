@@ -41,12 +41,14 @@ function ready() {
     $.ajax('/data/threshold_v0.1.1.json'),
     $.ajax('/data/tweets.txt'),
     $.ajax('/data/review.txt'),
-    $.ajax('/data/personal-email.txt'))
-    .done(function(thresholds, tweets, review, personalEmail) {
+    $.ajax('/data/personal-email.txt'),
+    $.ajax('/data/lang-fr.txt'))
+    .done(function(thresholds, tweets, review, personalEmail, langFr) {
       var sampleText = {
         'review': review[0],
         'tweets': tweets[0],
         'email': personalEmail[0],
+        'lang-fr': langFr[0],
         'own-text': ''
       };
       allReady(thresholds[0], sampleText);
@@ -421,8 +423,14 @@ function allReady(thresholds, sampleText) {
    * @return {undefined}
    */
   function getToneAnalysis(text) {
-    $.post('/api/tone', {'text': text }, toneCallback)
+    if ($inputRadio.val() === 'lang-fr'){
+      $.post('/api/tone', {'text': text, 'language': 'fr' }, toneCallback)
       .fail(_error);
+    }
+    else {
+      $.post('/api/tone', {'text': text, 'language': 'en' }, toneCallback)
+      .fail(_error);
+    }
   }
 
   /**
