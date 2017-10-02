@@ -91,6 +91,7 @@ function allReady(thresholds, sampleText) {
     sentenceRank_template = sentenceRankTemplate.innerHTML, // eslint-disable-line camelcase
     originalTextTooltip_template = originalTextTooltipTemplate.innerHTML, // eslint-disable-line camelcase
     originalTextLegend_template = originalTextLegendTemplate.innerHTML, // eslint-disable-line camelcase
+    selectedInputSample = $('input[name=rb]:checked').val(),
     lastSentenceID;
 
   /**
@@ -423,7 +424,7 @@ function allReady(thresholds, sampleText) {
    * @return {undefined}
    */
   function getToneAnalysis(text) {
-    if ($inputRadio.val() === 'lang-fr'){
+    if (selectedInputSample === 'lang-fr'){
       $.post('/api/tone', {'text': text, 'language': 'fr' }, toneCallback)
       .fail(_error);
     }
@@ -472,6 +473,7 @@ function allReady(thresholds, sampleText) {
    * Input radio button click event
    */
   $inputRadio.click(function() {
+    selectedInputSample = $(this).val();
     updateTextarea($(this).val());
   });
 

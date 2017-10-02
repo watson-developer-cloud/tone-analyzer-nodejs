@@ -44,7 +44,7 @@
     "express-rate-limit": "^2.9.0",
     "express-secure-only": "^0.2.1",
     "helmet": "^3.8.1",
-    "watson-developer-cloud": "/Users/riverside/people-insights/node-sdk"
+    "watson-developer-cloud": "^2.39.0"
   },
   "devDependencies": {
     "codecov": "^2.3.0",
