@@ -41,12 +41,14 @@ function ready() {
     $.ajax('/data/threshold_v0.1.1.json'),
     $.ajax('/data/tweets.txt'),
     $.ajax('/data/review.txt'),
-    $.ajax('/data/personal-email.txt'))
-    .done(function(thresholds, tweets, review, personalEmail) {
+    $.ajax('/data/personal-email.txt'),
+    $.ajax('/data/tweets-fr.txt'))
+    .done(function(thresholds, tweets, review, personalEmail, tweetsFr) {
       var sampleText = {
         'review': review[0],
         'tweets': tweets[0],
         'email': personalEmail[0],
+        'tweets-fr': tweetsFr[0],
         'own-text': ''
       };
       allReady(thresholds[0], sampleText);
@@ -89,6 +91,7 @@ function allReady(thresholds, sampleText) {
     sentenceRank_template = sentenceRankTemplate.innerHTML, // eslint-disable-line camelcase
     originalTextTooltip_template = originalTextTooltipTemplate.innerHTML, // eslint-disable-line camelcase
     originalTextLegend_template = originalTextLegendTemplate.innerHTML, // eslint-disable-line camelcase
+    selectedInputSample = $('input[name=rb]:checked').val(),
     lastSentenceID;
 
   /**
@@ -421,8 +424,14 @@ function allReady(thresholds, sampleText) {
    * @return {undefined}
    */
   function getToneAnalysis(text) {
-    $.post('/api/tone', {'text': text }, toneCallback)
+    if (selectedInputSample === 'tweets-fr'){
+      $.post('/api/tone', {'text': text, 'language': 'fr' }, toneCallback)
       .fail(_error);
+    }
+    else {
+      $.post('/api/tone', {'text': text, 'language': 'en' }, toneCallback)
+      .fail(_error);
+    }
   }
 
   /**
@@ -464,6 +473,7 @@ function allReady(thresholds, sampleText) {
    * Input radio button click event
    */
   $inputRadio.click(function() {
+    selectedInputSample = $(this).val();
     updateTextarea($(this).val());
   });
 
