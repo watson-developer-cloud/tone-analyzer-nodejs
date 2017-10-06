@@ -42,13 +42,13 @@ function ready() {
     $.ajax('/data/tweets.txt'),
     $.ajax('/data/review.txt'),
     $.ajax('/data/personal-email.txt'),
-    $.ajax('/data/tweets-fr.txt'))
-    .done(function(thresholds, tweets, review, personalEmail, tweetsFr) {
+    $.ajax('/data/review-fr.txt'))
+    .done(function(thresholds, tweets, review, personalEmail, reviewFr) {
       var sampleText = {
         'review': review[0],
         'tweets': tweets[0],
         'email': personalEmail[0],
-        'tweets-fr': tweetsFr[0],
+        'review-fr': reviewFr[0],
         'own-text': ''
       };
       allReady(thresholds[0], sampleText);
@@ -424,7 +424,7 @@ function allReady(thresholds, sampleText) {
    * @return {undefined}
    */
   function getToneAnalysis(text) {
-    if (selectedInputSample === 'tweets-fr'){
+    if (selectedInputSample === 'review-fr'){
       $.post('/api/tone', {'text': text, 'language': 'fr' }, toneCallback)
       .fail(_error);
     }
