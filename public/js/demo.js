@@ -68,6 +68,8 @@ function allReady(thresholds, sampleText) {
     $error = $('.error'),
     $errorMessage = $('.error--message'),
     $inputRadio = $('.input--radio'),
+    $displayInputRadioLang = $('.own-text-language-selector-radio'),
+    $inputRadioLang = $('.input--radio--lang'),
     $textarea = $('.input--textarea'),
     $submitButton = $('.input--submit-button'),
     $emotionGraph = $('.summary-emotion-graph'),
@@ -92,6 +94,7 @@ function allReady(thresholds, sampleText) {
     originalTextTooltip_template = originalTextTooltipTemplate.innerHTML, // eslint-disable-line camelcase
     originalTextLegend_template = originalTextLegendTemplate.innerHTML, // eslint-disable-line camelcase
     selectedInputSample = $('input[name=rb]:checked').val(),
+    selectedLang = 'en',
     lastSentenceID;
 
   /**
@@ -424,14 +427,8 @@ function allReady(thresholds, sampleText) {
    * @return {undefined}
    */
   function getToneAnalysis(text) {
-    if (selectedInputSample === 'review-fr'){
-      $.post('/api/tone', {'text': text, 'language': 'fr' }, toneCallback)
-      .fail(_error);
-    }
-    else {
-      $.post('/api/tone', {'text': text, 'language': 'en' }, toneCallback)
-      .fail(_error);
-    }
+    $.post('/api/tone', {'text': text, 'language': selectedLang }, toneCallback)
+    .fail(_error);
   }
 
   /**
@@ -473,8 +470,31 @@ function allReady(thresholds, sampleText) {
    * Input radio button click event
    */
   $inputRadio.click(function() {
+    selectedLang = 'en';
     selectedInputSample = $(this).val();
+    $('input:radio[name=rb][value='+ $(this).val() + ']').prop('checked', true);
+
+    //Display Language options for own-text input option with default language as english
+    if (selectedInputSample === 'own-text'){
+      $('input:radio[name=rb-lang][value=en]').prop('checked', true);
+      $displayInputRadioLang.removeClass('original-text--tooltip-container_hidden');
+    } else{
+      $displayInputRadioLang.addClass('original-text--tooltip-container_hidden');
+      if (selectedInputSample === 'review-fr'){
+        selectedLang = 'fr';
+      }
+    }
     updateTextarea($(this).val());
+
+  });
+
+  /**
+   * Language Input radio button click event for 'own-text' input option
+   */
+  $inputRadioLang.click(function() {
+    //update language
+    selectedLang = $(this).val();
+    $('input:radio[name=rb-lang][value='+ $(this).val() + ']').prop('checked', true);
   });
 
   /**

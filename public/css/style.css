@@ -1311,6 +1311,12 @@ pre[class*=" language-"] {
   margin-top: 2rem;
   margin-bottom: 1.5rem; }
 
+.input--choose {
+  color: #121212;
+  margin-right: 0.5rem;
+  text-align: center;
+}
+
 .base--radio + .input--radio-label:before,
 .base--STYLED input[type="radio"] + .input--radio-label:before {
   margin-right: 0.75rem; }
