@@ -94,14 +94,21 @@
         <label class="base--inline-label input--radio-label" for="input-online-review">Online Review</label>
         <input role="radio" class="base--radio input--radio" type="radio" id="input-email" name="rb" value="email">
         <label class="base--inline-label input--radio-label" for="input-email">Email message</label>
-        <input role="radio" class="base--radio input--radio" type="radio" id="input-lang-fr" name="rb" value="tweets-fr">
-        <label class="base--inline-label input--radio-label" for="input-lang-fr">Tweets in French</label>
+        <input role="radio" class="base--radio input--radio" type="radio" id="input-lang-fr" name="rb" value="review-fr">
+        <label class="base--inline-label input--radio-label" for="input-lang-fr">Product Review in French</label>
         <input role="radio" class="base--radio input--radio" type="radio" id="input-own-text" name="rb" value="own-text">
         <label class="base--inline-label input--radio-label" for="input-own-text">Your own text</label>
         <p class="base--p input--description">Analyzing Customer Engagement Data? Try out the <a class="base--a" href="http://customer-engagement-demo.mybluemix.net" target="new">Tone Analyzer Customer Engagement Endpoint</a>.</p>
         <hr class="base--hr input--hr">
         <div class="panel">
           <textarea class="base--textarea input--textarea" rows="7"></textarea>
+          <div class="input--choose own-text-language-selector-radio original-text--tooltip-container_hidden">
+            <b>Choose Language: </b>
+            <input role="radio" class="base--radio input--radio--lang" type="radio" id="input-own-text-en" name="rb-lang" value="en" checked="true">
+            <label class="base--inline-label input--radio-label" for="input-own-text-en">English</label>
+            <input role="radio" class="base--radio input--radio--lang" type="radio" id="input-own-text-fr" name="rb-lang" value="fr">
+            <label class="base--inline-label input--radio-label" for="input-own-text-fr">French</label>
+          </div>
         </div>
         <div class="input--submit-button-container">
           <button class="base--button input--submit-button" type="submit">Analyze</button>
