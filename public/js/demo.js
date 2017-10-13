@@ -22,6 +22,7 @@
      sentenceRankTemplate,
      originalTextTooltipTemplate,
      originalTextLegendTemplate
+     originalTextDescriptionTemplate
   */
 
 'use strict';
@@ -93,6 +94,7 @@ function allReady(thresholds, sampleText) {
     sentenceRank_template = sentenceRankTemplate.innerHTML, // eslint-disable-line camelcase
     originalTextTooltip_template = originalTextTooltipTemplate.innerHTML, // eslint-disable-line camelcase
     originalTextLegend_template = originalTextLegendTemplate.innerHTML, // eslint-disable-line camelcase
+    originalTextDescription_template = originalTextDescriptionTemplate.innerHTML, // eslint-disable-line camelcase
     selectedInputSample = $('input[name=rb]:checked').val(),
     selectedLang = 'en',
     lastSentenceID;
@@ -117,8 +119,9 @@ function allReady(thresholds, sampleText) {
 
     // if only one sentence, sentences will not exist, so mutate sentences_tone manually
     if (typeof (data.sentences_tone) === 'undefined' || data.sentences_tone === null) {
+      // eslint-disable-next-line camelcase
       data.sentences_tone = [{
-        sentence_id: 0,
+        sentence_id: 0, // eslint-disable-line camelcase
         text: selectedSampleText,
         tones: data.document_tone.tones
       }];
@@ -224,7 +227,12 @@ function allReady(thresholds, sampleText) {
       $originalTexts.html(_.template(originalText_template, {
         items: app.updateOriginalSentences()
       }));
-      $originalTextDescription.html(app.updateOriginalTextDescription());
+      //$originalTextDescription.html(app.updateOriginalTextDescription());
+      console.log(app.selectedFilter());
+      app.updateOriginalTextDescription();
+      $originalTextDescription.html(_.template(originalTextDescription_template, {
+        items: [app.selectedFilter()]
+      }));
     }
 
 
