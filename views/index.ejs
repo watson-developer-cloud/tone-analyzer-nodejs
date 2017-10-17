@@ -417,27 +417,31 @@
 
   <script type="text/html" id="filtersTemplate">
     <% _.each(items, function(item, key, list) { %>
-      <input class="filters--radio base--radio" type="radio" id="filter-<%- item.label.replace(/\s+/g, '-') %>" data-id="<%- item.label %>" name="tone-filters" value="<%- item.label.replace(/\s+/g, '-') %>">
-      <label class="filters--label base--block-label" for="filter-<%- item.label.replace(/\s+/g, '-') %>">
-        <% if (item.label == 'Anger') { %>
-          <$=__('document-tone-anger')$>
-        <% } else if (item.label == 'Fear') { %>
-          <$=__('document-tone-fear')$>
-        <% } else if (item.label == 'Joy') { %>
-          <$=__('document-tone-joy')$>
-        <% } else if (item.label == 'Sadness') { %>
-          <$=__('document-tone-sadness')$>
-        <% } else if (item.label == 'Analytical') { %>
-          <$=__('document-tone-analytical')$>
-        <% } else if (item.label == 'Confident') { %>
-          <$=__('document-tone-confident')$>
-        <% } else if (item.label == 'Tentative') { %>
-          <$=__('document-tone-tentative')$>
-        <% } else { %>
-          <%- item.label %>
-        <% } %>
-      </label>
-      <% }); %>
+      <% if (item.label == 'No Tone') { %>
+        <$=__('sentences-no-tone')$>
+      <% } else { %>
+        <input class="filters--radio base--radio" type="radio" id="filter-<%- item.label.replace(/\s+/g, '-') %>" data-id="<%- item.label %>" name="tone-filters" value="<%- item.label.replace(/\s+/g, '-') %>">
+        <label class="filters--label base--block-label" for="filter-<%- item.label.replace(/\s+/g, '-') %>">
+          <% if (item.label == 'Anger') { %>
+            <$=__('document-tone-anger')$>
+          <% } else if (item.label == 'Fear') { %>
+            <$=__('document-tone-fear')$>
+          <% } else if (item.label == 'Joy') { %>
+            <$=__('document-tone-joy')$>
+          <% } else if (item.label == 'Sadness') { %>
+            <$=__('document-tone-sadness')$>
+          <% } else if (item.label == 'Analytical') { %>
+            <$=__('document-tone-analytical')$>
+          <% } else if (item.label == 'Confident') { %>
+            <$=__('document-tone-confident')$>
+          <% } else if (item.label == 'Tentative') { %>
+            <$=__('document-tone-tentative')$>
+          <% } else { %>
+            <%- item.label %>
+          <% } %>
+        </label>
+      <% } %>
+    <% }); %>
   </script>
 
   <script type="text/html" id="originalTextTemplate">

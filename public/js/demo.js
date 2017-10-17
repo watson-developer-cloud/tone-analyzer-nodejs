@@ -390,7 +390,12 @@ function allReady(thresholds, sampleText) {
 
     //Display message if no dominant tones at sentence level
     if (sentenceTone == null || sentenceTone.length == 0){
-      $emotionFilters.html('No dominant tones detected in the sentences.');
+      $emotionFilters.html(_.template(filters_template, {
+        items: [{
+          label: 'No Tone',
+          tooltip: 'No dominant tones detected in the sentences.'
+        }]
+      }));
     }
     else{
       $emotionFilters.html(_.template(filters_template, {
