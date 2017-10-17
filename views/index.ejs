@@ -293,70 +293,75 @@
 
   <script type="text/html" id="emotionBarGraphTemplate">
     <% _.each(items, function(item, key, list) { %>
-      <div class="bar-graph--row summary-<%- className %>-graph--row <%- item.visible %>">
-        <div class="bar-graph--label-container summary-<%- className %>-graph--label-container">
-          <div class="bar-graph--label">
-            <p class="base--p">
-              <% if (item.label == 'Anger') { %>
-                <$=__('document-tone-anger')$>
-              <% } else if (item.label == 'Fear') { %>
-                <$=__('document-tone-fear')$>
-              <% } else if (item.label == 'Joy') { %>
-                <$=__('document-tone-joy')$>
-              <% } else if (item.label == 'Sadness') { %>
-                <$=__('document-tone-sadness')$>
-              <% } else if (item.label == 'Analytical') { %>
-                <$=__('document-tone-analytical')$>
-              <% } else if (item.label == 'Confident') { %>
-                <$=__('document-tone-confident')$>
-              <% } else if (item.label == 'Tentative') { %>
-                <$=__('document-tone-tentative')$>
-              <% } else { %>
-                <%- item.label %>
-              <% } %>
-            </p>
-            <% if (item.tooltip) { %>
-              <div class="bar-graph--tooltip">
+      <% if (item.label == 'No Tone') { %>
+        <$=__('document-no-tone')$>
+      <% } else { %>
+        <div class="bar-graph--row summary-<%- className %>-graph--row <%- item.visible %>">
+          <div class="bar-graph--label-container summary-<%- className %>-graph--label-container">
+            <div class="bar-graph--label">
+              <p class="base--p">
                 <% if (item.label == 'Anger') { %>
-                  <$=__('hover-anger')$>
+                  <$=__('document-tone-anger')$>
                 <% } else if (item.label == 'Fear') { %>
-                  <$=__('hover-fear')$>
+                  <$=__('document-tone-fear')$>
                 <% } else if (item.label == 'Joy') { %>
-                  <$=__('hover-joy')$>
+                  <$=__('document-tone-joy')$>
                 <% } else if (item.label == 'Sadness') { %>
-                  <$=__('hover-sadness')$>
+                  <$=__('document-tone-sadness')$>
                 <% } else if (item.label == 'Analytical') { %>
-                  <$=__('hover-analytical')$>
+                  <$=__('document-tone-analytical')$>
                 <% } else if (item.label == 'Confident') { %>
-                  <$=__('hover-confident')$>
+                  <$=__('document-tone-confident')$>
                 <% } else if (item.label == 'Tentative') { %>
-                  <$=__('hover-tentative')$>
+                  <$=__('document-tone-tentative')$>
                 <% } else { %>
-                  <%- item.tooltip %>
+                  <%- item.label %>
                 <% } %>
-              </div>
+              </p>
+              <% if (item.tooltip) { %>
+                <div class="bar-graph--tooltip">
+                  <% if (item.label == 'Anger') { %>
+                    <$=__('hover-anger')$>
+                  <% } else if (item.label == 'Fear') { %>
+                    <$=__('hover-fear')$>
+                  <% } else if (item.label == 'Joy') { %>
+                    <$=__('hover-joy')$>
+                  <% } else if (item.label == 'Sadness') { %>
+                    <$=__('hover-sadness')$>
+                  <% } else if (item.label == 'Analytical') { %>
+                    <$=__('hover-analytical')$>
+                  <% } else if (item.label == 'Confident') { %>
+                    <$=__('hover-confident')$>
+                  <% } else if (item.label == 'Tentative') { %>
+                    <$=__('hover-tentative')$>
+                  <% } else { %>
+                    <%- item.tooltip %>
+                  <% } %>
+                </div>
+                <% } %>
+            </div>
+          </div>
+
+          <div class="bar-graph--bar-container summary-<%- className %>-graph--bar-container">
+            <div class="bar-graph--bar">
+              <div class="bar-graph--bar-value summary-<%- className %>-graph--bar-value summary-<%- className %>-graph--bar-value_<%- item.label.replace(/\s+/g, '-') %>" style="width: <%- item.score %>%;"></div>
+            </div>
+          </div>
+          <div class="summary-emotion-graph--percentage-label">
+            <%- (item.score / 100).toFixed(2) %>
+              <br>
+              <span class="summary-emotion-graph--percentage-label-likeliness">
+              <% if (item.score > 0.75) { %>
+                <$=__('document-score-very-likely')$>
+              <% } else { %>
+                <$=__('document-score-likely')$>
               <% } %>
+            </span>
           </div>
+
         </div>
-        <div class="bar-graph--bar-container summary-<%- className %>-graph--bar-container">
-          <div class="bar-graph--bar">
-            <div class="bar-graph--bar-value summary-<%- className %>-graph--bar-value summary-<%- className %>-graph--bar-value_<%- item.label.replace(/\s+/g, '-') %>" style="width: <%- item.score %>%;"></div>
-          </div>
-        </div>
-        <div class="summary-emotion-graph--percentage-label">
-          <%- (item.score / 100).toFixed(2) %>
-            <br>
-            <span class="summary-emotion-graph--percentage-label-likeliness">
-            <% if (item.score > 0.75) { %>
-              <$=__('document-score-very-likely')$>
-            <% } else { %>
-              <$=__('document-score-likely')$>
-            <% } %>
-            <!--<%- item.likeliness %>-->
-          </span>
-        </div>
-      </div>
-      <% }); %>
+      <% } %>
+    <% }); %>
   </script>
 
   <script type="text/html" id="barGraphTemplate">
@@ -484,10 +489,11 @@
                   <$=__('document-tone-confident')$>
                 <% } else if (item.tone_name == 'Tentative') { %>
                   <$=__('document-tone-tentative')$>
+                <% } else if (item.tone_name == 'No Tone') { %>
+                  <$=__('label-tooltip-no-tone')$>
                 <% } else { %>
                   <%- item.tone_name %>
                 <% } %>
-                <!--<%- item.tone_name %>-->
               </div>
             <%} %>
           </li>
@@ -508,22 +514,44 @@
 
   <script type="text/html" id="originalTextDescriptionTemplate">
     <% _.each(items, function(item, key, list) { %>
-      <% if (item == 'Anger') { %>
+      <% if (item.label == 'Anger') { %>
         <b><$=__('document-tone-anger')$>: </b><$=__('anger-description')$>
-      <% } else if (item == 'Fear') { %>
+      <% } else if (item.label == 'Fear') { %>
         <b><$=__('document-tone-fear')$>: </b><$=__('fear-description')$>
-      <% } else if (item == 'Joy') { %>
+      <% } else if (item.label == 'Joy') { %>
         <b><$=__('document-tone-joy')$>: </b><$=__('joy-description')$>
-      <% } else if (item == 'Sadness') { %>
+      <% } else if (item.label == 'Sadness') { %>
         <b><$=__('document-tone-sadness')$>: </b><$=__('sadness-description')$>
-      <% } else if (item == 'Analytical') { %>
+      <% } else if (item.label == 'Analytical') { %>
         <b><$=__('document-tone-analytical')$>: </b><$=__('analytical-description')$>
-      <% } else if (item == 'Confident') { %>
+      <% } else if (item.label == 'Confident') { %>
         <b><$=__('document-tone-confident')$>: </b><$=__('confident-description')$>
-      <% } else if (item == 'Tentative') { %>
+      <% } else if (item.label == 'Tentative') { %>
         <b><$=__('document-tone-tentative')$>: </b><$=__('tentative-description')$>
+      <% } else if (item.label == 'No Tone') { %>
+        <b><$=__('label-tooltip-no-tone')$></b>
       <% } else { %>
-        <b><%- item %></b>
+        <b><%- item.label %>: </b><%- item.description %>
+      <% } %>
+    <% }); %>
+  </script>
+
+  <script type="text/html" id="documentWarningTemplate">
+    <% _.each(items, function(item, key, list) { %>
+      <$=__('document-warning')$>
+    <% }); %>
+  </script>
+
+  <script type="text/html" id="errorMessageTemplate">
+    <% _.each(items, function(item, key, list) { %>
+      <% if (item.errorCode == 401) { %>
+        <$=__('error-401')$>
+      <% } else if (item.errorCode == 429) { %>
+        <$=__('error-429')$>
+      <% } else if (item.errorCode == 500) { %>
+        <$=__('error-500')$>
+      <% } else { %>
+        <%- item.errorMessage %>
       <% } %>
     <% }); %>
   </script>
