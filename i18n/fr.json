@@ -63,11 +63,15 @@
 	"legend-label-strong": "Fort",
 	"sentences-no-tone": "Aucun ton dominant détecté dans les phrases.",
 	"anger-description": "Evoquée en raison d'une injustice, d'un conflit, d'une humiliation, d'une négligence ou d'une trahison. Si la colère est active, l'individu attaque la cible, verbalement ou physiquement. Si la colère est passive, la personne boude en silence et ressent de la tension et de l'hostilité.",
-  "fear-description": "Réponse à un danger imminent. Il s'agit d'un mécanisme de survie en réaction à un stimulus négatif. Il peut s'agir d'une légère prudence ou d'une phobie extrême.",
-  "joy-description": "Joie ou bonheur en nuances de jouissance, satisfaction et plaisir. Il existe un sens de bien-être, de paix intérieure, d'amour, de sécurité et de satisfaction.",
-  "sadness-description": "Indique un sentiment de perte et de désavantage. Si une personne semble être calme, moins énergique et retirée, nous pouvons en déduire un sentiment de tristesse.",
-  "analytical-description": "Raisonnement et attitude analytique d'une personne sur certaines choses",
-  "confident-description": "Degré de certitude d'une personne",
-  "tentative-description": "Degré d'inhibition d'une personne",
-	"label-tooltip-no-tone": "Aucun ton"
+	"fear-description": "Réponse à un danger imminent. Il s'agit d'un mécanisme de survie en réaction à un stimulus négatif. Il peut s'agir d'une légère prudence ou d'une phobie extrême.",
+	"joy-description": "Joie ou bonheur en nuances de jouissance, satisfaction et plaisir. Il existe un sens de bien-être, de paix intérieure, d'amour, de sécurité et de satisfaction.",
+	"sadness-description": "Indique un sentiment de perte et de désavantage. Si une personne semble être calme, moins énergique et retirée, nous pouvons en déduire un sentiment de tristesse.",
+	"analytical-description": "Raisonnement et attitude analytique d'une personne sur certaines choses",
+	"confident-description": "Degré de certitude d'une personne",
+	"tentative-description": "Degré d'inhibition d'une personne",
+	"label-tooltip-no-tone": "Aucun Ton",
+	"document-warning": "Le texte en entrée dépasse la limite d'API de 1 000 phrases",
+	"error-401": "Non autorisé",
+	"error-429": "Trop de demandes",
+	"error-500": "Paramètres requis manquants : texte"
 }
