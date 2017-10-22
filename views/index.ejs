@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Tone Analyzer</title>
+  <title><$= __('page-title-tone') $></title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,25 +16,25 @@
   <header class="_demo--heading">
     <div class="_demo--container">
       <a class="wordmark" href="http://www.ibm.com/watson/developercloud/">
-        <span class="wordmark--left">IBM</span>
-        <span class="wordmark--right">Watson Developer Cloud</span>
+        <span class="wordmark--left"><$= __('header-ibm') $></span>
+        <span class="wordmark--right"><$= __('header-wdc') $></span>
       </a>
       <nav class="heading-nav" role="menubar">
         <li class="base--li heading-nav--li" role="presentation">
           <a class="heading-nav--item" href="http://www.ibm.com/watson/developercloud/services-catalog.html" role="menuitem">
-                    	Services</a>
+                    	<$= __('header-services') $></a>
         </li>
         <li class="base--li heading-nav--li" role="presentation">
           <a class="heading-nav--item" href="http://www.ibm.com/watson/developercloud/doc/index.html" role="menuitem">
-			                Docs</a>
+			                <$= __('header-docs') $></a>
         </li>
         <li class="base--li heading-nav--li" role="presentation">
           <a class="heading-nav--item" href="http://www.ibm.com/watson/developercloud/starter-kits.html" role="menuitem">
-                      Starter Kits</a>
+                      <$= __('header-starterKit') $></a>
         </li>
         <li class="base--li heading-nav--li" role="presentation">
           <a class="heading-nav--item" href="https://developer.ibm.com/watson/" role="menuitem">
-                        Community</a>
+                        <$= __('header-community') $></a>
         </li>
       </nav>
     </div>
@@ -48,10 +48,10 @@
         <div class="banner--service-info">
           <h1 class="banner--service-title base--h1">
                         <img class="banner--service-icon_INLINE" src="images/service-icon.svg" alt="Tone Analyzer API Icon">
-                             Tone Analyzer
+                             <$=__('page-title-tone')$>
                     </h1>
           <div class="banner--service-description">
-             This service uses linguistic analysis to detect joy, fear, sadness, anger, analytical, confident and tentative tones found in text.
+             <$= __('header-description') $>
           </div>
         </div>
       </div>
@@ -59,22 +59,22 @@
         <div class="banner--row">
           <div class="banner--service-resource">
             <span class="icon icon-link"></span>
-            <strong>Resources:</strong>
+            <strong><$= __('header-resources') $>:</strong>
           </div>
         </div>
         <div class="banner--row">
           <div class="banner--service-links">
             <li class="base--li banner--service-link-item">
-              <a href="https://www.ibm.com/watson/developercloud/doc/tone-analyzer/index.html" target="blank" class="base--a">Documentation</a>
+              <a href="https://www.ibm.com/watson/developercloud/doc/tone-analyzer/index.html" target="blank" class="base--a"><$= __('header-documentation') $></a>
             </li>
             <li class="base--li banner--service-link-item">
-              <a href="https://www.ibm.com/watson/developercloud/tone-analyzer/api/v3/" target="blank" class="base--a">API Reference</a>
+              <a href="https://www.ibm.com/watson/developercloud/tone-analyzer/api/v3/" target="blank" class="base--a"><$= __('header-apiref') $></a>
             </li>
             <li class="base--li banner--service-link-item">
-              <a href="https://github.com/watson-developer-cloud/tone-analyzer-nodejs" target="blank" class="base--a">Fork on Github</a>
+              <a href="https://github.com/watson-developer-cloud/tone-analyzer-nodejs" target="blank" class="base--a"><$= __('header-fork') $></a>
             </li>
             <li class="base--li banner--service-link-item">
-              <a href="https://console.bluemix.net/registration?target=%2Fdeveloper%2Fwatson%2Fcreate-project%3Fservices%3Dtone_analyzer%26action%3Dcreate%26cm_mmc%3DOSocial_Tumblr-_-Watson%2BCore_Watson%2BCore%2B-%2BPlatform-_-WW_WW-_-wdc-ref%26cm_mmc%3DOSocial_Tumblr-_-Watson%2BCore_Watson%2BCore%2B-%2BPlatform-_-WW_WW-_-wdc-ref%26cm_mmca1%3D000000OF%26cm_mmca2%3D10000409" target="blank" class="base--button base--button_fill">Start free in Bluemix</a>
+              <a href="https://console.bluemix.net/registration?target=%2Fdeveloper%2Fwatson%2Fcreate-project%3Fservices%3Dtone_analyzer%26action%3Dcreate%26cm_mmc%3DOSocial_Tumblr-_-Watson%2BCore_Watson%2BCore%2B-%2BPlatform-_-WW_WW-_-wdc-ref%26cm_mmc%3DOSocial_Tumblr-_-Watson%2BCore_Watson%2BCore%2B-%2BPlatform-_-WW_WW-_-wdc-ref%26cm_mmca1%3D000000OF%26cm_mmca2%3D10000409" target="blank" class="base--button base--button_fill"><$= __('header-bluemix') $></a>
             </li>
           </div>
         </div>
@@ -86,32 +86,32 @@
   <div class="_demo--container">
     <article class="_content base--article">
       <div class="input">
-        <h2 class="base--h2">Sample use cases</h2>
-        <p class="base--p input--description">Choose an example to learn how you can adjust the tone of your content to change people's perceptions, or improve its effectiveness. <a class="base--a" href="http://www.ibm.com/watson/developercloud/doc/tone-analyzer/index.shtml#usecases" target="new">Learn more</a>.</p>
+        <h2 class="base--h2"><$= __('header-sample-use-cases') $></h2>
+        <p class="base--p input--description"><$= __('input-description') $> <a class="base--a" href="http://www.ibm.com/watson/developercloud/doc/tone-analyzer/index.shtml#usecases" target="new"><$= __('header-learn-more') $></a>.</p>
         <input role="radio" class="base--radio input--radio" type="radio" id="input-tweets" name="rb" value="tweets" checked="true">
-        <label class="base--inline-label input--radio-label" for="input-tweets">Tweets</label>
+        <label class="base--inline-label input--radio-label" for="input-tweets"><$= __('radio-input-tweets') $></label>
         <input role="radio" class="base--radio input--radio" type="radio" id="input-online-review" name="rb" value="review">
-        <label class="base--inline-label input--radio-label" for="input-online-review">Online Review</label>
+        <label class="base--inline-label input--radio-label" for="input-online-review"><$= __('radio-input-review') $></label>
         <input role="radio" class="base--radio input--radio" type="radio" id="input-email" name="rb" value="email">
-        <label class="base--inline-label input--radio-label" for="input-email">Email message</label>
+        <label class="base--inline-label input--radio-label" for="input-email"><$= __('radio-input-email') $></label>
         <input role="radio" class="base--radio input--radio" type="radio" id="input-lang-fr" name="rb" value="review-fr">
-        <label class="base--inline-label input--radio-label" for="input-lang-fr">Product Review in French</label>
+        <label class="base--inline-label input--radio-label" for="input-lang-fr"><$= __('radio-input-lang-fr') $></label>
         <input role="radio" class="base--radio input--radio" type="radio" id="input-own-text" name="rb" value="own-text">
-        <label class="base--inline-label input--radio-label" for="input-own-text">Your own text</label>
-        <p class="base--p input--description">Analyzing Customer Engagement Data? Try out the <a class="base--a" href="http://customer-engagement-demo.mybluemix.net" target="new">Tone Analyzer Customer Engagement Endpoint</a>.</p>
+        <label class="base--inline-label input--radio-label" for="input-own-text"><$= __('radio-input-own-text') $></label>
+        <p class="base--p input--description"><$= __('input-description-customer-engagement') $> <a class="base--a" href="http://customer-engagement-demo.mybluemix.net" target="new"><$= __('input-description-customer-engagement-endpoint') $></a>.</p>
         <hr class="base--hr input--hr">
         <div class="panel">
           <textarea class="base--textarea input--textarea" rows="7"></textarea>
           <div class="input--choose own-text-language-selector-radio original-text--tooltip-container_hidden">
-            <b>Choose Language: </b>
+            <b><$= __('label-choose-lang') $>: </b>
             <input role="radio" class="base--radio input--radio--lang" type="radio" id="input-own-text-en" name="rb-lang" value="en" checked="true">
-            <label class="base--inline-label input--radio-label" for="input-own-text-en">English</label>
+            <label class="base--inline-label input--radio-label" for="input-own-text-en"><$= __('radio-lang-en') $></label>
             <input role="radio" class="base--radio input--radio--lang" type="radio" id="input-own-text-fr" name="rb-lang" value="fr">
-            <label class="base--inline-label input--radio-label" for="input-own-text-fr">French</label>
+            <label class="base--inline-label input--radio-label" for="input-own-text-fr"><$= __('radio-lang-fr') $></label>
           </div>
         </div>
         <div class="input--submit-button-container">
-          <button class="base--button input--submit-button" type="submit">Analyze</button>
+          <button class="base--button input--submit-button" type="submit"><$= __('button-analyze') $></button>
         </div>
       </div>
 
@@ -126,16 +126,16 @@
       </div>
 
       <div class="output">
-        <h2 class="base--h2">Output</h2>
-        <p class="base--p output--document-description">The Tone Analyzer Service analyzes text at the document level and the sentence level. Use the document level analysis to get a sense of the overall tone of the document, and use the sentence level analysis to identify specific areas of your content where tones are the strongest.</p>
-        <p class="base--p output--document-description">To understand how to interpret your tone score, see <a class="base--a" target="_blank" href="https://www.ibm.com/watson/developercloud/doc/tone-analyzer/understanding-tone.shtml">Understand your Tone Score</a>.</p>
-        <h3 class="base--h3 output--document-title">Document-level</h3>
+        <h2 class="base--h2"><$= __('header-output') $></h2>
+        <p class="base--p output--document-description"><$= __('output-description') $></p>
+        <p class="base--p output--document-description"><$= __('output-description-interpret') $> <a class="base--a" target="_blank" href="https://www.ibm.com/watson/developercloud/doc/tone-analyzer/understanding-tone.shtml"><$= __('output-description-understand-score') $></a>.</p>
+        <h3 class="base--h3 output--document-title"><$= __('header-document') $></h3>
 
         <div class="summary--row">
           <div class="summary--emotion">
-            <h5 class="base--h5 summary--header">Tones</h5>
+            <h5 class="base--h5 summary--header"><$= __('header-tones') $></h5>
             <p class="base--p summary--score-desc">
-              &gt; .5 = likely present <br> &gt; .75 = very likely present <br>
+              <$= __('summary-score-description1') $> <br> <$= __('summary-score-description2') $> <br>
             </p>
             <div class="document--warning"></div>
             <div class="summary-emotion-graph bar-graph"></div>
@@ -172,8 +172,8 @@
           <span class="icon-hyperlink summary-view-code-button">
   					<img class="icon icon-code" src="images/icons/code.svg" />
   					<button class="base--a icon-hyperlink--button_BLANK js-toggle-summary-json" href="">
-  						<span class="js-toggle-summary-json_show">View JSON</span>
-          <span class="js-toggle-summary-json_hide">Hide JSON</span>
+  						<span class="js-toggle-summary-json_show"><$= __('summary-view-json') $></span>
+          <span class="js-toggle-summary-json_hide"><$= __('summary-hide-json') $></span>
           </button>
           </span>
         </div>
@@ -182,18 +182,18 @@
             <code class="base--code json--code language-javascript"></code>
           </pre>
         </div>
-        <h3 class="base--h3 output--sentence-title" style="padding-left: 0rem;">Sentence-level</h3>
-        <p class="base--p output--sentence-description">Identify sentences with stronger tones in context or sorted by score. Highlighted sentences indicate the likelihood of a tone present. If more than one tone is present, the stronger one is shown. Click on a sentence to see a breakdown of all tones.</p>
+        <h3 class="base--h3 output--sentence-title" style="padding-left: 0rem;"><$= __('header-sentence') $></h3>
+        <p class="base--p output--sentence-description"><$= __('output-sentence-description') $></p>
         <div class="sentences">
           <div class="sentences--filters filters">
-            <h3 class="base--h3" style="padding-left: 0rem;">Tones</h3>
+            <h3 class="base--h3" style="padding-left: 0rem;"><$= __('header-tones') $></h3>
             <div class="filters--emotion"></div>
           </div>
           <div class="sentences--sentence-views sentence-views">
             <div class="tab-panels sentence-views--tab-panels" role="tabpanel">
               <ul class="tab-panels--tab-list" role="tablist">
                 <li class="tab-panels--tab-list-item base--li" role="presentation">
-                  <a class="tab-panels--tab base--a active" href="#panel-original-text" aria-controls="panel-original-text" role="tab">In context</a>
+                  <a class="tab-panels--tab base--a active" href="#panel-original-text" aria-controls="panel-original-text" role="tab"><$= __('label-in-context') $></a>
                 </li>
 <!--
                 <li class="tab-panels--tab-list-item base--li" role="presentation">
@@ -269,7 +269,7 @@
         <div class="output--reset icon-hyperlink">
           <span class="icon icon-reset"></span>
           <button class="base--a output--reset-button icon-hyperlink--button icon-hyperlink--button_BLANK" href="" type="reset">
-            Start Over
+            <$= __('button-reset') $>
           </button>
         </div>
         <div class="original-text--tooltip-container original-text--tooltip-container_hidden"></div>
@@ -280,9 +280,9 @@
 
     <div class="footer-banner">
       <div class="_demo--container footer-container">
-        <div class="footer-title">Next Up: Build your own app</div>
+        <div class="footer-title"><$= __('footer-title') $></div>
 
-        <div class="footer-tagline">Use Tone Analyzer to get started.</div>
+        <div class="footer-tagline"><$= __('footer-tagline') $></div>
 
         <a class="base--a bottom-links" href="https://www.ibm.com/watson/developercloud/tone-analyzer/api/v3/" target="_blank">API Reference</a>
         <a class="base--a bottom-links" href="http://www.ibm.com/watson/developercloud/doc/tone-analyzer/index.shtml" target="_blank">Documentation</a>
@@ -293,33 +293,75 @@
 
   <script type="text/html" id="emotionBarGraphTemplate">
     <% _.each(items, function(item, key, list) { %>
-      <div class="bar-graph--row summary-<%- className %>-graph--row <%- item.visible %>">
-        <div class="bar-graph--label-container summary-<%- className %>-graph--label-container">
-          <div class="bar-graph--label">
-            <p class="base--p">
-              <%- item.label %>
-            </p>
-            <% if (item.tooltip) { %>
-              <div class="bar-graph--tooltip">
-                <%- item.tooltip %>
-              </div>
+      <% if (item.label == 'No Tone') { %>
+        <$=__('document-no-tone')$>
+      <% } else { %>
+        <div class="bar-graph--row summary-<%- className %>-graph--row <%- item.visible %>">
+          <div class="bar-graph--label-container summary-<%- className %>-graph--label-container">
+            <div class="bar-graph--label">
+              <p class="base--p">
+                <% if (item.label == 'Anger') { %>
+                  <$=__('document-tone-anger')$>
+                <% } else if (item.label == 'Fear') { %>
+                  <$=__('document-tone-fear')$>
+                <% } else if (item.label == 'Joy') { %>
+                  <$=__('document-tone-joy')$>
+                <% } else if (item.label == 'Sadness') { %>
+                  <$=__('document-tone-sadness')$>
+                <% } else if (item.label == 'Analytical') { %>
+                  <$=__('document-tone-analytical')$>
+                <% } else if (item.label == 'Confident') { %>
+                  <$=__('document-tone-confident')$>
+                <% } else if (item.label == 'Tentative') { %>
+                  <$=__('document-tone-tentative')$>
+                <% } else { %>
+                  <%- item.label %>
+                <% } %>
+              </p>
+              <% if (item.tooltip) { %>
+                <div class="bar-graph--tooltip">
+                  <% if (item.label == 'Anger') { %>
+                    <$=__('hover-anger')$>
+                  <% } else if (item.label == 'Fear') { %>
+                    <$=__('hover-fear')$>
+                  <% } else if (item.label == 'Joy') { %>
+                    <$=__('hover-joy')$>
+                  <% } else if (item.label == 'Sadness') { %>
+                    <$=__('hover-sadness')$>
+                  <% } else if (item.label == 'Analytical') { %>
+                    <$=__('hover-analytical')$>
+                  <% } else if (item.label == 'Confident') { %>
+                    <$=__('hover-confident')$>
+                  <% } else if (item.label == 'Tentative') { %>
+                    <$=__('hover-tentative')$>
+                  <% } else { %>
+                    <%- item.tooltip %>
+                  <% } %>
+                </div>
+                <% } %>
+            </div>
+          </div>
+
+          <div class="bar-graph--bar-container summary-<%- className %>-graph--bar-container">
+            <div class="bar-graph--bar">
+              <div class="bar-graph--bar-value summary-<%- className %>-graph--bar-value summary-<%- className %>-graph--bar-value_<%- item.label.replace(/\s+/g, '-') %>" style="width: <%- item.score %>%;"></div>
+            </div>
+          </div>
+          <div class="summary-emotion-graph--percentage-label">
+            <%- (item.score / 100).toFixed(2) %>
+              <br>
+              <span class="summary-emotion-graph--percentage-label-likeliness">
+              <% if (item.score > 0.75) { %>
+                <$=__('document-score-very-likely')$>
+              <% } else { %>
+                <$=__('document-score-likely')$>
               <% } %>
+            </span>
           </div>
+
         </div>
-        <div class="bar-graph--bar-container summary-<%- className %>-graph--bar-container">
-          <div class="bar-graph--bar">
-            <div class="bar-graph--bar-value summary-<%- className %>-graph--bar-value summary-<%- className %>-graph--bar-value_<%- item.label.replace(/\s+/g, '-') %>" style="width: <%- item.score %>%;"></div>
-          </div>
-        </div>
-        <div class="summary-emotion-graph--percentage-label">
-          <%- (item.score / 100).toFixed(2) %>
-            <br>
-            <span class="summary-emotion-graph--percentage-label-likeliness">
-            <%- item.likeliness %>
-          </span>
-        </div>
-      </div>
-      <% }); %>
+      <% } %>
+    <% }); %>
   </script>
 
   <script type="text/html" id="barGraphTemplate">
@@ -375,11 +417,31 @@
 
   <script type="text/html" id="filtersTemplate">
     <% _.each(items, function(item, key, list) { %>
-      <input class="filters--radio base--radio" type="radio" id="filter-<%- item.label.replace(/\s+/g, '-') %>" data-id="<%- item.label %>" name="tone-filters" value="<%- item.label.replace(/\s+/g, '-') %>">
-      <label class="filters--label base--block-label" for="filter-<%- item.label.replace(/\s+/g, '-') %>">
-        <%- item.label %>
-      </label>
-      <% }); %>
+      <% if (item.label == 'No Tone') { %>
+        <$=__('sentences-no-tone')$>
+      <% } else { %>
+        <input class="filters--radio base--radio" type="radio" id="filter-<%- item.label.replace(/\s+/g, '-') %>" data-id="<%- item.label %>" name="tone-filters" value="<%- item.label.replace(/\s+/g, '-') %>">
+        <label class="filters--label base--block-label" for="filter-<%- item.label.replace(/\s+/g, '-') %>">
+          <% if (item.label == 'Anger') { %>
+            <$=__('document-tone-anger')$>
+          <% } else if (item.label == 'Fear') { %>
+            <$=__('document-tone-fear')$>
+          <% } else if (item.label == 'Joy') { %>
+            <$=__('document-tone-joy')$>
+          <% } else if (item.label == 'Sadness') { %>
+            <$=__('document-tone-sadness')$>
+          <% } else if (item.label == 'Analytical') { %>
+            <$=__('document-tone-analytical')$>
+          <% } else if (item.label == 'Confident') { %>
+            <$=__('document-tone-confident')$>
+          <% } else if (item.label == 'Tentative') { %>
+            <$=__('document-tone-tentative')$>
+          <% } else { %>
+            <%- item.label %>
+          <% } %>
+        </label>
+      <% } %>
+    <% }); %>
   </script>
 
   <script type="text/html" id="originalTextTemplate">
@@ -416,7 +478,27 @@
             <% if (item.error) {%>
               <div class="original-text--tooltip_error"><b>ERROR: </b><%- item.error %></div>
             <%} else {%>
-              <div class="original-text--tooltip-label"><%- item.tone_name %></div>
+              <div class="original-text--tooltip-label">
+                <% if (item.tone_name == 'Anger') { %>
+                  <$=__('document-tone-anger')$>
+                <% } else if (item.tone_name == 'Fear') { %>
+                  <$=__('document-tone-fear')$>
+                <% } else if (item.tone_name == 'Joy') { %>
+                  <$=__('document-tone-joy')$>
+                <% } else if (item.tone_name == 'Sadness') { %>
+                  <$=__('document-tone-sadness')$>
+                <% } else if (item.tone_name == 'Analytical') { %>
+                  <$=__('document-tone-analytical')$>
+                <% } else if (item.tone_name == 'Confident') { %>
+                  <$=__('document-tone-confident')$>
+                <% } else if (item.tone_name == 'Tentative') { %>
+                  <$=__('document-tone-tentative')$>
+                <% } else if (item.tone_name == 'No Tone') { %>
+                  <$=__('label-tooltip-no-tone')$>
+                <% } else { %>
+                  <%- item.tone_name %>
+                <% } %>
+              </div>
             <%} %>
           </li>
           <% }); %>
@@ -429,9 +511,53 @@
     <div class="original-text--legend-block original-text--legend-block_low original-text--legend-block_<%= className %>-low">&lt; .5</div>
     <div class="original-text--legend-block original-text--legend-block_med original-text--legend-block_<%= className %>-medium">.5 - .75</div>
     <div class="original-text--legend-block original-text--legend-block_high original-text--legend-block_<%= className %>-high">&gt; .75</div>
-    <div class="original-text--legend-label original-text--legend-label_low">None</div>
-    <div class="original-text--legend-label original-text--legend-label_high">Strong</div>
+    <div class="original-text--legend-label original-text--legend-label_low"><$= __('legend-label-none')$></div>
+    <div class="original-text--legend-label original-text--legend-label_high"><$= __('legend-label-strong')$></div>
     </div>
+  </script>
+
+  <script type="text/html" id="originalTextDescriptionTemplate">
+    <% _.each(items, function(item, key, list) { %>
+      <% if (item.label == 'Anger') { %>
+        <b><$=__('document-tone-anger')$>: </b><$=__('anger-description')$>
+      <% } else if (item.label == 'Fear') { %>
+        <b><$=__('document-tone-fear')$>: </b><$=__('fear-description')$>
+      <% } else if (item.label == 'Joy') { %>
+        <b><$=__('document-tone-joy')$>: </b><$=__('joy-description')$>
+      <% } else if (item.label == 'Sadness') { %>
+        <b><$=__('document-tone-sadness')$>: </b><$=__('sadness-description')$>
+      <% } else if (item.label == 'Analytical') { %>
+        <b><$=__('document-tone-analytical')$>: </b><$=__('analytical-description')$>
+      <% } else if (item.label == 'Confident') { %>
+        <b><$=__('document-tone-confident')$>: </b><$=__('confident-description')$>
+      <% } else if (item.label == 'Tentative') { %>
+        <b><$=__('document-tone-tentative')$>: </b><$=__('tentative-description')$>
+      <% } else if (item.label == 'No Tone') { %>
+        <b><$=__('label-tooltip-no-tone')$></b>
+      <% } else { %>
+        <b><%- item.label %>: </b><%- item.description %>
+      <% } %>
+    <% }); %>
+  </script>
+
+  <script type="text/html" id="documentWarningTemplate">
+    <% _.each(items, function(item, key, list) { %>
+      <$=__('document-warning')$>
+    <% }); %>
+  </script>
+
+  <script type="text/html" id="errorMessageTemplate">
+    <% _.each(items, function(item, key, list) { %>
+      <% if (item.errorCode == 401) { %>
+        <$=__('error-401')$>
+      <% } else if (item.errorCode == 429) { %>
+        <$=__('error-429')$>
+      <% } else if (item.errorCode == 500) { %>
+        <$=__('error-500')$>
+      <% } else { %>
+        <%- item.errorMessage %>
+      <% } %>
+    <% }); %>
   </script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

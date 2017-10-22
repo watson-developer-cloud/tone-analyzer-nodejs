@@ -32,6 +32,8 @@ module.exports = function(app) {
   }));
   app.use(bodyParser.json());
 
+  require('./i18n')(app);
+
   // Setup static public directory
   app.use(express.static(path.join(__dirname, '..', '/public')));
 

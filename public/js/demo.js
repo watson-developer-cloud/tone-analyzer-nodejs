@@ -21,7 +21,10 @@
      originalTextTemplate,
      sentenceRankTemplate,
      originalTextTooltipTemplate,
-     originalTextLegendTemplate
+     originalTextLegendTemplate,
+     originalTextDescriptionTemplate,
+     documentWarningTemplate,
+     errorMessageTemplate
   */
 
 'use strict';
@@ -93,6 +96,9 @@ function allReady(thresholds, sampleText) {
     sentenceRank_template = sentenceRankTemplate.innerHTML, // eslint-disable-line camelcase
     originalTextTooltip_template = originalTextTooltipTemplate.innerHTML, // eslint-disable-line camelcase
     originalTextLegend_template = originalTextLegendTemplate.innerHTML, // eslint-disable-line camelcase
+    originalTextDescription_template = originalTextDescriptionTemplate.innerHTML, // eslint-disable-line camelcase
+    documentWarning_template = documentWarningTemplate.innerHTML, // eslint-disable-line camelcase
+    errorMessage_template = errorMessageTemplate.innerHTML, // eslint-disable-line camelcase
     selectedInputSample = $('input[name=rb]:checked').val(),
     selectedLang = 'en',
     lastSentenceID;
@@ -117,8 +123,8 @@ function allReady(thresholds, sampleText) {
 
     // if only one sentence, sentences will not exist, so mutate sentences_tone manually
     if (typeof (data.sentences_tone) === 'undefined' || data.sentences_tone === null) {
-      data.sentences_tone = [{
-        sentence_id: 0,
+      data.sentences_tone = [{ // eslint-disable-line camelcase
+        sentence_id: 0, // eslint-disable-line camelcase
         text: selectedSampleText,
         tones: data.document_tone.tones
       }];
@@ -139,7 +145,9 @@ function allReady(thresholds, sampleText) {
 
     //Display document level warning if present
     if(data.document_tone.warning != null){
-      $documentWarning.html(data.document_tone.warning);
+      $documentWarning.html(_.template(documentWarning_template, {
+        items: [data.document_tone.warning]
+      }));
     }
     else{
       $documentWarning.html('');
@@ -224,9 +232,12 @@ function allReady(thresholds, sampleText) {
       $originalTexts.html(_.template(originalText_template, {
         items: app.updateOriginalSentences()
       }));
-      $originalTextDescription.html(app.updateOriginalTextDescription());
-    }
 
+      $originalTextDescription.html(_.template(originalTextDescription_template, {
+        items: [{label: app.selectedFilter(),
+          description: app.updateOriginalTextDescription()}]
+      }));
+    }
 
     /**
      * Emit view update for sentence rank view
@@ -362,7 +373,13 @@ function allReady(thresholds, sampleText) {
 
     //Display message if no dominant tones at document level
     if (emotionTone == null || emotionTone.length == 0){
-      $emotionGraph.html('No dominant tones detected in the document.');
+      $emotionGraph.html(_.template(emotionBarGraph_template, {
+        items: [{
+          label: 'No Tone',
+          tooltip: 'No dominant tones detected in the document.'
+        }],
+        className: 'emotion'
+      }));
     }
     else{
       $emotionGraph.html(_.template(emotionBarGraph_template, {
@@ -373,7 +390,12 @@ function allReady(thresholds, sampleText) {
 
     //Display message if no dominant tones at sentence level
     if (sentenceTone == null || sentenceTone.length == 0){
-      $emotionFilters.html('No dominant tones detected in the sentences.');
+      $emotionFilters.html(_.template(filters_template, {
+        items: [{
+          label: 'No Tone',
+          tooltip: 'No dominant tones detected in the sentences.'
+        }]
+      }));
     }
     else{
       $emotionFilters.html(_.template(filters_template, {
@@ -413,7 +435,12 @@ function allReady(thresholds, sampleText) {
       message = 'You\'ve sent a lot of requests in a short amount of time. ' +
         'As the CPU cores cool off a bit, wait a few seonds before sending more requests.';
     }
-    $errorMessage.text(message);
+
+    $errorMessage.html(_.template(errorMessage_template, {
+      items: [{errorCode: error.responseJSON.code,
+        errorMessage: message}]
+    }));
+
     $input.show();
     $loading.hide();
     $output.hide();
