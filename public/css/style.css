@@ -2211,3 +2211,34 @@ pre[class^="language-"] > code[class^="language-"], pre[class^="language-"] > co
     -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
     transform: rotate(90deg);
 }
+
+.score--tooltip {
+  position: absolute;
+  background-color: #325c80;
+  padding: 0.5rem;
+  left: -3rem;
+  top: -1.75rem;
+  color: white;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  visibility: hidden;
+  opacity: 0;
+  margin-top: 0rem;
+  -ms-transform: rotate(315deg); /* IE 9 */
+  -webkit-transform: rotate(315deg); /* Chrome, Safari, Opera */
+  transform: rotate(315deg);
+}
+.score--tooltip:after {
+  content: '';
+  position: absolute;
+  left: 0.5rem;
+  border: 1rem solid transparent;
+  top: 95%;
+  border-top-color: #325c80;
+}
+
+.checkmark:hover .score--tooltip {
+  visibility: visible;
+  opacity: 1;
+}

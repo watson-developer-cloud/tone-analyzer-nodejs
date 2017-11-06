@@ -344,6 +344,9 @@
               <div class="checkmark_circle_<%- item.label.replace(/\s+/g, '-') %>"></div>
               <div class="checkmark_stem"></div>
               <div class="checkmark_kick"></div>
+              <div class="score--tooltip">
+                <%- (item.score / 100).toFixed(2) %>
+              </div>
             <% } else { %>
               <div class="checkmark_circle_No-Tone %>"></div>
               <div class="checkmark_cross_stem"></div>
