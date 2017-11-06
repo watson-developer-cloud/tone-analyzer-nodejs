@@ -368,16 +368,29 @@ function allReady(thresholds, sampleText) {
 
     app.selectFilterBySample();
 
+    //emotionTone has document level tones. Need to display all available tones at this level
+    emotionTone = app.getDocumentToneDefault();
+    //Update scores for the tones present in response at document level
+    if (typeof (data.document_tone.tones) !== 'undefined' && data.document_tone.tones !== null){
+      data.document_tone.tones.forEach(function(element){
+        emotionTone.forEach(function(item) {
+          if (item.tone_id == element.tone_id) {
+            item.score = element.score;
+          }
+        });
+      });
+    }
+
     emotionTone = emotionTone.map(emotionMap);
     sentenceTone = sentenceTone.map(emotionMap);
 
     //Display message if no dominant tones at document level
-    if (emotionTone == null || emotionTone.length == 0){
+    if (data.document_tone.tones == null || data.document_tone.tones.length == 0){
       $emotionGraph.html(_.template(emotionBarGraph_template, {
         items: [{
           label: 'No Tone',
           tooltip: 'No dominant tones detected in the document.'
-        }],
+        }].concat(emotionTone),
         className: 'emotion'
       }));
     }

@@ -1177,8 +1177,7 @@ pre[class*=" language-"] {
             align-items: center; }
   .bar-graph--label-container {
     display: inline-block;
-    width: 3.5rem;
-    margin-right: 0.5rem;
+    margin-right: 0.8rem;
     vertical-align: middle; }
   .bar-graph--bar-container {
     display: inline-block;
@@ -1364,10 +1363,10 @@ pre[class*=" language-"] {
 .summary--emotion {
   background-color: #f9f9f9;
   padding: 1rem;
-  height: 26.5rem; }
+  height: 17rem; }
   @media (min-width: 768px) {
     .summary--emotion {
-      width: 31.91489%;
+      width: 100%;
       margin-left: 0%;
       margin-right: 2.12766%;
       float: left;
@@ -1375,10 +1374,10 @@ pre[class*=" language-"] {
       margin-top: 0rem; } }
   @media (min-width: 768px) {
     .summary--emotion {
-      height: 26.5rem; } }
+      height: 10rem; } }
   @media (min-width: 1200px) {
     .summary--emotion {
-      height: 26.5rem; } }
+      height: 10rem; } }
 
 .summary--score-desc {
   font-size: 0.85em;
@@ -1390,7 +1389,8 @@ pre[class*=" language-"] {
   font-size: 0.9em;
   margin-top: 0rem; }
   .summary-emotion-graph--row {
-    margin-top: 1rem; }
+    margin-top: 1rem;
+    display: inline-block;}
   .summary-emotion-graph--bar-value {
     background-color: #1AE5CD; }
     .summary-emotion-graph--bar-value_Anger {
@@ -2070,3 +2070,144 @@ pre[class^="language-"] > code[class^="language-"], pre[class^="language-"] > co
 }
 
 .show { }
+
+.checkmark {
+    display:inline-block;
+    width: 22px;
+    height:22px;
+    -ms-transform: rotate(45deg); /* IE 9 */
+    -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
+    transform: rotate(45deg);
+    margin-right: 40px
+}
+
+.checkmark_circle_Anger {
+    position: absolute;
+    width:22px;
+    height:22px;
+    background-color: #E80521;
+    border-radius:11px;
+    left:0;
+    top:0;
+    margin-top: 0.6rem;
+}
+
+.checkmark_circle_Fear {
+    position: absolute;
+    width:22px;
+    height:22px;
+    background-color: #325E2B;
+    border-radius:11px;
+    left:0;
+    top:0;
+    margin-top: 0.6rem;
+}
+
+.checkmark_circle_Joy {
+    position: absolute;
+    width:22px;
+    height:22px;
+    background-color: #FFD629;
+    border-radius:11px;
+    left:0;
+    top:0;
+    margin-top: 0.6rem;
+}
+
+.checkmark_circle_Sadness {
+    position: absolute;
+    width:22px;
+    height:22px;
+    background-color: #086DB2;
+    border-radius:11px;
+    left:0;
+    top:0;
+    margin-top: 0.6rem;
+}
+
+.checkmark_circle_Analytical {
+    position: absolute;
+    width:22px;
+    height:22px;
+    background-color: #075CD8;
+    border-radius:11px;
+    left:0;
+    top:0;
+    margin-top: 0.6rem;
+}
+
+.checkmark_circle_Confident {
+    position: absolute;
+    width:22px;
+    height:22px;
+    background-color: #592684;
+    border-radius:11px;
+    left:0;
+    top:0;
+    margin-top: 0.6rem;
+}
+
+.checkmark_circle_Tentative {
+    position: absolute;
+    width:22px;
+    height:22px;
+    background-color: #1AE5CD;
+    border-radius:11px;
+    left:0;
+    top:0;
+    margin-top: 0.6rem;
+}
+
+.checkmark_circle_No-Tone {
+    position: absolute;
+    width:22px;
+    height:22px;
+    background-color: #E0E0E0;
+    border-radius:11px;
+    left:0;
+    top:0;
+    margin-top: 0.6rem;
+}
+
+.checkmark_stem {
+    position: absolute;
+    width:3px;
+    height:9px;
+    background-color:#fff;
+    left:11px;
+    top:6px;
+    margin-top: 0.6rem;
+}
+
+.checkmark_kick {
+    position: absolute;
+    width:3px;
+    height:3px;
+    background-color:#fff;
+    left:8px;
+    top:12px;
+    margin-top: 0.6rem;
+}
+
+.checkmark_cross_stem {
+    position: absolute;
+    width:3px;
+    height:13px;
+    background-color:#fff;
+    left:10px;
+    top:4.5px;
+    margin-top: 0.6rem;
+}
+
+.checkmark_cross_kick {
+    position: absolute;
+    width:3px;
+    height:13px;
+    background-color:#fff;
+    left:10px;
+    top:4.5px;
+    margin-top: 0.6rem;
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+    transform: rotate(90deg);
+}

@@ -170,8 +170,8 @@
   					<img class="icon icon-code" src="images/icons/code.svg" />
   					<button class="base--a icon-hyperlink--button_BLANK js-toggle-summary-json" href="">
   						<span class="js-toggle-summary-json_show"><$= __('summary-view-json') $></span>
-          <span class="js-toggle-summary-json_hide"><$= __('summary-hide-json') $></span>
-          </button>
+              <span class="js-toggle-summary-json_hide"><$= __('summary-hide-json') $></span>
+            </button>
           </span>
         </div>
         <div class="summary-json js-summary-json">
@@ -292,6 +292,7 @@
     <% _.each(items, function(item, key, list) { %>
       <% if (item.label == 'No Tone') { %>
         <$=__('document-no-tone')$>
+        <br>
       <% } else { %>
         <div class="bar-graph--row summary-<%- className %>-graph--row <%- item.visible %>">
           <div class="bar-graph--label-container summary-<%- className %>-graph--label-container">
@@ -337,6 +338,17 @@
                 </div>
                 <% } %>
             </div>
+          </div>
+          <div class="checkmark">
+            <% if (item.score > 0) { %>
+              <div class="checkmark_circle_<%- item.label.replace(/\s+/g, '-') %>"></div>
+              <div class="checkmark_stem"></div>
+              <div class="checkmark_kick"></div>
+            <% } else { %>
+              <div class="checkmark_circle_No-Tone %>"></div>
+              <div class="checkmark_cross_stem"></div>
+              <div class="checkmark_cross_kick"></div>
+            <% } %>
           </div>
           <!--
           <div class="bar-graph--bar-container summary-<%- className %>-graph--bar-container">

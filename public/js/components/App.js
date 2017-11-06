@@ -33,7 +33,6 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
     _currentHoveredOriginalSentence = document.querySelector('body'),
     _rankedSentences = sentences,
     _originalSentences,
-    _documentTones = documentTones,
     _sentenceTones = sentenceTones,
     _thresholds = thresholds,
     _isHoveringOriginalText = false,
@@ -48,11 +47,48 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
       tone_id: 'error',
       tone_name: 'Error'
     },
+    DOCUMENT_TONE_DEFAULT = [{
+      score: 0,
+      tone_id: 'anger',
+      tone_name: 'Anger'
+    }, {
+      score: 0,
+      tone_id: 'fear',
+      tone_name: 'Fear'
+    }, {
+      score: 0,
+      tone_id: 'joy',
+      tone_name: 'Joy'
+    }, {
+      score: 0,
+      tone_id: 'sadness',
+      tone_name: 'Sadness'
+    }, {
+      score: 0,
+      tone_id: 'analytical',
+      tone_name: 'Analytical'
+    }, {
+      score: 0,
+      tone_id: 'confident',
+      tone_name: 'Confident'
+    }, {
+      score: 0,
+      tone_id: 'tentative',
+      tone_name: 'Tentative'
+    }],
     SCORE_DECIMAL_PLACE = 2,
     PERCENTAGE_DECIMAL_PLACE = 1,
     SOCIAL_TONE_MIN_RANGE = -1, // eslint-disable-line no-unused-vars
     SOCIAL_TONE_MAX_RANGE = 1,  // eslint-disable-line no-unused-vars
     output = {};
+
+  /**
+   * Return the default value for document tones
+   * @return {list}
+  */
+  output.getDocumentToneDefault = function () {
+    return DOCUMENT_TONE_DEFAULT;
+  };
 
   /**
    * Make sure sentences have proper tone data values.
@@ -347,7 +383,7 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
   };
 
   // Constructing the _toneHash hashmap
-  _toneHash = _documentTones.tones.concat(_sentenceTones, NO_TONE).reduce(function (prevVal2, curVal2, curIndex2) {
+  _toneHash =DOCUMENT_TONE_DEFAULT.concat(NO_TONE).reduce(function (prevVal2, curVal2, curIndex2) {
     prevVal2[curVal2.tone_name] = {
       index: curIndex2,
       low: {
