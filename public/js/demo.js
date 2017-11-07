@@ -81,13 +81,17 @@ function allReady(thresholds, sampleText) {
     $summaryJsonView = $('.js-toggle-summary-json_show'),
     $summaryJsonHide = $('.js-toggle-summary-json_hide'),
     $summaryJsonCode = $('.js-summary-json .json--code'),
+    $sentenceSummaryJsonButton = $('.js-toggle-sentence-summary-json'),
+    $sentenceSummaryJson = $('.js-sentence-summary-json'),
+    $sentenceSummaryJsonView = $('.js-toggle-sentence-summary-json_show'),
+    $sentenceSummaryJsonHide = $('.js-toggle-sentence-summary-json_hide'),
+    $sentenceSummaryJsonCode = $('.js-sentence-summary-json .json--code'),
     $emotionFilters = $('.filters--emotion'),
     $originalTexts = $('.original-text--texts'),
     $originalTextTooltipContainer = $('.original-text--tooltip-container'),
     $originalTextDescription = $('.original-text--description'),
     $legend = $('.original-text--legend'),
     $sentenceRankTable = $('.sentence-rank--table'),
-    $sentenceJson = $('.json .json--code'),
     $outputResetButton = $('.output--reset-button'),
     $documentWarning = $('.document--warning'),
     emotionBarGraph_template = emotionBarGraphTemplate.innerHTML, // eslint-disable-line camelcase
@@ -115,7 +119,7 @@ function allReady(thresholds, sampleText) {
     $output.show();
     scrollTo($output);
 
-    var emotionTone = data.document_tone.tones,
+    var emotionTone = data.document_tone.tones.slice(0),
       selectedSample = $('input[name=rb]:checked').val(),
       selectedSampleText = $textarea.val(),
       sentences, sentenceTone = [],
@@ -126,10 +130,10 @@ function allReady(thresholds, sampleText) {
       data.sentences_tone = [{ // eslint-disable-line camelcase
         sentence_id: 0, // eslint-disable-line camelcase
         text: selectedSampleText,
-        tones: data.document_tone.tones
+        tones: data.document_tone.tones.slice(0)
       }];
     }
-    sentences = data.sentences_tone.splice(0);
+    sentences = data.sentences_tone.slice(0);
 
     //Populate sentencesTone with all unique tones in sentences, to be displayed in sentence view
     sentences.forEach(function(elements) {
@@ -155,7 +159,6 @@ function allReady(thresholds, sampleText) {
     }
 
     app = new App(data.document_tone, sentences.slice(0), thresholds, selectedSample, sentenceTone); // clone sentences
-
     /**
      * Map Callback function for emotion document tones
      * @param {Object} item current iterating element
@@ -343,12 +346,12 @@ function allReady(thresholds, sampleText) {
      * @return {undefined}
      */
     function updateJSONSentenceTones() {
-      $sentenceJson.empty();
-      $sentenceJson.text(JSON.stringify({'sentences_tone': data.sentences_tone}, null, 2));
+      $sentenceSummaryJsonCode.empty();
+      $sentenceSummaryJsonCode.text(JSON.stringify({'sentences_tone': data.sentences_tone}, ['sentences_tone','sentence_id','text','tones','score','tone_id','tone_name'], 2));
     }
 
     /**
-     * Emit view update for json view sentence tones
+     * Emit view update for json view document tones
      * @return {undefined}
      */
     function updateJSONDocumentTones() {
@@ -391,13 +394,11 @@ function allReady(thresholds, sampleText) {
           label: 'No Tone',
           tooltip: 'No dominant tones detected in the document.'
         }].concat(emotionTone),
-        className: 'emotion'
       }));
     }
     else{
       $emotionGraph.html(_.template(emotionBarGraph_template, {
         items: emotionTone,
-        className: 'emotion'
       }));
     }
 
@@ -550,6 +551,12 @@ function allReady(thresholds, sampleText) {
     $summaryJson.toggle();
     $summaryJsonView.toggle();
     $summaryJsonHide.toggle();
+  });
+
+  $sentenceSummaryJsonButton.click(function() {
+    $sentenceSummaryJson.toggle();
+    $sentenceSummaryJsonView.toggle();
+    $sentenceSummaryJsonHide.toggle();
   });
 }
 

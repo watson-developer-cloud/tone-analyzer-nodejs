@@ -31,7 +31,7 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
   var _selectedFilter = 'No Tone',
     _lowToHigh = false,
     _currentHoveredOriginalSentence = document.querySelector('body'),
-    _rankedSentences = sentences,
+    _rankedSentences = sentences.slice(0),
     _originalSentences,
     _sentenceTones = sentenceTones,
     _thresholds = thresholds,

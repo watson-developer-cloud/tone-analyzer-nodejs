@@ -1580,6 +1580,10 @@ pre[class*=" language-"] {
     display: none; }
   .js-toggle-summary-json_hide {
     display: none; }
+  .sentence-summary-view-code-button {
+    float: right; }
+  .js-toggle-sentence-summary-json_hide {
+    display: none; }
 
 .sentences {
   min-width: 732px; }
