@@ -127,13 +127,16 @@ function allReady(thresholds, sampleText) {
 
     // if only one sentence, sentences will not exist, so mutate sentences_tone manually
     if (typeof (data.sentences_tone) === 'undefined' || data.sentences_tone === null) {
-      data.sentences_tone = [{ // eslint-disable-line camelcase
+      sentences = [{
         sentence_id: 0, // eslint-disable-line camelcase
         text: selectedSampleText,
         tones: data.document_tone.tones.slice(0)
       }];
     }
-    sentences = data.sentences_tone.slice(0);
+    else{
+      //Deep copy data.sentences_tone
+      sentences = JSON.parse(JSON.stringify(data.sentences_tone));
+    }
 
     //Populate sentencesTone with all unique tones in sentences, to be displayed in sentence view
     sentences.forEach(function(elements) {
@@ -158,7 +161,7 @@ function allReady(thresholds, sampleText) {
       $documentWarning.outerHTML = '';
     }
 
-    app = new App(data.document_tone, sentences.slice(0), thresholds, selectedSample, sentenceTone); // clone sentences
+    app = new App(data.document_tone, sentences, thresholds, selectedSample, sentenceTone);
     /**
      * Map Callback function for emotion document tones
      * @param {Object} item current iterating element
@@ -347,7 +350,7 @@ function allReady(thresholds, sampleText) {
      */
     function updateJSONSentenceTones() {
       $sentenceSummaryJsonCode.empty();
-      $sentenceSummaryJsonCode.text(JSON.stringify({'sentences_tone': data.sentences_tone}, ['sentences_tone','sentence_id','text','tones','score','tone_id','tone_name'], 2));
+      $sentenceSummaryJsonCode.text(JSON.stringify({'sentences_tone': data.sentences_tone}, null, 2));
     }
 
     /**
