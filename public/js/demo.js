@@ -13,19 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- /* eslint camelcase: "warn" */
- /* global  _, normalize, scrollTo,
-     App
-     emotionBarGraphTemplate,
-     filtersTemplate,
-     originalTextTemplate,
-     sentenceRankTemplate,
-     originalTextTooltipTemplate,
-     originalTextLegendTemplate,
-     originalTextDescriptionTemplate,
-     documentWarningTemplate,
-     errorMessageTemplate
-  */
+/* eslint camelcase: "warn" */
+/* global  _, normalize, scrollTo,
+    App
+    emotionBarGraphTemplate,
+    filtersTemplate,
+    originalTextTemplate,
+    sentenceRankTemplate,
+    originalTextTooltipTemplate,
+    originalTextLegendTemplate,
+    originalTextDescriptionTemplate,
+    documentWarningTemplate,
+    errorMessageTemplate
+ */
 
 'use strict';
 /*
@@ -41,11 +41,11 @@ function ready() {
 
   // load all json data first
   $.when(
-    $.ajax('/data/threshold_v0.1.1.json'),
-    $.ajax('/data/tweets.txt'),
-    $.ajax('/data/review.txt'),
-    $.ajax('/data/personal-email.txt'),
-    $.ajax('/data/review-fr.txt'))
+      $.ajax('/data/threshold_v0.1.1.json'),
+      $.ajax('/data/tweets.txt'),
+      $.ajax('/data/review.txt'),
+      $.ajax('/data/personal-email.txt'),
+      $.ajax('/data/review-fr.txt'))
     .done(function(thresholds, tweets, review, personalEmail, reviewFr) {
       var sampleText = {
         'review': review[0],
@@ -126,14 +126,13 @@ function allReady(thresholds, sampleText) {
       app;
 
     // if only one sentence, sentences will not exist, so mutate sentences_tone manually
-    if (typeof (data.sentences_tone) === 'undefined' || data.sentences_tone === null) {
+    if (typeof(data.sentences_tone) === 'undefined' || data.sentences_tone === null) {
       sentences = [{
         sentence_id: 0, // eslint-disable-line camelcase
         text: selectedSampleText,
         tones: data.document_tone.tones.slice(0)
       }];
-    }
-    else{
+    } else {
       //Deep copy data.sentences_tone
       sentences = JSON.parse(JSON.stringify(data.sentences_tone));
     }
@@ -141,7 +140,7 @@ function allReady(thresholds, sampleText) {
     //Populate sentencesTone with all unique tones in sentences, to be displayed in sentence view
     sentences.forEach(function(elements) {
       elements.tones.forEach(function(item) {
-        if (sentenceTone[item.tone_id] == null || sentenceTone[item.tone_id].score < item.score){
+        if (sentenceTone[item.tone_id] == null || sentenceTone[item.tone_id].score < item.score) {
           sentenceTone[item.tone_id] = item;
         }
       });
@@ -151,12 +150,11 @@ function allReady(thresholds, sampleText) {
     });
 
     //Display document level warning if present
-    if(data.document_tone.warning != null){
+    if (data.document_tone.warning != null) {
       $documentWarning.html(_.template(documentWarning_template, {
         items: [data.document_tone.warning]
       }));
-    }
-    else{
+    } else {
       $documentWarning.html('');
       $documentWarning.outerHTML = '';
     }
@@ -175,8 +173,8 @@ function allReady(thresholds, sampleText) {
         label: item.tone_name,
         score: app.percentagify(item.score, 'Emotion Tone'),
         tooltip: app.toneHash()[item.tone_name].tooltip,
-        likeliness:  v1 > v3 ? 'VERY LIKELY' :  v1 >= v2 ? 'LIKELY' : 'UNLIKELY',
-        visible:  v1 > v3 ? 'show' :  v1 >= v2 ? 'show' : 'dim',
+        likeliness: v1 > v3 ? 'VERY LIKELY' : v1 >= v2 ? 'LIKELY' : 'UNLIKELY',
+        visible: v1 > v3 ? 'show' : v1 >= v2 ? 'show' : 'dim',
         thresholdLow: app.percentagify(app.thresholds().doc[item.tone_name][0]),
         thresholdHigh: app.percentagify(app.thresholds().doc[item.tone_name][1])
       };
@@ -217,15 +215,14 @@ function allReady(thresholds, sampleText) {
      * @return {undefined}
      */
     function updateFilters() {
-      if (app.selectedFilter() == 'No Tone' && sentences[0].tones.length > 0){
+      if (app.selectedFilter() == 'No Tone' && sentences[0].tones.length > 0) {
         app.selectedFilter(sentences[0].tones[0].tone_name);
       }
 
       //Normalize only in case of 'No Tone'
       if (app.selectedFilter() == 'No Tone') {
         $('.filters--radio[data-id=' + normalize(app.selectedFilter()) + ']').prop('checked', true);
-      }
-      else {
+      } else {
         $('.filters--radio[data-id=' + app.selectedFilter() + ']').prop('checked', true);
       }
     }
@@ -240,8 +237,10 @@ function allReady(thresholds, sampleText) {
       }));
 
       $originalTextDescription.html(_.template(originalTextDescription_template, {
-        items: [{label: app.selectedFilter(),
-          description: app.updateOriginalTextDescription()}]
+        items: [{
+          label: app.selectedFilter(),
+          description: app.updateOriginalTextDescription()
+        }]
       }));
     }
 
@@ -267,7 +266,7 @@ function allReady(thresholds, sampleText) {
         top = box.top,
         left = box.left + originalText.getBoundingClientRect().width * 0.05;
 
-      if (typeof (e) !== 'undefined') {
+      if (typeof(e) !== 'undefined') {
         left = e.clientX;
       }
       $originalTextTooltipContainer.css({
@@ -293,12 +292,11 @@ function allReady(thresholds, sampleText) {
      * @return {undefined}
      */
     function updateLegend() {
-      if (sentenceTone.length > 0){
+      if (sentenceTone.length > 0) {
         $legend.html(_.template(originalTextLegend_template, {
           className: normalize(app.selectedFilter())
         }));
-      }
-      else{
+      } else {
         $legend.html(_.template(originalTextLegend_template, {
           className: ''
         }));
@@ -350,7 +348,9 @@ function allReady(thresholds, sampleText) {
      */
     function updateJSONSentenceTones() {
       $sentenceSummaryJsonCode.empty();
-      $sentenceSummaryJsonCode.text(JSON.stringify({'sentences_tone': data.sentences_tone}, null, 2));
+      $sentenceSummaryJsonCode.text(JSON.stringify({
+        'sentences_tone': data.sentences_tone
+      }, null, 2));
     }
 
     /**
@@ -359,7 +359,9 @@ function allReady(thresholds, sampleText) {
      */
     function updateJSONDocumentTones() {
       $summaryJsonCode.empty();
-      $summaryJsonCode.text(JSON.stringify({'document_tone': data.document_tone}, null, 2));
+      $summaryJsonCode.text(JSON.stringify({
+        'document_tone': data.document_tone
+      }, null, 2));
     }
 
     /**
@@ -377,8 +379,8 @@ function allReady(thresholds, sampleText) {
     //emotionTone has document level tones. Need to display all available tones at this level
     emotionTone = app.getDocumentToneDefault();
     //Update scores for the tones present in response at document level
-    if (typeof (data.document_tone.tones) !== 'undefined' && data.document_tone.tones !== null){
-      data.document_tone.tones.forEach(function(element){
+    if (typeof(data.document_tone.tones) !== 'undefined' && data.document_tone.tones !== null) {
+      data.document_tone.tones.forEach(function(element) {
         emotionTone.forEach(function(item) {
           if (item.tone_id == element.tone_id) {
             item.score = element.score;
@@ -391,30 +393,28 @@ function allReady(thresholds, sampleText) {
     sentenceTone = sentenceTone.map(emotionMap);
 
     //Display message if no dominant tones at document level
-    if (data.document_tone.tones == null || data.document_tone.tones.length == 0){
+    if (data.document_tone.tones == null || data.document_tone.tones.length == 0) {
       $emotionGraph.html(_.template(emotionBarGraph_template, {
         items: [{
           label: 'No Tone',
           tooltip: 'No dominant tones detected in the document.'
         }].concat(emotionTone),
       }));
-    }
-    else{
+    } else {
       $emotionGraph.html(_.template(emotionBarGraph_template, {
         items: emotionTone,
       }));
     }
 
     //Display message if no dominant tones at sentence level
-    if (sentenceTone == null || sentenceTone.length == 0){
+    if (sentenceTone == null || sentenceTone.length == 0) {
       $emotionFilters.html(_.template(filters_template, {
         items: [{
           label: 'No Tone',
           tooltip: 'No dominant tones detected in the sentences.'
         }]
       }));
-    }
-    else{
+    } else {
       $emotionFilters.html(_.template(filters_template, {
         items: sentenceTone
       }));
@@ -454,8 +454,10 @@ function allReady(thresholds, sampleText) {
     }
 
     $errorMessage.html(_.template(errorMessage_template, {
-      items: [{errorCode: error.responseJSON.code,
-        errorMessage: message}]
+      items: [{
+        errorCode: error.responseJSON.code,
+        errorMessage: message
+      }]
     }));
 
     $input.show();
@@ -471,8 +473,8 @@ function allReady(thresholds, sampleText) {
    * @return {undefined}
    */
   function getToneAnalysis(text) {
-    $.post('/api/tone', {'text': text, 'language': selectedLang }, toneCallback)
-    .fail(_error);
+    $.post('/api/tone', {'text': text,'language': selectedLang}, toneCallback)
+      .fail(_error);
   }
 
   /**
@@ -516,15 +518,15 @@ function allReady(thresholds, sampleText) {
   $inputRadio.click(function() {
     selectedLang = 'en';
     selectedInputSample = $(this).val();
-    $('input:radio[name=rb][value='+ $(this).val() + ']').prop('checked', true);
+    $('input:radio[name=rb][value=' + $(this).val() + ']').prop('checked', true);
 
     //Display Language options for own-text input option with default language as english
-    if (selectedInputSample === 'own-text'){
+    if (selectedInputSample === 'own-text') {
       $('input:radio[name=rb-lang][value=en]').prop('checked', true);
       $displayInputRadioLang.removeClass('original-text--tooltip-container_hidden');
-    } else{
+    } else {
       $displayInputRadioLang.addClass('original-text--tooltip-container_hidden');
-      if (selectedInputSample === 'review-fr'){
+      if (selectedInputSample === 'review-fr') {
         selectedLang = 'fr';
       }
     }
@@ -538,7 +540,7 @@ function allReady(thresholds, sampleText) {
   $inputRadioLang.click(function() {
     //update language
     selectedLang = $(this).val();
-    $('input:radio[name=rb-lang][value='+ $(this).val() + ']').prop('checked', true);
+    $('input:radio[name=rb-lang][value=' + $(this).val() + ']').prop('checked', true);
   });
 
   /**

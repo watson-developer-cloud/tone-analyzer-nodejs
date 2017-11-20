@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title><$= __('page-title-tone') $></title>
+  <title>
+    <$= __( 'page-title-tone') $>
+  </title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,6 +14,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/extra.css">
 </head>
+
 <body>
   <!-- top level heading -->
   <header class="_demo--heading">
@@ -22,19 +26,23 @@
       <nav class="heading-nav" role="menubar">
         <li class="base--li heading-nav--li" role="presentation">
           <a class="heading-nav--item" href="http://www.ibm.com/watson/developercloud/services-catalog.html" role="menuitem">
-                    	<$= __('header-services') $></a>
+            <$= __( 'header-services') $>
+          </a>
         </li>
         <li class="base--li heading-nav--li" role="presentation">
           <a class="heading-nav--item" href="http://www.ibm.com/watson/developercloud/doc/index.html" role="menuitem">
-			                <$= __('header-docs') $></a>
+            <$= __( 'header-docs') $>
+          </a>
         </li>
         <li class="base--li heading-nav--li" role="presentation">
           <a class="heading-nav--item" href="http://www.ibm.com/watson/developercloud/starter-kits.html" role="menuitem">
-                      <$= __('header-starterKit') $></a>
+            <$= __( 'header-starterKit') $>
+          </a>
         </li>
         <li class="base--li heading-nav--li" role="presentation">
           <a class="heading-nav--item" href="https://developer.ibm.com/watson/" role="menuitem">
-                        <$= __('header-community') $></a>
+            <$= __( 'header-community') $>
+          </a>
         </li>
       </nav>
     </div>
@@ -51,7 +59,7 @@
                              <$=__('page-title-tone')$>
                     </h1>
           <div class="banner--service-description">
-             <$= __('header-description') $>
+            <$= __( 'header-description') $>
           </div>
         </div>
       </div>
@@ -65,16 +73,25 @@
         <div class="banner--row">
           <div class="banner--service-links">
             <li class="base--li banner--service-link-item">
-              <a href="https://www.ibm.com/watson/developercloud/doc/tone-analyzer/index.html" target="blank" class="base--a"><$= __('header-documentation') $></a>
+              <a href="https://www.ibm.com/watson/developercloud/doc/tone-analyzer/index.html" target="blank" class="base--a">
+                <$= __( 'header-documentation') $>
+              </a>
             </li>
             <li class="base--li banner--service-link-item">
-              <a href="https://www.ibm.com/watson/developercloud/tone-analyzer/api/v3/" target="blank" class="base--a"><$= __('header-apiref') $></a>
+              <a href="https://www.ibm.com/watson/developercloud/tone-analyzer/api/v3/" target="blank" class="base--a">
+                <$= __( 'header-apiref') $>
+              </a>
             </li>
             <li class="base--li banner--service-link-item">
-              <a href="https://github.com/watson-developer-cloud/tone-analyzer-nodejs" target="blank" class="base--a"><$= __('header-fork') $></a>
+              <a href="https://github.com/watson-developer-cloud/tone-analyzer-nodejs" target="blank" class="base--a">
+                <$= __( 'header-fork') $>
+              </a>
             </li>
             <li class="base--li banner--service-link-item">
-              <a href="https://console.bluemix.net/registration?target=%2Fdeveloper%2Fwatson%2Fcreate-project%3Fservices%3Dtone_analyzer%26action%3Dcreate%26cm_mmc%3DOSocial_Tumblr-_-Watson%2BCore_Watson%2BCore%2B-%2BPlatform-_-WW_WW-_-wdc-ref%26cm_mmc%3DOSocial_Tumblr-_-Watson%2BCore_Watson%2BCore%2B-%2BPlatform-_-WW_WW-_-wdc-ref%26cm_mmca1%3D000000OF%26cm_mmca2%3D10000409" target="blank" class="base--button base--button_fill"><$= __('header-bluemix') $></a>
+              <a href="https://console.bluemix.net/registration?target=%2Fdeveloper%2Fwatson%2Fcreate-project%3Fservices%3Dtone_analyzer%26action%3Dcreate%26cm_mmc%3DOSocial_Tumblr-_-Watson%2BCore_Watson%2BCore%2B-%2BPlatform-_-WW_WW-_-wdc-ref%26cm_mmc%3DOSocial_Tumblr-_-Watson%2BCore_Watson%2BCore%2B-%2BPlatform-_-WW_WW-_-wdc-ref%26cm_mmca1%3D000000OF%26cm_mmca2%3D10000409"
+                target="blank" class="base--button base--button_fill">
+                <$= __( 'header-bluemix') $>
+              </a>
             </li>
           </div>
         </div>
@@ -87,7 +104,11 @@
     <article class="_content base--article">
       <div class="input">
         <h2 class="base--h2"><$= __('header-sample-use-cases') $></h2>
-        <p class="base--p input--description"><$= __('input-description') $> <a class="base--a" href="http://www.ibm.com/watson/developercloud/doc/tone-analyzer/index.shtml#usecases" target="new"><$= __('header-learn-more') $></a>.</p>
+        <p class="base--p input--description">
+          <$= __( 'input-description') $>
+            <a class="base--a" href="http://www.ibm.com/watson/developercloud/doc/tone-analyzer/index.shtml#usecases" target="new">
+              <$= __( 'header-learn-more') $>
+            </a>.</p>
         <input role="radio" class="base--radio input--radio" type="radio" id="input-tweets" name="rb" value="tweets" checked="true">
         <label class="base--inline-label input--radio-label" for="input-tweets"><$= __('radio-input-tweets') $></label>
         <input role="radio" class="base--radio input--radio" type="radio" id="input-online-review" name="rb" value="review">
@@ -98,7 +119,11 @@
         <label class="base--inline-label input--radio-label" for="input-lang-fr"><$= __('radio-input-lang-fr') $></label>
         <input role="radio" class="base--radio input--radio" type="radio" id="input-own-text" name="rb" value="own-text">
         <label class="base--inline-label input--radio-label" for="input-own-text"><$= __('radio-input-own-text') $></label>
-        <p class="base--p input--description"><$= __('input-description-customer-engagement') $> <a class="base--a" href="http://customer-engagement-demo.mybluemix.net" target="new"><$= __('input-description-customer-engagement-endpoint') $></a>.</p>
+        <p class="base--p input--description">
+          <$= __( 'input-description-customer-engagement') $>
+            <a class="base--a" href="http://customer-engagement-demo.mybluemix.net" target="new">
+              <$= __( 'input-description-customer-engagement-endpoint') $>
+            </a>.</p>
         <hr class="base--hr input--hr">
         <div class="panel">
           <textarea class="base--textarea input--textarea" rows="7"></textarea>
@@ -127,8 +152,14 @@
 
       <div class="output">
         <h2 class="base--h2"><$= __('header-output') $></h2>
-        <p class="base--p output--document-description"><$= __('output-description') $></p>
-        <p class="base--p output--document-description"><$= __('output-description-interpret') $> <a class="base--a" target="_blank" href="https://www.ibm.com/watson/developercloud/doc/tone-analyzer/understanding-tone.shtml"><$= __('output-description-understand-score') $></a>.</p>
+        <p class="base--p output--document-description">
+          <$= __( 'output-description') $>
+        </p>
+        <p class="base--p output--document-description">
+          <$= __( 'output-description-interpret') $>
+            <a class="base--a" target="_blank" href="https://www.ibm.com/watson/developercloud/doc/tone-analyzer/understanding-tone.shtml">
+              <$= __( 'output-description-understand-score') $>
+            </a>.</p>
         <h3 class="base--h3 output--document-title"><$= __('header-document') $></h3>
 
         <div class="summary--row">
@@ -138,7 +169,7 @@
             <div class="summary-emotion-graph bar-graph"></div>
           </div>
         </div>
-<!--
+        <!--
         <div class="summary--row">
           <div class="summary--emotion-description">
             <p class="base--p">The Emotion graph represents the likelihood that an emotion tone is present in the text. <a class="base--a" target="_blank" href="http://www.ibm.com/watson/developercloud/doc/tone-analyzer/understanding-tone.shtml#emotional">Learn more</a>.</p>
@@ -170,8 +201,8 @@
   					<img class="icon icon-code" src="images/icons/code.svg" />
   					<button class="base--a icon-hyperlink--button_BLANK js-toggle-summary-json" href="">
   						<span class="js-toggle-summary-json_show"><$= __('summary-view-json') $></span>
-              <span class="js-toggle-summary-json_hide"><$= __('summary-hide-json') $></span>
-            </button>
+          <span class="js-toggle-summary-json_hide"><$= __('summary-hide-json') $></span>
+          </button>
           </span>
         </div>
         <div class="summary-json js-summary-json">
@@ -180,7 +211,9 @@
           </pre>
         </div>
         <h3 class="base--h3 output--sentence-title" style="padding-left: 0rem;"><$= __('header-sentence') $></h3>
-        <p class="base--p output--sentence-description"><$= __('output-sentence-description') $></p>
+        <p class="base--p output--sentence-description">
+          <$= __( 'output-sentence-description') $>
+        </p>
         <div class="sentences">
           <div class="sentences--filters filters">
             <h3 class="base--h3" style="padding-left: 0rem;"><$= __('header-tones') $></h3>
@@ -190,9 +223,11 @@
             <div class="tab-panels sentence-views--tab-panels" role="tabpanel">
               <ul class="tab-panels--tab-list" role="tablist">
                 <li class="tab-panels--tab-list-item base--li" role="presentation">
-                  <a class="tab-panels--tab base--a active" href="#panel-original-text" aria-controls="panel-original-text" role="tab"><$= __('label-in-context') $></a>
+                  <a class="tab-panels--tab base--a active" href="#panel-original-text" aria-controls="panel-original-text" role="tab">
+                    <$= __( 'label-in-context') $>
+                  </a>
                 </li>
-<!--
+                <!--
                 <li class="tab-panels--tab-list-item base--li" role="presentation">
                   <a class="tab-panels--tab base--a" href="#panel-sentence-rank" aria-controls="panel-sentence-rank" role="tab">Ranked by score</a>
                 </li>
@@ -252,8 +287,8 @@
   					<img class="icon icon-code" src="images/icons/code.svg" />
   					<button class="base--a icon-hyperlink--button_BLANK js-toggle-sentence-summary-json" href="">
   						<span class="js-toggle-sentence-summary-json_show"><$= __('summary-view-json') $></span>
-              <span class="js-toggle-sentence-summary-json_hide"><$= __('summary-hide-json') $></span>
-            </button>
+          <span class="js-toggle-sentence-summary-json_hide"><$= __('summary-hide-json') $></span>
+          </button>
           </span>
         </div>
 
@@ -262,7 +297,7 @@
             <code class="base--code json--code language-javascript"></code>
           </pre>
         </div>
-<!--
+        <!--
         <div class="summary--row">
           <div class="results-table--feedback-inputs scl">
             <label><em class="base--em">Do you agree with this result? </em></label>
@@ -293,9 +328,13 @@
 
     <div class="footer-banner">
       <div class="_demo--container footer-container">
-        <div class="footer-title"><$= __('footer-title') $></div>
+        <div class="footer-title">
+          <$= __( 'footer-title') $>
+        </div>
 
-        <div class="footer-tagline"><$= __('footer-tagline') $></div>
+        <div class="footer-tagline">
+          <$= __( 'footer-tagline') $>
+        </div>
 
         <a class="base--a bottom-links" href="https://www.ibm.com/watson/developercloud/tone-analyzer/api/v3/" target="_blank">API Reference</a>
         <a class="base--a bottom-links" href="http://www.ibm.com/watson/developercloud/doc/tone-analyzer/index.shtml" target="_blank">Documentation</a>
@@ -307,7 +346,7 @@
   <script type="text/html" id="emotionBarGraphTemplate">
     <% _.each(items, function(item, key, list) { %>
       <% if (item.label == 'No Tone') { %>
-        <$=__('document-no-tone')$>
+        <$=__( 'document-no-tone')$>
         <br>
       <% } else { %>
         <div class="bar-graph--row summary-emotion-graph--row <%- item.visible %>">
@@ -315,19 +354,19 @@
             <div class="bar-graph--label">
               <p class="base--p">
                 <% if (item.label == 'Anger') { %>
-                  <$=__('document-tone-anger')$>
+                  <$=__( 'document-tone-anger')$>
                 <% } else if (item.label == 'Fear') { %>
-                  <$=__('document-tone-fear')$>
+                  <$=__( 'document-tone-fear')$>
                 <% } else if (item.label == 'Joy') { %>
-                  <$=__('document-tone-joy')$>
+                  <$=__( 'document-tone-joy')$>
                 <% } else if (item.label == 'Sadness') { %>
-                  <$=__('document-tone-sadness')$>
+                  <$=__( 'document-tone-sadness')$>
                 <% } else if (item.label == 'Analytical') { %>
-                  <$=__('document-tone-analytical')$>
+                  <$=__( 'document-tone-analytical')$>
                 <% } else if (item.label == 'Confident') { %>
-                  <$=__('document-tone-confident')$>
+                  <$=__( 'document-tone-confident')$>
                 <% } else if (item.label == 'Tentative') { %>
-                  <$=__('document-tone-tentative')$>
+                  <$=__( 'document-tone-tentative')$>
                 <% } else { %>
                   <%- item.label %>
                 <% } %>
@@ -335,24 +374,24 @@
               <% if (item.tooltip) { %>
                 <div class="bar-graph--tooltip">
                   <% if (item.label == 'Anger') { %>
-                    <$=__('hover-anger')$>
+                    <$=__( 'hover-anger')$>
                   <% } else if (item.label == 'Fear') { %>
-                    <$=__('hover-fear')$>
+                    <$=__( 'hover-fear')$>
                   <% } else if (item.label == 'Joy') { %>
-                    <$=__('hover-joy')$>
+                    <$=__( 'hover-joy')$>
                   <% } else if (item.label == 'Sadness') { %>
-                    <$=__('hover-sadness')$>
+                    <$=__( 'hover-sadness')$>
                   <% } else if (item.label == 'Analytical') { %>
-                    <$=__('hover-analytical')$>
+                    <$=__( 'hover-analytical')$>
                   <% } else if (item.label == 'Confident') { %>
-                    <$=__('hover-confident')$>
+                    <$=__( 'hover-confident')$>
                   <% } else if (item.label == 'Tentative') { %>
-                    <$=__('hover-tentative')$>
+                    <$=__( 'hover-tentative')$>
                   <% } else { %>
                     <%- item.tooltip %>
                   <% } %>
                 </div>
-                <% } %>
+              <% } %>
             </div>
           </div>
           <div class="checkmark">
@@ -386,7 +425,7 @@
               <div class="bar-graph--tooltip">
                 <%- item.tooltip %>
               </div>
-              <% } %>
+            <% } %>
           </div>
         </div>
         <div class="bar-graph--bar-container summary-<%- className %>-graph--bar-container">
@@ -396,13 +435,13 @@
         </div>
         <div class="summary-<%= className %>-graph--percentage-label bar-graph--percentage-label">
           <%= (item.score / 100).toFixed(2) %>
-          <br>
-          <span class="summary-<%= className %>-graph--percentage-label-likeliness">
+            <br>
+            <span class="summary-<%= className %>-graph--percentage-label-likeliness">
             <%= item.likeliness %>
           </span>
         </div>
       </div>
-      <% }); %>
+    <% }); %>
   </script>
 
   <script type="text/html" id="verticalBarGraphTemplate">
@@ -428,7 +467,7 @@
   <script type="text/html" id="filtersTemplate">
     <% _.each(items, function(item, key, list) { %>
       <% if (item.label == 'No Tone') { %>
-        <$=__('sentences-no-tone')$>
+        <$=__( 'sentences-no-tone')$>
       <% } else { %>
         <input class="filters--radio base--radio" type="radio" id="filter-<%- item.label.replace(/\s+/g, '-') %>" data-id="<%- item.label %>" name="tone-filters" value="<%- item.label.replace(/\s+/g, '-') %>">
         <label class="filters--label base--block-label" for="filter-<%- item.label.replace(/\s+/g, '-') %>">
@@ -463,7 +502,7 @@
             <% if (index +1 != arr.length) { %><br /><% } %>
           <% }) %></span>
       </div>
-      <% }); %>
+    <% }); %>
   </script>
 
   <script type="text/html" id="sentenceRankTemplate">
@@ -475,7 +514,7 @@
             <%- item.text %>
           </td>
         </tr>
-        <% }); %>
+      <% }); %>
     </tbody>
   </script>
 
@@ -484,86 +523,102 @@
       <ul class="original-text--tooltip-ul">
         <% _.each(items, function(item, key, list) { %>
           <li class="original-text--tooltip-li <%- item.className %>">
-            <% if (item.score_percentage > 0) { %><div class="original-text--tooltip-score"><b><%- item.score_percentage %></b></div><%} %>
+            <% if (item.score_percentage > 0) { %>
+              <div class="original-text--tooltip-score"><b><%- item.score_percentage %></b></div>
+            <%} %>
             <% if (item.error) {%>
-              <div class="original-text--tooltip_error"><b>ERROR: </b><%- item.error %></div>
+              <div class="original-text--tooltip_error"><b>ERROR: </b>
+                <%- item.error %>
+              </div>
             <%} else {%>
               <div class="original-text--tooltip-label">
                 <% if (item.tone_name == 'Anger') { %>
-                  <$=__('document-tone-anger')$>
+                  <$=__( 'document-tone-anger')$>
                 <% } else if (item.tone_name == 'Fear') { %>
-                  <$=__('document-tone-fear')$>
+                  <$=__( 'document-tone-fear')$>
                 <% } else if (item.tone_name == 'Joy') { %>
-                  <$=__('document-tone-joy')$>
+                  <$=__( 'document-tone-joy')$>
                 <% } else if (item.tone_name == 'Sadness') { %>
-                  <$=__('document-tone-sadness')$>
+                  <$=__( 'document-tone-sadness')$>
                 <% } else if (item.tone_name == 'Analytical') { %>
-                  <$=__('document-tone-analytical')$>
+                  <$=__( 'document-tone-analytical')$>
                 <% } else if (item.tone_name == 'Confident') { %>
-                  <$=__('document-tone-confident')$>
+                  <$=__( 'document-tone-confident')$>
                 <% } else if (item.tone_name == 'Tentative') { %>
-                  <$=__('document-tone-tentative')$>
+                  <$=__( 'document-tone-tentative')$>
                 <% } else if (item.tone_name == 'No Tone') { %>
-                  <$=__('label-tooltip-no-tone')$>
+                  <$=__( 'label-tooltip-no-tone')$>
                 <% } else { %>
                   <%- item.tone_name %>
                 <% } %>
               </div>
             <%} %>
           </li>
-          <% }); %>
+        <% }); %>
       </ul>
     </div>
   </script>
 
   <script type="text/html" id="originalTextLegendTemplate">
     <div class="original-text--legend-bar">
-    <div class="original-text--legend-block original-text--legend-block_low original-text--legend-block_<%= className %>-low">&lt; .5</div>
-    <div class="original-text--legend-block original-text--legend-block_med original-text--legend-block_<%= className %>-medium">.5 - .75</div>
-    <div class="original-text--legend-block original-text--legend-block_high original-text--legend-block_<%= className %>-high">&gt; .75</div>
-    <div class="original-text--legend-label original-text--legend-label_low"><$= __('legend-label-none')$></div>
-    <div class="original-text--legend-label original-text--legend-label_high"><$= __('legend-label-strong')$></div>
+      <div class="original-text--legend-block original-text--legend-block_low original-text--legend-block_<%= className %>-low">&lt; .5</div>
+      <div class="original-text--legend-block original-text--legend-block_med original-text--legend-block_<%= className %>-medium">.5 - .75</div>
+      <div class="original-text--legend-block original-text--legend-block_high original-text--legend-block_<%= className %>-high">&gt; .75</div>
+      <div class="original-text--legend-label original-text--legend-label_low">
+        <$= __( 'legend-label-none')$>
+      </div>
+      <div class="original-text--legend-label original-text--legend-label_high">
+        <$= __( 'legend-label-strong')$>
+      </div>
     </div>
   </script>
 
   <script type="text/html" id="originalTextDescriptionTemplate">
     <% _.each(items, function(item, key, list) { %>
       <% if (item.label == 'Anger') { %>
-        <b><$=__('document-tone-anger')$>: </b><$=__('anger-description')$>
+        <b><$=__('document-tone-anger')$>: </b>
+        <$=__( 'anger-description')$>
       <% } else if (item.label == 'Fear') { %>
-        <b><$=__('document-tone-fear')$>: </b><$=__('fear-description')$>
+        <b><$=__('document-tone-fear')$>: </b>
+        <$=__( 'fear-description')$>
       <% } else if (item.label == 'Joy') { %>
-        <b><$=__('document-tone-joy')$>: </b><$=__('joy-description')$>
+        <b><$=__('document-tone-joy')$>: </b>
+        <$=__( 'joy-description')$>
       <% } else if (item.label == 'Sadness') { %>
-        <b><$=__('document-tone-sadness')$>: </b><$=__('sadness-description')$>
+        <b><$=__('document-tone-sadness')$>: </b>
+        <$=__( 'sadness-description')$>
       <% } else if (item.label == 'Analytical') { %>
-        <b><$=__('document-tone-analytical')$>: </b><$=__('analytical-description')$>
+        <b><$=__('document-tone-analytical')$>: </b>
+        <$=__( 'analytical-description')$>
       <% } else if (item.label == 'Confident') { %>
-        <b><$=__('document-tone-confident')$>: </b><$=__('confident-description')$>
+        <b><$=__('document-tone-confident')$>: </b>
+        <$=__( 'confident-description')$>
       <% } else if (item.label == 'Tentative') { %>
-        <b><$=__('document-tone-tentative')$>: </b><$=__('tentative-description')$>
+        <b><$=__('document-tone-tentative')$>: </b>
+        <$=__( 'tentative-description')$>
       <% } else if (item.label == 'No Tone') { %>
         <b><$=__('label-tooltip-no-tone')$></b>
       <% } else { %>
-        <b><%- item.label %>: </b><%- item.description %>
+        <b><%- item.label %>: </b>
+        <%- item.description %>
       <% } %>
     <% }); %>
   </script>
 
   <script type="text/html" id="documentWarningTemplate">
     <% _.each(items, function(item, key, list) { %>
-      <$=__('document-warning')$>
+      <$=__( 'document-warning')$>
     <% }); %>
   </script>
 
   <script type="text/html" id="errorMessageTemplate">
     <% _.each(items, function(item, key, list) { %>
       <% if (item.errorCode == 401) { %>
-        <$=__('error-401')$>
+        <$=__( 'error-401')$>
       <% } else if (item.errorCode == 429) { %>
-        <$=__('error-429')$>
+        <$=__( 'error-429')$>
       <% } else if (item.errorCode == 500) { %>
-        <$=__('error-500')$>
+        <$=__( 'error-500')$>
       <% } else { %>
         <%- item.errorMessage %>
       <% } %>
@@ -604,4 +659,5 @@
     });
   </script>
 </body>
+
 </html>
