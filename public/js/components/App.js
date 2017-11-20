@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- /* global normalize, move */
- /* eslint no-unused-vars: "warn" */
+/* global normalize, move */
+/* eslint no-unused-vars: "warn" */
 
 /**
  * This is a JS constructor that controls this application's model and state
@@ -31,9 +31,8 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
   var _selectedFilter = 'No Tone',
     _lowToHigh = false,
     _currentHoveredOriginalSentence = document.querySelector('body'),
-    _rankedSentences = sentences,
+    _rankedSentences = sentences.slice(0),
     _originalSentences,
-    _documentTones = documentTones,
     _sentenceTones = sentenceTones,
     _thresholds = thresholds,
     _isHoveringOriginalText = false,
@@ -48,11 +47,48 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
       tone_id: 'error',
       tone_name: 'Error'
     },
+    DOCUMENT_TONE_DEFAULT = [{
+      score: 0,
+      tone_id: 'anger',
+      tone_name: 'Anger'
+    }, {
+      score: 0,
+      tone_id: 'fear',
+      tone_name: 'Fear'
+    }, {
+      score: 0,
+      tone_id: 'joy',
+      tone_name: 'Joy'
+    }, {
+      score: 0,
+      tone_id: 'sadness',
+      tone_name: 'Sadness'
+    }, {
+      score: 0,
+      tone_id: 'analytical',
+      tone_name: 'Analytical'
+    }, {
+      score: 0,
+      tone_id: 'confident',
+      tone_name: 'Confident'
+    }, {
+      score: 0,
+      tone_id: 'tentative',
+      tone_name: 'Tentative'
+    }],
     SCORE_DECIMAL_PLACE = 2,
     PERCENTAGE_DECIMAL_PLACE = 1,
     SOCIAL_TONE_MIN_RANGE = -1, // eslint-disable-line no-unused-vars
-    SOCIAL_TONE_MAX_RANGE = 1,  // eslint-disable-line no-unused-vars
+    SOCIAL_TONE_MAX_RANGE = 1, // eslint-disable-line no-unused-vars
     output = {};
+
+  /**
+   * Return the default value for document tones
+   * @return {list}
+   */
+  output.getDocumentToneDefault = function() {
+    return DOCUMENT_TONE_DEFAULT;
+  };
 
   /**
    * Make sure sentences have proper tone data values.
@@ -62,9 +98,13 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
 
   function _cleanSentences() {
     // look for empty tones in sentences and set it to noTone
-    _rankedSentences.forEach(function (item) {
+    _rankedSentences.forEach(function(item) {
       if (item.tones.length === 0) {
-        item.tones = [{'score':0, 'tone_id':NO_TONE.tone_id, 'tone_name':NO_TONE.tone_name}];
+        item.tones = [{
+          'score': 0,
+          'tone_id': NO_TONE.tone_id,
+          'tone_name': NO_TONE.tone_name
+        }];
       }
     });
   }
@@ -76,9 +116,11 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
    * @return {int} index positioning of tone
    */
   function _searchIndexObject(key, obj) {
-    var item = obj, i=0, index;
-    item.tones.forEach (function(element){
-      if (key == element.tone_name){
+    var item = obj,
+      i = 0,
+      index;
+    item.tones.forEach(function(element) {
+      if (key == element.tone_name) {
         index = i;
       }
       ++i;
@@ -100,10 +142,10 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
       newScore = score,
       baseThreshold = 0;
     //Assign class based on score, error or no-tone
-    if (toneKey == ERROR_TONE.tone_name){
-      outputTone = 'original-text--sentence_'+normalize(ERROR_TONE.tone_name);
-    } else if (toneKey == NO_TONE.tone_name){
-      outputTone = 'original-text--sentence_'+normalize(NO_TONE.tone_name);
+    if (toneKey == ERROR_TONE.tone_name) {
+      outputTone = 'original-text--sentence_' + normalize(ERROR_TONE.tone_name);
+    } else if (toneKey == NO_TONE.tone_name) {
+      outputTone = 'original-text--sentence_' + normalize(NO_TONE.tone_name);
     } else if (newScore <= baseThreshold) {
       outputTone = '';
     } else if (newScore < toneValue.low.score) {
@@ -130,7 +172,7 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
    * @param {String} str setter tone name
    * @return {String} _selectedFilter
    */
-  output.selectedFilter = function (str) {
+  output.selectedFilter = function(str) {
     if (!arguments.length) return _selectedFilter;
     if (str == null) str = NO_TONE.tone_name;
     _selectedFilter = str;
@@ -141,7 +183,7 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
    * Getter for _toneHash
    * @return {Object} _toneHash
    */
-  output.toneHash = function () {
+  output.toneHash = function() {
     return _toneHash;
   };
 
@@ -150,7 +192,7 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
    * @param {bool} bool setter boolean
    * @return {bool} (getter) {bool} _lowToHigh
    */
-  output.lowToHigh = function (bool) {
+  output.lowToHigh = function(bool) {
     if (!arguments.length) return _lowToHigh;
     _lowToHigh = bool;
     return output;
@@ -160,7 +202,7 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
    * Switch bool value of _lowToHigh
    * @return {Object} Constructor returned object
    */
-  output.toggleLowToHigh = function () {
+  output.toggleLowToHigh = function() {
     _lowToHigh = !_lowToHigh;
     return output;
   };
@@ -170,7 +212,7 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
    * @param {bool} bool setter boolean
    * @return {bool} (getter) _isHoveringOriginalText
    */
-  output.isHoveringOriginalText = function (bool) {
+  output.isHoveringOriginalText = function(bool) {
     if (!arguments.length) return _isHoveringOriginalText;
     _isHoveringOriginalText = bool;
     return output;
@@ -180,7 +222,7 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
    * Getter for _thresholds
    * @return {Object} _thresholds
    */
-  output.thresholds = function () {
+  output.thresholds = function() {
     return _thresholds;
   };
 
@@ -189,7 +231,7 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
    * @param {DOMElement} element setter element
    * @return {DOMElement} (getter)  _currentHoveredOriginalSentence
    */
-  output.currentHoveredOriginalSentence = function (element) {
+  output.currentHoveredOriginalSentence = function(element) {
     if (!arguments.length) return _currentHoveredOriginalSentence;
     _currentHoveredOriginalSentence = element;
     return output;
@@ -199,24 +241,28 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
    * Export an adaptation of _rankedSentences model
    * @return {Array} array of {Object} sentence data
    */
-  output.updateRankedSentences = function () {
+  output.updateRankedSentences = function() {
     var sort = _lowToHigh ?
-          function (a, b) {
-            var aIndex = _searchIndexObject(_selectedFilter, a),
-              bIndex = _searchIndexObject(_selectedFilter, b), aScore = 0, bScore = 0;
-            if (aIndex != null) aScore = a.tones[aIndex].score;
-            if (bIndex != null) bScore = b.tones[bIndex].score;
-            return aScore - bScore;
-          } :
-          function(a, b) {
-            var aIndex = _searchIndexObject(_selectedFilter, a),
-              bIndex = _searchIndexObject(_selectedFilter, b), aScore = 0, bScore = 0;
-            if (aIndex != null) aScore = a.tones[aIndex].score;
-            if (bIndex != null) bScore = b.tones[bIndex].score;
+      function(a, b) {
+        var aIndex = _searchIndexObject(_selectedFilter, a),
+          bIndex = _searchIndexObject(_selectedFilter, b),
+          aScore = 0,
+          bScore = 0;
+        if (aIndex != null) aScore = a.tones[aIndex].score;
+        if (bIndex != null) bScore = b.tones[bIndex].score;
+        return aScore - bScore;
+      } :
+      function(a, b) {
+        var aIndex = _searchIndexObject(_selectedFilter, a),
+          bIndex = _searchIndexObject(_selectedFilter, b),
+          aScore = 0,
+          bScore = 0;
+        if (aIndex != null) aScore = a.tones[aIndex].score;
+        if (bIndex != null) bScore = b.tones[bIndex].score;
 
-            return bScore - aScore;
-          },
-      map = function (item) {
+        return bScore - aScore;
+      },
+      map = function(item) {
         var itemIndex = _searchIndexObject(_selectedFilter, item),
           score = 0;
         if (itemIndex != null) score = item.tones[itemIndex].score.toFixed(SCORE_DECIMAL_PLACE);
@@ -234,21 +280,20 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
    * @return {Array} array of {Object} sentence data
    */
   output.updateOriginalSentences = function() {
-    var map = function (item) {
-      var result = item, tone_score, index;
+    var map = function(item) {
+      var result = item,
+        tone_score, index;
       //If the tone was not present in the text, then assign it a score of 0
       index = _searchIndexObject(_selectedFilter, item);
-      if ( index == null){
+      if (index == null) {
         tone_score = 0;
-      }
-      else{
+      } else {
         tone_score = item.tones[index].score;
       }
 
-      if (ERROR_TONE.tone_id in item){
+      if (ERROR_TONE.tone_id in item) {
         result.className = _toneLevel(ERROR_TONE.tone_name, tone_score, 'className_OT');
-      }
-      else{
+      } else {
         result.className = _toneLevel(_selectedFilter, tone_score, 'className_OT');
       }
       return result;
@@ -260,7 +305,7 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
    * Export a the current tone description
    * return {String}
    */
-  output.updateOriginalTextDescription = function () {
+  output.updateOriginalTextDescription = function() {
     return _toneHash[_selectedFilter].description;
   };
 
@@ -269,16 +314,16 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
    * @param {int} sentenceIndex sentence index
    * @return {Array} array of {Object} sentence data
    */
-  output.updateOriginalSentencesTooltips = function (sentenceIndex) {
-    var map = function (item) {
+  output.updateOriginalSentencesTooltips = function(sentenceIndex) {
+    var map = function(item) {
       var result = item;
       result.className = 'original-text--tooltip-li_' + normalize(result.tone_name);
 
       //Assign score only if there a tone in sentence
-      if (item.tone_name != NO_TONE.tone_name){
+      if (item.tone_name != NO_TONE.tone_name) {
         result.score_percentage = item.score.toFixed(SCORE_DECIMAL_PLACE);
       }
-      if (ERROR_TONE.tone_id in _originalSentences[sentenceIndex]){
+      if (ERROR_TONE.tone_id in _originalSentences[sentenceIndex]) {
         result.error = _originalSentences[sentenceIndex].error; //Text displayed in tooltip will be the error message
         result.className = 'original-text--tooltip-li_' + normalize(ERROR_TONE.tone_name);
       }
@@ -288,7 +333,7 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
 
     return move(
       _originalSentences[sentenceIndex].tones.slice(0).map(map),
-      _searchIndexObject(_selectedFilter, _originalSentences[sentenceIndex]),//_searchIndex(_selectedFilter),
+      _searchIndexObject(_selectedFilter, _originalSentences[sentenceIndex]), //_searchIndex(_selectedFilter),
       0);
   };
 
@@ -296,9 +341,9 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
    * Select initial filter depending on sample text picked
    * @return {undefined}
    */
-  output.selectFilterBySample = function () {
-    var getHighestTone = function () {
-      if (_sentenceTones.length == 0){
+  output.selectFilterBySample = function() {
+    var getHighestTone = function() {
+      if (_sentenceTones.length == 0) {
         return NO_TONE.tone_name;
       }
       var highestTone = _sentenceTones[0].tone_name,
@@ -347,7 +392,7 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
   };
 
   // Constructing the _toneHash hashmap
-  _toneHash = _documentTones.tones.concat(_sentenceTones, NO_TONE).reduce(function (prevVal2, curVal2, curIndex2) {
+  _toneHash = DOCUMENT_TONE_DEFAULT.concat(NO_TONE).reduce(function(prevVal2, curVal2, curIndex2) {
     prevVal2[curVal2.tone_name] = {
       index: curIndex2,
       low: {
