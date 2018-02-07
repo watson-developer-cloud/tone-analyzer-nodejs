@@ -2,11 +2,11 @@
 
   The IBM Watson [Tone Analyzer][docs] service is a cognitive linguistic analysis service that detects 7 tones which are most commonly used to detect the tone of written text. These are: anger, fear, joy, sadness, confident, analytical, and tentative.
 
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/tone-analyzer-nodejs.git)
+[![Deploy to IBM Cloud](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/tone-analyzer-nodejs.git)
 
 ## Getting started
 
-1. You need a Bluemix account. If you don't have one, [sign up][sign_up]. Experimental Watson Services are free to use.
+1. You need an IBM Cloud account. If you don't have one, [sign up][sign_up]. Experimental Watson Services are free to use.
 
 1. Download and install the [Cloud-foundry CLI][cloud_foundry] tool if you haven't already.
 
@@ -22,7 +22,7 @@
     memory: 512M
   ```
 
-1. Connect to Bluemix with the command line tool.
+1. Connect to IBM Cloud with the command line tool.
 
   ```sh
   cf api https://api.ng.bluemix.net
@@ -58,7 +58,7 @@
 
 1. Point your browser to [http://localhost:3000](http://localhost:3000).
 
-1. **Optional:** Push the application to Bluemix:
+1. **Optional:** Push the application to IBM Cloud:
 
   ```none
   cf push
@@ -69,12 +69,12 @@ After completing the steps above, you are ready to test your application. Start 
             <your application name>.mybluemix.net
 
 
-For more details about developing applications that use Watson Developer Cloud services in Bluemix, see [Getting started with Watson Developer Cloud and Bluemix][getting_started].
+For more details about developing applications that use Watson Developer Cloud services in IBM Cloud, see [Getting started with Watson Developer Cloud and IBM Cloud][getting_started].
 
 
 ## Troubleshooting
 
-* The main source of troubleshooting and recovery information is the Bluemix log. To view the log, run the following command:
+* The main source of troubleshooting and recovery information is the IBM Cloud log. To view the log, run the following command:
 
   ```sh
   cf logs <application-name> --recent
@@ -97,14 +97,14 @@ For more details about developing applications that use Watson Developer Cloud s
 
 ### Privacy Notice
 
-This node sample web application includes code to track deployments to Bluemix and other Cloud Foundry platforms. The following information is sent to a [Deployment Tracker][deploy_track_url] service on each deployment:
+This node sample web application includes code to track deployments to IBM Cloud and other Cloud Foundry platforms. The following information is sent to a [Deployment Tracker][deploy_track_url] service on each deployment:
 
 * Application Name (`application_name`)
 * Space ID (`space_id`)
 * Application Version (`application_version`)
 * Application URIs (`application_uris`)
 
-This data is collected from the `VCAP_APPLICATION` environment variable in IBM Bluemix and other Cloud Foundry platforms. This data is used by IBM to track metrics around deployments of sample applications to IBM Bluemix. Only deployments of sample applications that include code to ping the Deployment Tracker service will be tracked.
+This data is collected from the `VCAP_APPLICATION` environment variable in IBM Cloud and other Cloud Foundry platforms. This data is used by IBM to track metrics around deployments of sample applications to IBM Cloud. Only deployments of sample applications that include code to ping the Deployment Tracker service will be tracked.
 
 ### Disabling Deployment Tracking
 
