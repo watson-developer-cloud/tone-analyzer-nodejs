@@ -2658,3 +2658,8 @@ pre[class^="language-"]>code[class^="language-"], pre[class^="language-"]>code[c
   visibility: visible;
   opacity: 1;
 }
+
+.banner--gdpr-description {
+  margin-top: 0.5rem;
+  font-size: 80%
+}
