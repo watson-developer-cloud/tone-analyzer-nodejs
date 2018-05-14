@@ -1,4 +1,3 @@
-/* global ga */
 /* eslint no-underscore-dangle: off, no-var: off, vars-on-top: off */
 
 function loadAnalytics() {
