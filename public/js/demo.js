@@ -41,11 +41,11 @@ function ready() {
 
   // load all json data first
   $.when(
-      $.ajax('/data/threshold_v0.1.1.json'),
-      $.ajax('/data/tweets.txt'),
-      $.ajax('/data/review.txt'),
-      $.ajax('/data/personal-email.txt'),
-      $.ajax('/data/review-fr.txt'))
+    $.ajax('/data/threshold_v0.1.1.json'),
+    $.ajax('/data/tweets.txt'),
+    $.ajax('/data/review.txt'),
+    $.ajax('/data/personal-email.txt'),
+    $.ajax('/data/review-fr.txt'))
     .done(function(thresholds, tweets, review, personalEmail, reviewFr) {
       var sampleText = {
         'review': review[0],

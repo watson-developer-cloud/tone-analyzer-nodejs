@@ -243,25 +243,25 @@ function App(documentTones, sentences, thresholds, selectedSample, sentenceTones
    */
   output.updateRankedSentences = function() {
     var sort = _lowToHigh ?
-      function(a, b) {
-        var aIndex = _searchIndexObject(_selectedFilter, a),
-          bIndex = _searchIndexObject(_selectedFilter, b),
-          aScore = 0,
-          bScore = 0;
-        if (aIndex != null) aScore = a.tones[aIndex].score;
-        if (bIndex != null) bScore = b.tones[bIndex].score;
-        return aScore - bScore;
-      } :
-      function(a, b) {
-        var aIndex = _searchIndexObject(_selectedFilter, a),
-          bIndex = _searchIndexObject(_selectedFilter, b),
-          aScore = 0,
-          bScore = 0;
-        if (aIndex != null) aScore = a.tones[aIndex].score;
-        if (bIndex != null) bScore = b.tones[bIndex].score;
+        function(a, b) {
+          var aIndex = _searchIndexObject(_selectedFilter, a),
+            bIndex = _searchIndexObject(_selectedFilter, b),
+            aScore = 0,
+            bScore = 0;
+          if (aIndex != null) aScore = a.tones[aIndex].score;
+          if (bIndex != null) bScore = b.tones[bIndex].score;
+          return aScore - bScore;
+        } :
+        function(a, b) {
+          var aIndex = _searchIndexObject(_selectedFilter, a),
+            bIndex = _searchIndexObject(_selectedFilter, b),
+            aScore = 0,
+            bScore = 0;
+          if (aIndex != null) aScore = a.tones[aIndex].score;
+          if (bIndex != null) bScore = b.tones[bIndex].score;
 
-        return bScore - aScore;
-      },
+          return bScore - aScore;
+        },
       map = function(item) {
         var itemIndex = _searchIndexObject(_selectedFilter, item),
           score = 0;

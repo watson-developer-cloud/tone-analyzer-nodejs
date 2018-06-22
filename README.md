@@ -2,8 +2,6 @@
 
   The IBM Watson [Tone Analyzer][docs] service is a cognitive linguistic analysis service that detects 7 tones which are most commonly used to detect the tone of written text. These are: anger, fear, joy, sadness, confident, analytical, and tentative.
 
-[![Deploy to IBM Cloud](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/tone-analyzer-nodejs.git)
-
 ## Getting started
 
 1. You need an IBM Cloud account. If you don't have one, [sign up][sign_up]. Experimental Watson Services are free to use.
@@ -95,23 +93,8 @@ For more details about developing applications that use Watson Developer Cloud s
 
   Find more open source projects on the [IBM Github Page](http://ibm.github.io/)
 
-### Privacy Notice
 
-This node sample web application includes code to track deployments to IBM Cloud and other Cloud Foundry platforms. The following information is sent to a [Deployment Tracker][deploy_track_url] service on each deployment:
-
-* Application Name (`application_name`)
-* Space ID (`space_id`)
-* Application Version (`application_version`)
-* Application URIs (`application_uris`)
-
-This data is collected from the `VCAP_APPLICATION` environment variable in IBM Cloud and other Cloud Foundry platforms. This data is used by IBM to track metrics around deployments of sample applications to IBM Cloud. Only deployments of sample applications that include code to ping the Deployment Tracker service will be tracked.
-
-### Disabling Deployment Tracking
-
-Deployment tracking can be disabled by removing `require('cf-deployment-tracker-client').track();` from the beginning of the `server.js` file at the root of this repo.
-
-[deploy_track_url]: https://github.com/cloudant-labs/deployment-tracker
 [docs]: https://console.bluemix.net/docs/services/tone-analyzer/index.html
 [cloud_foundry]: https://github.com/cloudfoundry/cli
 [getting_started]: https://console.bluemix.net/docs/services/watson/index.html
-[sign_up]: https://console.ng.bluemix.net/registration/
+[sign_up]: https://console.bluemix.net/registration/

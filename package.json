@@ -28,30 +28,27 @@
   "scripts": {
     "start": "node server.js",
     "test": "npm run lint && npm run test-unit",
-    "test-unit": "istanbul cover ./node_modules/mocha/bin/_mocha test/unit",
-    "test-integration": "istanbul cover ./node_modules/mocha/bin/_mocha test/integration",
+    "test-unit": "mocha test/unit --exit",
+    "test-integration": "mocha test/integration --exit",
     "lint": "eslint .",
     "autofix": "eslint --fix .",
     "codecov": "npm run test && (codecov || true)"
   },
   "dependencies": {
-    "body-parser": "^1.17.2",
-    "cf-deployment-tracker-client": "^0.x",
-    "dotenv": "^4.0.0",
-    "ejs": "^2.5.7",
-    "eslint": "^3.10.1",
-    "express": "^4.15.4",
-    "express-rate-limit": "^2.9.0",
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.0.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "express-rate-limit": "^2.11.0",
     "express-secure-only": "^0.2.1",
-    "helmet": "^3.8.1",
+    "helmet": "^3.12.1",
     "i18n": "^0.8.3",
-    "watson-developer-cloud": "^2.39.0"
+    "watson-developer-cloud": "^3.5.0"
   },
   "devDependencies": {
-    "codecov": "^2.3.0",
-    "eslint": "^4.6.1",
-    "istanbul": "^0.4.5",
-    "mocha": "^3.5.0",
-    "supertest": "^3.0.0"
+    "codecov": "^3.0.2",
+    "eslint": "^4.19.1",
+    "mocha": "^5.2.0",
+    "supertest": "^3.1.0"
   }
 }
