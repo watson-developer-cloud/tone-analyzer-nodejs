@@ -1,100 +1,111 @@
-# Tone Analyzer Starter Application [![Build Status](https://travis-ci.org/watson-developer-cloud/tone-analyzer-nodejs.svg?branch=master)](http://travis-ci.org/watson-developer-cloud/tone-analyzer-nodejs)
+<h1 align="center" style="border-bottom: none;">🚀 Tone Analyzer Sample Application</h1>
+<h3 align="center">This Node.js app demonstrates some of the Tone Analyzer service features.
+</h3>
+<p align="center">
+  <a href="http://travis-ci.org/watson-developer-cloud/tone-analyzer-nodejs">
+    <img alt="Travis" src="https://travis-ci.org/watson-developer-cloud/tone-analyzer-nodejs.svg?branch=master">
+  </a>
+  <a href="#badge">
+    <img alt="semantic-release" src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg">
+  </a>
+</p>
+</p>
 
-  The IBM Watson [Tone Analyzer][docs] service is a cognitive linguistic analysis service that detects 7 tones which are most commonly used to detect the tone of written text. These are: anger, fear, joy, sadness, confident, analytical, and tentative.
+The IBM Watson [Tone Analyzer][docs] service is a cognitive linguistic analysis service that detects 7 tones which are most commonly used to detect the tone of written text. These are: anger, fear, joy, sadness, confident, analytical, and tentative.
 
-## Getting started
+## Prerequisites
 
-1. You need an IBM Cloud account. If you don't have one, [sign up][sign_up]. Experimental Watson Services are free to use.
+1. Sign up for an [IBM Cloud account](https://console.bluemix.net/registration/).
+1. Download the [IBM Cloud CLI](https://console.bluemix.net/docs/cli/index.html#overview).
+1. Create an instance of the Tone Analyzer service and get your credentials:
+    - Go to the [Tone Analyzer](https://console.bluemix.net/catalog/services/tone-analyzer) page in the IBM Cloud Catalog.
+    - Log in to your IBM Cloud account.
+    - Click **Create**.
+    - Click **Show** to view the service credentials.
+    - Copy the `apikey` value, or copy the `username` and `password` values if your service instance doesn't provide an `apikey`.
+    - Copy the `url` value.
 
-1. Download and install the [Cloud-foundry CLI][cloud_foundry] tool if you haven't already.
+## Configuring the application
 
-1. Edit the `manifest.yml` file and change `<application-name>` to something unique. The name you use determines the URL of your application. For example, `<application-name>.mybluemix.net`.
+1. In the application folder, copy the *.env.example* file and create a file called *.env*
 
-  ```yaml
-  applications:
-  - services:
-    - my-service-instance
-    name: <application-name>
-    command: npm start
-    path: .
-    memory: 512M
-  ```
+    ```
+    cp .env.example .env
+    ```
 
-1. Connect to IBM Cloud with the command line tool.
+2. Open the *.env* file and add the service credentials that you obtained in the previous step.
 
-  ```sh
-  cf api https://api.ng.bluemix.net
-  cf login
-  ```
+    Example *.env* file that configures the `apikey` and `url` for a Tone Analyzer service instance hosted in the US East region:
 
-1. Create and retrieve service keys to access the [Tone Analyzer][docs] service:
+    ```
+    TONE_ANALYZER_IAM_APIKEY=X4rbi8vwZmKpXfowaS3GAsA7vdy17Qh7km5D6EzKLHL2
+    TONE_ANALYZER_URL=https://gateway-wdc.watsonplatform.net/tone-analyzer/api
+    ```
 
-  ```none
-  cf create-service tone_analyzer lite my-tone-analyzer-service
-  cf create-service-key my-tone-analyzer-service myKey
-  cf service-key my-tone-analyzer-service myKey
-  ```
+    - If your service instance uses `username` and `password` credentials, add the `TONE_ANALYZER_USERNAME` and `TONE_ANALYZER_PASSWORD` variables to the *.env* file.
 
-1. Create a `.env` file in the root directory by copying the sample `.env.example` file using the following command:
+    Example *.env* file that configures the `username`, `password`, and `url` for a Tone Analyzer service instance hosted in the Sydney region:
 
-  ```none
-  cp .env.example .env
-  ```
-  You will update the `.env` with the information you retrieved in steps 5.
+    ```
+    TONE_ANALYZER_USERNAME=522be-7b41-ab44-dec3-g1eab2ha73c6
+    TONE_ANALYZER_PASSWORD=A4Z5BdGENrwu8
+    TONE_ANALYZER_URL=https://gateway-syd.watsonplatform.net/tone-analyzer/api
+    ```
+## Running locally
 
-1. Install the dependencies you application need:
+1. Install the dependencies
 
-  ```none
-  npm install
-  ```
+    ```
+    npm install
+    ```
 
-1. Start the application locally:
+1. Run the application
 
-  ```none
-  npm start
-  ```
+    ```
+    npm start
+    ```
 
-1. Point your browser to [http://localhost:3000](http://localhost:3000).
+1. View the application in a browser at `localhost:3000`
 
-1. **Optional:** Push the application to IBM Cloud:
+## Deploying to IBM Cloud as a Cloud Foundry Application
 
-  ```none
-  cf push
-  ```
+1. Login to IBM Cloud with the [IBM Cloud CLI](https://console.bluemix.net/docs/cli/index.html#overview)
 
-After completing the steps above, you are ready to test your application. Start a browser and enter the URL of your application.
+    ```
+    ibmcloud login
+    ```
 
-            <your application name>.mybluemix.net
+1. Target a Cloud Foundry organization and space.
 
+    ```
+    ibmcloud target --cf
+    ```
 
-For more details about developing applications that use Watson Developer Cloud services in IBM Cloud, see [Getting started with Watson Developer Cloud and IBM Cloud][getting_started].
+1. Edit the *manifest.yml* file. Change the **name** field to something unique.  
+  For example, `- name: my-app-name`.
+1. Deploy the application
 
+    ```
+    ibmcloud app push
+    ```
 
-## Troubleshooting
-
-* The main source of troubleshooting and recovery information is the IBM Cloud log. To view the log, run the following command:
-
-  ```sh
-  cf logs <application-name> --recent
-  ```
-
-* For more details about the service, see the [documentation][docs] for the Tone Analyzer.
+1. View the application online at the app URL.  
+For example: https://my-app-name.mybluemix.net
 
 
 ## License
 
-  This sample code is licensed under Apache 2.0. Full license text is available in [LICENSE](LICENSE).
+This sample code is licensed under Apache 2.0.  
+Full license text is available in [LICENSE](LICENSE).
 
 ## Contributing
 
-  See [CONTRIBUTING](CONTRIBUTING.md).
+See [CONTRIBUTING](CONTRIBUTING.md).
 
 ## Open Source @ IBM
 
-  Find more open source projects on the [IBM Github Page](http://ibm.github.io/)
+Find more open source projects on the
+[IBM Github Page](http://ibm.github.io/).
 
-
-[docs]: https://console.bluemix.net/docs/services/tone-analyzer/index.html
-[cloud_foundry]: https://github.com/cloudfoundry/cli
-[getting_started]: https://console.bluemix.net/docs/services/watson/index.html
-[sign_up]: https://console.bluemix.net/registration/
+[service_url]: https://www.ibm.com/watson/services/tone-analyzer/
+[docs]: https://console.bluemix.net/docs/services/tone-analyzer/index.html#about

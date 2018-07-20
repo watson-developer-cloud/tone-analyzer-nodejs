@@ -1,5 +1,5 @@
 {
-  "name": "tone-analyzer-nodejs",
+  "name": "@ibm-watson/tone-analyzer-nodejs",
   "version": "4.0.0",
   "description": "Web application that uses Tone Analyzer to get the tone from a text message",
   "repository": {
@@ -43,11 +43,11 @@
     "express-secure-only": "^0.2.1",
     "helmet": "^3.12.1",
     "i18n": "^0.8.3",
-    "watson-developer-cloud": "^3.5.0"
+    "watson-developer-cloud": "^3.7.0"
   },
   "devDependencies": {
-    "codecov": "^3.0.2",
-    "eslint": "^4.19.1",
+    "codecov": "^3.0.4",
+    "eslint": "^5.1.0",
     "mocha": "^5.2.0",
     "supertest": "^3.1.0"
   }
