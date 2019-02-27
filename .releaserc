@@ -7,7 +7,7 @@
     "@semantic-release/git",
     "@semantic-release/github",
     ["@iteratec/semantic-release-docker", {
-      "additionalTags": ["master"],
+      "additionalTags": ["latest"],
       "imageName": "tone-analyzer-nodejs",
       "respositoryName": "ibmwatson"
     }]

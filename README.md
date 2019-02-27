@@ -13,14 +13,14 @@
 
 The IBM Watson [Tone Analyzer][docs] service is a cognitive linguistic analysis service that detects 7 tones which are most commonly used to detect the tone of written text. These are: anger, fear, joy, sadness, confident, analytical, and tentative.
 
-## Prerequisites
-
 [![Greenkeeper badge](https://badges.greenkeeper.io/watson-developer-cloud/tone-analyzer-nodejs.svg)](https://greenkeeper.io/)
 
-1. Sign up for an [IBM Cloud account](https://console.bluemix.net/registration/).
-1. Download the [IBM Cloud CLI](https://console.bluemix.net/docs/cli/index.html#overview).
+## Prerequisites
+
+1. Sign up for an [IBM Cloud account](https://cloud.ibm.com/registration/).
+1. Download the [IBM Cloud CLI](https://cloud.ibm.com/docs/cli/index.html#overview).
 1. Create an instance of the Tone Analyzer service and get your credentials:
-    - Go to the [Tone Analyzer](https://console.bluemix.net/catalog/services/tone-analyzer) page in the IBM Cloud Catalog.
+    - Go to the [Tone Analyzer](https://cloud.ibm.com/catalog/services/tone-analyzer) page in the IBM Cloud Catalog.
     - Log in to your IBM Cloud account.
     - Click **Create**.
     - Click **Show** to view the service credentials.
@@ -71,7 +71,7 @@ The IBM Watson [Tone Analyzer][docs] service is a cognitive linguistic analysis 
 
 ## Deploying to IBM Cloud as a Cloud Foundry Application
 
-1. Login to IBM Cloud with the [IBM Cloud CLI](https://console.bluemix.net/docs/cli/index.html#overview)
+1. Login to IBM Cloud with the [IBM Cloud CLI](https://cloud.ibm.com/docs/cli/index.html#overview)
 
     ```
     ibmcloud login
@@ -110,4 +110,4 @@ Find more open source projects on the
 [IBM Github Page](http://ibm.github.io/).
 
 [service_url]: https://www.ibm.com/watson/services/tone-analyzer/
-[docs]: https://console.bluemix.net/docs/services/tone-analyzer/index.html#about
+[docs]: https://cloud.ibm.com/docs/services/tone-analyzer/index.html#about

@@ -19,32 +19,10 @@
   <!-- top level heading -->
   <header class="_demo--heading">
     <div class="_demo--container">
-      <a class="wordmark" href="http://www.ibm.com/watson/developercloud/">
+      <a class="wordmark" href="https://www.ibm.com/watson/developer/">
         <span class="wordmark--left"><$= __('header-ibm') $></span>
         <span class="wordmark--right"><$= __('header-wdc') $></span>
       </a>
-      <nav class="heading-nav" role="menubar">
-        <li class="base--li heading-nav--li" role="presentation">
-          <a class="heading-nav--item" href="http://www.ibm.com/watson/developercloud/services-catalog.html" role="menuitem">
-            <$= __( 'header-services') $>
-          </a>
-        </li>
-        <li class="base--li heading-nav--li" role="presentation">
-          <a class="heading-nav--item" href="http://www.ibm.com/watson/developercloud/doc/index.html" role="menuitem">
-            <$= __( 'header-docs') $>
-          </a>
-        </li>
-        <li class="base--li heading-nav--li" role="presentation">
-          <a class="heading-nav--item" href="http://www.ibm.com/watson/developercloud/starter-kits.html" role="menuitem">
-            <$= __( 'header-starterKit') $>
-          </a>
-        </li>
-        <li class="base--li heading-nav--li" role="presentation">
-          <a class="heading-nav--item" href="https://developer.ibm.com/watson/" role="menuitem">
-            <$= __( 'header-community') $>
-          </a>
-        </li>
-      </nav>
     </div>
   </header>
   <div class="_demo--banner banner">
@@ -76,12 +54,12 @@
         <div class="banner--row">
           <div class="banner--service-links">
             <li class="base--li banner--service-link-item">
-              <a href="https://www.ibm.com/watson/developercloud/doc/tone-analyzer/index.html" target="blank" class="base--a">
+              <a href="https://cloud.ibm.com/docs/services/tone-analyzer/index.html" target="blank" class="base--a">
                 <$= __( 'header-documentation') $>
               </a>
             </li>
             <li class="base--li banner--service-link-item">
-              <a href="https://www.ibm.com/watson/developercloud/tone-analyzer/api/v3/" target="blank" class="base--a">
+              <a href="https://cloud.ibm.com/apidocs/tone-analyzer" target="blank" class="base--a">
                 <$= __( 'header-apiref') $>
               </a>
             </li>
@@ -91,7 +69,7 @@
               </a>
             </li>
             <li class="base--li banner--service-link-item">
-              <a href="https://console.bluemix.net/registration/?target=%2Fcatalog%2Fservices%2Ftone-analyzer%3FhideTours%3Dtrue%26cm_mmc%3D-_-Watson%2BCore_Watson%2BCore%2B-%2BPlatform-_-WW_WW-_-wdc-ref%26cm_mmc%3D-_-Watson%2BCore_Watson%2BCore%2B-%2BPlatform-_-WW_WW-_-wdc-ref%26cm_mmca1%3D000000OF%26cm_mmca2%3D10000409"
+              <a href="https://cloud.ibm.com/registration/?target=%2Fcatalog%2Fservices%2Ftone-analyzer%3FhideTours%3Dtrue%26cm_mmc%3D-_-Watson%2BCore_Watson%2BCore%2B-%2BPlatform-_-WW_WW-_-wdc-ref%26cm_mmc%3D-_-Watson%2BCore_Watson%2BCore%2B-%2BPlatform-_-WW_WW-_-wdc-ref%26cm_mmca1%3D000000OF%26cm_mmca2%3D10000409"
                 target="blank" class="base--button base--button_fill">
                 <$= __( 'header-bluemix') $>
               </a>
@@ -109,7 +87,7 @@
         <h2 class="base--h2"><$= __('header-sample-use-cases') $></h2>
         <p class="base--p input--description">
           <$= __( 'input-description') $>
-            <a class="base--a" href="https://console.bluemix.net/docs/services/tone-analyzer/index.html#about" target="new">
+            <a class="base--a" href="https://cloud.ibm.com/docs/services/tone-analyzer/index.html#about" target="new">
               <$= __( 'header-learn-more') $>
             </a>.</p>
         <input role="radio" class="base--radio input--radio" type="radio" id="input-tweets" name="rb" value="tweets" checked="true">
@@ -124,7 +102,7 @@
         <label class="base--inline-label input--radio-label" for="input-own-text"><$= __('radio-input-own-text') $></label>
         <p class="base--p input--description">
           <$= __( 'input-description-customer-engagement') $>
-            <a class="base--a" href="http://customer-engagement-demo.mybluemix.net" target="new">
+            <a class="base--a" href="http://customer-engagement-demo.ng.bluemix.net" target="new">
               <$= __( 'input-description-customer-engagement-endpoint') $>
             </a>.</p>
         <hr class="base--hr input--hr">
@@ -160,7 +138,7 @@
         </p>
         <p class="base--p output--document-description">
           <$= __( 'output-description-interpret') $>
-            <a class="base--a" target="_blank" href="https://console.bluemix.net/docs/services/tone-analyzer/using-tone.html#using-the-general-purpose-endpoint">
+            <a class="base--a" target="_blank" href="https://cloud.ibm.com/docs/services/tone-analyzer/using-tone.html#using-the-general-purpose-endpoint">
               <$= __( 'output-description-understand-score') $>
             </a>.</p>
         <h3 class="base--h3 output--document-title"><$= __('header-document') $></h3>
@@ -172,33 +150,6 @@
             <div class="summary-emotion-graph bar-graph"></div>
           </div>
         </div>
-        <!--
-        <div class="summary--row">
-          <div class="summary--emotion-description">
-            <p class="base--p">The Emotion graph represents the likelihood that an emotion tone is present in the text. <a class="base--a" target="_blank" href="https://console.bluemix.net/docs/services/tone-analyzer/using-tone.html#using-the-general-purpose-endpoint">Learn more</a>.</p>
-          </div>
-          <div class="summary--writing-and-social-description">
-            <p class="base--p">The Language Style and Social Tendencies graphs represent the amount of a language or social tone present in the text. <a class="base--a" target="_blank" href="https://console.bluemix.net/docs/services/tone-analyzer/using-tone.html#using-the-general-purpose-endpoint">Learn more</a>.</p>
-          </div>
-        </div>
-        <p class="base--p output--document-description">For details on how Tone Analyzer detects tone in text see, <a class="base--a" target="_blank" href="https://console.bluemix.net/docs/services/tone-analyzer/using-tone.html#using-the-general-purpose-endpoint">The Science Behind the Tone Analyzer Service</a>.</p>
-        <div class="summary--row">
-
-          <div class="results-table--feedback-inputs dcl">
-            <label><em class="base--em">Do you agree with this result?</em></label>
-            <input type="radio" checked="false" role="radio" id="class-yes" name="document-level" value="no" class="base--radio results-table--input-yes">
-            <label for="class-yes" class="base--inline-label vote results-table--input-yes-label">Yes</label>
-            <input type="radio" checked="false" role="radio" id="class-no" name="document-level" value="no" class="base--radio results-table--input-no">
-            <label for="class-no" class="base--inline-label vote results-table--input-no-label">No</label>
-          </div>
-          <div class="document-level-thankyou" style="text-align:center">
-            <span class="results-table--feedback-thanks">
-                        <em class="base--em">Thank You</em>
-                      </span>
-          </div>
-
-        </div>
--->
         <div class="summary-row">
           <span class="icon-hyperlink summary-view-code-button">
   					<img class="icon icon-code" src="images/icons/code.svg" />
@@ -230,14 +181,6 @@
                     <$= __( 'label-in-context') $>
                   </a>
                 </li>
-                <!--
-                <li class="tab-panels--tab-list-item base--li" role="presentation">
-                  <a class="tab-panels--tab base--a" href="#panel-sentence-rank" aria-controls="panel-sentence-rank" role="tab">Ranked by score</a>
-                </li>
-                <li class="tab-panels--tab-list-item base--li" role="presentation">
-                  <a class="tab-panels--tab base--a" href="#panel-json" aria-controls="panel-json" role="tab">JSON</a>
-                </li>
--->
               </ul>
               <div class="sentence-views--tab-content tab-panels--tab-content">
                 <div id="panel-original-text" class="sentence-views--tab-pane tab-panels--tab-pane active" role="tab-panel">
@@ -300,22 +243,6 @@
             <code class="base--code json--code language-javascript"></code>
           </pre>
         </div>
-        <!--
-        <div class="summary--row">
-          <div class="results-table--feedback-inputs scl">
-            <label><em class="base--em">Do you agree with this result? </em></label>
-            <input type="radio" role="radio" checked="false" id="class-yes-sentance" name="sentence-level" value="yes" class="base--radio results-table--input-yes">
-            <label for="class-yes-sentance" class="base--inline-label vote results-table--input-yes-label">Yes</label>
-            <input type="radio" role="radio" checked="false" id="class-no-sentance" name="sentence-level" value="no" class="base--radio results-table--input-no">
-            <label for="class-no-sentance" class="base--inline-label vote results-table--input-no-label">No</label>
-          </div>
-          <div class="sentence-level-thankyou" style="text-align:center">
-            <span class="results-table--feedback-thanks">
-             <em class="base--em">Thank You</em>
-            </span>
-          </div>
-        </div>
--->
         <!-- .sentences -->
         <div class="output--reset icon-hyperlink">
           <span class="icon icon-reset"></span>
@@ -339,8 +266,8 @@
           <$= __( 'footer-tagline') $>
         </div>
 
-        <a class="base--a bottom-links" href="https://www.ibm.com/watson/developercloud/tone-analyzer/api/v3/" target="_blank"><$= __( 'header-apiref') $></a>
-        <a class="base--a bottom-links" href="https://console.bluemix.net/docs/services/tone-analyzer/index.html#about" target="_blank"><$= __( 'header-documentation') $></a>
+        <a class="base--a bottom-links" href="https://cloud.ibm.com/apidocs/tone-analyzer" target="_blank"><$= __( 'header-apiref') $></a>
+        <a class="base--a bottom-links" href="https://cloud.ibm.com/docs/services/tone-analyzer/index.html#about" target="_blank"><$= __( 'header-documentation') $></a>
         <a class="base--a bottom-links" href="https://github.com/watson-developer-cloud/tone-analyzer-nodejs" target="_blank"><$= __( 'header-fork') $></a>
       </div>
     </div>
