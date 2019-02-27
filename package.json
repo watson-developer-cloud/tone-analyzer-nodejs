@@ -46,13 +46,22 @@
     "watson-developer-cloud": "^3.18.1"
   },
   "devDependencies": {
+    "@iteratec/semantic-release-docker": "^1.0.2",
+    "@semantic-release/changelog": "^3.0.2",
+    "@semantic-release/commit-analyzer": "^6.1.0",
+    "@semantic-release/git": "^7.0.8",
+    "@semantic-release/github": "^5.2.10",
+    "@semantic-release/npm": "^5.1.4",
+    "@semantic-release/release-notes-generator": "^7.1.4",
     "codecov": "^3.2.0",
     "eslint": "^5.14.1",
     "mocha": "^6.0.2",
+    "semantic-release": "^15.13.3",
     "supertest": "^3.4.2"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
-  }
+  },
+  "private": true
 }
