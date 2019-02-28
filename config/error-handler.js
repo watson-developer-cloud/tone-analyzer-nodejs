@@ -3,7 +3,7 @@ module.exports = function(app) {
   app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.code = 404;
-    err.message = 'Not Found';
+    err.message = `Path: ${req.path}, not Found`;
     next(err);
   });
 

@@ -1,9 +1,13 @@
 env:
-  browser: true
   node: true
-  mocha: true
+  browser: true
+  commonjs: true
+  es6: true
   jquery: true
+  jest: true
 extends: 'eslint:recommended'
+parserOptions:
+  ecmaVersion: 2018
 rules:
   indent:
     - error

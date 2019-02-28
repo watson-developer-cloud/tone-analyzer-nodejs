@@ -14,7 +14,6 @@ module.exports = function(app) {
   app.use(bodyParser.json());
 
   app.use(require('express-status-monitor')());
-  app.use('/healthcheck', require('express-healthcheck')());
 
   require('./i18n')(app);
 

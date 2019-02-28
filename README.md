@@ -85,16 +85,39 @@ The IBM Watson [Tone Analyzer][docs] service is a cognitive linguistic analysis 
 
 1. Edit the *manifest.yml* file. Change the **name** field to something unique.  
   For example, `- name: my-app-name`.
+
 1. Deploy the application
 
     ```
     ibmcloud app push
     ```
 
-1. View the application online at the app URL.  
-For example: https://my-app-name.mybluemix.net
+1. View the application online at the app URL. For example: https://my-app-name.mybluemix.net
+
+## Deploying to IBM Cloud as a Kubernetes Application
+
+1. Login to IBM Cloud with the [IBM Cloud CLI](https://cloud.ibm.com/docs/cli/index.html#overview)
+
+    ```
+    ibmcloud login
+    ```
+1. Install the Kubernetes CLI and configure it to run [`kubectl`](https://console.bluemix.net/docs/containers/cs_cli_install.html#cs_cli_configure) commands.
 
 
+1. Edit the `kube-deploy.yaml` file and update the environment variables in the container with the service credentials
+
+1. Deploy the application
+    ```bash
+    kubectl apply -f kube-deploy.yaml
+    ```
+    Expected output:
+    ```none
+    service/tone-analyzer-nodejs configured
+    deployment.apps/tone-analyzer-nodejs configured
+    ingress.extensions/tone-analyzer-nodejs configured
+    ```
+
+![](https://www.reactiongifs.com/wp-content/uploads/2012/08/well_done_sir.gif)
 ## License
 
 This sample code is licensed under Apache 2.0.  
