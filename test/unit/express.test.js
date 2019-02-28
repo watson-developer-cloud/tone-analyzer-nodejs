@@ -1,5 +1,5 @@
 const path = require('path');
-// load default gitvariables for testing
+// load default variables for testing
 require('dotenv').config({ path: path.join(__dirname, '../../.env.example') });
 
 const app = require('../../app');
