@@ -1,5 +1,6 @@
 {
   "name": "@ibm-watson/tone-analyzer-nodejs",
+  "private": true,
   "version": "4.0.0",
   "description": "Web application that uses Tone Analyzer to get the tone from a text message",
   "repository": {
@@ -27,9 +28,8 @@
   },
   "scripts": {
     "start": "node server.js",
-    "test": "npm run lint && npm run test-unit",
-    "test-unit": "mocha test/unit --exit",
-    "test-integration": "mocha test/integration --exit",
+    "test": "npm run lint && npm run test-jest",
+    "test-jest": "jest test",
     "lint": "eslint .",
     "autofix": "eslint --fix .",
     "codecov": "npm run test && (codecov || true)"
@@ -41,18 +41,32 @@
     "express": "^4.16.4",
     "express-rate-limit": "^3.4.0",
     "express-secure-only": "^0.2.1",
+    "express-status-monitor": "^1.2.3",
     "helmet": "^3.15.1",
     "i18n": "^0.8.3",
     "watson-developer-cloud": "^3.18.1"
   },
   "devDependencies": {
+    "@iteratec/semantic-release-docker": "^1.0.2",
+    "@semantic-release/changelog": "^3.0.2",
+    "@semantic-release/commit-analyzer": "^6.1.0",
+    "@semantic-release/git": "^7.0.8",
+    "@semantic-release/github": "^5.2.10",
+    "@semantic-release/npm": "^5.1.4",
+    "@semantic-release/release-notes-generator": "^7.1.4",
     "codecov": "^3.2.0",
     "eslint": "^5.14.1",
-    "mocha": "^6.0.2",
+    "jest": "^24.1.0",
+    "semantic-release": "^15.13.3",
     "supertest": "^3.4.2"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
+  },
+  "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true,
+    "testEnvironment": "node"
   }
 }

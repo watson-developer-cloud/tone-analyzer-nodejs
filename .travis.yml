@@ -2,8 +2,10 @@ language: node_js
 dist: trusty
 sudo: required
 node_js: 8
+services:
+  - docker
 script:
-- npm run test
+- npm run codecov
 
 cache:
   directories:
@@ -15,7 +17,9 @@ env:
   - BX_API=https://api.ng.bluemix.net
   - BX_ORGANIZATION=WatsonPlatformServices
   - BX_SPACE=demos
-before_deploy: npm install -g bx-blue-green
+before_deploy:
+  - docker build -t ibmwatson/tone-analyzer-nodejs .
+  - npm install -g bx-blue-green
 deploy:
 - provider: script
   script:
@@ -29,3 +33,5 @@ deploy:
   script: npx semantic-release
   on:
     node: 8
+    branch: master
+    repo: watson-developer-cloud/tone-analyzer-nodejs

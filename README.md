@@ -13,14 +13,14 @@
 
 The IBM Watson [Tone Analyzer][docs] service is a cognitive linguistic analysis service that detects 7 tones which are most commonly used to detect the tone of written text. These are: anger, fear, joy, sadness, confident, analytical, and tentative.
 
-## Prerequisites
-
 [![Greenkeeper badge](https://badges.greenkeeper.io/watson-developer-cloud/tone-analyzer-nodejs.svg)](https://greenkeeper.io/)
 
-1. Sign up for an [IBM Cloud account](https://console.bluemix.net/registration/).
-1. Download the [IBM Cloud CLI](https://console.bluemix.net/docs/cli/index.html#overview).
+## Prerequisites
+
+1. Sign up for an [IBM Cloud account](https://cloud.ibm.com/registration/).
+1. Download the [IBM Cloud CLI](https://cloud.ibm.com/docs/cli/index.html#overview).
 1. Create an instance of the Tone Analyzer service and get your credentials:
-    - Go to the [Tone Analyzer](https://console.bluemix.net/catalog/services/tone-analyzer) page in the IBM Cloud Catalog.
+    - Go to the [Tone Analyzer](https://cloud.ibm.com/catalog/services/tone-analyzer) page in the IBM Cloud Catalog.
     - Log in to your IBM Cloud account.
     - Click **Create**.
     - Click **Show** to view the service credentials.
@@ -71,7 +71,7 @@ The IBM Watson [Tone Analyzer][docs] service is a cognitive linguistic analysis 
 
 ## Deploying to IBM Cloud as a Cloud Foundry Application
 
-1. Login to IBM Cloud with the [IBM Cloud CLI](https://console.bluemix.net/docs/cli/index.html#overview)
+1. Login to IBM Cloud with the [IBM Cloud CLI](https://cloud.ibm.com/docs/cli/index.html#overview)
 
     ```
     ibmcloud login
@@ -85,16 +85,39 @@ The IBM Watson [Tone Analyzer][docs] service is a cognitive linguistic analysis 
 
 1. Edit the *manifest.yml* file. Change the **name** field to something unique.  
   For example, `- name: my-app-name`.
+
 1. Deploy the application
 
     ```
     ibmcloud app push
     ```
 
-1. View the application online at the app URL.  
-For example: https://my-app-name.mybluemix.net
+1. View the application online at the app URL. For example: https://my-app-name.mybluemix.net
+
+## Deploying to IBM Cloud as a Kubernetes Application
+
+1. Login to IBM Cloud with the [IBM Cloud CLI](https://cloud.ibm.com/docs/cli/index.html#overview)
+
+    ```
+    ibmcloud login
+    ```
+1. Install the Kubernetes CLI and configure it to run [`kubectl`](https://console.bluemix.net/docs/containers/cs_cli_install.html#cs_cli_configure) commands.
 
 
+1. Edit the `kube-deploy.yaml` file and update the environment variables in the container with the service credentials
+
+1. Deploy the application
+    ```bash
+    kubectl apply -f kube-deploy.yaml
+    ```
+    Expected output:
+    ```none
+    service/tone-analyzer-nodejs configured
+    deployment.apps/tone-analyzer-nodejs configured
+    ingress.extensions/tone-analyzer-nodejs configured
+    ```
+
+![](https://www.reactiongifs.com/wp-content/uploads/2012/08/well_done_sir.gif)
 ## License
 
 This sample code is licensed under Apache 2.0.  
@@ -110,4 +133,4 @@ Find more open source projects on the
 [IBM Github Page](http://ibm.github.io/).
 
 [service_url]: https://www.ibm.com/watson/services/tone-analyzer/
-[docs]: https://console.bluemix.net/docs/services/tone-analyzer/index.html#about
+[docs]: https://cloud.ibm.com/docs/services/tone-analyzer/index.html#about
