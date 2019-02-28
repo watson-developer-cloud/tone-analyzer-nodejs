@@ -13,8 +13,6 @@ module.exports = function(app) {
   }));
   app.use(bodyParser.json());
 
-  app.use(require('express-status-monitor')());
-
   require('./i18n')(app);
 
   // Setup static public directory
