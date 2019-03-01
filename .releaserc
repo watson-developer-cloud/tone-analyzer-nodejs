@@ -1,17 +1,21 @@
 {
-  "plugins": [
-    "@semantic-release/commit-analyzer",
-    "@semantic-release/release-notes-generator",
+  "verifyConditions": [
     "@semantic-release/changelog",
     "@semantic-release/npm",
     "@semantic-release/git",
     "@semantic-release/github",
-    ["@iteratec/semantic-release-docker", {
-      "prepare": {
-        "additionalTags": ["latest"],
-        "imageName": "tone-analyzer-nodejs",
-        "respositoryName": "ibmwatson"
-      }
-    }]
+    "semantic-release-docker"
+  ],
+  "prepare": [
+    "@semantic-release/changelog",
+    "@semantic-release/git",
+    "@semantic-release/npm"
+  ],
+  "publish": [
+    "@semantic-release/github",
+    {
+      "path": "semantic-release-docker",
+      "name": "ibmwatson/tone-analyzer-nodejs"
+    }
   ]
 }
