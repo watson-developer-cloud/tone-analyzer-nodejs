@@ -60,7 +60,7 @@
     "jest": "^24.1.0",
     "semantic-release": "^15.13.3",
     "semantic-release-docker": "^2.1.0",
-    "supertest": "^3.4.2"
+    "supertest": "^4.0.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
