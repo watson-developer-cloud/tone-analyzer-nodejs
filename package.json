@@ -46,7 +46,7 @@
     "express-secure-only": "^0.2.1",
     "helmet": "^3.15.1",
     "i18n": "^0.8.3",
-    "watson-developer-cloud": "^3.18.1"
+    "watson-developer-cloud": "^4.0.1"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^3.0.2",
