@@ -12,9 +12,9 @@ describe('express', () => {
     })
   );
 
-  test('404 when page not found', () =>
-    request(app).get('/foo/bar').then(response => {
-      expect(response.statusCode).toBe(404);
-    })
-  );
+  test('404 when page not found', () => {
+    return expect(request(app).get('/foo/bar'))
+      .rejects
+      .toMatchObject(new Error('Not Found'));
+  });
 });

@@ -79,8 +79,8 @@ describeIfSkip('integration-express', function() {
       })
   );
 
-  test('Generate Error when there is no text for analysis', () =>
-    request(app).post('/api/tone')
+  test('Generate Error when there is no text for analysis', () => {
+    return expect(request(app).post('/api/tone')
       .type('form')
       .send({
         language: 'en',
@@ -89,10 +89,10 @@ describeIfSkip('integration-express', function() {
         include_raw: false,
         text: ''
       })
-      .then(response => {
-        expect(response.statusCode).toBe(500);
-      })
-  );
+    )
+      .rejects
+      .toMatchObject(new Error('Internal Server Error'));
+  });
 
   test('Analyze tones when only text is specified', () =>
     request(app).post('/api/tone')
