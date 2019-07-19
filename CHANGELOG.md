@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/watson-developer-cloud/tone-analyzer-nodejs/compare/v1.3.0...v1.3.1) (2019-07-19)
+
+
+### Bug Fixes
+
+* remove tone analyzer service, fix [#160](https://github.com/watson-developer-cloud/tone-analyzer-nodejs/issues/160) ([6cc6d65](https://github.com/watson-developer-cloud/tone-analyzer-nodejs/commit/6cc6d65))
+
 # [1.3.0](https://github.com/watson-developer-cloud/tone-analyzer-nodejs/compare/v1.2.0...v1.3.0) (2019-05-20)
 
 
