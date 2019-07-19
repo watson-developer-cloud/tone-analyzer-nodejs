@@ -16,11 +16,11 @@
 
 'use strict';
 
-require('dotenv').load({silent: true});
+require('dotenv').config({silent: true});
 
 var express = require('express');
 var app = express();
-var ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
+var ToneAnalyzerV3 = require('ibm-watson/tone-analyzer/v3');
 
 // Bootstrap application settings
 require('./config/express')(app);

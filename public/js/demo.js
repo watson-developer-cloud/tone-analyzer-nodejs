@@ -1,5 +1,5 @@
 /* eslint camelcase: "warn" */
-/* global  _, normalize, scrollTo,
+/* global  _, normalize,
     App
     emotionBarGraphTemplate,
     filtersTemplate,
@@ -458,7 +458,7 @@ function allReady(thresholds, sampleText) {
    * @return {undefined}
    */
   function getToneAnalysis(text) {
-    $.post('/api/tone', {'text': text,'language': selectedLang}, toneCallback)
+    $.post('/api/tone', {'tone_input': { text: text}, 'content_language': selectedLang}, toneCallback)
       .fail(_error);
   }
 
