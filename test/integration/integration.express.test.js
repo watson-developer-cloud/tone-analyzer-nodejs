@@ -14,94 +14,69 @@ const sampleTextReview = fs.readFileSync(filePathReview, 'utf-8');
 const filePathEmail = path.join(__dirname, '../..', '/public/data/personal-email.txt');
 const sampleTextEmail = fs.readFileSync(filePathEmail, 'utf-8');
 
-const describeIfSkip = process.env.TONE_ANALYZER_IAM_APIKEY || process.env.TONE_ANALYZER_USERNAME ? describe : describe.skip;
+const describeIfSkip =
+  process.env.TONE_ANALYZER_IAM_APIKEY || process.env.TONE_ANALYZER_USERNAME
+    ? describe
+    : describe.skip;
 describeIfSkip('integration-express', function() {
   jest.setTimeout(15000);
   const app = require('../../app');
 
   test('Analyze tones in tweets sample', () =>
-    request(app).post('/api/tone')
+    request(app)
+      .post('/api/tone')
       .type('form')
       .send({
-        language: 'en',
-        source_type: 'text',
-        accept_language: 'en',
-        include_raw: false,
-        text: sampleTextTweets
+        content_language: 'en',
+        tone_input: {
+          text: sampleTextTweets,
+        },
       })
       .then(response => {
         expect(response.statusCode).toBe(200);
-      })
-  );
+      }));
 
   test('Analyze tones in reviews sample', () =>
-    request(app).post('/api/tone')
+    request(app)
+      .post('/api/tone')
       .type('form')
       .send({
-        language: 'en',
-        source_type: 'text',
         accept_language: 'en',
-        include_raw: false,
-        text: sampleTextReview
+        content_language: 'en',
+        tone_input: {
+          text: sampleTextReview,
+        },
       })
       .then(response => {
         expect(response.statusCode).toBe(200);
-      })
-  );
+      }));
 
   test('Analyze tones in email sample', () =>
-    request(app).post('/api/tone')
+    request(app)
+      .post('/api/tone')
       .type('form')
       .send({
-        language: 'en',
-        source_type: 'text',
         accept_language: 'en',
-        include_raw: false,
-        text: sampleTextEmail
+        content_language: 'en',
+        tone_input: {
+          text: sampleTextEmail,
+        },
       })
       .then(response => {
         expect(response.statusCode).toBe(200);
-      })
-  );
+      }));
 
-  test('Analyze tones in own text', () =>
-    request(app).post('/api/tone')
+  test('Generate Error when there is no text for analysis', () =>
+    request(app)
+      .post('/api/tone')
       .type('form')
       .send({
-        language: 'en',
-        source_type: 'text',
-        accept_language: 'en',
-        include_raw: false,
-        text: 'This is a chair'
+        content_language: 'en',
+        tone_input: {
+          text: '',
+        },
       })
       .then(response => {
-        expect(response.statusCode).toBe(200);
-      })
-  );
-
-  test('Generate Error when there is no text for analysis', () => {
-    return expect(request(app).post('/api/tone')
-      .type('form')
-      .send({
-        language: 'en',
-        source_type: 'text',
-        accept_language: 'en',
-        include_raw: false,
-        text: ''
-      })
-    )
-      .rejects
-      .toMatchObject(new Error('Internal Server Error'));
-  });
-
-  test('Analyze tones when only text is specified', () =>
-    request(app).post('/api/tone')
-      .type('form')
-      .send({
-        text: sampleTextTweets
-      })
-      .then(response => {
-        expect(response.statusCode).toBe(200);
-      })
-  );
+        expect(response.statusCode).toBe(400);
+      }));
 });
