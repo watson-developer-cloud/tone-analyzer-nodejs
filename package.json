@@ -8,7 +8,7 @@
     "url": "https://github.com/watson-developer-cloud/tone-analyzer-nodejs.git"
   },
   "engines": {
-    "node": ">=8.0"
+    "node": ">=12"
   },
   "author": "IBM Corp.",
   "contributors": [
@@ -39,26 +39,26 @@
   },
   "dependencies": {
     "body-parser": "^1.19.0",
-    "dotenv": "^8.0.0",
-    "ejs": "^2.6.2",
+    "dotenv": "^8.2.0",
+    "ejs": "^2.7.1",
     "express": "^4.17.1",
     "express-rate-limit": "^5.0.0",
     "express-secure-only": "^0.2.1",
-    "helmet": "^3.19.0",
-    "i18n": "^0.8.3",
-    "ibm-watson": "^4.2.5"
+    "helmet": "^3.21.2",
+    "i18n": "^0.8.4",
+    "ibm-watson": "^5.1.0"
   },
   "devDependencies": {
-    "@semantic-release/changelog": "^3.0.4",
-    "@semantic-release/commit-analyzer": "^6.2.0",
-    "@semantic-release/git": "^7.0.16",
-    "@semantic-release/github": "^5.4.2",
-    "@semantic-release/npm": "^5.1.13",
-    "@semantic-release/release-notes-generator": "^7.2.1",
-    "codecov": "^3.5.0",
-    "eslint": "^6.0.1",
-    "jest": "^24.8.0",
-    "semantic-release": "^15.13.18",
+    "@semantic-release/changelog": "^3.0.5",
+    "@semantic-release/commit-analyzer": "^6.3.3",
+    "@semantic-release/git": "^7.0.18",
+    "@semantic-release/github": "^5.5.5",
+    "@semantic-release/npm": "^5.3.4",
+    "@semantic-release/release-notes-generator": "^7.3.2",
+    "codecov": "^3.6.1",
+    "eslint": "^6.6.0",
+    "jest": "^24.9.0",
+    "semantic-release": "^15.13.30",
     "semantic-release-docker": "^2.2.0",
     "supertest": "^4.0.2"
   },

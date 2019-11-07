@@ -458,7 +458,7 @@ function allReady(thresholds, sampleText) {
    * @return {undefined}
    */
   function getToneAnalysis(text) {
-    $.post('/api/tone', {'tone_input': { text: text}, 'content_language': selectedLang}, toneCallback)
+    $.post('/api/tone', {'toneInput': { text: text}, 'contentLanguage': selectedLang}, toneCallback)
       .fail(_error);
   }
 
