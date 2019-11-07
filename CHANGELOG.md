@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/watson-developer-cloud/tone-analyzer-nodejs/compare/v1.3.1...v1.3.2) (2019-11-07)
+
+
+### Bug Fixes
+
+* Update dependencies and node-sdk ([fef9565](https://github.com/watson-developer-cloud/tone-analyzer-nodejs/commit/fef9565032454336fb65d04b31fb7797862a3cd9))
+
 ## [1.3.1](https://github.com/watson-developer-cloud/tone-analyzer-nodejs/compare/v1.3.0...v1.3.1) (2019-07-19)
 
 
