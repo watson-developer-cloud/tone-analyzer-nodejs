@@ -18,34 +18,33 @@
 
 require('dotenv').config({silent: true});
 
-var express = require('express');
-var app = express();
-var ToneAnalyzerV3 = require('ibm-watson/tone-analyzer/v3');
+const express = require('express');
+const app = express();
+const ToneAnalyzerV3 = require('ibm-watson/tone-analyzer/v3');
+const { IamAuthenticator } = require('ibm-watson/auth');
+
+const toneAnalyzer = new ToneAnalyzerV3({
+  version: '2019-10-10',
+  authenticator: new IamAuthenticator({
+    apikey: process.env.TONE_ANALYZER_IAM_APIKEY || 'type-key-here',
+  }),
+  url: process.env.TONE_ANALYZER_URL,
+});
 
 // Bootstrap application settings
 require('./config/express')(app);
-
-// Create the service wrapper
-var toneAnalyzer = new ToneAnalyzerV3({
-  // If unspecified here, the TONE_ANALYZER_USERNAME and TONE_ANALYZER_PASSWORD environment properties will be checked
-  // or TONE_ANALYZER_IAM_APIKEY if is available
-  // After that, the SDK will fall back to the bluemix-provided VCAP_SERVICES environment property
-  // username: '<username>',
-  // password: '<password>',
-  version: '2017-09-21'
-});
 
 app.get('/', function(req, res) {
   res.render('index');
 });
 
-app.post('/api/tone', function(req, res, next) {
-  toneAnalyzer.tone(req.body, function(err, data) {
-    if (err) {
-      return next(err);
-    }
-    return res.json(data);
-  });
+app.post('/api/tone', async function(req, res, next) {
+  try {
+    const { result } = await toneAnalyzer.tone(req.body);
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
 });
 
 // error-handler application settings

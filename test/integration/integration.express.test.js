@@ -27,8 +27,8 @@ describeIfSkip('integration-express', function() {
       .post('/api/tone')
       .type('form')
       .send({
-        content_language: 'en',
-        tone_input: {
+        contentLanguage: 'en',
+        toneInput: {
           text: sampleTextTweets,
         },
       })
@@ -41,9 +41,9 @@ describeIfSkip('integration-express', function() {
       .post('/api/tone')
       .type('form')
       .send({
-        accept_language: 'en',
-        content_language: 'en',
-        tone_input: {
+        acceptLanguage: 'en',
+        contentLanguage: 'en',
+        toneInput: {
           text: sampleTextReview,
         },
       })
@@ -56,9 +56,9 @@ describeIfSkip('integration-express', function() {
       .post('/api/tone')
       .type('form')
       .send({
-        accept_language: 'en',
-        content_language: 'en',
-        tone_input: {
+        acceptLanguage: 'en',
+        contentLanguage: 'en',
+        toneInput: {
           text: sampleTextEmail,
         },
       })
@@ -66,17 +66,4 @@ describeIfSkip('integration-express', function() {
         expect(response.statusCode).toBe(200);
       }));
 
-  test('Generate Error when there is no text for analysis', () =>
-    request(app)
-      .post('/api/tone')
-      .type('form')
-      .send({
-        content_language: 'en',
-        tone_input: {
-          text: '',
-        },
-      })
-      .then(response => {
-        expect(response.statusCode).toBe(400);
-      }));
 });
