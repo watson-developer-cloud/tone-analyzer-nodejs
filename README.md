@@ -112,9 +112,9 @@ The IBM Watson [Tone Analyzer][docs] service is a cognitive linguistic analysis 
     ```
     Expected output:
     ```none
-    service/tone-analyzer-nodejs configured
-    deployment.apps/tone-analyzer-nodejs configured
-    ingress.extensions/tone-analyzer-nodejs configured
+    service/tone-analyzer-nodejs created
+    deployment.apps/tone-analyzer-nodejs created
+    ingress.extensions/tone-analyzer-nodejs created
     ```
 
 ![](https://www.reactiongifs.com/wp-content/uploads/2012/08/well_done_sir.gif)
